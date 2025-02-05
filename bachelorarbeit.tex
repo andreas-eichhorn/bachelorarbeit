@@ -1,1 +1,95 @@
-test
+\documentclass{article}
+\usepackage{syntax}
+\begin{document}
+    \begin{grammar}
+        <ActivityModel> ::= <Activity>* <ActivityConnection>
+
+        <Activity> ::= <ActivityStart>
+        | <ActivityAction>
+        | <ActivityCondition>
+        | <ActivityDisplay>
+
+        <ActivityStart> ::= $\epsilon$
+
+        <ActivityAction> ::= <ActivityFlowCall>
+        | <ActivityPitaBuildInforRequest>
+        | <ActivityLoadExternalData>
+
+        <ActivityFlowCall> ::= ref(FlowTemplate) <ActivityPortValue>* <TemplateParameterValue>* <ValueTransformation>*
+
+        <ActivityPitaBuildInforRequest> ::= <string abdFilename> <string requestAlias> <string expectedSystems>* <number timeout>
+
+        <ActivityLoadExternalData> ::= <Type dataType> <string dataSource>
+
+        <ActivityPortValue> ::= <FlowPortValue>
+        | <ActivityPortRefernce>
+
+        <FlowPortValue> ::= <string>
+        | <number>
+        | <bool>
+        | <date>
+        | <FlowPortValue>*
+
+        <ActivityPortRefernce> ::= ref(ActivityAction) (ValueTransformation)*
+
+        <ValueTransformation> ::= <string objectReference>
+        | <number listIndex>
+
+        <ActivityCondition> ::= <ActivityBinaryCondition>
+        | <ActivityValidityCondition>
+
+        <ActivityBinaryCondition> ::= ref(FlowTemplate) <ActivityBinaryConditionOperator> <ActivityPortValue left> <ActivityPortValue right>
+
+        <ActivityValidityCondition> ::= <ActivityPortValue>*
+
+        <ActivityBinaryCondition> ::= '='
+        | '$\neq$' 
+        | '\textless' 
+        | '$\leq$' 
+        | '\textgreater' 
+        | '$\geq$'
+
+        <ActivityDisplay> ::= <ActivityDisplayField>*
+
+        <ActivityDisplayField> ::= <string label> <string color> ref(ActivityAction)
+    \end{grammar}
+    \textbf{Grammatik TODO} Aktivitätsmodell
+    \newpage
+    \begin{grammar}
+        <FlowInstance> ::= <FlowOutputPort lambdaArguments>* <FlowInputPort lambdaArguments>*
+        
+        <FlowLambda> ::= <FlowOutputPort lambdaArguments>* <FlowInputPort lambdaArguments>*
+
+        <FlowInputPort> ::= <string name> <Type> <bool acceptsError>
+
+        <FlowOutputPort> ::= <string name> <Type> <bool producesError>
+    \end{grammar}
+    \textbf{Grammatik TODO} Flow-Instanz
+    \begin{grammar}
+        <FlowTemplate> ::= <Flow> <TemplateParameter>*
+
+        <Flow> ::= <LibraryFlow> | <FlowModel>
+        
+        <LibraryFlow> ::= $\epsilon$
+
+        <TemplateParameter> ::= 'String' | 'Number' | 'Bool' | <TemplateParameterList>
+        
+        <TemplateParameterList> ::= <TemplateParameter>
+    \end{grammar}
+    \textbf{Grammatik TODO} Flow-Template
+        <FlowModel> ::= <FlowInstance> <FlowNode>* <FlowConnection>*
+
+        <FlowNode> ::= <FlowNodeOutput> | <FlowNodeInput> | <FlowNodeLambda> | <FlowNodeFlowCall>
+
+        <FlowNodeOutput> ::= ref(FlowOutputPort) <FlowPortValue>
+
+        <FlowNodeLambda> ::= ref(FlowLambda) <FlowPortValue>*
+
+        <FlowNodeFlowCall> ::= ref(FlowTemplate) <FlowPortValue>* <TemplateParameterValue>*
+
+        <FlowConnection> ::= ref(FlowOutputPort source) ref (FlowOutputPort target)
+
+        <TemplateParameterValue> ::= <string> | <number> | <bool> | <TemplateParameterValueList>
+
+        <TemplateParameterValueList ::= <TemplateParameterValue>*
+\end{document}    
