@@ -77,19 +77,41 @@
         <TemplateParameterList> ::= <TemplateParameter>
     \end{grammar}
     \textbf{Grammatik TODO} Flow-Template
+    \begin{grammar}
         <FlowModel> ::= <FlowInstance> <FlowNode>* <FlowConnection>*
 
         <FlowNode> ::= <FlowNodeOutput> | <FlowNodeInput> | <FlowNodeLambda> | <FlowNodeFlowCall>
-
+       
         <FlowNodeOutput> ::= ref(FlowOutputPort) <FlowPortValue>
 
         <FlowNodeLambda> ::= ref(FlowLambda) <FlowPortValue>*
 
         <FlowNodeFlowCall> ::= ref(FlowTemplate) <FlowPortValue>* <TemplateParameterValue>*
-
+    
         <FlowConnection> ::= ref(FlowOutputPort source) ref (FlowOutputPort target)
-
+    
+        <FlowConnection> ::= ref(FlowOutputPort source) ref (FlowOutputPort target)
+    
         <TemplateParameterValue> ::= <string> | <number> | <bool> | <TemplateParameterValueList>
+    
+        <TemplateParameterValueList> ::= <TemplateParameterValue>*
+    \end{grammar}
+    \textbf{Grammatik TODO} Flow-Modell
+    \newpage
+    \begin{grammar}
+        <Type> ::= <TypePrimtive> | <TypeOptional> | <TypeList> | <TypeObject>
 
-        <TemplateParameterValueList ::= <TemplateParameterValue>*
+        <TypePrimtive> ::= 'String' | 'Number' | 'Bool' | 'Data' | 'PtiaResponse'
+        
+        <TypeOptional> ::= <Type> '?'
+        
+        <TypeList> ::= <Type> '[]'
+        
+        <TypeObject> ::= '\{' (<string key> ':' <Type>)* '\}'
+
+        <TypeGeneric> ::= '\$' <string genericName>
+
+        <TypeReference> ::= ref(Type)
+    \end{grammar}
+    \textbf{Grammatik TODO} Typ-Defintion mit generischen und Referenz-Typen
 \end{document}    
