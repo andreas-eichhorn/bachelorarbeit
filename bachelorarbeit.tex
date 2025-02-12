@@ -1,5 +1,7 @@
 \documentclass{article}
 \usepackage{syntax}
+\usepackage{dsfont}
+\usepackage{amsmath}
 \begin{document}
     %Notizen
     folgende Begriffe sollen definiert werden:
@@ -15,11 +17,16 @@
     Flowchart
 
     (Fixpunktberechnung)
+    \newpage
+    \tableofcontents
     %Einleitung
     \newpage
+    \section{Einleitung}
     test
     %Haupteil
     \newpage
+    \section{Grammatikanalyse}
+    \subsection{Prüfungslogik}
     \begin{grammar}
         <ActivityModel> ::= <Activity>* <ActivityConnection>
 
@@ -74,6 +81,7 @@
     \end{grammar}
     \textbf{Grammatik TODO} Aktivitätsmodell
     \newpage
+    \subsection{Datenverarbeitungs}
     \begin{grammar}
         <FlowInstance> ::= <FlowOutputPort lambdaArguments>* <FlowInputPort lambdaArguments>*
         
@@ -117,6 +125,7 @@
     \end{grammar}
     \textbf{Grammatik TODO} Flow-Modell
     \newpage
+    \subsection{Typsystem}
     \begin{grammar}
         <Type> ::= <TypePrimtive> | <TypeOptional> | <TypeList> | <TypeObject>
 
@@ -133,6 +142,31 @@
         <TypeReference> ::= ref(Type)
     \end{grammar}
     \textbf{Grammatik TODO} Typ-Defintion mit generischen und Referenz-Typen
+    \newpage
+    \section{Implementierung}
+    \subsection{1. Lösungsansatz}
+    %Ausformulierte Notizen. 
+    Der Benutzer gibt von vorneherein eine Zahl a an, welche die maximale Anzahl von Schleifendurchläufe beschränkt. Für die Zahl muss dafür folgendes gelten TODO.
+    Die Idee des Ansatzes ist es, den Schleifenköper nicht Iterativ oder Rekursiv ausführen, sondern a-mal auszurollen.
+    Dafür wird der Schleifenköper und die nachfolgenden Anweisungen a-mal kopiert. Die Schleife wird dadurch nicht dynmasisch ausgeführt, sondern statisch in den Code implementiert. Dadurch entstehen $a+1$ Graphen. Jeder dieser Graphen repräsentiert einen ursprüngliche Iteration. Dabei werden die einzelnen Graphen mit ihren direkten Nachbaran verbunden. 
+    Da die aktuell zugrunde liegende Implementierung determenistisch ist und aktuell nur auf die gleiche Eingabe zugegriffen werden kann, muss ein Mechanismus implementiert werden, welcher den aktuellen Sensorwert ausliest und diesen an die nachfolgenden Anweisungen weitergibt. Dieser Vorgang muss für jede neu eingefügte Verbindung wiederolt werden.
+    Dieser Ansatz wird auch von Ye et al. im Konferenz-Paper "Loop Unrolling Based on SLP and Register Pressure Awareness" beschrieben.
+
+    Auf die Vor- und Nachteile der Implementierung wird im Kapitel~\ref{Evaluation} eingegangen.
     %Schluss
     \newpage
+    \section{Evaluation}
+    \label{Evaluation}
+    \subsection{}
+    \subsubsection{1. Lösungsansatz}
+    +einfach zu implementieren
+    +keine Endlosschleife
+    +keine Zyklen
+    +weniger Sprünge
+    +möglicher Performance gewinn
+    -größerer Codeumfang 
+    -höherer verbraucht an ressourcen zB Speicher
+    -möglicherweise ineffizient, wenn der faktor zu groß gewählt wird
+    -schlechtere Lesbarkeit
+    - wenn bereits nach 3 durchlaufen feststeht, dass das gewünschte ergbeniss nicht mehr erreicht werden kann werden trotzdem die restlichen schritte ausgeführt
 \end{document}    
