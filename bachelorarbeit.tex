@@ -144,6 +144,10 @@
     \textbf{Grammatik TODO} Typ-Defintion mit generischen und Referenz-Typen
     \newpage
     \section{Implementierung}
+    Bei der Implementierung muss nicht nur auf des Design des Schleifenkonstrukt geachtet werden, sondern auch auf neue Sachen, welche durch die Implementierung entstanden sind.
+    Bei den Schleifendurchläufen wird nicht auf die Ergebnisse des letzten Durchlaufs zugegriffen werden, sondern der Schleifenkörper soll die Entscheidungen auf Grundlage des aktuellen Sensorwertes treffen.
+    Das auslesen des aktuellen Sensorwerts ist bereits möglich.
+    Aktuell unterstützt die zugrundeliegenede Implementierung noch keine Variablen. Um das zu ändern muss die Grammatik bearbeitet werden-
     \subsection{1. Lösungsansatz}
     %Ausformulierte Notizen. 
     Der Benutzer gibt von vorneherein eine Zahl a an, welche die maximale Anzahl von Schleifendurchläufe beschränkt. Für die Zahl muss dafür folgendes gelten TODO.
@@ -158,8 +162,12 @@
     Zusätzlich wird noch eine Zahl TODO benötigt, welche auch der Benutzer angeben muss. TODO soll dabei die Funktionen eines Grenzwertes übernehmen.
     Bei diesem Ansatz werden mehrere Mittelwerte gebildet und geschaut, wie sich der neu ausgelesene Sensorwert sich im Verhältnis zu den Mittelwerten verhält. Es wird die Differenz zwischen Mittelwert und aktuellen Sensorwert gebildert. Anschließend wird geschaut auf die Differenz größer als TODO ist.
     Die Mittelwerte bilden wir einmal über alle bisherigen Sensorwerte und einmal über die letzten b Sensorwerte. Dadurch haben wir die Mittelwerte für einen kurzen und längeren zeitraum.
-    Sollte das der Fall sein, wissen wir das die Sensorwerte sich noch nicht stabilisiert haben und wir können den Vorgang wiederholen. Da wir nicht bereits nachdem ersten stabilisierten Wert aufhören wollen, sondern erst wenn der Wert über einen längeren Zeitraum stabil ist, führen wir einen n-Chance ein.
-    Sollte der Grenzwert unterschritten werden, wird der Counter um 1 erhöht. Sollte der Grenzwert überschritten werden, wird der Counter wieder auf 0 gesetzt. Sollte der Counter irgendwann n erreichen, wissen wir das sich die Werte stabilisiert haben und wir davon ausgehen können dass das zu erwartende Ergebniss nicht mehr rauskommt.
+    Sollte das der Fall sein, wissen wir das die Sensorwerte sich noch nicht stabilisiert haben und wir können den Vorgang wiederholen. Da wir nicht bereits nachdem ersten stabilisierten Wert aufhören wollen, sondern erst wenn der Wert über einen längeren Zeitraum stabil ist, führen wir folgenden n-Chance-Mechanismus ein:
+    \begin{itemize}
+        \item Sollte der Grenzwert unterschritten werden, wird der Counter um 1 erhöht.
+        \item Sollte der Grenzwert überschritten werden, wird der Counter wieder auf 0 gesetzt.
+        \item Sollte der Counter irgendwann n erreichen, wissen wir das sich die Werte stabilisiert haben und wir davon ausgehen können dass das zu erwartende Ergebniss nicht mehr rauskommt.
+        \end{itemize}
     %Schluss
     \newpage
     \section{Evaluation}
