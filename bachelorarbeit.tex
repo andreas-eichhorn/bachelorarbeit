@@ -27,6 +27,18 @@
     %Haupteil
     \newpage
     \section{Grammatikanalyse}
+    Im nachfolgenden Kapitel möchte ich die zugrundeliegende Grammatik beschreiben. Am Anfang möchte ich auf die Notation eingehen.
+
+    Die zugrundeliegende Grammatik basiert auf der Backus-Naur-Form Notation.
+    \begin{grammar}
+        <symbol> ::= _expression_
+    \end{grammar}
+    <symbol> sind nichtterminale
+    ::= bedeutet dass <symbol> durch _expression_ ersetzt wird
+    _expression_ ist eine sequenze von nichterminalen und terminale
+    Kleene-Stern * wiederholung
+    Alternation \textbar oder
+    Sequenz erlaubt auch Klammern um die Reihenfolge der Regel zu definieren
     \subsection{Prüfungslogik}
     \begin{grammar}
         <ActivityModel> ::= <Activity>* <ActivityConnection>
@@ -108,7 +120,8 @@
 
     Ein Funktions Template <FlowTemplate> besteht aus einer Funktion <Flow> und belieg vielen Parametern <TemplateParameter>
     Die Parameter generieren Port- und Lambda-Defintion
-    Funktionen welche vom Autorensystem <LibraryFlow> und selbst definierte Funktionen <FlowModel> 
+    Funktionen welche vom Autorensystem <LibraryFlow> und selbst definierte Funktionen <FlowModel>
+
     Ein Flow-Modell ist ein DAG bei dem mehrere Funktionen mitienander verbunden werden. Einzelne Funktionen werden Nodes <FlowNode> genannt.
     Das Flow-Modell wird durch eine <FlowInstance>, Reihe von Funktionen und Verbidnugen definiert.
     Die Funktion kann dabei eine Eingabe <FlowNodeInput>, eine Ausgabe <FlowNodeOutput>, einer Lambda Referenz <FlowNodeLambda> oder eine Funtkions Referenz <FlowNodeFlowCall>
@@ -157,6 +170,11 @@
     \textbf{Grammatik TODO} Flow-Modell
     \newpage
     \subsection{Typsystem}
+    unterstüzt die gleichen Primitiv-Typen wie JSON-Format String, Number und Bool zusätzlich Date und PtiaResponse. Außerdem werden auch gernerische Typen unterstüztz, weil nicht immer von vorneherein der Typ bekannt ist.
+    Date ist eine Datumsangabe
+    PtiaResponse ist eine Antwort einer Hauptuntersuchungs-Anfrage
+    Diese Typen lassen sich an optionalen, Listen oder Objekt-Typen kapseln
+
     \begin{grammar}
         <Type> ::= <TypePrimtive> | <TypeOptional> | <TypeList> | <TypeObject>
 
