@@ -2,10 +2,10 @@
 \contentsline {section}{\numberline {2}Grammatikanalyse}{4}{}%
 \contentsline {subsection}{\numberline {2.1}Prüfungslogik}{4}{}%
 \contentsline {subsection}{\numberline {2.2}Datenverarbeitungs}{6}{}%
-\contentsline {subsection}{\numberline {2.3}Typsystem}{7}{}%
-\contentsline {section}{\numberline {3}Implementierung}{8}{}%
-\contentsline {subsection}{\numberline {3.1}1. Lösungsansatz}{8}{}%
-\contentsline {subsection}{\numberline {3.2}2. Lösungsansatz}{8}{}%
-\contentsline {section}{\numberline {4}Evaluation}{10}{}%
-\contentsline {subsection}{\numberline {4.1}}{10}{}%
-\contentsline {subsubsection}{\numberline {4.1.1}1. Lösungsansatz}{10}{}%
+\contentsline {subsection}{\numberline {2.3}Typsystem}{8}{}%
+\contentsline {section}{\numberline {3}Implementierung}{9}{}%
+\contentsline {subsection}{\numberline {3.1}1. Lösungsansatz}{9}{}%
+\contentsline {subsection}{\numberline {3.2}2. Lösungsansatz}{9}{}%
+\contentsline {section}{\numberline {4}Evaluation}{11}{}%
+\contentsline {subsection}{\numberline {4.1}}{11}{}%
+\contentsline {subsubsection}{\numberline {4.1.1}1. Lösungsansatz}{11}{}%

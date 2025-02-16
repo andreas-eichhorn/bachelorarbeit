@@ -101,8 +101,20 @@
     A3
     \newpage
     \subsection{Datenverarbeitungs}
+    Eingabe <FlowInputPort> und Ausgabe <FlowOutputPort>
+    Funktionen höherer Ordnung <FlowLamda>
+    Eine Funktion höher Ordnung besteht aus zustzälciehn Eingabe- und Ausgabeports
+    Eingabe- und Ausgabeports nehmen als Parameter einen Namen des Ports, den Typ und ob Fehlererlaub ist.
+
+    Ein Funktions Template <FlowTemplate> besteht aus einer Funktion <Flow> und belieg vielen Parametern <TemplateParameter>
+    Die Parameter generieren Port- und Lambda-Defintion
+    Funktionen welche vom Autorensystem <LibraryFlow> und selbst definierte Funktionen <FlowModel> 
+    Ein Flow-Modell ist ein DAG bei dem mehrere Funktionen mitienander verbunden werden. Einzelne Funktionen werden Nodes <FlowNode> genannt.
+    Das Flow-Modell wird durch eine <FlowInstance>, Reihe von Funktionen und Verbidnugen definiert.
+    Die Funktion kann dabei eine Eingabe <FlowNodeInput>, eine Ausgabe <FlowNodeOutput>, einer Lambda Referenz <FlowNodeLambda> oder eine Funtkions Referenz <FlowNodeFlowCall>
+    Konstante Werte <FlowPortValue>
     \begin{grammar}
-        <FlowInstance> ::= <FlowOutputPort lambdaArguments>* <FlowInputPort lambdaArguments>*
+        <FlowInstance> ::= <FlowOutputPort lambdaArguments>* <FlowInputPort lambdaArguments>* <FlowLambda>*
         
         <FlowLambda> ::= <FlowOutputPort lambdaArguments>* <FlowInputPort lambdaArguments>*
 
