@@ -1,5 +1,7 @@
 \documentclass{article}
 \usepackage{syntax}
+\usepackage{tikz}
+\usetikzlibrary{automata, positioning}
 
 \begin{document}
     %Notizen
@@ -200,9 +202,59 @@
     Die Idee des Ansatzes ist es, den Schleifenköper nicht Iterativ oder Rekursiv ausführen, sondern a-mal auszurollen.
     Dafür wird der Schleifenköper und die nachfolgenden Anweisungen a-mal kopiert. Die Schleife wird dadurch nicht dynmasisch ausgeführt, sondern statisch in den Code implementiert. Dadurch entstehen $a+1$ Graphen. Jeder dieser Graphen repräsentiert einen ursprüngliche Iteration. Dabei werden die einzelnen Graphen mit ihren direkten Nachbaran verbunden. 
     Da die aktuell zugrunde liegende Implementierung determenistisch ist und aktuell nur auf die gleiche Eingabe zugegriffen werden kann, muss ein Mechanismus implementiert werden, welcher den aktuellen Sensorwert ausliest und diesen an die nachfolgenden Anweisungen weitergibt. Dieser Vorgang muss für jede neu eingefügte Verbindung wiederolt werden.
-    Dieser Ansatz wird auch von Ye et al. im Konferenz-Paper "Loop Unrolling Based on SLP and Register Pressure Awareness" beschrieben.
+    Dieser Ansatz wird auch von Ye et al. im Konferenz-Paper "Loop Unrolling Based on SLP and Register Pressure Awareness" beschrieben.\\
+    \resizebox*{!}{10cm}{
+    \begin{tikzpicture}[]
+        %Graph links
+        \node[state, initial text=""](q0){};
+        \node[state, rectangle, below = 1cm of q0](q1){Aktion1};
+        \node[state, rectangle, below = 1cm of q1](q2){Aktion2};
+        \node[state, below = 1cm of q2](q3){Entscheidung};
+        \node[state, accepting, rectangle, below = 1cm of q3](q4){Ausgabe};
 
-    Auf die Vor- und Nachteile der Implementierung wird im Kapitel~\ref{Evaluation} eingegangen.
+        \draw(q0) edge[->] (q1);
+        \draw(q1) edge[->] (q2);
+        \draw(q2) edge[->] (q3);
+        \draw(q3) edge[->, bend right] (q1);
+        \draw(q3) edge[->] (q4);
+
+        %Graph rechts
+        \node[state, initial text="", right = 2cm of q0](q5){};
+        \node[state, rectangle, right = 2cm of q1](q6){Aktion1};
+        \node[state, rectangle, right = 2cm of q2](q7){Aktion2};
+        \node[state, below = 1cm of q7](q8){Entscheidung};
+        \node[state, rectangle, accepting, below = 1cm of q8](q9){Ausgabe};
+
+        \node[state, rectangle, right = 2cm of q6](q10){Aktion1};
+        \node[state, rectangle, right = 2cm of q7](q11){Aktion2};
+        \node[state, below = 1cm of q11](q12){Entscheidung};
+        \node[state, rectangle, accepting, below = 1cm of q12](q13){Ausgabe};
+
+        \node[state, rectangle, right = 2cm of q10](q14){Aktion1};
+        \node[state, rectangle, right = 2cm of q11](q15){Aktion2};
+        \node[state, below = 1cm of q15](q16){Entscheidung};
+        \node[state, rectangle, accepting, below = 1cm of q16](q17){Ausgabe};
+
+        \draw(q5) edge[->] (q6);
+        \draw(q6) edge[->] (q7);
+        \draw(q7) edge[->] (q8);
+        \draw(q8) edge[->] (q9);
+        \draw(q8) edge[->] (q10);
+        
+        \draw(q10) edge[->] (q11);
+        \draw(q11) edge[->] (q12);
+        \draw(q12) edge[->] (q13);
+        \draw(q12) edge[->] (q14);
+
+        \draw(q14) edge[->] (q15);
+        \draw(q15) edge[->] (q16);
+        \draw(q16) edge[->] (q17);
+
+
+    \end{tikzpicture}
+    }
+    \\\textbf{Abbildung TODO} Algorithmus Schleifenentfaltung\\
+    \\Auf die Vor- und Nachteile der Implementierung wird im Kapitel~\ref{Evaluation} eingegangen.
     \subsection{2. Lösungsansatz}
     Wie auch schon beim 1. Lösungsansatz gibt der Benutzer von vorneherein eine Zahl a an, welche die Anzahl an Schleifendurchläufen beschrnänkt. Für die Zahl a gelten die gleichen Bedingungen wie im 1. Lösungsansatz beschrieben. 
     Zusätzlich wird noch eine Zahl TODO benötigt, welche auch der Benutzer angeben muss. TODO soll dabei die Funktionen eines Grenzwertes übernehmen.

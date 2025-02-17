@@ -5,7 +5,7 @@
 \contentsline {subsection}{\numberline {2.3}Typsystem}{8}{}%
 \contentsline {section}{\numberline {3}Implementierung}{9}{}%
 \contentsline {subsection}{\numberline {3.1}1. Lösungsansatz}{9}{}%
-\contentsline {subsection}{\numberline {3.2}2. Lösungsansatz}{9}{}%
-\contentsline {section}{\numberline {4}Evaluation}{11}{}%
-\contentsline {subsection}{\numberline {4.1}}{11}{}%
-\contentsline {subsubsection}{\numberline {4.1.1}1. Lösungsansatz}{11}{}%
+\contentsline {subsection}{\numberline {3.2}2. Lösungsansatz}{10}{}%
+\contentsline {section}{\numberline {4}Evaluation}{12}{}%
+\contentsline {subsection}{\numberline {4.1}}{12}{}%
+\contentsline {subsubsection}{\numberline {4.1.1}1. Lösungsansatz}{12}{}%
