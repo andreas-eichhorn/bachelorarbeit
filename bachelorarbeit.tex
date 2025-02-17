@@ -1,8 +1,6 @@
 \documentclass{article}
 \usepackage{syntax}
-\usepackage{dsfont}
-\usepackage{ amssymb }
-\usepackage{amsmath}
+
 \begin{document}
     %Notizen
     folgende Begriffe sollen definiert werden:
@@ -23,23 +21,40 @@
     %Einleitung
     \newpage
     \section{Einleitung}
-    test
     %Haupteil
     \newpage
     \section{Grammatikanalyse}
-    Im nachfolgenden Kapitel möchte ich die zugrundeliegende Grammatik beschreiben. Am Anfang möchte ich auf die Notation eingehen.
-
-    Die zugrundeliegende Grammatik basiert auf der Backus-Naur-Form Notation.
+    Im nachfolgenden Kapitel möchte ich die zugrundeliegende Grammatik beschreiben. Am Anfang möchte ich auf die Notation eingehen.\\\\
+    Die zugrundeliegende Grammatik basiert auf der Backus-Naur-Form (BNF) Notation. Der Aufbau einer BNF wird anhand der Grammatik~\ref{BNF} erklärt
+    <symbol> sind nichtterminale
+    ::= bedeutet dass symbol durch _expression_ ersetzt wird
+    _expression_ ist eine sequenze von nichterminalen und terminale
+    Kleene-Stern * wiederholung
+    Alternation \textbar  oder
+    Sequenz erlaubt auch Klammern um die Reihenfolge der Regel zu definieren
     \begin{grammar}
         <symbol> ::= _expression_
     \end{grammar}
-    <symbol> sind nichtterminale
-    ::= bedeutet dass <symbol> durch _expression_ ersetzt wird
-    _expression_ ist eine sequenze von nichterminalen und terminale
-    Kleene-Stern * wiederholung
-    Alternation \textbar oder
-    Sequenz erlaubt auch Klammern um die Reihenfolge der Regel zu definieren
+    \textbf{Grammatik TODO} Backus-Naur-Form
+    \label{BNF}
     \subsection{Prüfungslogik}
+    Das Aktivitätsmodell  <ActivityModel> besteht aus einer Reihe von Aktivitäten <Activity>.
+    Aktivitäten können dabei entweder eine Startmarkierung, eine Aktivitätsaktion, einem Vergleich oder visualles Label sein.
+    Die Startmarkierung muss pro Prüfungslogik genau einmal vorkommen.
+    Ein vergleich kann dabei entweder eine Binärentscheidung oder eine Validierungsentscheidung sein.   
+    Die Validierungsentscheidung nimmt als Eingabe einen Wert und überprüft ob diese Werte vorhanden sind.
+    Die Binärentscheidung nimmt als Parameter zweite Werte, einen Vergleichoperatur und eine referenz zu einer Funtkion. Dabei werden beide Werte als Eingabe für die referenzierte Funktion verwendet.
+    Als Vergleichoperatoren stehen $=$ und $\neq$ sowie Relationale Operatoren zur verfügung.
+    Eine Aktivitätaktion <ActivityAction> kann dabei einer der folgenden Aktionen ausführen:
+    Bevor das Ergbeniss aus der vorherigen Aktionsaktivität verwendet wird, kann eine Transformation auf dieses Ergebniss angewendet werden.
+    \begin{itemize}
+        \item Senden von Hauptuntersuchungs-Adatper-Anfragen (A1)
+        \item Lesen einer JSON Datei (A2)
+        \item Ausführung einer Datenverarbeitung (A3)
+    \end{itemize}
+    A1 nimmt als Parameter den Namen der auszuführenden Anfrage, eine Beschreibung für den debugger, eine Liste von anzusprechnenden System im Fahrzeig und die maximale Zeitdrauer einer Anfrage.
+    A2 nimmt als Eingabe den Typ der zu ladenenden Datei und die dazugehörige URI.
+    A3\\
     \begin{grammar}
         <ActivityModel> ::= <Activity>* <ActivityConnection>
 
@@ -93,24 +108,6 @@
         <ActivityDisplayField> ::= <string label> <string color> ref(ActivityAction)
     \end{grammar}
     \textbf{Grammatik TODO} Aktivitätsmodell
-
-    Das Aktivitätsmodell <ActivityModel> besteht aus einer Reihe von Aktivitäten <Activity>.
-    Aktivitäten können dabei entweder eine Startmarkierung, eine Aktivitätsaktion, einem Vergleich oder visualles Label sein.
-    Die Startmarkierung muss pro Prüfungslogik genau einmal vorkommen.
-    Ein vergleich kann dabei entweder eine Binärentscheidung oder eine Validierungsentscheidung sein.   
-    Die Validierungsentscheidung nimmt als Eingabe einen Wert und überprüft ob diese Werte vorhanden sind.
-    Die Binärentscheidung nimmt als Parameter zweite Werte, einen Vergleichoperatur und eine referenz zu einer Funtkion. Dabei werden beide Werte als Eingabe für die referenzierte Funktion verwendet.
-    Als Vergleichoperatoren stehen $=$ und $\neq$ sowie Relationale Operatoren zur verfügung.
-    Eine Aktivitätaktion <ActivityAction> kann dabei einer der folgenden Aktionen ausführen:
-    Bevor das Ergbeniss aus der vorherigen Aktionsaktivität verwendet wird, kann eine Transformation auf dieses Ergebniss angewendet werden.
-    \begin{itemize}
-        \item Senden von Hauptuntersuchungs-Adatper-Anfragen (A1)
-        \item Lesen einer JSON Datei (A2)
-        \item Ausführung einer Datenverarbeitung (A3)
-    \end{itemize}
-    A1 nimmt als Parameter den Namen der auszuführenden Anfrage, eine Beschreibung für den debugger, eine Liste von anzusprechnenden System im Fahrzeig und die maximale Zeitdrauer einer Anfrage.
-    A2 nimmt als Eingabe den Typ der zu ladenenden Datei und die dazugehörige URI.
-    A3
     \newpage
     \subsection{Datenverarbeitungs}
     Eingabe <FlowInputPort> und Ausgabe <FlowOutputPort>
