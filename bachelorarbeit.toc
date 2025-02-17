@@ -1,5 +1,5 @@
 \contentsline {section}{\numberline {1}Einleitung}{3}{}%
-\contentsline {section}{\numberline {2}Grammatikanalyse}{4}{}%
+\contentsline {section}{\numberline {2}Aufbau der domainspezifischen Sprache}{4}{}%
 \contentsline {subsection}{\numberline {2.1}Prüfungslogik}{4}{}%
 \contentsline {subsection}{\numberline {2.2}Datenverarbeitungs}{6}{}%
 \contentsline {subsection}{\numberline {2.3}Typsystem}{8}{}%

@@ -25,7 +25,7 @@
     \section{Einleitung}
     %Haupteil
     \newpage
-    \section{Grammatikanalyse}
+    \section{Aufbau der domainspezifischen Sprache}
     Im nachfolgenden Kapitel möchte ich die zugrundeliegende Grammatik beschreiben. Am Anfang möchte ich auf die Notation eingehen.\\\\
     Die zugrundeliegende Grammatik basiert auf der Backus-Naur-Form (BNF) Notation. Der Aufbau einer BNF wird anhand der Grammatik~\ref{BNF} erklärt
     <symbol> sind nichtterminale
@@ -34,13 +34,21 @@
     Kleene-Stern * wiederholung
     Alternation \textbar  oder
     Sequenz erlaubt auch Klammern um die Reihenfolge der Regel zu definieren
+    Softwareprüfung lääst sich visuall von zwei seiten betrachen. 
     \begin{grammar}
         <symbol> ::= _expression_
     \end{grammar}
-    \textbf{Grammatik TODO} Backus-Naur-Form
+    \textbf{Grammatik TODO} Backus-Naur-Form\\\\\\
     \label{BNF}
+    Grammatik lässt sich in 3 Ebenenunterteilen Prüfungslogik, Datenverarbeitung und Typsystem
+    Prüfungslogik führt Entscheidung im Prüfungsablauf aus und bestimmt die Reihenfolge der Aktionen. außerdem datenerfassung
+    Datenverarbeitung ist für die Datentranformation auswertung zustädnig. Also Funktionen, welche keine Nebeneffekte besitzen, weil sie unabhängig von der restoichen Softwareprüfung stattfinden.
+    Typsystem ermöglicht die statische analyse der ausführbarkeit
+    Softwareprüfung lääst sich visuall von zwei seiten betrachen. 
+    Einmal als Datenflussgraphen, indem Teil-Funktionen als Blöcke dargestellt werden und Funktionsparamter/Ergebnisse als Ports.
+    Einmal als Aktivitätsdiagramm, in dem nur Startzustand, Endzustände, Aktions- und Entscheidungsblöcke dargeste
     \subsection{Prüfungslogik}
-    Das Aktivitätsmodell  <ActivityModel> besteht aus einer Reihe von Aktivitäten <Activity>.
+    Das Aktivitätsmodell  $<ActivityModel>$ besteht aus einer Reihe von Aktivitäten $<Activity>$.
     Aktivitäten können dabei entweder eine Startmarkierung, eine Aktivitätsaktion, einem Vergleich oder visualles Label sein.
     Die Startmarkierung muss pro Prüfungslogik genau einmal vorkommen.
     Ein vergleich kann dabei entweder eine Binärentscheidung oder eine Validierungsentscheidung sein.   
@@ -112,19 +120,19 @@
     \textbf{Grammatik TODO} Aktivitätsmodell
     \newpage
     \subsection{Datenverarbeitungs}
-    Eingabe <FlowInputPort> und Ausgabe <FlowOutputPort>
-    Funktionen höherer Ordnung <FlowLamda>
+    Eingabe <FlowInputPort> und Ausgabe $<FlowOutputPort>$
+    Funktionen höherer Ordnung $<FlowLamda>$
     Eine Funktion höher Ordnung besteht aus zustzälciehn Eingabe- und Ausgabeports
     Eingabe- und Ausgabeports nehmen als Parameter einen Namen des Ports, den Typ und ob Fehlererlaub ist.
 
-    Ein Funktions Template <FlowTemplate> besteht aus einer Funktion <Flow> und belieg vielen Parametern <TemplateParameter>
+    Ein Funktions Template $<FlowTemplate>$ besteht aus einer Funktion $Flow$ und belieg vielen Parametern $<TemplateParameter>$
     Die Parameter generieren Port- und Lambda-Defintion
-    Funktionen welche vom Autorensystem <LibraryFlow> und selbst definierte Funktionen <FlowModel>
+    Funktionen welche vom Autorensystem $<LibraryFlow>$ und selbst definierte Funktionen $<FlowModel>$
 
-    Ein Flow-Modell ist ein DAG bei dem mehrere Funktionen mitienander verbunden werden. Einzelne Funktionen werden Nodes <FlowNode> genannt.
-    Das Flow-Modell wird durch eine <FlowInstance>, Reihe von Funktionen und Verbidnugen definiert.
-    Die Funktion kann dabei eine Eingabe <FlowNodeInput>, eine Ausgabe <FlowNodeOutput>, einer Lambda Referenz <FlowNodeLambda> oder eine Funtkions Referenz <FlowNodeFlowCall>
-    Konstante Werte <FlowPortValue>
+    Ein Flow-Modell ist ein DAG bei dem mehrere Funktionen mitienander verbunden werden. Einzelne Funktionen werden Nodes $<FlowNode>$ genannt.
+    Das Flow-Modell wird durch eine $<FlowInstance>$, Reihe von Funktionen und Verbidnugen definiert.
+    Die Funktion kann dabei eine Eingabe <$FlowNodeInput>$, eine Ausgabe $<FlowNodeOutput>$, einer Lambda Referenz $<FlowNodeLambda>$ oder eine Funtkions Referenz $FlowNodeFlowCall$
+    Konstante Werte $FlowPortValue$
     \begin{grammar}
         <FlowInstance> ::= <FlowOutputPort lambdaArguments>* <FlowInputPort lambdaArguments>* <FlowLambda>*
         
@@ -172,8 +180,7 @@
     unterstüzt die gleichen Primitiv-Typen wie JSON-Format String, Number und Bool zusätzlich Date und PtiaResponse. Außerdem werden auch gernerische Typen unterstüztz, weil nicht immer von vorneherein der Typ bekannt ist.
     Date ist eine Datumsangabe
     PtiaResponse ist eine Antwort einer Hauptuntersuchungs-Anfrage
-    Diese Typen lassen sich an optionalen, Listen oder Objekt-Typen kapseln
-
+    Diese Typen lassen sich an optionalen, Listen oder Objekt-Typen kapseln\\
     \begin{grammar}
         <Type> ::= <TypePrimtive> | <TypeOptional> | <TypeList> | <TypeObject>
 
