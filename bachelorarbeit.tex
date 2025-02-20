@@ -35,6 +35,19 @@
     Laut Chen L. spiegelt die Iteration das menschliche Denken wieder und ist daher besonders für lineare Probleme geeignet. Hingegen die Rekursion für lineare oder sequentielle Probleme geeignet sind, welche Zwischenergebnisse oder Teillösungen benötigen. \cite{3}
     Die Iteration lässt sich dabei in zeitabhängige oder horizontale Iteration unterteilen. Bei der zeitabhängigen Iteration ist das Ergebniss des aktuellen Schleifendurchlaufes von dem Ergebniss des vorherigen Schleifendurchlaufes abhängig. Hingegen bei der horizontalrn Iteration die Ergbenisse der Schelifendurchläufe unabhängig voneinander sind. \cite{5}
     \subsection{Datenfluss-basierte Systeme}
+    \subsection{Domain Specific Language}
+    Eine domänenspezifische Sprache (DSL) ist eine Programmiersprache, welche für einen bestimmten Anwendungsbreich entwickelt wurde und normalerweise auch auf diesen beschränkt ist.
+    Das Ziel einer DSL ist es in dem klar abgegrenzenten Anwendungsbereich die Probleme effizient zu lösen. \cite{18}
+    Dabei fallen DSL nicht in die Gruppe der General-Purpose Language (GPL) wie z.B Java, C++ oder Python, sondern bildern das Gegenstück dazu. \cite{14}
+    Die Syntax ist dabei oftmals eingeschränkter und erlauben nur eine bestimmte auswahl an Notationen und Befehlen. In manchen Fällen hat eine DSL aber auch eine GPL als Zweitsprache. \cite{18}
+    DSLs lassen sich in externe und interene unterteilen. Externe DSLs haben ihre eigene Syntax und TODO. Dadurch kann eine größere flexibilität geschaffen werden, aber zeitglich ist der Aufwand für den Entwickler sehr hoch, weil alle relevanten Tools selbst implementieren muss. \cite{7}
+    Zur Laufzeit wird die externe DSLs dann in eine GPL übersetzt. \cite{14}
+    Interne DSLs verwenden die Syntax einer GPL und kann über eine Programmierschnittstelle oder Bibliothek aufgerufen werden. \cite{14}
+    Allgemein sind DSLs kompakt, wiederverwendbar, effizient und domänenspezifisch. Aber auf der anderen Seite ist die erstellung einer DSL kostspielig und haben einen hohen Lernaufwand für den Benutzer. Zudem haben sie nur ein eingeshcränkten Anwendungsbereich und sind nur begrenzt Verfügbar. \cite{18} 
+    \subsection{Visual Programming Language}
+    Das Ziel von VPLs ist es die Darstellung der Programmierlogik zu verbessern und den Ablauf des Programms zu verstehen. \cite{13} Außerdem soll der Benutzer sich mehr auf die Implementierung des ALgortithmus konzentrieren anstatt auf die Syntax, weil diese auf die IDE übertragen wird. \cite{10}
+    Bei VPLs stehen dem Programmierer nur ein bestimmter Satz an grafischen Elementen gegenüber statt dem ganzen Alphabet wie bei GPLs. Dadurch ist das Programm leichter zu verstehen und Fehler z.B. Semantik oder Syntax Fehler lassen sich bereits beim erstellen des Programms vermeiden. \cite{10}
+    VPLs lassen sich dabei in Imperativ und Deklarativ unterteilen. In einer imperativen VPL wird vom Programm vorgegeben, in welcher Reihenfolge die Operationen ausgeführt werden. Bei einer deklativen VPL hingegen wird vom Programm nur die Abhänigkeit zwischen Daten vorgegeben und das System bestimmt die Reihenfolge selbst. \cite{21}
     \newpage
     \section{Aufbau der domainspezifischen Sprache}
     Im nachfolgenden Kapitel möchte ich die zugrundeliegende Grammatik beschreiben. Am Anfang möchte ich auf die Notation eingehen.\\\\
