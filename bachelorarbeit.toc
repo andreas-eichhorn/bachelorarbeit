@@ -4,6 +4,8 @@
 \contentsline {subsection}{\numberline {2.2}Datenfluss-basierte Systeme}{4}{}%
 \contentsline {subsection}{\numberline {2.3}Domain Specific Language}{4}{}%
 \contentsline {subsection}{\numberline {2.4}Visual Programming Language}{5}{}%
+\contentsline {subsection}{\numberline {2.5}Datenfluss-basierte Sprachen}{5}{}%
+\contentsline {subsection}{\numberline {2.6}Datenfluss-basierte Systeme}{5}{}%
 \contentsline {section}{\numberline {3}Aufbau der domainspezifischen Sprache}{6}{}%
 \contentsline {subsection}{\numberline {3.1}Prüfungslogik}{6}{}%
 \contentsline {subsection}{\numberline {3.2}Datenverarbeitungs}{8}{}%
