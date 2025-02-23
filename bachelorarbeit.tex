@@ -34,7 +34,6 @@
     Die Rekursion verwendet keinen Akkumulativenansatz, sondern reduziert das eigentlich zu lösende Problam auf mehrere (Teil-)Probleme. Für die Teilprobleme werden dann einzelne Lösungen gesucht, welche anschließend zusammengesatz werden um das eigentliche Problem zu lösen. \cite{3}
     Laut Chen L. spiegelt die Iteration das menschliche Denken wieder und ist daher besonders für lineare Probleme geeignet. Hingegen die Rekursion für lineare oder sequentielle Probleme geeignet sind, welche Zwischenergebnisse oder Teillösungen benötigen. \cite{3}
     Die Iteration lässt sich dabei in zeitabhängige oder horizontale Iteration unterteilen. Bei der zeitabhängigen Iteration ist das Ergebniss des aktuellen Schleifendurchlaufes von dem Ergebniss des vorherigen Schleifendurchlaufes abhängig. Hingegen bei der horizontalrn Iteration die Ergbenisse der Schelifendurchläufe unabhängig voneinander sind. \cite{5}
-    \subsection{Datenfluss-basierte Systeme}
     \subsection{Domain Specific Language}
     Eine domänenspezifische Sprache (DSL) ist eine Programmiersprache, welche für einen bestimmten Anwendungsbreich entwickelt wurde und normalerweise auch auf diesen beschränkt ist.
     Das Ziel einer DSL ist es in dem klar abgegrenzenten Anwendungsbereich die Probleme effizient zu lösen. \cite{18}
@@ -48,13 +47,22 @@
     Das Ziel von VPLs ist es die Darstellung der Programmierlogik zu verbessern und den Ablauf des Programms zu verstehen. \cite{13} Außerdem soll der Benutzer sich mehr auf die Implementierung des ALgortithmus konzentrieren anstatt auf die Syntax, weil diese auf die IDE übertragen wird. \cite{10}
     Bei VPLs stehen dem Programmierer nur ein bestimmter Satz an grafischen Elementen gegenüber statt dem ganzen Alphabet wie bei GPLs. Dadurch ist das Programm leichter zu verstehen und Fehler z.B. Semantik oder Syntax Fehler lassen sich bereits beim erstellen des Programms vermeiden. \cite{10}
     VPLs lassen sich dabei in Imperativ und Deklarativ unterteilen. In einer imperativen VPL wird vom Programm vorgegeben, in welcher Reihenfolge die Operationen ausgeführt werden. Bei einer deklativen VPL hingegen wird vom Programm nur die Abhänigkeit zwischen Daten vorgegeben und das System bestimmt die Reihenfolge selbst. \cite{21}
+    Bei VPL ist das meist genutze Paradigma der Datenfluss-basierte Ansatz. \cite{6}
+    \subsection{Visual Language}
+    Visual Language (VL) drücken sich eher mit Bildern statt Texten aus. \cite{5}
+    Dabei werdne hauptsächlich grafische Tools und visuelle Metaphoren verwenden. \cite{16}
     \subsection{Datenfluss-basierte Sprachen}
     Unter einer Datenfluss-basierten Sprache (DL) versteht man, dass die Daten von einer Funktion in die andere geht. Dabei wird das Programm als Graphen dargestellt\cite{11}
     Beim Graphen handelt es sich um einen gerichteten Graphen (DG). Die Funktionen werden als kreisförmige Knoten (Node) dargestellt. Die Nodes können durch gerichtite Pfeile miteinander verbunden werden. Dabei beschreiben die Pfeile die Datenabhänigkeiten im Graphen.\cite{2}
     Der DG lässt sich in feinkörnig und Grobkörnig unterteilen. Feinkörnig bedeutet, dass jeder Knoten genau eine Instruktion durchführt. Beim Grobkörnig hingegen kann ein Knoten mehrere Instruktionen aufienmal ausführen-\cite{1}
+    Zudem lässt sich ein DG basierend auf der Zyklenstruktur in zyklisch und azyklisch unterteilen. \cite{8}
     DLs sind oftmals funktionale Programmiersprachen, aber können auch text-basiert sein. \cite{2}
+    Der Vorteil einer DLs ist, dass diese durch einen Graphen dargestellt werden können \cite{11} und dadurch die Programme einfach zur verstehen sind. \cite{6}
+    Da ein Programm viele Funktionen haben kann, kann ein Graph schnell unübersichtlich werden. Damit dies vermieden werden kann, gibt es sogenannte Mikrofunktionen. Mikrofunktionen sind Knoten, welche auf einen Teilgraphen verweisen. Der Teilgraph beinhaltet dabei die eigentliche Darstellung des Algorithmuses. Durch diese Möglichkeit lassen sich auch ganz einfach Rekursionen in einem Graphen darstellen.\cite{11}
     \subsection{Datenfluss-basierte Systeme}
-    Datenfluss-basierte Systeme ist eine Computerarchitektur, welche auf DLs basiert. 
+    Datenfluss-basierte Systeme (DFA) ist eine Computerarchitektur, welche auf DLs basiert. 
+    Die DFA wurde eingeführt um den Flaschenhals der von-Neumann-Architektur zu vermeiden. Je nach Implementierung kann nur lokaler Speicher verwendet werden und die Funktionen können sofort aufgefürt werdne, sobald die Operanden zur verfügung stehen. \cite{8}
+    Die Vorteile einer DFA sind, dass diese hohe Performance, flexibilität und hohe efektivität fördert. \cite{1}
     \newpage
     \section{Aufbau der domainspezifischen Sprache}
     Im nachfolgenden Kapitel möchte ich die zugrundeliegende Grammatik beschreiben. Am Anfang möchte ich auf die Notation eingehen.\\\\
