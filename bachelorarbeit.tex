@@ -39,18 +39,27 @@
     Das Ziel einer DSL ist es in dem klar abgegrenzenten Anwendungsbereich die Probleme effizient zu lösen. \cite{18}
     Dabei fallen DSL nicht in die Gruppe der General-Purpose Language (GPL) wie z.B Java, C++ oder Python, sondern bildern das Gegenstück dazu. \cite{14}
     Die Syntax ist dabei oftmals eingeschränkter und erlauben nur eine bestimmte auswahl an Notationen und Befehlen. In manchen Fällen hat eine DSL aber auch eine GPL als Zweitsprache. \cite{18}
-    DSLs lassen sich in externe und interene unterteilen. Externe DSLs haben ihre eigene Syntax und TODO. Dadurch kann eine größere flexibilität geschaffen werden, aber zeitglich ist der Aufwand für den Entwickler sehr hoch, weil alle relevanten Tools selbst implementieren muss. \cite{7}
+    DSLs lassen sich in externe und interene unterteilen. Externe DSLs haben ihre eigene Syntax. Dadurch kann eine größere flexibilität geschaffen werden, aber zeitglich ist der Aufwand für den Entwickler sehr hoch, weil alle relevanten Tools selbst implementieren muss. Außerdem braucht der Benutzer länger Zeit um die Syntax zu lernen. \cite{7}
     Zur Laufzeit wird die externe DSLs dann in eine GPL übersetzt. \cite{14}
     Interne DSLs verwenden die Syntax einer GPL und kann über eine Programmierschnittstelle oder Bibliothek aufgerufen werden. \cite{14}
     Allgemein sind DSLs kompakt, wiederverwendbar, effizient und domänenspezifisch. Aber auf der anderen Seite ist die erstellung einer DSL kostspielig und haben einen hohen Lernaufwand für den Benutzer. Zudem haben sie nur ein eingeshcränkten Anwendungsbereich und sind nur begrenzt Verfügbar. \cite{18} 
     \subsection{Visual Programming Language}
     Das Ziel von VPLs ist es die Darstellung der Programmierlogik zu verbessern und den Ablauf des Programms zu verstehen. \cite{13} Außerdem soll der Benutzer sich mehr auf die Implementierung des ALgortithmus konzentrieren anstatt auf die Syntax, weil diese auf die IDE übertragen wird. \cite{10}
+    Das schaffen VPLs indem sie es erlauben Programme direkt mithilfe von Flussdiagrammen zu erstellen, welche vom Computer direkt interpretiert und ausgeführt werden können. \cite{12}
+    Laut Charntaweekhun eignen sich Flussdiagramme sehr gut zum Programmieren, weil vorallem viele Einsteiger in der Programmierung erstmal Flussdiagramme erstellen um das Problem zu visualieren. \cite{12}
+    VPLs setzen dabei das Konzept der Visual Programming (VP). %TODO zitat finden welches das bestätigt.
     Bei VPLs stehen dem Programmierer nur ein bestimmter Satz an grafischen Elementen gegenüber statt dem ganzen Alphabet wie bei GPLs. Dadurch ist das Programm leichter zu verstehen und Fehler z.B. Semantik oder Syntax Fehler lassen sich bereits beim erstellen des Programms vermeiden. \cite{10}
     VPLs lassen sich dabei in Imperativ und Deklarativ unterteilen. In einer imperativen VPL wird vom Programm vorgegeben, in welcher Reihenfolge die Operationen ausgeführt werden. Bei einer deklativen VPL hingegen wird vom Programm nur die Abhänigkeit zwischen Daten vorgegeben und das System bestimmt die Reihenfolge selbst. \cite{21}
+    VPLs haben den Vorteil, dass diese einfach, visuell darstellbar sind, tranparent und Interaktiv sind.
+    Einfachheit, weil weniger Programmierkonzepte zum Programmieren benört werden.
+    Visuell darstellbar, weil 
+    Transparent, weil Datenabhänigkeiten anschaulich dargestellt werden.
+    Interaktiv, weil der Entwickler direkt Feedback bekommen kann. \cite{13}
     Bei VPL ist das meist genutze Paradigma der Datenfluss-basierte Ansatz. \cite{6}
+    Zusammengefasst kann man sagen, dass VPLs die Vorteile von Flussdiagrammen und nicht die Nachteile der klassischen Programmierung kombiniert. \cite{13}
     \subsection{Visual Language}
     Visual Language (VL) drücken sich eher mit Bildern statt Texten aus. \cite{5}
-    Dabei werdne hauptsächlich grafische Tools und visuelle Metaphoren verwenden. \cite{16}
+    Dabei werden hauptsächlich grafische Tools und visuelle Metaphoren verwendet. Bilder eignen sich besonders gut zum Programmieren, weil Bilder ausdruckstärker als Worte sind und haben einen höheren Wiedererkennungswert. Durch die eingeschränkte Syntax sind VLs nicht so flexibel und ausdruckstar wie Text-basierte Sprachen. \cite{16}
     \subsection{Datenfluss-basierte Sprachen}
     %Punkte von Jonston et. al erklären
     Unter einer Datenfluss-basierten Sprache (DL) versteht man, dass die Daten von einer Funktion in die andere geht. Dabei wird das Programm als Graphen dargestellt\cite{11}
@@ -60,11 +69,14 @@
     DLs sind oftmals funktionale Programmiersprachen, aber können auch text-basiert sein. \cite{2}
     Der Vorteil einer DLs ist, dass diese durch einen Graphen dargestellt werden können \cite{11} und dadurch die Programme einfach zur verstehen sind. \cite{6}
     Da ein Programm viele Funktionen haben kann, kann ein Graph schnell unübersichtlich werden. Damit dies vermieden werden kann, gibt es sogenannte Mikrofunktionen. Mikrofunktionen sind Knoten, welche auf einen Teilgraphen verweisen. Der Teilgraph beinhaltet dabei die eigentliche Darstellung des Algorithmuses. Durch diese Möglichkeit lassen sich auch ganz einfach Rekursionen in einem Graphen darstellen.\cite{11}
+    Eine DL führt den Code nicht streng sequentiell aus. Das führt dazu, dass unabhängige Instruktionen parellel ausgeführt werden können.\cite{1}
+    Durch diese Ausführung kann in den meisten ein Effizentsteigerung geschaffen werden, weil das Programm nicht mehr vom Programmzähler abhängig ist. \cite{2}
     Johnston et. al beschreiben in ihrer Wissenschaftlichenarbeit eine Menge von Eigenschaften. So sollen DLs frei von Seiteneffekten sein, den Lokalitätsprinzip folgen und keine Variablen überschreiben.\cite{2}
     \subsection{Datenfluss-basierte Systeme}
     %TODO kurzer vergleich zu von neumann
     %BBS imperativen Programmierablauf, Datenfluss/Kontrollfluss
-    %
+    %übergang zwischen BBS und DFA flüssiger machen
+    %lazy evaluation im zusammenhang mit bedarfgesteuert erklären
     Datenfluss-basierte Systeme (DFA) ist eine Computerarchitektur, welche auf DLs basiert. 
     Die DFA wurde eingeführt um den Flaschenhals der von-Neumann-Architektur zu vermeiden. Je nach Implementierung kann nur lokaler Speicher verwendet werden und die Funktionen können sofort aufgefürt werdne, sobald die Operanden zur verfügung stehen. \cite{8}
     Die Vorteile einer DFA sind, dass diese hohe Performance, flexibilität und hohe efektivität fördert. \cite{1}
@@ -73,11 +85,8 @@
     In einem DFA fließen Daten als Token durch das System.
     Schaut man sich die beiden Ausführungen genauer an, kann man sagen, dass die Datengesteuerte Ausführung nichts anderes als eine Bedarfsgesteuerte Ausführung ist, bei der bereits ders Bedarf an allen Ergebnissen vorhanden ist.\cite{11}
     Bei der Ausführung fließen die Ergbenisse einer Funktion direkt in eine andere und werden dort tranfsformiert oder gefilter. \cite{15}
-    DFA lassen sich auf zwei Arten unterscheiden. Auf der einen Seite gibt es Blockbasierte Systeme (BBS). Bei BBS werden vordefinierte Befehle als Blöcke dargestellt. \cite{20}
-    Und auf der anderen Seite gibt es Datenfluss-basierte Systeme.
     \newpage
     \section{Aufbau der domainspezifischen Sprache}
-    Im nachfolgenden Kapitel möchte ich die zugrundeliegende Grammatik beschreiben. Am Anfang möchte ich auf die Notation eingehen.\\\\
     Die zugrundeliegende Grammatik basiert auf der Backus-Naur-Form (BNF) Notation. Der Aufbau einer BNF wird anhand der Grammatik~\ref{BNF} erklärt
     <symbol> sind nichtterminale
     ::= bedeutet dass symbol durch _expression_ ersetzt wird
@@ -313,6 +322,11 @@
     \\\textbf{Abbildung TODO} Algorithmus Schleifenentfaltung\\
     \\Auf die Vor- und Nachteile der Implementierung wird im Kapitel~\ref{Evaluation} eingegangen.
     \subsection{2. Lösungsansatz}
+    %Schleifenkonstrukt -> Benutzer gibt Abbruchbedigung ein (Benutzer verwendet Schleifenkonstrukt statt Entscheidungs Aktivität) -> 
+    %typ (generisch?, damit das System dies für uns übernimmt) der eingabe muss bestimmt werden, damit richtiger algorithmus zur stabilität überprüfung ausgewählt werden kann (es wird nur zwischen zeichenketten und zahlen unterschieden => bei zahlen wird mittelwertansatz gewählt bei zeichenketten Levenshtein-Distanz)
+    %Was muss geändert werden: Prüfungslogik muss durch die aktivität schleife erweitert werden
+    
+    Levenshtein-Distanz für String
     Wie auch schon beim 1. Lösungsansatz gibt der Benutzer von vorneherein eine Zahl a an, welche die Anzahl an Schleifendurchläufen beschrnänkt. Für die Zahl a gelten die gleichen Bedingungen wie im 1. Lösungsansatz beschrieben. 
     Zusätzlich wird noch eine Zahl TODO benötigt, welche auch der Benutzer angeben muss. TODO soll dabei die Funktionen eines Grenzwertes übernehmen.
     Bei diesem Ansatz werden mehrere Mittelwerte gebildet und geschaut, wie sich der neu ausgelesene Sensorwert sich im Verhältnis zu den Mittelwerten verhält. Es wird die Differenz zwischen Mittelwert und aktuellen Sensorwert gebildert. Anschließend wird geschaut auf die Differenz größer als TODO ist.
