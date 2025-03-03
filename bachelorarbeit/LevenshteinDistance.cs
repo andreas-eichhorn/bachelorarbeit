@@ -1,7 +1,7 @@
 /*https://gist.github.com/Davidblkx/e12ab0bb2aff7fd8072632b396538560 aufgerufen am 03.03.2025 um 05:07Uhr*/
 using System;
 
-namespace gibt
+namespace c
 {
     class LevenshteinDistance
     {

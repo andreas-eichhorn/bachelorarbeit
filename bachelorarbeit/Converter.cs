@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace Converter
+namespace b
 {
     class Converter
     {
