@@ -1,0 +1,15 @@
+/home/andreas/Schreibtisch/bachelorarbeit/bachelorarbeit/bin/Debug/net8.0/bachelorarbeit
+/home/andreas/Schreibtisch/bachelorarbeit/bachelorarbeit/bin/Debug/net8.0/bachelorarbeit.deps.json
+/home/andreas/Schreibtisch/bachelorarbeit/bachelorarbeit/bin/Debug/net8.0/bachelorarbeit.runtimeconfig.json
+/home/andreas/Schreibtisch/bachelorarbeit/bachelorarbeit/bin/Debug/net8.0/bachelorarbeit.dll
+/home/andreas/Schreibtisch/bachelorarbeit/bachelorarbeit/bin/Debug/net8.0/bachelorarbeit.pdb
+/home/andreas/Schreibtisch/bachelorarbeit/bachelorarbeit/obj/Debug/net8.0/bachelorarbeit.GeneratedMSBuildEditorConfig.editorconfig
+/home/andreas/Schreibtisch/bachelorarbeit/bachelorarbeit/obj/Debug/net8.0/bachelorarbeit.AssemblyInfoInputs.cache
+/home/andreas/Schreibtisch/bachelorarbeit/bachelorarbeit/obj/Debug/net8.0/bachelorarbeit.AssemblyInfo.cs
+/home/andreas/Schreibtisch/bachelorarbeit/bachelorarbeit/obj/Debug/net8.0/bachelorarbeit.csproj.CoreCompileInputs.cache
+/home/andreas/Schreibtisch/bachelorarbeit/bachelorarbeit/obj/Debug/net8.0/bachelorarbeit.sourcelink.json
+/home/andreas/Schreibtisch/bachelorarbeit/bachelorarbeit/obj/Debug/net8.0/bachelorarbeit.dll
+/home/andreas/Schreibtisch/bachelorarbeit/bachelorarbeit/obj/Debug/net8.0/refint/bachelorarbeit.dll
+/home/andreas/Schreibtisch/bachelorarbeit/bachelorarbeit/obj/Debug/net8.0/bachelorarbeit.pdb
+/home/andreas/Schreibtisch/bachelorarbeit/bachelorarbeit/obj/Debug/net8.0/bachelorarbeit.genruntimeconfig.cache
+/home/andreas/Schreibtisch/bachelorarbeit/bachelorarbeit/obj/Debug/net8.0/ref/bachelorarbeit.dll
