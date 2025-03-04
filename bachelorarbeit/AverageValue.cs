@@ -25,6 +25,7 @@ namespace a
             }
             double average = sumOfValues / numberOfValues;
             //aufruf der check funktion
+            Console.WriteLine("average: " + average);
             return distance(average, currentValue, threshold);
         }
 
