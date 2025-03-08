@@ -5,20 +5,7 @@
 \usetikzlibrary{automata, positioning}
 
 \begin{document}
-    %Notizen
-    folgende Begriffe sollen definiert werden:
-
-    Visual Programming Language
-
-    Grammatik
-
-    Domain Specific Language
-
-    Schleifen
-
-    Flowchart
-
-    (Fixpunktberechnung)
+    %Fachlexikon für definition verwenden
     \newpage
     \tableofcontents
     %Einleitung
@@ -107,21 +94,22 @@
     Typsystem ermöglicht die statische analyse der ausführbarkeit
     Softwareprüfung lääst sich visuall von zwei seiten betrachen. 
     Einmal als Datenflussgraphen, indem Teil-Funktionen als Blöcke dargestellt werden und Funktionsparamter/Ergebnisse als Ports.
-    Einmal als Aktivitätsdiagramm, in dem nur Startzustand, Endzustände, Aktions- und Entscheidungsblöcke dargeste
+    Einmal als Aktivitätsdiagramm, in dem nur Startzustand, Endzustände, Aktions- und Entscheidungsblöcke dargestellt.
     \subsection{Prüfungslogik}
     Das Aktivitätsmodell  $<ActivityModel>$ besteht aus einer Reihe von Aktivitäten $<Activity>$.
     Aktivitäten können dabei entweder eine Startmarkierung, eine Aktivitätsaktion, einem Vergleich oder visualles Label sein.
     Die Startmarkierung muss pro Prüfungslogik genau einmal vorkommen.
+    $<ValueTransformation>$ beschreibt wie das Ergebnis der Datenverarbeitung weiter genutzt werden sollen
     Ein vergleich kann dabei entweder eine Binärentscheidung oder eine Validierungsentscheidung sein.   
-    Die Validierungsentscheidung nimmt als Eingabe einen Wert und überprüft ob diese Werte vorhanden sind.
-    Die Binärentscheidung nimmt als Parameter zweite Werte, einen Vergleichoperatur und eine referenz zu einer Funtkion. Dabei werden beide Werte als Eingabe für die referenzierte Funktion verwendet.
+    Die Validierungsentscheidung $<ActivityValidityCondition>$ nimmt als Eingabe einen Wert und überprüft ob diese Werte vorhanden sind.
+    Die Binärentscheidung $<ActivityBinaryCondition>$ nimmt als Parameter zweite Werte, einen Vergleichoperatur und eine referenz zu einer Funtkion. Dabei werden beide Werte als Eingabe für die referenzierte Funktion verwendet.
     Als Vergleichoperatoren stehen $=$ und $\neq$ sowie Relationale Operatoren zur verfügung.
     Eine Aktivitätaktion <ActivityAction> kann dabei einer der folgenden Aktionen ausführen:
     Bevor das Ergbeniss aus der vorherigen Aktionsaktivität verwendet wird, kann eine Transformation auf dieses Ergebniss angewendet werden.
     \begin{itemize}
-        \item Senden von Hauptuntersuchungs-Adatper-Anfragen (A1)
-        \item Lesen einer JSON Datei (A2)
-        \item Ausführung einer Datenverarbeitung (A3)
+        \item Senden von Hauptuntersuchungs-Adatper-Anfragen (A1) $<ActivityPitaBuildInforRequest>$
+        \item Lesen einer JSON Datei (A2) $<ActivityLoadExternalData>$
+        \item Ausführung einer Datenverarbeitung (A3) $<ActivityFlowCall>$
     \end{itemize}
     A1 nimmt als Parameter den Namen der auszuführenden Anfrage, eine Beschreibung für den debugger, eine Liste von anzusprechnenden System im Fahrzeig und die maximale Zeitdrauer einer Anfrage.
     A2 nimmt als Eingabe den Typ der zu ladenenden Datei und die dazugehörige URI.
@@ -332,12 +320,12 @@
     
     Ein möglicher Lösungsvorschlag könnte nun folgendermaßen aussehen. 
     Je nachdem welcher Typ der Eingabewert hat verläuft der Algorithmus anders. Es wird dabei nur zwischen Zahlen und Zeichenketten unterschieden. 
-    Bei Zeichenketten wird der aktuelle Wert mit dem Wert aus dem vorherigen Schleifendurchlauf verglichen. Dafür wird die Levenshtein-Distanz verwendet. Beim ersten Schleifendurchlauf wird als zweite Zeichenkette das leere Wort $\epsilon$ verwendet. $\epsilon$ wird verwendet, weil dieser Wert keinen negativen Ablauf auf den Algorithmus haben wird. Dies wird im weiteren Verlauf der Erklärung genauer erklärt. 
+    Bei Zeichenketten wird der aktuelle Wert mit dem Wert aus dem vorherigen Schleifendurchlauf verglichen. Dafür wird die Levenshtein-Distanz verwendet. Für die ersten beiden Schelifendurchläufe wird der Algorithmus übersprungen, weil die Levenshtein-Distanz noch kein Aussagekräftiges Ergebnis für den Anwendungsfall geben kann.
     Die Levenshtein-Distanz gibt die ähnlichkeit zwischen zwei Zeichenketten als Zahl an, indem sie die minimale Anzahl an Operation angibt, welche benötigt werden, damit die erste Zeichenkette der zweiten Zeichenkette gleicht. Je größer die Zahl ist destso "unterschiedlicher" sind die beiden Zeichenketten von einander. 
 
     Um zu schauen wie sich die Eingabe zu verschiedenen Zeiträumen verhält, berechnen wir Mittelwerte über TODO. Es sollten mindestens zwei Mittelwerte gebildet werden. Mehr als zwei Mittelwerte sind möglich, aber würden den Algorithmus entwindlicher machen. Der erste Mittelwert sollte über alle bisherigen Eingaben gebildet werden, um zu sehen wie sich die Eingabe auf langer Sicht verhält. Der zweite Mittelwert sollte über die letzten n Eingaben gebildert, um zu sehen wie sich die Eingabe auf kurzer Sicht verhält.
-    Da die Werte der Levenshtein-Distanz sich für den Mittelwert nicht besonders anbieten, müssen die Zeichenketten in einen Zahlenwert umgewandelt werden.
-    Das kann geschaffen werden indem alle Zeichen der Zeichenkette in eine eindeutige Zahl umwandeln und die einzelnen Zahlen anschließend Addieren. Damit wir uns um die Umwandlung keine Sorgen machen müssen, greifen wir dafür auch die ASCII-Tabelle zu.
+    Da die Werte der Levenshtein-Distanz sich für den Mittelwert nicht besonders anbieten, müssen die Zeichenketten in einen Zahlenwert umgewandelt werden.hließend Addieren. Für die Umwandlung eignet sich UTF-8 besonders gut. Da UTF-8 fast akke Schriftzeichen weltweit beinhaltet.
+    Das kann geschaffen werden indem alle Zeichen der Zeichenkette in eine eindeutige Zahl umwandeln und die einzelnen Zahlen ansc
     Zusätzlich muss eine Gewichtung bei der Addition berücksichtigt werden, weil sonst Zeichenketten, die aus den gleichen Zeichen bestehen, den gleichen Wert bei der Addition rausbekommen. Das liegt daran, dass bei der Addition ohne Gewichtung nur die Wertigkeit der einzelnen Zeichen betrachtet wird, aber nicht deren Position. Dieses Problem wird mit der Gewichtung aufgelöst. Ein Beispiel dafür für die Addition mit Gewichtung ist in Abbildung TODO.
     Dies muss aber nicht für jedes Eingabepaar gemacht werden, sondern nur für Eingabepaare welche sich sehr ähneln, also eine niedrige Levenshtein-Distanz haben. Für Eingabepaare mit einer hohen Levenshtein-Distanz ist das nicht notwendig, weil wir da bereits wissen, dass sich die Zeichketten stark von einerander unterscheiden.
     Ist die Differenz aus der umgewandelten umgewandelten Zeichenkette und einem Mittel kleiner als ein vordefinierter Schwellenwert, wissen wir dass die Zeichenkette sich nur ganz leicht von den durchschnittlichen Eingaben unterscheidet.
@@ -365,8 +353,7 @@
     \newpage
     \section{Evaluation}
     \label{Evaluation}
-    \subsection{}
-    \subsubsection{1. Lösungsansatz}
+    \subsection{1. Lösungsansatz}
     +einfach zu implementieren, da wir kein schleifenkonstrukt mehr benötigen.
     +keine Endlosschleife, weil es keine Schleifen gibt
     +keine Zyklen, weil der Ablauf linear ist

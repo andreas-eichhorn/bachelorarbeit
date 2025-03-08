@@ -1,20 +1,19 @@
-\contentsline {section}{\numberline {1}Einleitung}{3}{}%
-\contentsline {section}{\numberline {2}Terminologie}{4}{}%
-\contentsline {subsection}{\numberline {2.1}Schleifen}{4}{}%
-\contentsline {subsection}{\numberline {2.2}Domain Specific Language}{4}{}%
-\contentsline {subsection}{\numberline {2.3}Visual Programming Language}{5}{}%
-\contentsline {subsection}{\numberline {2.4}Visual Language}{5}{}%
-\contentsline {subsection}{\numberline {2.5}Datenfluss-basierte Sprachen}{5}{}%
-\contentsline {subsection}{\numberline {2.6}Datenfluss-basierte Systeme}{6}{}%
-\contentsline {section}{\numberline {3}Aufbau der domainspezifischen Sprache}{7}{}%
-\contentsline {subsection}{\numberline {3.1}Prüfungslogik}{7}{}%
-\contentsline {subsection}{\numberline {3.2}Datenverarbeitungs}{9}{}%
-\contentsline {subsection}{\numberline {3.3}Typsystem}{11}{}%
-\contentsline {section}{\numberline {4}Implementierung}{12}{}%
-\contentsline {subsection}{\numberline {4.1}1. Lösungsansatz}{12}{}%
-\contentsline {subsection}{\numberline {4.2}2. Lösungsansatz}{13}{}%
-\contentsline {section}{\numberline {5}Evaluation}{16}{}%
-\contentsline {subsection}{\numberline {5.1}}{16}{}%
-\contentsline {subsubsection}{\numberline {5.1.1}1. Lösungsansatz}{16}{}%
-\contentsline {subsection}{\numberline {5.2}2. Lösungsansatz}{16}{}%
-\contentsline {section}{\numberline {6}Literaturverzeichnis}{17}{}%
+\contentsline {section}{\numberline {1}Einleitung}{2}{}%
+\contentsline {section}{\numberline {2}Terminologie}{3}{}%
+\contentsline {subsection}{\numberline {2.1}Schleifen}{3}{}%
+\contentsline {subsection}{\numberline {2.2}Domain Specific Language}{3}{}%
+\contentsline {subsection}{\numberline {2.3}Visual Programming Language}{4}{}%
+\contentsline {subsection}{\numberline {2.4}Visual Language}{4}{}%
+\contentsline {subsection}{\numberline {2.5}Datenfluss-basierte Sprachen}{4}{}%
+\contentsline {subsection}{\numberline {2.6}Datenfluss-basierte Systeme}{5}{}%
+\contentsline {section}{\numberline {3}Aufbau der domainspezifischen Sprache}{6}{}%
+\contentsline {subsection}{\numberline {3.1}Prüfungslogik}{6}{}%
+\contentsline {subsection}{\numberline {3.2}Datenverarbeitungs}{8}{}%
+\contentsline {subsection}{\numberline {3.3}Typsystem}{10}{}%
+\contentsline {section}{\numberline {4}Implementierung}{11}{}%
+\contentsline {subsection}{\numberline {4.1}1. Lösungsansatz}{11}{}%
+\contentsline {subsection}{\numberline {4.2}2. Lösungsansatz}{12}{}%
+\contentsline {section}{\numberline {5}Evaluation}{15}{}%
+\contentsline {subsection}{\numberline {5.1}1. Lösungsansatz}{15}{}%
+\contentsline {subsection}{\numberline {5.2}2. Lösungsansatz}{15}{}%
+\contentsline {section}{\numberline {6}Literaturverzeichnis}{16}{}%
