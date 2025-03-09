@@ -97,7 +97,8 @@
     Einmal als Aktivitätsdiagramm, in dem nur Startzustand, Endzustände, Aktions- und Entscheidungsblöcke dargestellt.
 
     Die folgende Zusammenfassung basiert auf der unveröffentlichen Arbeit von Westermann et al.
-    \subsection{Prüfungslogik}
+    \subsection{Aufbau der Grammatik}
+    \subsubsection{Prüfungslogik}
     Die Regel $<ActivityModel>$ beschreibt die Grundstruktur des Aktivitätsmodell und setzt sich aus $<Acitvity>$ und $<ActivityConnection>$ zusammen. 
     $<Acitvity>$ sind dabei Aktivitäten und kann entweder eine Startmakierung ($<ActivityStart>$), ein Vergleich ($<ActivityCondition>$), eine Aktion ($<ActivityAction>$) oder ein Label ($<ActivityDisplay>$) sein.
     $<ActivityConnection>$ hingegen definiert, welche Aktivtäten miteinander verbunden sind und setzt sich aus zwei Aktivitäten (ref(Acitvity source) und ref(Acitvity target)) und einer Beschriftung für die Kante ($<string label>$)
@@ -107,21 +108,29 @@
         \item Lesen einer JSON Datei (A2) $<ActivityLoadExternalData>$
         \item Ausführung einer Datenverarbeitung (A3) $<ActivityFlowCall>$
     \end{itemize}
+    $<ActivityFlowCall>$ setzt sich aus einem Flow-Template (ref(FlowTemplate)), mehreren Eingaben ($<ActivityPortValue>$ und $<TemplateParameterValue>$) und mehreren Transformationen ($<ValueTranformation>$).
+    Die Transformation beschreibt dabei wie das Ergebnis der Datenverarbeitung weiter genutzt werden soll.
+    Auf die Bedetung des Flow-Templates und der TemplateParameterValue wird im verlaufe des Kapitel eingegangen
+    $<FlowPortValue>$ setzt sich aus einer Reihe von primtiven Typen ($<FlowPortValue>$) oder einem verweis auf einer Aktion mit einer Transformation ($<ActivityPortValue>$) zusammen.
+    $<ActivityPitaBuildInforRequest>$ uns $<ActivityLoadExternalData>$ setzen sich nur aus Eingaben vom primtiven Typ zusammen, welche für die Ausführung des zwecks notwendig sind zusammen.
+    Der Vergleich kann etweder ein Binärvergleich $<ActivityBinaryCondition>$ oder ein Validierungsvergleich $<ActivityValidityCondition>$ sein.
+    Der Binärvergleich setzt sich dabei aus einem Flow-Template, einem Operator ($〈ActivityBinaryConditionOperator〉$) und zwei Eingaben ($<ActivityPortValue right>$ und $<ActivityPortValue left>$) zusammen.
+    Das Label kann sich dabei aus mehreren Textfeldern ($〈ActivityDisplayField〉$) zusammen. Ein Textfeld besteht dabei aus einer Beschriftung ($〈string label〉$), einer Farbe ($〈string color〉$) und einem Verweis auf eine Aktion (ref(ActivityAction))
 
-    Das Aktivitätsmodell  $<ActivityModel>$ besteht aus einer Reihe von Aktivitäten $<Activity>$.
-    Aktivitäten können dabei entweder eine Startmarkierung, eine Aktivitätsaktion, einem Vergleich oder visualles Label sein.
-    Die Startmarkierung muss pro Prüfungslogik genau einmal vorkommen.
-    $<ValueTransformation>$ beschreibt wie das Ergebnis der Datenverarbeitung weiter genutzt werden sollen
-    Ein vergleich kann dabei entweder eine Binärentscheidung oder eine Validierungsentscheidung sein.   
-    Die Validierungsentscheidung $<ActivityValidityCondition>$ nimmt als Eingabe einen Wert und überprüft ob diese Werte vorhanden sind.
-    Die Binärentscheidung $<ActivityBinaryCondition>$ nimmt als Parameter zweite Werte, einen Vergleichoperatur und eine referenz zu einer Funtkion. Dabei werden beide Werte als Eingabe für die referenzierte Funktion verwendet.
-    Als Vergleichoperatoren stehen $=$ und $\neq$ sowie Relationale Operatoren zur verfügung.
-    Eine Aktivitätaktion <ActivityAction> kann dabei einer der folgenden Aktionen ausführen:
-    Bevor das Ergbeniss aus der vorherigen Aktionsaktivität verwendet wird, kann eine Transformation auf dieses Ergebniss angewendet werden.
+    %Das Aktivitätsmodell  $<ActivityModel>$ besteht aus einer Reihe von Aktivitäten $<Activity>$.
+    %Aktivitäten können dabei entweder eine Startmarkierung, eine Aktivitätsaktion, einem Vergleich oder visualles Label sein.
+    %Die Startmarkierung muss pro Prüfungslogik genau einmal vorkommen.
+    %$<ValueTransformation>$ beschreibt wie das Ergebnis der Datenverarbeitung weiter genutzt werden sollen
+    %Ein vergleich kann dabei entweder eine Binärentscheidung oder eine Validierungsentscheidung sein.   
+    %Die Validierungsentscheidung $<ActivityValidityCondition>$ nimmt als Eingabe einen Wert und überprüft ob diese Werte vorhanden sind.
+    %Die Binärentscheidung $<ActivityBinaryCondition>$ nimmt als Parameter zweite Werte, einen Vergleichoperatur und eine referenz zu einer Funtkion. Dabei werden beide Werte als Eingabe für die referenzierte Funktion verwendet.
+    %Als Vergleichoperatoren stehen $=$ und $\neq$ sowie Relationale Operatoren zur verfügung.
+    %Eine Aktivitätaktion <ActivityAction> kann dabei einer der folgenden Aktionen ausführen:
+    %Bevor das Ergbeniss aus der vorherigen Aktionsaktivität verwendet wird, kann eine Transformation auf dieses Ergebniss angewendet werden.
 
-    A1 nimmt als Parameter den Namen der auszuführenden Anfrage, eine Beschreibung für den debugger, eine Liste von anzusprechnenden System im Fahrzeig und die maximale Zeitdrauer einer Anfrage.
-    A2 nimmt als Eingabe den Typ der zu ladenenden Datei und die dazugehörige URI.
-    A3\\
+    %A1 nimmt als Parameter den Namen der auszuführenden Anfrage, eine Beschreibung für den debugger, eine Liste von anzusprechnenden System im Fahrzeig und die maximale Zeitdrauer einer Anfrage.
+    %A2 nimmt als Eingabe den Typ der zu ladenenden Datei und die dazugehörige URI.
+    %A3
     \begin{grammar}
         <ActivityModel> ::= <Activity>* <ActivityConnection>
 
@@ -178,20 +187,24 @@
     \end{grammar}
     \textbf{Grammatik TODO} Aktivitätsmodell
     \newpage
-    \subsection{Datenverarbeitungs}
-    Eingabe <FlowInputPort> und Ausgabe $<FlowOutputPort>$
-    Funktionen höherer Ordnung $<FlowLamda>$
-    Eine Funktion höher Ordnung besteht aus zustzälciehn Eingabe- und Ausgabeports
-    Eingabe- und Ausgabeports nehmen als Parameter einen Namen des Ports, den Typ und ob Fehlererlaub ist.
+    \subsubsection{Datenverarbeitungs}
+    %Eingabe <FlowInputPort> und Ausgabe $<FlowOutputPort>$
+    %Funktionen höherer Ordnung $<FlowLamda>$
+    %Eine Funktion höher Ordnung besteht aus zustzälciehn Eingabe- und Ausgabeports
+    %Eingabe- und Ausgabeports nehmen als Parameter einen Namen des Ports, den Typ und ob Fehlererlaub ist.
 
-    Ein Funktions Template $<FlowTemplate>$ besteht aus einer Funktion $Flow$ und belieg vielen Parametern $<TemplateParameter>$
-    Die Parameter generieren Port- und Lambda-Defintion
-    Funktionen welche vom Autorensystem $<LibraryFlow>$ und selbst definierte Funktionen $<FlowModel>$
+    %Ein Funktions Template $<FlowTemplate>$ besteht aus einer Funktion $Flow$ und belieg vielen Parametern $<TemplateParameter>$
+    %Die Parameter generieren Port- und Lambda-Defintion
+    %Funktionen welche vom Autorensystem $<LibraryFlow>$ und selbst definierte Funktionen $<FlowModel>$
 
-    Ein Flow-Modell ist ein DAG bei dem mehrere Funktionen mitienander verbunden werden. Einzelne Funktionen werden Nodes $<FlowNode>$ genannt.
-    Das Flow-Modell wird durch eine $<FlowInstance>$, Reihe von Funktionen und Verbidnugen definiert.
-    Die Funktion kann dabei eine Eingabe <$FlowNodeInput>$, eine Ausgabe $<FlowNodeOutput>$, einer Lambda Referenz $<FlowNodeLambda>$ oder eine Funtkions Referenz $FlowNodeFlowCall$
-    Konstante Werte $FlowPortValue$
+    %Ein Flow-Modell ist ein DAG bei dem mehrere Funktionen mitienander verbunden werden. Einzelne Funktionen werden Nodes $<FlowNode>$ genannt.
+    %Das Flow-Modell wird durch eine $<FlowInstance>$, Reihe von Funktionen und Verbidnugen definiert.
+    %Die Funktion kann dabei eine Eingabe <$FlowNodeInput>$, eine Ausgabe $<FlowNodeOutput>$, einer Lambda Referenz $<FlowNodeLambda>$ oder eine Funtkions Referenz $FlowNodeFlowCall$
+    %Konstante Werte $FlowPortValue$
+    %TODO erklären was ist lamba?
+    Die Flow-Instanz ($〈FlowInstance〉$) kann als Funktion interpretiert werden und bildet eine oder mehrere Eingaben ($〈FlowOutputPort lambdaArguments〉$) auf eine oder mehrere Ausgaben ($〈FlowOutputPort  lambdaArguments〉$) ab.
+    Zusätzlich kann die Flow-Instanz aus einer oder mehreren Lamda-Definitionen ($〈FlowLamda〉$) beinhalten. Eine Lamda-Definition hat zusätzliche Eingaben und Ausgaben.
+    Die Ein- und Ausgaben bestehen dabei einem Namen  ($〈string name〉$) , gefolgt vom Typ  ($〈Typ〉$)  und einem boolean  ($〈bool acceptsError〉$) , welcher angibt ob Fehler akzeptiert werden oder nicht.\\
     \begin{grammar}
         <FlowInstance> ::= <FlowOutputPort lambdaArguments>* <FlowInputPort lambdaArguments>* <FlowLambda>*
         
@@ -201,7 +214,9 @@
 
         <FlowOutputPort> ::= <string name> <Type> <bool producesError>
     \end{grammar}
-    \textbf{Grammatik TODO} Flow-Instanz
+    \textbf{Grammatik TODO} Flow-Instanz\\\\
+    Ein Flow-Template ($〈FlowTemplate〉$) kann als abstrakte Oberklasse angesehen werden und besteht dabei aus einer Funktion ($〈Flow〉$) gefolgt von keiner oder mehreren Template-Parametern ($〈TemplateParameter〉$), welche Port- und Lambda-Definitionen generien können.
+    Eine Funktion kann dabei eine vom System bereitgestellte ($〈LibraryFlow〉$) oder eine vom Benutzer selbst definierte ($〈FlowModel〉$) sein.\\
     \begin{grammar}
         <FlowTemplate> ::= <Flow> <TemplateParameter>*
 
@@ -213,29 +228,35 @@
         
         <TemplateParameterList> ::= <TemplateParameter>
     \end{grammar}
-    \textbf{Grammatik TODO} Flow-Template
+    \textbf{Grammatik TODO} Flow-Template\\\\
+    Die vom System bereitgestellte Funktionen lassen sich dabei in eine von sieben Kategorien unterteilen: Hauptuntersuchungs-Adapter-Antworten, Zeichenkettenverarbeitung, Datum, Vergleichoperatoren, Konverter, Operatoren und Listenverarbeitung.\\\\
+    Das Flow-Model ($〈FlowModel〉$) ist, wie bereits erwähnt, die vom Benutzer selbst definierten Funktionen und besteht aus einer Flow-Instanz, gefolgt von mehreren möglichen Funktionen ($〈FlowNode〉$) und Verbindungen ($〈FlowConnection〉$).
+    Flow-Instanz bestimmt die Ein- und Ausgaben des Flow-Models.
+    kann dabei eine $〈FlowNodeOutput〉$, $〈FlowNodeInput〉$, $〈FlowNodeLambda〉$ oder ein $〈FlowNodeFlowCall〉$ sein.
+    $〈FlowNodeInput〉$ besteht aus einem Verweis an einem Verweis an einer Portdefinition, gefolgt von $〈FlowPortValue〉$. Hingegen $〈FlowNodeOutput〉$ nur aus einer Portdefinition besteht.
+    Die $〈FlowConnection〉$ wird durch zwei Verweise definiert.
+    $〈FlowPortValue〉$ bietet dabei die Möglichekit konstante Werte an die Eingabeports anzulegen.
     \begin{grammar}
         <FlowModel> ::= <FlowInstance> <FlowNode>* <FlowConnection>*
 
         <FlowNode> ::= <FlowNodeOutput> | <FlowNodeInput> | <FlowNodeLambda> | <FlowNodeFlowCall>
        
-        <FlowNodeOutput> ::= ref(FlowOutputPort) <FlowPortValue>
+        <FlowNodeOutput> ::= ref(FlowOutputPort)
+
+        <FlowNodeInput> ::= ref(FlowInputPort) <FlowPortValue>
 
         <FlowNodeLambda> ::= ref(FlowLambda) <FlowPortValue>*
 
         <FlowNodeFlowCall> ::= ref(FlowTemplate) <FlowPortValue>* <TemplateParameterValue>*
     
-        <FlowConnection> ::= ref(FlowOutputPort source) ref (FlowOutputPort target)
-    
-        <FlowConnection> ::= ref(FlowOutputPort source) ref (FlowOutputPort target)
+        <FlowConnection> ::= ref(FlowOutputPort source) ref(FlowOutputPort target)
     
         <TemplateParameterValue> ::= <string> | <number> | <bool> | <TemplateParameterValueList>
     
         <TemplateParameterValueList> ::= <TemplateParameterValue>*
     \end{grammar}
     \textbf{Grammatik TODO} Flow-Modell
-    \newpage
-    \subsection{Typsystem}
+    \subsubsection{Typsystem}
     unterstüzt die gleichen Primitiv-Typen wie JSON-Format String, Number und Bool zusätzlich Date und PtiaResponse. Außerdem werden auch gernerische Typen unterstüztz, weil nicht immer von vorneherein der Typ bekannt ist.
     Date ist eine Datumsangabe
     PtiaResponse ist eine Antwort einer Hauptuntersuchungs-Anfrage
@@ -256,6 +277,15 @@
         <TypeReference> ::= ref(Type)
     \end{grammar}
     \textbf{Grammatik TODO} Typ-Defintion mit generischen und Referenz-Typen
+    \subsection{Ausführung}
+    Im folgenden Abschnitt schauen wir uns an, wie die einzelnen Ebenen ausgeführt werden.
+    Die folgende Zusammenfassung basiert auf der unveröffentlichen Arbeit von Westermann et al.\\\\
+    Die Prüfungslogik. 
+    Ein wichtiger Bestandteil der Prüfungslogik ist der Referenzstack. Der Referenzstack beeinhaltet alle Erge.
+    Die Aktivitäten können auf den Referenzstack zugreifen und abgespeicherte Ergebnisse referenzieren und diese als Parameter für ihre Aktionen verwenden.
+    Der Startpunkt jeder Prüfung ist die Startaktivität. Die Startaktivität darf pro Prüfung nur einmal vorkommen und ist dafür zuständig, dass der Referenzstack leer ist.
+    Die Reihenfolge der auszuführenden Aktivitäten wird durch die Aktivitäten vorgegeben. Die Aktiväten geben nämlich das Label der nächst zu folgenden Kante zurück. 
+    Die Prüfungs ist beendet, sobald die Aktivität kein Label mehr zurückgibt.
     \newpage
     \section{Implementierung}
     Bei der Implementierung muss nicht nur auf des Design des Schleifenkonstrukt geachtet werden, sondern auch auf neue Sachen, welche durch die Implementierung entstanden sind.

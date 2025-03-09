@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("bachelorarbeit")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a2fac68b5368359972079a764f645e45c578be9e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("bachelorarbeit")]
 [assembly: System.Reflection.AssemblyTitleAttribute("bachelorarbeit")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
