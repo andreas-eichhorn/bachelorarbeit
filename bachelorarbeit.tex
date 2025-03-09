@@ -95,7 +95,19 @@
     Softwareprüfung lääst sich visuall von zwei seiten betrachen. 
     Einmal als Datenflussgraphen, indem Teil-Funktionen als Blöcke dargestellt werden und Funktionsparamter/Ergebnisse als Ports.
     Einmal als Aktivitätsdiagramm, in dem nur Startzustand, Endzustände, Aktions- und Entscheidungsblöcke dargestellt.
+
+    Die folgende Zusammenfassung basiert auf der unveröffentlichen Arbeit von Westermann et al.
     \subsection{Prüfungslogik}
+    Die Regel $<ActivityModel>$ beschreibt die Grundstruktur des Aktivitätsmodell und setzt sich aus $<Acitvity>$ und $<ActivityConnection>$ zusammen. 
+    $<Acitvity>$ sind dabei Aktivitäten und kann entweder eine Startmakierung ($<ActivityStart>$), ein Vergleich ($<ActivityCondition>$), eine Aktion ($<ActivityAction>$) oder ein Label ($<ActivityDisplay>$) sein.
+    $<ActivityConnection>$ hingegen definiert, welche Aktivtäten miteinander verbunden sind und setzt sich aus zwei Aktivitäten (ref(Acitvity source) und ref(Acitvity target)) und einer Beschriftung für die Kante ($<string label>$)
+    Eine Aktion kann dabei eine der folgenden Aktionen sein:
+    \begin{itemize}
+        \item Senden von Hauptuntersuchungs-Adatper-Anfragen (A1) $<ActivityPitaBuildInforRequest>$
+        \item Lesen einer JSON Datei (A2) $<ActivityLoadExternalData>$
+        \item Ausführung einer Datenverarbeitung (A3) $<ActivityFlowCall>$
+    \end{itemize}
+
     Das Aktivitätsmodell  $<ActivityModel>$ besteht aus einer Reihe von Aktivitäten $<Activity>$.
     Aktivitäten können dabei entweder eine Startmarkierung, eine Aktivitätsaktion, einem Vergleich oder visualles Label sein.
     Die Startmarkierung muss pro Prüfungslogik genau einmal vorkommen.
@@ -106,11 +118,7 @@
     Als Vergleichoperatoren stehen $=$ und $\neq$ sowie Relationale Operatoren zur verfügung.
     Eine Aktivitätaktion <ActivityAction> kann dabei einer der folgenden Aktionen ausführen:
     Bevor das Ergbeniss aus der vorherigen Aktionsaktivität verwendet wird, kann eine Transformation auf dieses Ergebniss angewendet werden.
-    \begin{itemize}
-        \item Senden von Hauptuntersuchungs-Adatper-Anfragen (A1) $<ActivityPitaBuildInforRequest>$
-        \item Lesen einer JSON Datei (A2) $<ActivityLoadExternalData>$
-        \item Ausführung einer Datenverarbeitung (A3) $<ActivityFlowCall>$
-    \end{itemize}
+
     A1 nimmt als Parameter den Namen der auszuführenden Anfrage, eine Beschreibung für den debugger, eine Liste von anzusprechnenden System im Fahrzeig und die maximale Zeitdrauer einer Anfrage.
     A2 nimmt als Eingabe den Typ der zu ladenenden Datei und die dazugehörige URI.
     A3\\
@@ -121,6 +129,8 @@
         | <ActivityAction>
         | <ActivityCondition>
         | <ActivityDisplay>
+
+        <ActivityConnection> ::= ref(Activity source) <string label> ref(Activity target)
 
         <ActivityStart> ::= $\epsilon$
 

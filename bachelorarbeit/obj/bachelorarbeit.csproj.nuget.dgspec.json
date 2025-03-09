@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Users\\andre\\Desktop\\bachelorarbeit\\bachelorarbeit\\bachelorarbeit.csproj": {}
+    "/home/andreas/Schreibtisch/bachelorarbeit/bachelorarbeit/bachelorarbeit.csproj": {}
   },
   "projects": {
-    "F:\\Users\\andre\\Desktop\\bachelorarbeit\\bachelorarbeit\\bachelorarbeit.csproj": {
+    "/home/andreas/Schreibtisch/bachelorarbeit/bachelorarbeit/bachelorarbeit.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Users\\andre\\Desktop\\bachelorarbeit\\bachelorarbeit\\bachelorarbeit.csproj",
+        "projectUniqueName": "/home/andreas/Schreibtisch/bachelorarbeit/bachelorarbeit/bachelorarbeit.csproj",
         "projectName": "bachelorarbeit",
-        "projectPath": "F:\\Users\\andre\\Desktop\\bachelorarbeit\\bachelorarbeit\\bachelorarbeit.csproj",
-        "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
-        "outputPath": "F:\\Users\\andre\\Desktop\\bachelorarbeit\\bachelorarbeit\\obj\\",
+        "projectPath": "/home/andreas/Schreibtisch/bachelorarbeit/bachelorarbeit/bachelorarbeit.csproj",
+        "packagesPath": "/home/andreas/.nuget/packages/",
+        "outputPath": "/home/andreas/Schreibtisch/bachelorarbeit/bachelorarbeit/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\andre\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/andreas/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -32,11 +32,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -58,7 +53,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.406/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.112/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
