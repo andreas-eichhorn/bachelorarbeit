@@ -285,7 +285,38 @@
     Die Aktivitäten können auf den Referenzstack zugreifen und abgespeicherte Ergebnisse referenzieren und diese als Parameter für ihre Aktionen verwenden.
     Der Startpunkt jeder Prüfung ist die Startaktivität. Die Startaktivität darf pro Prüfung nur einmal vorkommen und ist dafür zuständig, dass der Referenzstack leer ist.
     Die Reihenfolge der auszuführenden Aktivitäten wird durch die Aktivitäten vorgegeben. Die Aktiväten geben nämlich das Label der nächst zu folgenden Kante zurück. 
-    Die Prüfungs ist beendet, sobald die Aktivität kein Label mehr zurückgibt.
+    Die Prüfungs ist beendet, sobald die Aktivität kein Label mehr zurückgibt.\\\\
+    %einfügen,dass nach pull-ansatz gearbeitet wird
+    Anders ist es hingegen bei der Ausführung der Datenverarbeitung. Dort basiert die Ausführung auf einer Execute-Funktion, welche die Werte der Ausgabeports berechnet.
+    Die Funktion nimmt als Parameter Template-Parameter und eine Evaluate-Funktion.
+    Bei den vom System bereitgestellten Funktionen wird die Execute-Funktion mithilfe der Hilfsklasse vom Typ IExectuibCibtext, direkt in die Funktion implementiert.
+    Die Hilfsklasse stellt die Evaluate-Funktion bereit und speichert die Werte der Ausgabeports.
+    Das Ziel der Implentierung ist es die Abhängigkeiten zwischen Eingabe- und Ausgabeports herzustellen. Untersützt wird sie dabei von der Klasse RunetimeContext.
+
+    Ein anderer wichtiger Bestandteil der Datenverarbeitung ist der Ergebniscache. In dem Cache werden die Werte alle Ausgabeports gespeichert.
+    Wird nun nach einem Wert für einen Eingabeport gesucht, wird nach der zugehörigen InputNode mit der anliegden Kante gesucht und geschaut ob für den verbunden Ports bereits ein Ergebnis im Ergebniscache vorliegt.
+    Sollte das nicht der Fall sein, wird die Funktion ausgeführt und das Ergbenis im Ergebniscache gespeichert.
+
+    Auch bei der Ausführung von Lambdas spielt der Ergebniscache eine große Rolle. Sobald ein Wertes für ein Eingabeport benötigt werden, werden die Ergebnisse der dazugehörigen Ausgabeports in den Ergebiscache geschrieben und alle Funktionen die im Kind-verhältnis stehen invalidiert, indem die Ergebnisse im Ergebniscache gelöscht werden.
+    Anschließend kann die Berechnung des gesuchten Wertes beginnen, indem der grade beschriebene Algorithmus angewendet wird.\\
+
+    Als erstes werden alle Referenzen auf Flow-Templates aufgelöst, damit wir die Flow-Instanz erhalten. Sobald die Flow-Instanz erstellt ist, ist bekannt, welche Ports und Lambdas bei dem Funktions-Aufruf existieren und es werden Objektreferenzen zwischen den Ports erstellt.
+    Die Objektreferenzen sollen die Modell Analyse erleichtern und beeinhalten Informationen über die Verbindung.
+    Daraufhin werden die Refernz-Typen aufgelöst, indem diese durch konkrete Typen ersetzt werden.
+    Nun kann mit der eigentlichen Validierung angefangen werden. Die Validierung wird pro Flow-Modell ausgeführt und es wird mit dem Flow-Modell angefangen, welches am wenigsten Abhänigkeiten auf andere Flow-Modelle hat.
+    Bei der Prüfung wird über alle Verbindungen von Ports iteriert und falls ein gernerischer Typ vorkommt, wird diese Typ-Zuweisung gespeichert.
+    Im Anschluss werden die Ports des Flow-Modells überprüft und versucht die generischen Typen aufzulösen. Gernerische Typen, welche nicht aufgelöst werden konnten, werden dann beim Flow-Aufruf aufgelöst. Vorausgesetzt die nicht zu auflösenden Typen sind Teil der Argumente und Ergbenisports des Flow-Models.
+    Abschließend werden die Verbindungen von Flow-Ports validiert, indem diese auf Zuweisungskompatiblität überprüft werden, bei den übrig gebliebenen generischen Typen kommt es zu keinen Problemen, weil generische Typen in beide Richtungen zuweisungskopatibel sind.
+
+    Sobald die Prüfungs abgeschlossen ist, kann mit der Port-Fehler Überprüfung begonnen werden.
+    Dafür muss erneut eine Sortierung vorgenommen werden. Es werden zuerst die Abhängigkeiten einer Flow-Node vor der Flow-Node überprüft.
+    Bei der Port-Fehler Überprüfung werden die Eingabeports und deren Verbidnung validiert.
+    Bei der Validierung wird geschaut, ob am dem dazugehörigen Ausgabeport ein Fehler vorliegt. Sollte das der Fall sein und der Eingabeport akzeptiert keine Fehler, dann muss der Fehler propagiert werden.
+    In dem Fall würde beim Eingabeport ein Fehler auftreten und der Flow-Node würde nicht ausgeführt werden. Außerdem würde der Fehler an die dazugehörigen Ausgabeports weitergegebn.
+    Um dies zu verhindern TODO.
+
+    Im Anschluss können dann die Nodes validiert werden. 
+    Bei der Validierung wird geprüft ob das Argument $〈bool acceptsError〉$ der $〈FlowNodeInput〉$ den gleichen Wert wie der Refenzierte $〈FlowInputPort〉$ hat. Ist das nicht der Fall wird eine Fehlermeldung für das Flow-Modell ausgegeben.
     \newpage
     \section{Implementierung}
     Bei der Implementierung muss nicht nur auf des Design des Schleifenkonstrukt geachtet werden, sondern auch auf neue Sachen, welche durch die Implementierung entstanden sind.
