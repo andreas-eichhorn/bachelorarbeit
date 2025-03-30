@@ -8,19 +8,19 @@
     "net8.0": []
   },
   "packageFolders": {
-    "/home/andreas/.nuget/packages/": {}
+    "C:\\Users\\andre\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/andreas/Schreibtisch/bachelorarbeit/bachelorarbeit/bachelorarbeit.csproj",
+      "projectUniqueName": "F:\\Users\\andre\\Desktop\\bachelorarbeit\\bachelorarbeit\\bachelorarbeit.csproj",
       "projectName": "bachelorarbeit",
-      "projectPath": "/home/andreas/Schreibtisch/bachelorarbeit/bachelorarbeit/bachelorarbeit.csproj",
-      "packagesPath": "/home/andreas/.nuget/packages/",
-      "outputPath": "/home/andreas/Schreibtisch/bachelorarbeit/bachelorarbeit/obj/",
+      "projectPath": "F:\\Users\\andre\\Desktop\\bachelorarbeit\\bachelorarbeit\\bachelorarbeit.csproj",
+      "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
+      "outputPath": "F:\\Users\\andre\\Desktop\\bachelorarbeit\\bachelorarbeit\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/andreas/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\andre\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -38,6 +38,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -59,7 +64,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.112/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.407/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

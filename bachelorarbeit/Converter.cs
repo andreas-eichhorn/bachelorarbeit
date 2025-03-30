@@ -4,7 +4,7 @@ namespace b
 {
     class Converter
     {
-        public static double StringToInt(string text)
+        public static double StringToDouble(string text)
         {
             int result = 0;
             int positionOfNumber = 1;

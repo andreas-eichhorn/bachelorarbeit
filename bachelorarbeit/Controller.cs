@@ -1,75 +1,62 @@
+using System.ComponentModel.DataAnnotations;
+using System.IO.Compression;
 using a;
 using b;
 using c;
+using Microsoft.VisualBasic;
 
-class Controller
+namespace d 
 {
-    public static void Main()
+    class Controller
     {
-        List<string> listOfInputString = [];
-        List<double> listOfInputDouble = [];
-        double threshold = 61;
-        int chanceCounter = 3;
-        int iterationCounter = 10;
-        //eingabe
-        var input = "";
-        bool isStable;
-        while(chanceCounter != 0 && iterationCounter != 0)
+        static int counter;
+        static int chance;
+        static List<double> listOfConvertedInput = new List<double>();
+        static List<object> listOfInput = new List<object>();
+        public static void test(int counter, object input)
         {
-            Console.Write("Eingabe: ");
-            input = Console.ReadLine();
-            if(input is double || input is int)
+            if(Controller.counter == 0)
             {
-                Console.WriteLine("int");
-                if(listOfInputDouble.Count() >= 2)
-                {
-                    
-                    isStable = AverageValue.CalculateAverageValue(listOfInputDouble, threshold);
-                    if(isStable)
-                    {
-                        chanceCounter--;
-                    }
-                    else
-                    {
-                        chanceCounter = 3;
-                    }
-                }
+                Controller.counter = counter;
+            }
+
+            listOfInput.Add(input);
+            string inputString = input.ToString(); 
+            double a = 0;
+
+            if(double.TryParse(inputString, out a))
+            {
+                Console.WriteLine("Double");
+                listOfConvertedInput.Add(a);
             }
             else
             {
-                listOfInputString.Add(input);
-                double stringValue = Converter.StringToInt(input);
-                listOfInputDouble.Add(stringValue);
-                if(listOfInputString.Count() >= 2)
-                {   
-                    string levenshteinInput01 = listOfInputString[listOfInputString.Count() - 2];
-                    string levenshteinInput02 = listOfInputString[listOfInputString.Count() - 1];
-                    int levenshteinDistance = LevenshteinDistance.Calculate(levenshteinInput01, levenshteinInput02);
-                    if(levenshteinDistance <= 2)
-                    {
-                        /*double stringValue = Converter.StringToInt(input);
-                        listOfInputDouble.Add(stringValue);*/
-                        isStable = AverageValue.CalculateAverageValue(listOfInputDouble, threshold);
-                        if(isStable)
-                        {
-                            chanceCounter--;
-                        }
-                        else
-                        {
-                            chanceCounter = 3;
-                        }
-                    }
-                    else
-                    {
-                            chanceCounter = 3;
-                    }
+                Console.WriteLine("String");
+                a = Converter.StringToDouble(inputString);
+                listOfConvertedInput.Add(a);
+
+                if(listOfInput.Count() >= 2)
+                {
+                    
                 }
             }
-            iterationCounter--;
-            foreach(double a in listOfInputDouble)
-            {
-                Console.WriteLine(a);
-            }
+
+
+
+
+
+
+
+
+
+
+
+            listOfInput.Add(1.5);
+            listOfInput.Add("test");
+            int z = listOfInput.Count() - 1;
+            Console.WriteLine(listOfInput[z].GetType());
+            Console.WriteLine(listOfInput[z-1].GetType());
+            Controller.counter--;
         }
     }
 }
