@@ -1,4 +1,4 @@
-using System;
+/**using System;
 
 namespace a
 {
@@ -40,9 +40,5 @@ namespace a
                 //wert ist stabil
                 return false;
         }
-        /*public static void Main()
-        {
-            Console.WriteLine(AverageValue.CalculateAverageValue([1,2], 5));
-        }*/
     }
-}
+}**/

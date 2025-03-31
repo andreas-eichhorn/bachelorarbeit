@@ -10,7 +10,7 @@ namespace d
     class Controller
     {
         static int counter;
-        static int chance;
+        public static int chance = 3;
         static List<double> listOfConvertedInput = new List<double>();
         static List<object> listOfInput = new List<object>();
         public static void test(int counter, object input)
@@ -26,36 +26,34 @@ namespace d
 
             if(double.TryParse(inputString, out a))
             {
-                Console.WriteLine("Double");
+                //double
                 listOfConvertedInput.Add(a);
             }
             else
             {
-                Console.WriteLine("String");
-                a = Converter.StringToDouble(inputString);
-                listOfConvertedInput.Add(a);
-
-                if(listOfInput.Count() >= 2)
+                //string
+                double value = Converter.StringToDouble(inputString);
+                listOfConvertedInput.Add(value);
+            }
+            
+            int length = listOfConvertedInput.Count() - 1;
+            if(MeanValue.calculate(listOfConvertedInput, length, 3, listOfConvertedInput[length], 10))
+            {
+                Controller.chance--;
+            }
+            else
+            {
+                if(MeanValue.calculate(listOfConvertedInput, length, length+1, listOfConvertedInput[length], 10))
                 {
-                    
+                    Controller.chance--;
+                }
+                else
+                {
+                    Controller.chance = 3;
                 }
             }
 
-
-
-
-
-
-
-
-
-
-
-            listOfInput.Add(1.5);
-            listOfInput.Add("test");
-            int z = listOfInput.Count() - 1;
-            Console.WriteLine(listOfInput[z].GetType());
-            Console.WriteLine(listOfInput[z-1].GetType());
+            //Console.WriteLine(Controller.counter + " " + Controller.chance);
             Controller.counter--;
         }
     }
