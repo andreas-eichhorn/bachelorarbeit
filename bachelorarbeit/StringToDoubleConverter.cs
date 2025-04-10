@@ -2,7 +2,7 @@
 
 namespace b
 {
-    class Converter
+    class StringToDoubleConverter
     {
         public static double StringToDouble(string text)
         {

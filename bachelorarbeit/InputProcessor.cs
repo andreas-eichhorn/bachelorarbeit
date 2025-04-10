@@ -7,7 +7,7 @@ using Microsoft.VisualBasic;
 
 namespace d 
 {
-    class Controller
+    class InputProcessor
     {
         static int counter;
         public static int chance = 3;
@@ -15,9 +15,9 @@ namespace d
         static List<object> listOfInput = new List<object>();
         public static void test(int counter, object input)
         {
-            if(Controller.counter == 0)
+            if(InputProcessor.counter == 0)
             {
-                Controller.counter = counter;
+                InputProcessor.counter = counter;
             }
 
             listOfInput.Add(input);
@@ -32,29 +32,29 @@ namespace d
             else
             {
                 //string
-                double value = Converter.StringToDouble(inputString);
+                double value = StringToDoubleConverter.StringToDouble(inputString);
                 listOfConvertedInput.Add(value);
             }
             
             int length = listOfConvertedInput.Count() - 1;
-            if(MeanValue.calculate(listOfConvertedInput, length, 3, listOfConvertedInput[length], 10))
+            if(DeviationChecker.calculate(listOfConvertedInput, length, 3, listOfConvertedInput[length], 10))
             {
-                Controller.chance--;
+                InputProcessor.chance--;
             }
             else
             {
-                if(MeanValue.calculate(listOfConvertedInput, length, length+1, listOfConvertedInput[length], 10))
+                if(DeviationChecker.calculate(listOfConvertedInput, length, length+1, listOfConvertedInput[length], 10))
                 {
-                    Controller.chance--;
+                    InputProcessor.chance--;
                 }
                 else
                 {
-                    Controller.chance = 3;
+                    InputProcessor.chance = 3;
                 }
             }
 
-            //Console.WriteLine(Controller.counter + " " + Controller.chance);
-            Controller.counter--;
+            //Console.WriteLine(InputProcessor.counter + " " + InputProcessor.chance);
+            InputProcessor.counter--;
         }
     }
 }

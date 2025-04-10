@@ -3,7 +3,7 @@ using d;
 
 namespace a
 {
-    class MeanValue
+    class DeviationChecker
     {
         static double meanValue;
         public static bool calculate(List<double> list, int length, int range, double currentValue, double threshold)
