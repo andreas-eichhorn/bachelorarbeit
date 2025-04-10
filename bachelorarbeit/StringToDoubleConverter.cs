@@ -1,21 +1,21 @@
 ﻿using System.Text;
 
-namespace b
+namespace processing
 {
     class StringToDoubleConverter
     {
         public static double StringToDouble(string text)
         {
-            int result = 0;
+            int encodedValue = 0;
             int positionOfNumber = 1;
             UTF8Encoding utf8 = new UTF8Encoding();
-            var ListOfNumbers = utf8.GetBytes(text);
-            foreach(var number in ListOfNumbers)
+            var encodedBytes = utf8.GetBytes(text);
+            foreach(var Byte in encodedBytes)
             {
-                result += positionOfNumber * number;
+                encodedValue += positionOfNumber * Byte;
                 positionOfNumber++;
             }
-            return result;
+            return encodedValue;
         }
         /*public static void Main()
         {

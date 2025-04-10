@@ -1,60 +1,69 @@
 using System.ComponentModel.DataAnnotations;
 using System.IO.Compression;
-using a;
-using b;
-using c;
+using processing;
 using Microsoft.VisualBasic;
 
-namespace d 
+namespace processing 
 {
     class InputProcessor
     {
         static int counter;
         public static int chance = 3;
-        static List<double> listOfConvertedInput = new List<double>();
-        static List<object> listOfInput = new List<object>();
-        public static void test(int counter, object input)
+        static List<double> convertedInputs = new List<double>();
+        static List<object> rawInputs = new List<object>();
+        private const int HistoryLength = 3;
+        private const double deviationThreshold = 10;
+        public static void processInput(int counter, object input)
+        {
+            initializeCounter(counter);
+            storeInput(input);
+
+            double parsedDouble = convertInputToDouble(input);
+            convertedInputs.Add(parsedDouble);
+            
+            validateDeviation(parsedDouble);
+
+            //Console.WriteLine(InputProcessor.counter + " " + InputProcessor.chance);
+            InputProcessor.counter--;
+        }
+
+        public static void initializeCounter(int counter)
         {
             if(InputProcessor.counter == 0)
             {
                 InputProcessor.counter = counter;
             }
+        }
 
-            listOfInput.Add(input);
-            string inputString = input.ToString(); 
-            double a = 0;
+        public static void storeInput(object input)
+        {
+            rawInputs.Add(input);
+        }
 
-            if(double.TryParse(inputString, out a))
-            {
-                //double
-                listOfConvertedInput.Add(a);
-            }
-            else
-            {
-                //string
-                double value = StringToDoubleConverter.StringToDouble(inputString);
-                listOfConvertedInput.Add(value);
-            }
-            
-            int length = listOfConvertedInput.Count() - 1;
-            if(DeviationChecker.calculate(listOfConvertedInput, length, 3, listOfConvertedInput[length], 10))
+        public static void validateDeviation(double currentValue)
+        {
+            int lastIndex = convertedInputs.Count() - 1;
+            if(DeviationChecker.calculate(convertedInputs, lastIndex, HistoryLength, convertedInputs[lastIndex], deviationThreshold) || DeviationChecker.calculate(convertedInputs, lastIndex, lastIndex+1, convertedInputs[lastIndex], deviationThreshold))
             {
                 InputProcessor.chance--;
             }
             else
             {
-                if(DeviationChecker.calculate(listOfConvertedInput, length, length+1, listOfConvertedInput[length], 10))
-                {
-                    InputProcessor.chance--;
-                }
-                else
-                {
-                    InputProcessor.chance = 3;
-                }
+                InputProcessor.chance = 3;
             }
+        }
 
-            //Console.WriteLine(InputProcessor.counter + " " + InputProcessor.chance);
-            InputProcessor.counter--;
+        public static double convertInputToDouble(object input)
+        {
+            double result;
+            if(double.TryParse(input.ToString(), out result))
+            {
+                return result;
+            }
+            else
+            {
+                return StringToDoubleConverter.StringToDouble(input.ToString());
+            }
         }
     }
 }

@@ -1,7 +1,7 @@
 using System;
-using d;
+using processing;
 
-namespace a
+namespace processing
 {
     class DeviationChecker
     {
