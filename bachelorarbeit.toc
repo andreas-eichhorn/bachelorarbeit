@@ -1,4 +1,6 @@
 \contentsline {section}{\numberline {1}Einleitung}{2}{}%
+\contentsline {subsection}{\numberline {1.1}Aufgabe und Motivation}{2}{}%
+\contentsline {subsection}{\numberline {1.2}Aufbau der Arbeit}{2}{}%
 \contentsline {section}{\numberline {2}Terminologie}{3}{}%
 \contentsline {subsection}{\numberline {2.1}Schleifen}{3}{}%
 \contentsline {subsection}{\numberline {2.2}Domain Specific Language}{3}{}%
