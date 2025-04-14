@@ -17,11 +17,5 @@ namespace processing
             }
             return encodedValue;
         }
-        /*public static void Main()
-        {
-            Converter converter = new Converter();
-            var result = converter.StringToInt("foo");
-            Console.WriteLine(result);
-        }*/
     }
 }    
