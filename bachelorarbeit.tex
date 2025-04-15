@@ -20,7 +20,8 @@
     Der Fokus im letzten Kapitel liegt auf TODO 
     \newpage
     \section{Terminologie}
-    \textbf{Schleifen}
+    Der Fokus dieses Kapitels liegt auf der Definition zentraler Fachbegriffe und dadurch einen einheitlichen terminologischen Rahmen zu schaffen. Das Ziel dieses Kapitels ist es die Verständlichkeit der nachfolgenden Kapitel zu erhöhen und die theoretischen Grundlagen der Arbeit zu festigen.\\
+    \textbf{Schleifen} \par
     Eine Schleife ist eine Kontrollstruktur, die einen Programm-Abschnitt mehrmals ausführt. \cite{22}
     Häufig ist dabei die Schleife die zeitintensivste Komponente eines Programms, da ihre die Ausführung sehr viel Zeit in anspruch nehmen kann. \cite{1}
     Der Algrorithmus dieser Kontrollstruktur kann dabei iterativ oder rekursiv implementiert werden. Beide Ansätze haben dabei das gleiche Ziel, aber setzen die Schleife anders um. Bei der Iteration wird die Schleife mehrmals wiederholt wird. Bei der Rekursion ruft sich die zu wiederholende Funktions mehrmals selbst auf. \cite{3}
@@ -28,28 +29,25 @@
     Im gegensatz zur Iteration verwendet die Rekursion keinen Akkumulativenansatz, sondern zerlegt das Problam in mehrere (Teil-)Probleme. Für die Teilprobleme werden dann einzelne Lösungen erarbeitet, welche dann kombiniert werden um das eigentliche Problem zu lösen. \cite{3}
     Laut Chen L. spiegelt die Iteration das menschliche Denken wieder, weshalb sie sich besonders für lineare Probleme eignet. 
     Die Rekursion hingegen ist für Probleme geeignet, welche Zwischenergebnisse oder Teillösungen benötigen. \cite{3}
-    Eine Schleife kann dabei in zeitabhängig oder horizontal unterteilt werden. Bei einer zeitabhängigen Iteration ist das Ergebniss des aktuellen Schleifendurchlaufs vom Ergebnis des vorherigen Durchlaufs ab. Hingegen bei horizontalen Schleifen die Ergbenisse der einzelnen Schleifendurchläufe unabhängig voneinander sind. \cite{5}
-    \textbf{Domain Specific Language}
+    Eine Schleife kann dabei in zeitabhängig oder horizontal unterteilt werden. Bei einer zeitabhängigen Iteration ist das Ergebniss des aktuellen Schleifendurchlaufs vom Ergebnis des vorherigen Durchlaufs ab. Hingegen bei horizontalen Schleifen die Ergbenisse der einzelnen Schleifendurchläufe unabhängig voneinander sind. \cite{5} \\
+    \textbf{Domain Specific Language} \par
     Bei einer domänenspezifische Sprache (DSL) handelt es sich um eine Programmiersprache, die mit dem Ziel entwickelt wurden ist, spezifische Aufgabenstellungen innerhalb eines begrenzten Anwendungskontexts (Domaine) besonders effektiv zu bearbeiten. \cite{18}
     DSLs bilden das Gegenstück zu General-Purpose Languages wie Java, C++ oder Python. \cite{14}
     Dabei verfügen DSLs oftmals über eine reduzierte Syntax, die ausschließlich für den jeweilige Domaine relevant ist. Teilweise wird diese durch eine GPL ergänzt. \cite{18}
-    DSLs lassen sich in externe und interene unterteilen. Externe DSLs haben ihre eigene Syntax. Dadurch kann eine größere flexibilität geschaffen werden, aber zeitglich ist der Aufwand für den Entwickler sehr hoch, weil alle relevanten Tools selbst implementieren muss. Außerdem braucht der Benutzer länger Zeit um die Syntax zu lernen. \cite{7}
+    Es wird zwischen externen und internen DSLs unterschieden. Externe DSLs haben ihre eigene Syntax. Dadurch kann eine größere flexibilität geschaffen werden, aber zeitglich ist der Aufwand für den Entwickler sehr hoch, weil alle relevanten Tools selbst implementieren muss. Außerdem braucht der Benutzer länger Zeit um die Syntax zu lernen. \cite{7}
     Zur Laufzeit wird die externe DSLs dann in eine GPL übersetzt. \cite{14}
     Interne DSLs verwenden die Syntax einer GPL und kann über eine Programmierschnittstelle oder Bibliothek aufgerufen werden. \cite{14}
-    Allgemein sind DSLs kompakt, wiederverwendbar, effizient und domänenspezifisch. Aber auf der anderen Seite ist die erstellung einer DSL kostspielig und haben einen hohen Lernaufwand für den Benutzer. Zudem haben sie nur ein eingeshcränkten Anwendungsbereich und sind nur begrenzt Verfügbar. \cite{18} 
-    \subsection{Visual Programming Language}
-    Das Ziel von VPLs ist es die Darstellung der Programmierlogik zu verbessern und den Ablauf des Programms zu verstehen. \cite{13} Außerdem soll der Benutzer sich mehr auf die Implementierung des ALgortithmus konzentrieren anstatt auf die Syntax, weil diese auf die IDE übertragen wird. \cite{10}
-    Das schaffen VPLs indem sie es erlauben Programme direkt mithilfe von Flussdiagrammen zu erstellen, welche vom Computer direkt interpretiert und ausgeführt werden können. \cite{12}
-    Laut Charntaweekhun eignen sich Flussdiagramme sehr gut zum Programmieren, weil vorallem viele Einsteiger in der Programmierung erstmal Flussdiagramme erstellen um das Problem zu visualieren. \cite{12}
-    VPLs setzen dabei das Konzept der Visual Programming (VP). %TODO zitat finden welches das bestätigt.
-    Bei VPLs stehen dem Programmierer nur ein bestimmter Satz an grafischen Elementen gegenüber statt dem ganzen Alphabet wie bei GPLs. Dadurch ist das Programm leichter zu verstehen und Fehler z.B. Semantik oder Syntax Fehler lassen sich bereits beim erstellen des Programms vermeiden. \cite{10}
-    VPLs lassen sich dabei in Imperativ und Deklarativ unterteilen. In einer imperativen VPL wird vom Programm vorgegeben, in welcher Reihenfolge die Operationen ausgeführt werden. Bei einer deklativen VPL hingegen wird vom Programm nur die Abhänigkeit zwischen Daten vorgegeben und das System bestimmt die Reihenfolge selbst. \cite{21}
-    VPLs haben den Vorteil, dass diese einfach, visuell darstellbar sind, tranparent und Interaktiv sind.
-    Einfachheit, weil weniger Programmierkonzepte zum Programmieren benört werden.
-    Visuell darstellbar, weil 
-    Transparent, weil Datenabhänigkeiten anschaulich dargestellt werden.
-    Interaktiv, weil der Entwickler direkt Feedback bekommen kann. \cite{13}
-    Bei VPL ist das meist genutze Paradigma der Datenfluss-basierte Ansatz. \cite{6}
+    Die Vorteile von DLSs liegen in ihrer strukturellen Klarheit und Spezialisierung. Dem gegenüber stehen die Nachteile eines hohen Initialaufwands sowie einer begrenzten Flexibilität und Verfügbarkeit. \cite{18} \\ 
+    \textbf{Visual Programming Language} \par
+    Das Hauptziel visueller Programmiersprachen (VPLs) besteht in der Verbesserung der Darstellung der Programmierlogik sowie in der Erleichterung des Verständnisses von Programmabläufen. \cite{13}
+    Dadurch soll der Fokus des Programmierens stärker auf konzeptuelle statt symtaktische Aspekte verlagern. Die syntaktischen Aspekte werden dabei von der Entwicklungsumgebung übernommen. \cite{10}
+    Die Umsetzung von Programmen erfolgt dabei durch die Möglichkeit, Programme in Form von Flussdiagrammen zu erstellen, die unmittelbar vom System interpretiert und ausgeführt werden können. \cite{12}
+    Nach Charntaweekhun bieten Flussdiagramme einen didaktischen Vorteil, da sie es insbesondere Programmieranfängern ermöglichen, komplexe Abläufe visuell zu erfassen und zu strukturieren. \cite{12}
+    --------------------------------VPLs setzen dabei das Konzept der Visual Programming (VP). \cite{x} %TODO zitat finden welches das bestätigt.
+    Im Gegensatz zu GPLs, die eine freie textuelle Eingabe haben, verwenden VPLs nur eine begrenzte Menge an vordefinierten grafischen Elemente. Dadurch wird die Lesbarkeit erhöht und syntaktische Fehler reduziert.\cite{10}
+    Die Klassifikation visueller Programmiersprachen unterscheidet zwischen imperativen und deklarativen Modellen. Ersteres gibt die exakte Reihenfolge der Operationen vor, während letzteres lediglich Datenabhänigkgieten spezifiziert und die Ausführungsreihenfolge dem System überlasst.\cite{21}
+    Die stärken von VPLs liegen in ihrer Einfachheit, visuelle Darstellbarkeit, Transparenz und Interaktivität.\cite{13}
+    Die Mehrheit der VPLs basiert auf einem datenflussgesteuerten Ansatz, bei dem Programme durch den Fluss von Informationen zwischen Operatoren strukturiert werden. \cite{6}
     Zusammengefasst kann man sagen, dass VPLs die Vorteile von Flussdiagrammen und nicht die Nachteile der klassischen Programmierung kombiniert. \cite{13}
     \subsection{Visual Language}
     Visual Language (VL) drücken sich eher mit Bildern statt Texten aus. \cite{5}
