@@ -2,12 +2,10 @@
 \contentsline {subsection}{\numberline {1.1}Aufgabe und Motivation}{2}{}%
 \contentsline {subsection}{\numberline {1.2}Aufbau der Arbeit}{2}{}%
 \contentsline {section}{\numberline {2}Terminologie}{3}{}%
-\contentsline {subsection}{\numberline {2.1}Schleifen}{3}{}%
-\contentsline {subsection}{\numberline {2.2}Domain Specific Language}{3}{}%
-\contentsline {subsection}{\numberline {2.3}Visual Programming Language}{4}{}%
-\contentsline {subsection}{\numberline {2.4}Visual Language}{4}{}%
-\contentsline {subsection}{\numberline {2.5}Datenfluss-basierte Sprachen}{4}{}%
-\contentsline {subsection}{\numberline {2.6}Datenfluss-basierte Systeme}{5}{}%
+\contentsline {subsection}{\numberline {2.1}Visual Programming Language}{3}{}%
+\contentsline {subsection}{\numberline {2.2}Visual Language}{4}{}%
+\contentsline {subsection}{\numberline {2.3}Datenfluss-basierte Sprachen}{4}{}%
+\contentsline {subsection}{\numberline {2.4}Datenfluss-basierte Systeme}{5}{}%
 \contentsline {section}{\numberline {3}Aufbau der domainspezifischen Sprache}{6}{}%
 \contentsline {subsection}{\numberline {3.1}Aufbau der Grammatik}{6}{}%
 \contentsline {subsubsection}{\numberline {3.1.1}Prüfungslogik}{6}{}%

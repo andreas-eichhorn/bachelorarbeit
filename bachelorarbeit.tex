@@ -20,19 +20,19 @@
     Der Fokus im letzten Kapitel liegt auf TODO 
     \newpage
     \section{Terminologie}
-    \subsection{Schleifen}
-    Eine Schleife ist eine Kontrollstruktur, welche einen Code-Abschnitt mehrmals ausführt. \cite{22}
-    Sie stellt dabei oftmals die zeitintensivste Komponente eines Programms dar, weil die Ausführung der Schleife sehr viel Zeit in anspruch nehmen kann. \cite{1}
-    Der Algrorithmus der Kontrollstruktur kann bei iterativ oder rekursiv umgesetzt werden. Beide Ansätze haben dabei das gleiche Ziel, aber setzen die Schleife anders um. Bei der Iteration wird die Schleife mehrmals wiederholt wird. Bei der Rekursion ruft sich die zu wiederholende Funktions mehrmals selbst auf.
-    Die Iteration verwendet dabei einen Akkumulativenansatz, welcher das zu lösende Problem schrittweise löst und diesen Vorgang solange wiederholt bis eine vordefinierte Abbruchbedingung erreicht wurden ist.
-    Die Rekursion verwendet keinen Akkumulativenansatz, sondern reduziert das eigentlich zu lösende Problam auf mehrere (Teil-)Probleme. Für die Teilprobleme werden dann einzelne Lösungen gesucht, welche anschließend zusammengesatz werden um das eigentliche Problem zu lösen. \cite{3}
-    Laut Chen L. spiegelt die Iteration das menschliche Denken wieder und ist daher besonders für lineare Probleme geeignet. Hingegen die Rekursion für lineare oder sequentielle Probleme geeignet sind, welche Zwischenergebnisse oder Teillösungen benötigen. \cite{3}
-    Die Iteration lässt sich dabei in zeitabhängige oder horizontale Iteration unterteilen. Bei der zeitabhängigen Iteration ist das Ergebniss des aktuellen Schleifendurchlaufes von dem Ergebniss des vorherigen Schleifendurchlaufes abhängig. Hingegen bei der horizontalrn Iteration die Ergbenisse der Schelifendurchläufe unabhängig voneinander sind. \cite{5}
-    \subsection{Domain Specific Language}
-    Eine domänenspezifische Sprache (DSL) ist eine Programmiersprache, welche für einen bestimmten Anwendungsbreich entwickelt wurde und normalerweise auch auf diesen beschränkt ist.
-    Das Ziel einer DSL ist es in dem klar abgegrenzenten Anwendungsbereich die Probleme effizient zu lösen. \cite{18}
-    Dabei fallen DSL nicht in die Gruppe der General-Purpose Language (GPL) wie z.B Java, C++ oder Python, sondern bildern das Gegenstück dazu. \cite{14}
-    Die Syntax ist dabei oftmals eingeschränkter und erlauben nur eine bestimmte auswahl an Notationen und Befehlen. In manchen Fällen hat eine DSL aber auch eine GPL als Zweitsprache. \cite{18}
+    \textbf{Schleifen}
+    Eine Schleife ist eine Kontrollstruktur, die einen Programm-Abschnitt mehrmals ausführt. \cite{22}
+    Häufig ist dabei die Schleife die zeitintensivste Komponente eines Programms, da ihre die Ausführung sehr viel Zeit in anspruch nehmen kann. \cite{1}
+    Der Algrorithmus dieser Kontrollstruktur kann dabei iterativ oder rekursiv implementiert werden. Beide Ansätze haben dabei das gleiche Ziel, aber setzen die Schleife anders um. Bei der Iteration wird die Schleife mehrmals wiederholt wird. Bei der Rekursion ruft sich die zu wiederholende Funktions mehrmals selbst auf. \cite{3}
+    Die Iteration verwendet dabei einen Akkumulativenansatz. Dabei wird das Problem schrittweise gelöst. Der Prozess wird solange wiederholt bis eine vordefinierte (Abbruch-)Bedingung erfüllt ist. \cite{3}
+    Im gegensatz zur Iteration verwendet die Rekursion keinen Akkumulativenansatz, sondern zerlegt das Problam in mehrere (Teil-)Probleme. Für die Teilprobleme werden dann einzelne Lösungen erarbeitet, welche dann kombiniert werden um das eigentliche Problem zu lösen. \cite{3}
+    Laut Chen L. spiegelt die Iteration das menschliche Denken wieder, weshalb sie sich besonders für lineare Probleme eignet. 
+    Die Rekursion hingegen ist für Probleme geeignet, welche Zwischenergebnisse oder Teillösungen benötigen. \cite{3}
+    Eine Schleife kann dabei in zeitabhängig oder horizontal unterteilt werden. Bei einer zeitabhängigen Iteration ist das Ergebniss des aktuellen Schleifendurchlaufs vom Ergebnis des vorherigen Durchlaufs ab. Hingegen bei horizontalen Schleifen die Ergbenisse der einzelnen Schleifendurchläufe unabhängig voneinander sind. \cite{5}
+    \textbf{Domain Specific Language}
+    Bei einer domänenspezifische Sprache (DSL) handelt es sich um eine Programmiersprache, die mit dem Ziel entwickelt wurden ist, spezifische Aufgabenstellungen innerhalb eines begrenzten Anwendungskontexts (Domaine) besonders effektiv zu bearbeiten. \cite{18}
+    DSLs bilden das Gegenstück zu General-Purpose Languages wie Java, C++ oder Python. \cite{14}
+    Dabei verfügen DSLs oftmals über eine reduzierte Syntax, die ausschließlich für den jeweilige Domaine relevant ist. Teilweise wird diese durch eine GPL ergänzt. \cite{18}
     DSLs lassen sich in externe und interene unterteilen. Externe DSLs haben ihre eigene Syntax. Dadurch kann eine größere flexibilität geschaffen werden, aber zeitglich ist der Aufwand für den Entwickler sehr hoch, weil alle relevanten Tools selbst implementieren muss. Außerdem braucht der Benutzer länger Zeit um die Syntax zu lernen. \cite{7}
     Zur Laufzeit wird die externe DSLs dann in eine GPL übersetzt. \cite{14}
     Interne DSLs verwenden die Syntax einer GPL und kann über eine Programmierschnittstelle oder Bibliothek aufgerufen werden. \cite{14}
