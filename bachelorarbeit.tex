@@ -48,35 +48,35 @@
     Die Klassifikation visueller Programmiersprachen unterscheidet zwischen imperativen und deklarativen Modellen. Ersteres gibt die exakte Reihenfolge der Operationen vor, während letzteres lediglich Datenabhänigkgieten spezifiziert und die Ausführungsreihenfolge dem System überlasst.\cite{21}
     Die stärken von VPLs liegen in ihrer Einfachheit, visuelle Darstellbarkeit, Transparenz und Interaktivität.\cite{13}
     Die Mehrheit der VPLs basiert auf einem datenflussgesteuerten Ansatz, bei dem Programme durch den Fluss von Informationen zwischen Operatoren strukturiert werden. \cite{6}
-    Zusammengefasst kann man sagen, dass VPLs die Vorteile von Flussdiagrammen und nicht die Nachteile der klassischen Programmierung kombiniert. \cite{13}
-    \subsection{Visual Language}
-    Visual Language (VL) drücken sich eher mit Bildern statt Texten aus. \cite{5}
-    Dabei werden hauptsächlich grafische Tools und visuelle Metaphoren verwendet. Bilder eignen sich besonders gut zum Programmieren, weil Bilder ausdruckstärker als Worte sind und haben einen höheren Wiedererkennungswert. Durch die eingeschränkte Syntax sind VLs nicht so flexibel und ausdruckstar wie Text-basierte Sprachen. \cite{16}
+    Zusammengefasst kann man sagen, dass VPLs die Vorteile von Flussdiagrammen und nicht die Nachteile der klassischen Programmierung kombiniert. \cite{13} \\
+    \textbf{Visual Languae} \par
+    Visuelle Sprachen (VL) sind Programmiersprachen, bei denen die Informationsdarstellung primär über grafische Elemente und nicht über textuelle Komponenten erfolgt. \cite{5}
+    Dabei werden hauptsächlich grafische Tools und visuelle Metaphoren verwendet. Bilder eignen sich besonders gut zum Programmieren, weil Bilder ausdruckstärker als Worte sind und haben einen höheren Wiedererkennungswert. Durch die eingeschränkte Syntax sind VLs nicht so flexibel und ausdruckstar wie Text-basierte Sprachen. \cite{16} \\
     \textbf{Datenfluss-basierte Sprachen} \par
     %Punkte von Jonston et. al erklären
-    Als Datenfluss-basierte Sprache wird eine Programmiersprache verstanden, bei der die Daten von zwischen Funktionnen weitergeleitet werden. Dabei werden Programme als Graphen dargestellt. \cite{11}
+    Als Datenfluss-basierte Sprache (DL) wird eine Programmiersprache verstanden, bei der die Daten von zwischen Funktionnen weitergeleitet werden. Dabei werden Programme als Graphen dargestellt. \cite{11}
     Der zugrunde liegende Programmgraph ist als gerichteter Graph (DG) definiert, wobei Funktionen als Knoten dargestellt werden, die durch gerichtete Kanten miteinander verbunden sind. Die Richtung der Kanten spiegelt die Datenabhängigkeiten wieder.\cite{2}
-    Der DG lässt sich in feinkörnig und Grobkörnig unterteilen. Feinkörnig bedeutet, dass jeder Knoten genau eine Instruktion durchführt. Beim Grobkörnig hingegen kann ein Knoten mehrere Instruktionen aufienmal ausführen-\cite{1}
-    Zudem lässt sich ein DG basierend auf der Zyklenstruktur in zyklisch und azyklisch unterteilen. \cite{8}
-    DLs sind oftmals funktionale Programmiersprachen, aber können auch text-basiert sein. \cite{2}
+    Datenflussgraphen lassen sich hinsichtlich ihrer Granularität in feinkörnig und grobkörnig unterteilen. In einem feinkörnigen Graphen führt jeder Knoten extakt eine Instruktions aus, während grobkörnige Graphen mehrere Instruktionen pro Knoten ausführen können.\cite{1}
+    Zusätzlich lässt sich ein DG basierend auf der Zyklenstruktur in zyklisch und azyklisch unterteilen. \cite{8}
+    DLs sind überwiegend funktional geprägt, aber können auch text-basiert sein. \cite{2}
     Der Vorteil einer DLs ist, dass diese durch einen Graphen dargestellt werden können \cite{11} und dadurch die Programme einfach zur verstehen sind. \cite{6}
-    Da ein Programm viele Funktionen haben kann, kann ein Graph schnell unübersichtlich werden. Damit dies vermieden werden kann, gibt es sogenannte Mikrofunktionen. Mikrofunktionen sind Knoten, welche auf einen Teilgraphen verweisen. Der Teilgraph beinhaltet dabei die eigentliche Darstellung des Algorithmuses. Durch diese Möglichkeit lassen sich auch ganz einfach Rekursionen in einem Graphen darstellen.\cite{11}
-    Eine DL führt den Code nicht streng sequentiell aus. Das führt dazu, dass unabhängige Instruktionen parellel ausgeführt werden können.\cite{1}
-    Durch diese Ausführung kann in den meisten ein Effizentsteigerung geschaffen werden, weil das Programm nicht mehr vom Programmzähler abhängig ist. \cite{2}
-    Johnston et. al beschreiben in ihrer Wissenschaftlichenarbeit eine Menge von Eigenschaften. So sollen DLs frei von Seiteneffekten sein, den Lokalitätsprinzip folgen und keine Variablen überschreiben.\cite{2}
-    \subsection{Datenfluss-basierte Systeme}
+    Für komplexe Programmen kann eine reine Graphendarstellung schnell unübersichtlich werden. Zur Struktuierung komplexer Programme werden Mikrofunktionen eingesetzt, bei denen einzelne Knoten auf untergeordnete Teilgraphen verweisen. Dadurch lassen dann auch rekursive Abläufe modellieren. \cite{11}    
+    DLs führen Instruktionen nicht in einer festen Sequenz aus. Dadurch können unabhängig voneinander ausführbare Instruktion parallel verarbeitet werden. \cite{1}
+    Diese Form der Ausführung ermöglicht eine Effizienzsteigerung, da der Ablauf nicht mehr durch einen zentralen Programmzähler gesteuert wird. \cite{2}
+
+    Johnston et. al beschreiben in ihrer Wissenschaftlichenarbeit eine Menge von Eigenschaften. So sollen DLs frei von Seiteneffekten sein, den Lokalitätsprinzip folgen und keine Variablen überschreiben.\cite{2} \\
+    \textbf{Datenfluss-basierte Systeme} \par
     %TODO kurzer vergleich zu von neumann
     %BBS imperativen Programmierablauf, Datenfluss/Kontrollfluss
     %übergang zwischen BBS und DFA flüssiger machen
     %lazy evaluation im zusammenhang mit bedarfgesteuert erklären
     Datenfluss-basierte Systeme (DFA) ist eine Computerarchitektur, welche auf DLs basiert. 
     Die DFA wurde eingeführt um den Flaschenhals der von-Neumann-Architektur zu vermeiden. Je nach Implementierung kann nur lokaler Speicher verwendet werden und die Funktionen können sofort aufgefürt werdne, sobald die Operanden zur verfügung stehen. \cite{8}
+    Bei den Ergebnissen erfolgt eine direkte Datenweitergabe zwischen Funktionen, wobei Transformation und Filterung integraler Bestandteil der Verarbeitung sind. \cite{15}
     DFA-Systeme zeichnen sich durch hohe Effizienz, flexible Strukturen und leistungsstarke Ausführungsmechanismen aus. \cite{1}
-    Die Ausführung kann dabei Datengesteuert oder Bedarfsgesteuert sein. Bei einer Bedarfgesteuerten Ausführen werden die Funktionen ausgeführt, sobald diese ein Signal über ihr Ausgangspfeil bekommt und alle benötigten Operanden vorhanden sind, Hingegen bei der Datengesteuerten Ausführung wird die Funktion sofort ausgeführt, sobald alle benötigten Operanden vorhanden sind. \cite{2}
-    parallelismus, weil mehr als eine Instruktion gleichzeit ausgeführt werden kann. da datenabhänigkeiten überprüft werden. 
-    In einem DFA fließen Daten als Token durch das System.
-    Schaut man sich die beiden Ausführungen genauer an, kann man sagen, dass die Datengesteuerte Ausführung nichts anderes als eine Bedarfsgesteuerte Ausführung ist, bei der bereits ders Bedarf an allen Ergebnissen vorhanden ist.\cite{11}
-    Bei der Ausführung fließen die Ergbenisse einer Funktion direkt in eine andere und werden dort tranfsformiert oder gefilter. \cite{15}
+    Innerhalb von DFA-System wird zwischen daten- und bedarfgetriebener Ausführung unterschieden. Beim ersteren werden die Funktionen ausgeführt, sobald die Funktion alle benötigten Operanden hat und ein Signal bekommen hat. Hingegen beim zweiteren die Funktion schon ausgeführt wird, sobald alle Operanden vorhanden sind. \cite{2}
+    Die datengesteuerte Ausführung ist dabei ein Spezialfall der bedarfgesteuerten Ausführung, da hier bereits vorneherein ein Bedarf an allen Ergebnissen besteht. \cite{11}
+    Ein wesentlicher Vorteil datenflussbasierter Systeme besteht im möglichen Parallelismus, da mehrere Instruktionen gleichzeitig ausgeführt werden können, sofern keine Datenabhängigkeiten bestehen. \cite{1}
     \newpage
     \section{Aufbau der domainspezifischen Sprache}
     Die zugrundeliegende Grammatik basiert auf der Backus-Naur-Form (BNF) Notation. Der Aufbau einer BNF wird anhand der Grammatik~\ref{BNF} erklärt
