@@ -52,10 +52,10 @@
     \subsection{Visual Language}
     Visual Language (VL) drücken sich eher mit Bildern statt Texten aus. \cite{5}
     Dabei werden hauptsächlich grafische Tools und visuelle Metaphoren verwendet. Bilder eignen sich besonders gut zum Programmieren, weil Bilder ausdruckstärker als Worte sind und haben einen höheren Wiedererkennungswert. Durch die eingeschränkte Syntax sind VLs nicht so flexibel und ausdruckstar wie Text-basierte Sprachen. \cite{16}
-    \subsection{Datenfluss-basierte Sprachen}
+    \textbf{Datenfluss-basierte Sprachen} \par
     %Punkte von Jonston et. al erklären
-    Unter einer Datenfluss-basierten Sprache (DL) versteht man, dass die Daten von einer Funktion in die andere geht. Dabei wird das Programm als Graphen dargestellt\cite{11}
-    Beim Graphen handelt es sich um einen gerichteten Graphen (DG). Die Funktionen werden als kreisförmige Knoten (Node) dargestellt. Die Nodes können durch gerichtite Pfeile miteinander verbunden werden. Dabei beschreiben die Pfeile die Datenabhänigkeiten im Graphen.\cite{2}
+    Als Datenfluss-basierte Sprache wird eine Programmiersprache verstanden, bei der die Daten von zwischen Funktionnen weitergeleitet werden. Dabei werden Programme als Graphen dargestellt. \cite{11}
+    Der zugrunde liegende Programmgraph ist als gerichteter Graph (DG) definiert, wobei Funktionen als Knoten dargestellt werden, die durch gerichtete Kanten miteinander verbunden sind. Die Richtung der Kanten spiegelt die Datenabhängigkeiten wieder.\cite{2}
     Der DG lässt sich in feinkörnig und Grobkörnig unterteilen. Feinkörnig bedeutet, dass jeder Knoten genau eine Instruktion durchführt. Beim Grobkörnig hingegen kann ein Knoten mehrere Instruktionen aufienmal ausführen-\cite{1}
     Zudem lässt sich ein DG basierend auf der Zyklenstruktur in zyklisch und azyklisch unterteilen. \cite{8}
     DLs sind oftmals funktionale Programmiersprachen, aber können auch text-basiert sein. \cite{2}
@@ -71,7 +71,7 @@
     %lazy evaluation im zusammenhang mit bedarfgesteuert erklären
     Datenfluss-basierte Systeme (DFA) ist eine Computerarchitektur, welche auf DLs basiert. 
     Die DFA wurde eingeführt um den Flaschenhals der von-Neumann-Architektur zu vermeiden. Je nach Implementierung kann nur lokaler Speicher verwendet werden und die Funktionen können sofort aufgefürt werdne, sobald die Operanden zur verfügung stehen. \cite{8}
-    Die Vorteile einer DFA sind, dass diese hohe Performance, flexibilität und hohe efektivität fördert. \cite{1}
+    DFA-Systeme zeichnen sich durch hohe Effizienz, flexible Strukturen und leistungsstarke Ausführungsmechanismen aus. \cite{1}
     Die Ausführung kann dabei Datengesteuert oder Bedarfsgesteuert sein. Bei einer Bedarfgesteuerten Ausführen werden die Funktionen ausgeführt, sobald diese ein Signal über ihr Ausgangspfeil bekommt und alle benötigten Operanden vorhanden sind, Hingegen bei der Datengesteuerten Ausführung wird die Funktion sofort ausgeführt, sobald alle benötigten Operanden vorhanden sind. \cite{2}
     parallelismus, weil mehr als eine Instruktion gleichzeit ausgeführt werden kann. da datenabhänigkeiten überprüft werden. 
     In einem DFA fließen Daten als Token durch das System.
