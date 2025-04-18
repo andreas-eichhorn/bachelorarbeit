@@ -118,9 +118,10 @@
     Bei den Aktionen wird zwischen Hauptunsersuchungs-Adpater Anfragen, lesen von JSON-Dateien und Ausführung einer Datenverarbeitung unterschieden.
     Der Aufbau einer Hauptuntersuchungs-Adapter Anfrage umfasst dabei den Namen der auszuführenden Anfrage, eine Beschreibung, eine Liste mit anzusprechenden Systemen im Fahrzeug und eine maximale Ausführungsdauer.
     Im Gegensatz dazu setzt sich das lesen von JSON-Dateien aus dem Datentyp der zu lesenden Datei und einer URI zu der Datenquelle zusammen.
-    Die letzte Aktionform, die Ausführung einer Datenverarbeitung, besteht aus einem Verweis auf einem FlowTemplate, gefolgt von einer Beschreibung der Agrumente, die für die Datenverarbeitung erforderlich sind, sowie einer Transformation, die beschreibt wie das Ergebnis weiterverwendet werden soll.    
-    
-    Die Struktur eines Label wird durch eine Komination aus einer Beschriftung, einer Farbe und einem Verweis auf eine Aktion beschrieben.
+    Die letzte Aktionform, die Ausführung einer Datenverarbeitung, besteht aus einem Verweis auf einem FlowTemplate, gefolgt von einer Beschreibung der Eingaben, die für die Datenverarbeitung erforderlich sind, sowie einer Transformation, die beschreibt wie das Ergebnis weiterverwendet werden soll.    
+    Die Beschreibung der Eingaben setzt sich aus den Symbolen ActivityPortValue und TemplateParameterValue zusammen.
+
+    Die Struktur eines Label wird durch eine Kombination aus einer Beschriftung, einer Farbe und einem Verweis auf eine Aktion beschrieben.
     %Die Regel $<ActivityModel>$ beschreibt die Grundstruktur des Aktivitätsmodell und setzt sich aus $<Acitvity>$ und $<ActivityConnection>$ zusammen. 
     %$<Acitvity>$ sind dabei Aktivitäten und kann entweder eine Startmakierung ($<ActivityStart>$), ein Vergleich ($<ActivityCondition>$), eine Aktion ($<ActivityAction>$) oder ein Label ($<ActivityDisplay>$) sein.
     %$<ActivityConnection>$ hingegen definiert, welche Aktivtäten miteinander verbunden sind und setzt sich aus zwei Aktivitäten (ref(Acitvity source) und ref(Acitvity target)) und einer Beschriftung für die Kante ($<string label>$)
@@ -224,9 +225,13 @@
     %Die Funktion kann dabei eine Eingabe <$FlowNodeInput>$, eine Ausgabe $<FlowNodeOutput>$, einer Lambda Referenz $<FlowNodeLambda>$ oder eine Funtkions Referenz $FlowNodeFlowCall$
     %Konstante Werte $FlowPortValue$
     %TODO erklären was ist lamba?
-    Die Flow-Instanz ($〈FlowInstance〉$) kann als Funktion interpretiert werden und bildet eine oder mehrere Eingaben ($〈FlowOutputPort lambdaArguments〉$) auf eine oder mehrere Ausgaben ($〈FlowOutputPort  lambdaArguments〉$) ab.
-    Zusätzlich kann die Flow-Instanz aus einer oder mehreren Lamda-Definitionen ($〈FlowLamda〉$) beinhalten. Eine Lamda-Definition hat zusätzliche Eingaben und Ausgaben.
-    Die Ein- und Ausgaben bestehen dabei einem Namen  ($〈string name〉$) , gefolgt vom Typ  ($〈Typ〉$)  und einem boolean  ($〈bool acceptsError〉$) , welcher angibt ob Fehler akzeptiert werden oder nicht.\\
+    %Die Flow-Instanz ($〈FlowInstance〉$) kann als Funktion interpretiert werden und bildet eine oder mehrere Eingaben ($〈FlowOutputPort lambdaArguments〉$) auf eine oder mehrere Ausgaben ($〈FlowOutputPort  lambdaArguments〉$) ab.
+    %Zusätzlich kann die Flow-Instanz aus einer oder mehreren Lamda-Definitionen ($〈FlowLamda〉$) beinhalten. Eine Lamda-Definition hat zusätzliche Eingaben und Ausgaben.
+    %Die Ein- und Ausgaben bestehen dabei einem Namen  ($〈string name〉$) , gefolgt vom Typ  ($〈Typ〉$)  und einem boolean  ($〈bool acceptsError〉$) , welcher angibt ob Fehler akzeptiert werden oder nicht.\\
+    Die in Abbildung TODO dargestellten Regeln definieren die Struktur einer Flow-Instanz.
+    Dabei legt Regel TODO fest, dass eine Flow-Instanz aus mehreren Eingabe- und Ausgabeports sowie aus Funktionen höherer Ordnung besteht.
+    Der Aufbau einer Funktion höherer Ordnung umfasst wiederum zusätzliche Eingabe- und Ausgabeports.
+    Ein Port besteht aus einem Namen, gefolgt vom Datentyp des Ports und einem Wahrheitswert der Angibt ob an diesem Port Fehler erlaubt sind.
     \begin{grammar}
         <FlowInstance> ::= <FlowOutputPort lambdaArguments>* <FlowInputPort lambdaArguments>* <FlowLambda>*
         
@@ -237,8 +242,11 @@
         <FlowOutputPort> ::= <string name> <Type> <bool producesError>
     \end{grammar}
     \textbf{Grammatik TODO} Flow-Instanz\\\\
-    Ein Flow-Template ($〈FlowTemplate〉$) kann als abstrakte Oberklasse angesehen werden und besteht dabei aus einer Funktion ($〈Flow〉$) gefolgt von keiner oder mehreren Template-Parametern ($〈TemplateParameter〉$), welche Port- und Lambda-Definitionen generien können.
-    Eine Funktion kann dabei eine vom System bereitgestellte ($〈LibraryFlow〉$) oder eine vom Benutzer selbst definierte ($〈FlowModel〉$) sein.\\
+    %Ein Flow-Template ($〈FlowTemplate〉$) kann als abstrakte Oberklasse angesehen werden und besteht dabei aus einer Funktion ($〈Flow〉$) gefolgt von keiner oder mehreren Template-Parametern ($〈TemplateParameter〉$), welche Port- und Lambda-Definitionen generien können.
+    %Eine Funktion kann dabei eine vom System bereitgestellte ($〈LibraryFlow〉$) oder eine vom Benutzer selbst definierte ($〈FlowModel〉$) sein.\\
+    Ein Flowtemplate wird durch die in Abbildung TODO spezifierten Regeln beschrieben.
+    Bei den TemplateParameter wird zwischen einer Zeichenkette, Zahlen oder einem Wahrheitswert unterschieden.
+    Ein Flow kann dabei eine eigene erstelle Funktion sein oder eine vordefinierte Funktion.
     \begin{grammar}
         <FlowTemplate> ::= <Flow> <TemplateParameter>*
 
@@ -251,13 +259,15 @@
         <TemplateParameterList> ::= <TemplateParameter>
     \end{grammar}
     \textbf{Grammatik TODO} Flow-Template\\\\
-    Die vom System bereitgestellte Funktionen lassen sich dabei in eine von sieben Kategorien unterteilen: Hauptuntersuchungs-Adapter-Antworten, Zeichenkettenverarbeitung, Datum, Vergleichoperatoren, Konverter, Operatoren und Listenverarbeitung.\\\\
-    Das Flow-Model ($〈FlowModel〉$) ist, wie bereits erwähnt, die vom Benutzer selbst definierten Funktionen und besteht aus einer Flow-Instanz, gefolgt von mehreren möglichen Funktionen ($〈FlowNode〉$) und Verbindungen ($〈FlowConnection〉$).
-    Flow-Instanz bestimmt die Ein- und Ausgaben des Flow-Models.
-    kann dabei eine $〈FlowNodeOutput〉$, $〈FlowNodeInput〉$, $〈FlowNodeLambda〉$ oder ein $〈FlowNodeFlowCall〉$ sein.
-    $〈FlowNodeInput〉$ besteht aus einem Verweis an einem Verweis an einer Portdefinition, gefolgt von $〈FlowPortValue〉$. Hingegen $〈FlowNodeOutput〉$ nur aus einer Portdefinition besteht.
-    Die $〈FlowConnection〉$ wird durch zwei Verweise definiert.
-    $〈FlowPortValue〉$ bietet dabei die Möglichekit konstante Werte an die Eingabeports anzulegen.
+    %Die vom System bereitgestellte Funktionen lassen sich dabei in eine von sieben Kategorien unterteilen: Hauptuntersuchungs-Adapter-Antworten, Zeichenkettenverarbeitung, Datum, Vergleichoperatoren, Konverter, Operatoren und Listenverarbeitung.\\\\
+    %Das Flow-Model ($〈FlowModel〉$) ist, wie bereits erwähnt, die vom Benutzer selbst definierten Funktionen und besteht aus einer Flow-Instanz, gefolgt von mehreren möglichen Funktionen ($〈FlowNode〉$) und Verbindungen ($〈FlowConnection〉$).
+    %Flow-Instanz bestimmt die Ein- und Ausgaben des Flow-Models.
+    %kann dabei eine $〈FlowNodeOutput〉$, $〈FlowNodeInput〉$, $〈FlowNodeLambda〉$ oder ein $〈FlowNodeFlowCall〉$ sein.
+    %$〈FlowNodeInput〉$ besteht aus einem Verweis an einem Verweis an einer Portdefinition, gefolgt von $〈FlowPortValue〉$. Hingegen $〈FlowNodeOutput〉$ nur aus einer Portdefinition besteht.
+    %Die $〈FlowConnection〉$ wird durch zwei Verweise definiert.
+    %$〈FlowPortValue〉$ bietet dabei die Möglichekit konstante Werte an die Eingabeports anzulegen.
+    Die Regeln des FlowModel sind in Abbildung TODO formal dargestellt.
+    Durch die Regel TODO wird bestimmt, dass ein FlowModel aus einer
     \begin{grammar}
         <FlowModel> ::= <FlowInstance> <FlowNode>* <FlowConnection>*
 
