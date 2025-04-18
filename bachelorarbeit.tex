@@ -84,18 +84,18 @@
     Zunächst wird die zugrundeliegende Grammatik betrachtet, woraufhin die Ausführungslogik beschrieben wird. Abschließend werden die problematischen Stellen im Hinblick auf die geplante Erweiterung analysiert.
     Ziel dieses Kapitels ist es, diese problematischen Stellen zu erfassen und aufzubereiten, um eine Grundlage für die folgenden Kapitel zu schaffen.\\
     \subsection{Grammatik}
-    Die zugrundeliegende Grammatik basiert auf der Backus-Naur-Form (BNF) Notation. Der Aufbau einer BNF wird anhand der Grammatik~\ref{BNF} erklärt
-    <symbol> sind nichtterminale
-    ::= bedeutet dass symbol durch _expression_ ersetzt wird
-    _expression_ ist eine sequenze von nichterminalen und terminale
-    Kleene-Stern * wiederholung
-    Alternation \textbar  oder
-    Sequenz erlaubt auch Klammern um die Reihenfolge der Regel zu definieren
-    Softwareprüfung lääst sich visuall von zwei seiten betrachen. 
-    \begin{grammar}
-        <symbol> ::= _expression_
-    \end{grammar}
-    \textbf{Grammatik TODO} Backus-Naur-Form\\\\\\
+    %Die zugrundeliegende Grammatik basiert auf der Backus-Naur-Form (BNF) Notation. Der Aufbau einer BNF wird anhand der Grammatik~\ref{BNF} erklärt
+    %<symbol> sind nichtterminale
+    %::= bedeutet dass symbol durch _expression_ ersetzt wird
+    %_expression_ ist eine sequenze von nichterminalen und terminale
+    %Kleene-Stern * wiederholung
+    %Alternation \textbar  oder
+    %Sequenz erlaubt auch Klammern um die Reihenfolge der Regel zu definieren
+    %Softwareprüfung lääst sich visuall von zwei seiten betrachen. 
+    %\begin{grammar}
+    %    <symbol> ::= _expression_
+    %\end{grammar}
+    %\textbf{Grammatik TODO} Backus-Naur-Form\\\\\\
     \label{BNF}
     Grammatik lässt sich in 3 Ebenenunterteilen Prüfungslogik, Datenverarbeitung und Typsystem
     Prüfungslogik führt Entscheidung im Prüfungsablauf aus und bestimmt die Reihenfolge der Aktionen. außerdem datenerfassung
@@ -104,10 +104,15 @@
     Softwareprüfung lääst sich visuall von zwei seiten betrachen. 
     Einmal als Datenflussgraphen, indem Teil-Funktionen als Blöcke dargestellt werden und Funktionsparamter/Ergebnisse als Ports.
     Einmal als Aktivitätsdiagramm, in dem nur Startzustand, Endzustände, Aktions- und Entscheidungsblöcke dargestellt.
-
     Die folgende Zusammenfassung basiert auf der unveröffentlichen Arbeit von Westermann et al.
-    \subsection{Aufbau der Grammatik}
+    
     \subsubsection{Prüfungslogik}
+    Die in Abbildung TODO abgebildeten Regeln beschreiben das Aktivitätsmodell.
+    Zentral ist dabei die Regel TODO, welche festlegt, dass ein Aktivitätsmodell aus mehreren Aktivitäten und einer TODO besteht.
+    Die Regel TODO beschreibt die möglichen Aktivitäten innerhalb des Aktivitätsmodells. Dabei kann eine Aktivität entweder eine Startmarkierung, ein Vergleich, eine Aktion oder ein Label sein.
+
+
+
     Die Regel $<ActivityModel>$ beschreibt die Grundstruktur des Aktivitätsmodell und setzt sich aus $<Acitvity>$ und $<ActivityConnection>$ zusammen. 
     $<Acitvity>$ sind dabei Aktivitäten und kann entweder eine Startmakierung ($<ActivityStart>$), ein Vergleich ($<ActivityCondition>$), eine Aktion ($<ActivityAction>$) oder ein Label ($<ActivityDisplay>$) sein.
     $<ActivityConnection>$ hingegen definiert, welche Aktivtäten miteinander verbunden sind und setzt sich aus zwei Aktivitäten (ref(Acitvity source) und ref(Acitvity target)) und einer Beschriftung für die Kante ($<string label>$)
