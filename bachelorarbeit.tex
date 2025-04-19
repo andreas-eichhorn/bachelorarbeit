@@ -374,7 +374,16 @@
         Es wird aktuell nicht erkannt, ob der Knoten bereits hinzugefügt wurden ist.
         \\\\Hier liegt auch das Problem. Wenn Zyklen nun erlaubt sind, würde eine Endlosschleife entstehen, weil der Algorithmus den bereits hinzugefügten Teilgraphen erneut hinzufügen.
         Es muss also eine Möglichkeit geschaffen werden, dass mehrere TODO
-
+    \newpage
+    \section{TODO}
+    \subsection{Anforderungsphase}
+    Die geplante Erweiterung besteht darin zwei Schleifenblock einzuführen, welcher die Möglichkeit bietet, bestimmte Aktivitäten zu wiederholen.
+    Die Interaktion erfolgt über die bereits vorhandene grafische Benutzeroberfläche, wobei der Benutzer die Möglichkeit hat durch auswählen des Schleifenblocks die Abbruchbedingung und die Anzahl der maximalen Iterationen festzulegen.
+    Beide Schleifenblöcke sind von der Benutzeroberfläche gleiche und unterscheiden sich nur wie sie die Wiederholungen ausführen.
+    Dabei soll der Schleifenblock dem TODO ähneln. Der Schleifenblock hat einen onFalse und einen onTrue Pfad, welcher Pfad genommen wird wird durch die Abburchbedingung bestimmt.
+    Beim onFalse Pfad wird entschieden, ob eine Wiederholung stattfindet oder nicht. Diese Entscheidung basiert bei Block A auf der Anzahl der bereits ausgeführten Iterationen und Bewertung der Eingaben. Beim Block B hingegen basiert die Entscheidung nur auf der Anzahl der bereits ausgeführten Iterationen.
+    Beim onTrue Pfad wird die Prüfung fortgesetzt und es findet keine Wiederholung statt.
+    \subsection{Entwursphase}
     \newpage
     \section{Implementierung}
     Bei der Implementierung muss nicht nur auf des Design des Schleifenkonstrukt geachtet werden, sondern auch auf neue Sachen, welche durch die Implementierung entstanden sind.
