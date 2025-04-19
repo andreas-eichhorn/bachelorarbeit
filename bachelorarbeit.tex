@@ -267,7 +267,9 @@
     %Die $〈FlowConnection〉$ wird durch zwei Verweise definiert.
     %$〈FlowPortValue〉$ bietet dabei die Möglichekit konstante Werte an die Eingabeports anzulegen.
     Die Regeln des FlowModel sind in Abbildung TODO formal dargestellt.
-    Durch die Regel TODO wird bestimmt, dass ein FlowModel aus einer
+    Durch die Regel TODO wird bestimmt, dass ein FlowModel aus einer FlowInstance, einer Auflistung alle genutzen Flow-Node und definition der Verbindungen zwischen den Eingabe- und Ausgabeports.
+    Bei den Flow-Node wird zwischen verweis auf Eingabeports, verweis auf Lambda-Funktionen, verweis auf Funktion mit Auflistung von Parametern oder verweis auf Ausgabeports unterschieden.
+    Bis auf das letztere haben alle Flow-Node die Möglichkeit ihre Eingabeports durch konstante Werte zu spezifizieren.
     \begin{grammar}
         <FlowModel> ::= <FlowInstance> <FlowNode>* <FlowConnection>*
 
@@ -349,6 +351,30 @@
 
     Im Anschluss können dann die Nodes validiert werden. 
     Bei der Validierung wird geprüft ob das Argument $〈bool acceptsError〉$ der $〈FlowNodeInput〉$ den gleichen Wert wie der Refenzierte $〈FlowInputPort〉$ hat. Ist das nicht der Fall wird eine Fehlermeldung für das Flow-Modell ausgegeben.
+    \subsection{Codeanalyse}
+        Die aktuelle Umsetzung des Codes ermöglicht es aktuell nicht die geplante. Konkret lassen sich zwei Probleme aus der aktuellen Umsetzung ableiten:
+        \begin{itemize}
+            %\item Beim Validieren des Graphens wird überprüft, ob Zyklen vorliegen. Sollten Zyklen vorliegen werden error erzeugt.
+            %\item Bei der umwandlung in einen ausführbaren Code werden alle Knoten des Graphens zu einer Funktion zusammengefasst. Bei Verzweigungen werden neue Funktionen erstellt. Bei einer Zusammenführung werden die einzelnen Funktionen gemergt.
+            \item P1 Die Modellanalyse erlaubt keine Zyklen im Graphen
+            \item P2 Die Ausführungsumgebung geht davon aus, dass Zyklen nicht erlaubt sind
+        \end{itemize}
+        \textbf{P1 - Die Modellanalyse erlaubt keine Zylken}
+        Aktuell wird in der Klasse ActivityCycleCheckResolver überprüft, ob im Graphen Zyklen vorhanden sind. Die Überprüfung erfolgt dabei mithilfe des TODO Algorithmus.
+        Der Algorithmus markiert als erstes in einem Dictonairy alle Knoten des Graphen als nicht besucht. 
+        Anschließend wird eine tiefensuche über alle Knoten gemacht und jeder Knoten wird in eine Liste hinzugefügt. Dabei werden die Nachfolgenden Knoten als erstes der Liste hinzugefügt. Es erfolgt also ein topologisches Sortieren nach Post order.
+        Auf der topolischen sortieren Liste wird eine erneute Tiefensuche durchgefügrt, die für jeden erreichbaren Knoten einen Komponent mit der gemeinsamen Wurzel (root) erstellt. Dabei werden Komponents als erstes für alle Vorgänger Knoten erstellt.
+        Nun wurden alle zusammenhängende Elemente des Graphens gefunden und die zusammenhängende Elemente können in einem Dictonairy übertragen werden. Dabei wird der root der Schlüssel eines Dictonairy Elements sein und der Value der Knoten. 
+        Hat ein Dictonairy Element mehr als ein Element im Value ist ein Zyklus vorhanden und diese Dictonairy Element wird in einem anderen Dictonairy gespeichert, welches zum erstellen von Fehlermeldungen verwendet wird. 
+        \\\\Hier liegt auch das Problem. Wenn ein Zyklus erlaubt ist, darf das Dictonairy Element nicht im das Dictonairy für die Fehlermeldung gespeichert werden, sondern dieser Schritt muss übersprunen werden.
+        \textbf{P2 - Die Ausführungsumgebung geht davon aus, dass Zyklen nicht erlaubt sind}
+        In der Klasse VirtualMachineCompilerActivity wird das Modell in eine kompilierte Darstellung überführt. 
+        Die Überführung funktioniert in der aktuellen Umsetzung so, dass eine Funktion erstellt wird und alle Knoten des Graphens nacheinander hinzugefügt wird.
+        Bei einer Verzweigung wird eine extra Funktion erstellt, die ab der dem Punkt automatisch TODO. Bei einer Vereinigung werden die Funktionen wieder zu einer gemergt.
+        Es wird aktuell nicht erkannt, ob der Knoten bereits hinzugefügt wurden ist.
+        \\\\Hier liegt auch das Problem. Wenn Zyklen nun erlaubt sind, würde eine Endlosschleife entstehen, weil der Algorithmus den bereits hinzugefügten Teilgraphen erneut hinzufügen.
+        Es muss also eine Möglichkeit geschaffen werden, dass mehrere TODO
+
     \newpage
     \section{Implementierung}
     Bei der Implementierung muss nicht nur auf des Design des Schleifenkonstrukt geachtet werden, sondern auch auf neue Sachen, welche durch die Implementierung entstanden sind.
