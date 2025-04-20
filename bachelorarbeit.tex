@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage{syntax}
 \usepackage{tikz}
+\usepackage{struktex}
 \usepackage{fancyvrb}
 \usetikzlibrary{automata, positioning}
 
@@ -358,16 +359,19 @@
             %\item Bei der umwandlung in einen ausführbaren Code werden alle Knoten des Graphens zu einer Funktion zusammengefasst. Bei Verzweigungen werden neue Funktionen erstellt. Bei einer Zusammenführung werden die einzelnen Funktionen gemergt.
             \item P1 Die Modellanalyse erlaubt keine Zyklen im Graphen
             \item P2 Die Ausführungsumgebung geht davon aus, dass Zyklen nicht erlaubt sind
-        \end{itemize}
-        \textbf{P1 - Die Modellanalyse erlaubt keine Zylken}
+        \end{itemize}\\
+        \textbf{P1 - Die Modellanalyse erlaubt keine Zylken}\\
+        \\
         Aktuell wird in der Klasse ActivityCycleCheckResolver überprüft, ob im Graphen Zyklen vorhanden sind. Die Überprüfung erfolgt dabei mithilfe des TODO Algorithmus.
         Der Algorithmus markiert als erstes in einem Dictonairy alle Knoten des Graphen als nicht besucht. 
         Anschließend wird eine tiefensuche über alle Knoten gemacht und jeder Knoten wird in eine Liste hinzugefügt. Dabei werden die Nachfolgenden Knoten als erstes der Liste hinzugefügt. Es erfolgt also ein topologisches Sortieren nach Post order.
         Auf der topolischen sortieren Liste wird eine erneute Tiefensuche durchgefügrt, die für jeden erreichbaren Knoten einen Komponent mit der gemeinsamen Wurzel (root) erstellt. Dabei werden Komponents als erstes für alle Vorgänger Knoten erstellt.
         Nun wurden alle zusammenhängende Elemente des Graphens gefunden und die zusammenhängende Elemente können in einem Dictonairy übertragen werden. Dabei wird der root der Schlüssel eines Dictonairy Elements sein und der Value der Knoten. 
         Hat ein Dictonairy Element mehr als ein Element im Value ist ein Zyklus vorhanden und diese Dictonairy Element wird in einem anderen Dictonairy gespeichert, welches zum erstellen von Fehlermeldungen verwendet wird. 
-        \\\\Hier liegt auch das Problem. Wenn ein Zyklus erlaubt ist, darf das Dictonairy Element nicht im das Dictonairy für die Fehlermeldung gespeichert werden, sondern dieser Schritt muss übersprunen werden.
-        \textbf{P2 - Die Ausführungsumgebung geht davon aus, dass Zyklen nicht erlaubt sind}
+        \\\\Hier liegt auch das Problem. Wenn ein Zyklus erlaubt ist, darf das Dictonairy Element nicht im das Dictonairy für die Fehlermeldung gespeichert werden, sondern dieser Schritt muss übersprunen werden.\\
+        \\
+        \textbf{P2 - Die Ausführungsumgebung geht davon aus, dass Zyklen nicht erlaubt sind}\\
+        \\
         In der Klasse VirtualMachineCompilerActivity wird das Modell in eine kompilierte Darstellung überführt. 
         Die Überführung funktioniert in der aktuellen Umsetzung so, dass eine Funktion erstellt wird und alle Knoten des Graphens nacheinander hinzugefügt wird.
         Bei einer Verzweigung wird eine extra Funktion erstellt, die ab der dem Punkt automatisch TODO. Bei einer Vereinigung werden die Funktionen wieder zu einer gemergt.
@@ -377,13 +381,44 @@
     \newpage
     \section{TODO}
     \subsection{Anforderungsphase}
-    Die geplante Erweiterung besteht darin zwei Schleifenblock einzuführen, welcher die Möglichkeit bietet, bestimmte Aktivitäten zu wiederholen.
-    Die Interaktion erfolgt über die bereits vorhandene grafische Benutzeroberfläche, wobei der Benutzer die Möglichkeit hat durch auswählen des Schleifenblocks die Abbruchbedingung und die Anzahl der maximalen Iterationen festzulegen.
-    Beide Schleifenblöcke sind von der Benutzeroberfläche gleiche und unterscheiden sich nur wie sie die Wiederholungen ausführen.
-    Dabei soll der Schleifenblock dem TODO ähneln. Der Schleifenblock hat einen onFalse und einen onTrue Pfad, welcher Pfad genommen wird wird durch die Abburchbedingung bestimmt.
-    Beim onFalse Pfad wird entschieden, ob eine Wiederholung stattfindet oder nicht. Diese Entscheidung basiert bei Block A auf der Anzahl der bereits ausgeführten Iterationen und Bewertung der Eingaben. Beim Block B hingegen basiert die Entscheidung nur auf der Anzahl der bereits ausgeführten Iterationen.
-    Beim onTrue Pfad wird die Prüfung fortgesetzt und es findet keine Wiederholung statt.
+    Die geplante Erweiterung sieht die Einführung von zwei Schleifenblock vor, die die Wiederholung von Aktivitäten ermöglichen sollen. Dadurch soll es möglich sein Prüfungen mit dynamsichen Daten zu erstellen.
+    Die Interaktion erfolgt über die bereits vorhandene grafische Benutzeroberfläche, in dieser kann der Benutzer die Anzahl der maximalen Iterationen und die Abbruchbedingung festlegen.
+    Beide Blöcke sind von der Benutzeroberfläche gleiche und unterscheiden sich nur in der Logik.
+    Dabei soll der Schleifenblock dem TODO ähneln. 
+    Der Schleifenblock hat einen onFalse und einen onTrue Pfad, welcher Pfad genommen wird wird durch die Abburchbedingung bestimmt.
+    Bei der Ausführung entscheidet der onFalse Zweig über eine mögliche Wiederholung. Die Entscheidung vom Block A basiert dabei auf die Anzahl der bereits ausgeführten Iteration. Hingegen Block B zusätzlich die Eingaben als Kriterium miteinbezieht.
+    Der onTrue-Zweig führt zur beendigung des Schleifenblocks.
     \subsection{Entwursphase}
+    Im vorherigen Unterkapitel wurde der Aufbau der Schleifenblöcke beschrieben. Nun wird die technische Umsetzung beschrieben. 
+    Der Fokus wird dabei auf die Logik für die Entscheidung ob eine Wiederholung stattfindet oder nicht.
+    Die beiden Schleifenblöcke, Block A und Block B, werden im folgenden einzeln betrachtet, da sie unterschiedliche Logiken haben. \\
+    \\
+    Durch die einführung des Schleifenblocks können Probleme entstehen, welches zu einem nicht gewollten Veralten führen können.
+    Es ist möglich, dass Endlosschleifen entstehen können.\\
+    \\
+    \textbf{Block A}\\
+    \\
+    %TODO es muss unbedingt erwähnt werden dass die abbruchbedingung nun mehrmals teil des codes werden muss
+    Block A soll die Wiederholung von Aktivitäten durch explizite Ausführung ermöglichen.
+    Als Ansatz wird dabei Schleifenentfaltung verwendet.
+    Ye et al. beschreiben in ihrer Arbeit TODO
+    Huang et al. TODO
+    Wie eingangs bereits erwähnt wurden ist, sollen die Wiederholungen explizite Ausgeführt werden und nicht rekursiv oder iterativ.
+    Dafür muss also der ALgortithmus der Schleifenentfaltung modifiziert werden. 
+    Das Ziel der modifizierung ist es, die Schleifen solange zusammenzufassen bis kein erneuter Schleifendurchlauf notwendig ist.
+    Da die maximale Anzahl an Schleifendurchläufen durch den Benutzer vorgegeben ist TODO
+    Zur auflösen der Schleife wird die Abbruchbedingung der Schleife an den Schleifenkörper drangehangen und dann für jeden Schleifendurchlauf einmal kopiert. Sollte die Abbruchbedingung falsch sein, wird der nächste kopierte Code verwendet. Hingegen beim erfüülen der Abbruchbedingung keine Wiederholg stattfindet, sondern die Prüfung fortgesetzt wird
+    Auf Abbildung TODO wurde der Ansatz Graphisch dargestellt.
+    In Abbildung TODO wird dieser Ansatz an einem konkreten Beispiel veranschaulicht.
+    Im Beispiel soll "foo" drei mal einzeln auf der Console ausgegeben werden. 
+    In der oberen Schleife
+    Hingegen in der unteren Schleife der modifizierte Ansatz verwendet wurden ist. Da die untere Schleife nur noch genau einmal ausgefürt wird, kann diese einfach weggelassen werden.\\
+    \\
+    \textbf{Block B}
+    \\
+    \\
+    Auf die Vor- und Nachteile der einzelnen Blöcke wird im späteren Verlauf eingegangen.
+
     \newpage
     \section{Implementierung}
     Bei der Implementierung muss nicht nur auf des Design des Schleifenkonstrukt geachtet werden, sondern auch auf neue Sachen, welche durch die Implementierung entstanden sind.
