@@ -367,8 +367,9 @@
         Anschließend wird eine tiefensuche über alle Knoten gemacht und jeder Knoten wird in eine Liste hinzugefügt. Dabei werden die Nachfolgenden Knoten als erstes der Liste hinzugefügt. Es erfolgt also ein topologisches Sortieren nach Post order.
         Auf der topolischen sortieren Liste wird eine erneute Tiefensuche durchgefügrt, die für jeden erreichbaren Knoten einen Komponent mit der gemeinsamen Wurzel (root) erstellt. Dabei werden Komponents als erstes für alle Vorgänger Knoten erstellt.
         Nun wurden alle zusammenhängende Elemente des Graphens gefunden und die zusammenhängende Elemente können in einem Dictonairy übertragen werden. Dabei wird der root der Schlüssel eines Dictonairy Elements sein und der Value der Knoten. 
-        Hat ein Dictonairy Element mehr als ein Element im Value ist ein Zyklus vorhanden und diese Dictonairy Element wird in einem anderen Dictonairy gespeichert, welches zum erstellen von Fehlermeldungen verwendet wird. 
-        \\\\Hier liegt auch das Problem. Wenn ein Zyklus erlaubt ist, darf das Dictonairy Element nicht im das Dictonairy für die Fehlermeldung gespeichert werden, sondern dieser Schritt muss übersprunen werden.\\
+        Hat ein Dictonairy Element mehr als ein Element im Value ist ein Zyklus vorhanden und diese Dictonairy Element wird in einem anderen Dictonairy gespeichert, welches zum erstellen von Fehlermeldungen verwendet wird\\
+        \\
+        Hier liegt auch das Problem. Wenn ein Zyklus erlaubt ist, darf das Dictonairy Element nicht im das Dictonairy für die Fehlermeldung gespeichert werden, sondern dieser Schritt muss übersprunen werden.\\
         \\
         \textbf{P2 - Die Ausführungsumgebung geht davon aus, dass Zyklen nicht erlaubt sind}\\
         \\
@@ -407,7 +408,8 @@
     Dafür muss also der ALgortithmus der Schleifenentfaltung modifiziert werden. 
     Das Ziel der modifizierung ist es, die Schleifen solange zusammenzufassen bis kein erneuter Schleifendurchlauf notwendig ist.
     Da die maximale Anzahl an Schleifendurchläufen durch den Benutzer vorgegeben ist TODO
-    Zur auflösen der Schleife wird die Abbruchbedingung der Schleife an den Schleifenkörper drangehangen und dann für jeden Schleifendurchlauf einmal kopiert. Sollte die Abbruchbedingung falsch sein, wird der nächste kopierte Code verwendet. Hingegen beim erfüülen der Abbruchbedingung keine Wiederholg stattfindet, sondern die Prüfung fortgesetzt wird
+    Zur auflösen der Schleife wird zuerst der Schleifenkörper ausgeführt, Anschließend erfolgt die Prüfung der Abbruchbedingung. Sollte die Abbruchbedingung falsch sein, wird der nächste kopierte Code verwendet. 
+    Hingegen beim erfüülen der Abbruchbedingung keine Wiederholg stattfindet, sondern die Prüfung fortgesetzt wird
     Auf Abbildung TODO wurde der Ansatz Graphisch dargestellt.
     In Abbildung TODO wird dieser Ansatz an einem konkreten Beispiel veranschaulicht.
     Im Beispiel soll "foo" drei mal einzeln auf der Console ausgegeben werden. 
@@ -415,7 +417,8 @@
     Hingegen in der unteren Schleife der modifizierte Ansatz verwendet wurden ist. Da die untere Schleife nur noch genau einmal ausgefürt wird, kann diese einfach weggelassen werden.\\
     \\
     \textbf{Block B}
-    \\
+    Block B soll die Wiederholung von Aktivitäten durch iterative Schleifen ermöglichen.
+    Bei dem Algorithmus sollen die Eingaben der Dynmaischen\\
     \\
     Auf die Vor- und Nachteile der einzelnen Blöcke wird im späteren Verlauf eingegangen.
 
