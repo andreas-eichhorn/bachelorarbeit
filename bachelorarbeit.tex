@@ -401,24 +401,38 @@
     \\
     %TODO es muss unbedingt erwähnt werden dass die abbruchbedingung nun mehrmals teil des codes werden muss
     Block A soll die Wiederholung von Aktivitäten durch explizite Ausführung ermöglichen.
-    Als Ansatz wird dabei Schleifenentfaltung verwendet.
-    Ye et al. beschreiben in ihrer Arbeit TODO
-    Huang et al. TODO
-    Wie eingangs bereits erwähnt wurden ist, sollen die Wiederholungen explizite Ausgeführt werden und nicht rekursiv oder iterativ.
-    Dafür muss also der ALgortithmus der Schleifenentfaltung modifiziert werden. 
-    Das Ziel der modifizierung ist es, die Schleifen solange zusammenzufassen bis kein erneuter Schleifendurchlauf notwendig ist.
-    Da die maximale Anzahl an Schleifendurchläufen durch den Benutzer vorgegeben ist TODO
-    Zur auflösen der Schleife wird zuerst der Schleifenkörper ausgeführt, Anschließend erfolgt die Prüfung der Abbruchbedingung. Sollte die Abbruchbedingung falsch sein, wird der nächste kopierte Code verwendet. 
-    Hingegen beim erfüülen der Abbruchbedingung keine Wiederholg stattfindet, sondern die Prüfung fortgesetzt wird
+    Zur umsetzung dieses Ziels wird die Schleifenentfaltung als Grundlage verwendet.
+    Unter Schleifenentfaltung versteht man, dass die Instruktione im Schleifenkörper mehrmals pro Iteration auszuausgeführt wird, um dadurch die häufigkeit der Iterationen zu verringern. \cite{9}
+    Anstatt rekursive oder iterative Wiederholungen zu verwenden, wird jede potenzielle Iteration als eigenständigen und bedingten Codeblock realisiert.
+    Dazu muss eine Anpassung an der klasisschen Schleifenentfaltungsverfahren vorgenommen werden. 
+    Das Ziel der modifizierung ist es, die Schleifen solange zusammenzufassen bis kein erneuter Schleifendurchlauf notwendig ist und dadurch den Kontrollfluss durch Verzweigungen und verschtelungen ohne Iterationen abzubilden.
+    Da die maximale Anzahl an Schleifendurchläufen von vorneherein bekannt ist, kann für jede potenzielle Ausführen des Schleifenkörpers eine Kopie erstellt werden. 
+    In jeder Kopie wird der Schleifenkörper ausgeführt und anschließend um die Abbruchbedingung der Schleife ergänzt. Im Falle einer erfüllten Abbruchbedingung wird hingegen keine weitere Kopie ausgeführt. 
+    Stattdessen wird die Ausführung gemäß dem vorgesehenen Kontrollfluss fortgesetzt.
     Auf Abbildung TODO wurde der Ansatz Graphisch dargestellt.
     In Abbildung TODO wird dieser Ansatz an einem konkreten Beispiel veranschaulicht.
     Im Beispiel soll "foo" drei mal einzeln auf der Console ausgegeben werden. 
     In der oberen Schleife
     Hingegen in der unteren Schleife der modifizierte Ansatz verwendet wurden ist. Da die untere Schleife nur noch genau einmal ausgefürt wird, kann diese einfach weggelassen werden.\\
     \\
-    \textbf{Block B}
+    \textbf{Block B}\\
+    \\
     Block B soll die Wiederholung von Aktivitäten durch iterative Schleifen ermöglichen.
-    Bei dem Algorithmus sollen die Eingaben der Dynmaischen\\
+    Ist die Abbruchbedingung nicht erfüllt, wird Entschieden ob eine Wiederholung stattfindet oder nicht. Dabei wird geschaut wie sich das dynamische Datum über die Iteration hinweg verhält.
+    Es wird überprüft, ob die Anzahl der Iterationen bereits die maximale Anzahl an Iteration überschritten hat oder der Chancen-Zähler den Wert 0 erreicht hat.
+    Da der Vergleich auf Mittelwerten basiert, müssen die Eingaben in einen Gleitkommawert umgewandelt werden.
+    Zunächst wird dafür die Eingabe in eine Zeichenkette umgewandelt und anschließend versucht als Gleitkommazahlen zu interpretieren. 
+    Schlägt die Interpretation fehl, handelt es sich nicht um eine Zahl. In dem Fall muss die Zeichenkette zeichenweise mithilfe von UTF-8 in eine Dezimalzhal überführt werden.     
+    UTF-8 bietet sich zur Umwandlung an, da es bereits eine eindeutige und standardisierte Codierung für über 1,1 Millionen Unicode-Zeichen bereitstellt und somit keine zusätzliche Festlegung eines eigenen Codierungsschemas erforderlich ist.    
+    Die einzelnen Zahlen werden dann mit ihren Index multipliziert und im anschluss addiert.
+    Der Schritt mit der multiplizierung ist notwendig, weil die addtion kommutativ ist und somit keine berücksichtigung der Zeichenfolge erfolgt, wird durch Multiplikation mit der Zeichenposition eine positionsabhängige Gewichtung sichergestellt.
+    Die Werte vom Typ double werden anschließend in einer Liste gespeichert, die alle bisherigen Eingaben beinhaltet.
+    Basierend auf dieser Liste wird dann ein Mittelwert über alle bisherigen Werte gebildet und ein gleitender Mittelwert über die letzen 3 Werte.
+    Anschließend wird die differenz zwischen den aktuellen Wert und den Mittelwerten gebildet. ist die differenz kleiner als ein threshold wird der counter dekremntiert. ist die differenz gleich oder größer als der Threshold wird der Chancen-Zähler zurückgesetzt.
+    Erreicht der Chancen-Zähler 0 werden keine weiteren Wiederholungen ausgeführt, da der wert sehr wahrscheinlich stagniert.
+    Der Chancen-Zähler erweist sich als erforderlich, da dieser als Steuermechanismus für die Wiederholungslogik dient und eine Begrenzung der Iterationen bei ausbleibender signifikanter Veränderung sicherstellt.
+    Dadurch soll verhindert werden, dass eine ineffiziente Fortsetzung der Schleife stattfindet.
+    Sollten weniger als 3 Werte in der Ergbenissliste drin sein, wird die Berechnung übersprungen. Dadurch kann gewährleistret werden, dass das System einlaufen kann und die Mittelwerte erst gebildet werden, wenn eine aussagekräftige Datenbasis vorhanden ist.\\
     \\
     Auf die Vor- und Nachteile der einzelnen Blöcke wird im späteren Verlauf eingegangen.
 
