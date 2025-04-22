@@ -361,17 +361,23 @@
     \textbf{Datenverarbeitung}\\
     \\
     %einfügen,dass nach pull-ansatz gearbeitet wird
-    Anders ist es hingegen bei der Ausführung der Datenverarbeitung. Dort basiert die Ausführung auf einer Execute-Funktion, welche die Werte der Ausgabeports berechnet.
-    Die Funktion nimmt als Parameter Template-Parameter und eine Evaluate-Funktion.
-    Bei den vom System bereitgestellten Funktionen wird die Execute-Funktion mithilfe der Hilfsklasse vom Typ IExectuibCibtext, direkt in die Funktion implementiert.
+
+    Die Ausführung der Datenverarbeitung erfolgt auf Grundlage einer Execute-Funktion, die für die Berechnung der Ausgabeport zuständig ist.
+    Diese Funktion nimmt als Parameter eine Evaluate-Funktion und Template-Parameter.
+    Bei Funktionen, die vom System bereitgestellt werden, wird die Execute-Funktion von der Hilfeklasse IExectuibCibtext bereitgestellt und die Execute-Funktion wird direkt in die FUnktion implentiert.
+
     Die Hilfsklasse stellt die Evaluate-Funktion bereit und speichert die Werte der Ausgabeports.
     Das Ziel der Implentierung ist es die Abhängigkeiten zwischen Eingabe- und Ausgabeports herzustellen. Untersützt wird sie dabei von der Klasse RunetimeContext.
-
-    Ein anderer wichtiger Bestandteil der Datenverarbeitung ist der Ergebniscache. In dem Cache werden die Werte alle Ausgabeports gespeichert.
-    Wird nun nach einem Wert für einen Eingabeport gesucht, wird nach der zugehörigen InputNode mit der anliegden Kante gesucht und geschaut ob für den verbunden Ports bereits ein Ergebnis im Ergebniscache vorliegt.
-    Sollte das nicht der Fall sein, wird die Funktion ausgeführt und das Ergbenis im Ergebniscache gespeichert.
-
-    Auch bei der Ausführung von Lambdas spielt der Ergebniscache eine große Rolle. Sobald ein Wertes für ein Eingabeport benötigt werden, werden die Ergebnisse der dazugehörigen Ausgabeports in den Ergebiscache geschrieben und alle Funktionen die im Kind-verhältnis stehen invalidiert, indem die Ergebnisse im Ergebniscache gelöscht werden.
+    
+    Ein wichtiger Bestandteil der Datenverarbeitung ist der Ergebniscache. Der Ergebniscache speichert die Werte der Ausgabeports.
+    Wird ein Wert für einen Eingabeport gesucht, erfolgt zunächst die Suche nach dem zugehörigem InputNode sowie der entsprechenden eingehen Kante. 
+    Anschließend wird geprüft, ob für den mit der Kante verbundene Ports ein Wert im Ergebniscache vorleigt.
+    Ist dies nicht der Fall sein, wird die Funktion ausgeführt und der Wert für den Ausgabeport im Ergebniscache gespeichert.
+    Nicht nur für die normalen Funktion spielt der Ergebniscache eine große Rolle, sondern auch für die Lambda-Funktionen.
+    
+    
+    Auch bei der Ausführung von Lambdas spielt der Ergebniscache eine große Rolle. Sobald ein Wertes für ein Eingabeport benötigt werden, werden die Ergebnisse der dazugehörigen Ausgabeports in den Ergebiscache geschrieben 
+    und alle Funktionen die im Kind-verhältnis stehen invalidiert, indem die Ergebnisse im Ergebniscache gelöscht werden.
     Anschließend kann die Berechnung des gesuchten Wertes beginnen, indem der grade beschriebene Algorithmus angewendet wird.\\
 
     Als erstes werden alle Referenzen auf Flow-Templates aufgelöst, damit wir die Flow-Instanz erhalten. Sobald die Flow-Instanz erstellt ist, ist bekannt, welche Ports und Lambdas bei dem Funktions-Aufruf existieren und es werden Objektreferenzen zwischen den Ports erstellt.
