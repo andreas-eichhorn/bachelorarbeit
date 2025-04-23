@@ -483,104 +483,117 @@
 
     \newpage
     \section{Implementierung}
-    Bei der Implementierung muss nicht nur auf des Design des Schleifenkonstrukt geachtet werden, sondern auch auf neue Sachen, welche durch die Implementierung entstanden sind.
-    Bei den Schleifendurchläufen wird nicht auf die Ergebnisse des letzten Durchlaufs zugegriffen werden, sondern der Schleifenkörper soll die Entscheidungen auf Grundlage des aktuellen Sensorwertes treffen.
-    Das auslesen des aktuellen Sensorwerts ist bereits möglich.
-    Aktuell unterstützt die zugrundeliegenede Implementierung noch keine Variablen. Um das zu ändern muss die Grammatik bearbeitet werden-
-    \subsection{1. Lösungsansatz}
-    Schleife soll durch ein Schleifenkonstruktor dargestellt werden.
-    Prüfungslogik muss eine weitere Aktivitätsaktion erweitert werden. Das Schleifenkonstrukt greift dabei auf bereits vorhandene Regeln der Prüfungslogik zu.
-    Das Schleifenkonstrukt greift dabei wie die anderen Aktivitätsaktionen auf den Referenzstack zu. Da der nächste Schleifendurchlauf nicht wieder auf den gleichen Eingabenwerten laufen soll, da diese wieder zu einem fehlerhaften Wert führen wird, muss ein Mechanismus im Schleifenkonstrukt implementiert werden, welcher einen neuen Wert holt.
-    Der Schleifenkörper wird dabei nicht mithilfe von Rekursion oder Iteration ausgeführt, sondern durch entfaltung. 
-    Ye et al. beschreiben Schleifenentfaltung als eine gängige Methode um Compiler zu optimieren, weil mit dieser Methode die mehreren Schleifendurchläufe zu einer zusammengefasst werden. \cite{9}
-    Huang et al. beschreiben den ALgortithmus wie folgt TODO.
-    Der beschrieben Ansatz kann für unseren Ansatz nicht 1:1 übernohmen werden, sondern muss etwas modifiziert werden. Unser Ziel ist es nicht nur einzelene Schleifendurchläufe zusammen zu fassen, sondern die ganzen Schleifendurchläufe in einer einzigen zusammenzufassen.
-    Da bei unseren Lösungsansatz die maximale Anzahl an Schleifendurchläufen begrenzt ist und diese bereits vor der Ausführung der Prüfungs bekannt ist, kann diese Information beim modifizierten Ansatz berücksichtigt werden. Ein Beispiel in in Abbildung TODO.
-    Bei dem Beispiel ist die Anzahl der Schleifen Durchläufe auf 3 begrenzt. In beiden Schleifen soll die Zeichenkette "Foo" 3-mal auf der Konsole ausgegeben werden. 
-    Der Schleifenkopf initalisiert am Anfang eine Variable. Anschließend wird eine Abbruchbedigung definiert und im Anschluss die veränderung der Variable pro Schleifendurchlauf festgelegt.
-    Im Beispiel 1 wird die Funtkion console.log("Foo") pro Schleifendurchlauf einmal ausgeführt.
-    Hingegen im Beispiel 2 wurde die Schleife entfaltet und die Funktion console.log("Foo") pro Schleifendurchlauf 3-mal ausgeführt. Da die Schleife aber nur noch einmal ausführt und dann abbricht, kann diese auch weggelassen werden.
-    Zwischen den einzelnen Funktionen muss dafür gesorgt werden, dass die neue Wert zur verfgügung steht. Deswegen ist die Idee alle bisherigen Aktivitätaktion zu wiederholen, damit der aktuellste Wert vom Hauptuntersuchungs-Adapter ausgelesen wird und die Prüfung aufgrundlage dieses Wertes nochmals ausgefürt wird. Ein Beispiel ist in Abbildung TODO.
-    \VerbatimInput[numbers=left]{schleifen.js}
-    \textbf{Abbildung TODO}\\
+    %TODO parameter erwähnen ja oder oder nein?
+    %Die Funktionalität der Klasse wird durch die drei Methoden calcute, calculateMean und isDeviationWithinThreshold realisiert.
+    Zur umsetzung der Wiederholungslogik im Block B wurden vier Klassen definiert.
+    Dabei handelt es sich unter anderem um die Klasse DeviationChecker, die in Abbildung TODO dargestellt ist.\\
+    Ziel der Klasse ist es den Mittelwert zu berechnen und die Differenz zum aktuellen Wert auf ihren Schwellenwertüberschreitung hin zu überprüft.
+    Zur Umsetzung dieser FUnktionalität hat DeviationChecker eine Mittelwert-Variable vom Datentyp Double sowie die drei Methoden calcute, calculateMean und isDeviationWithinThreshold.\\
+    \\
+    Die Methode calculateMean übernimmt die Berechnung des aktuellen Mittelwerts, indem über die Liste der Eingaben iteriert wird und diese aufsummiert werden.
+    Der berechnete Summenwert wird durch TODO geteilt und anschließend als Rückgabewert zurückgegeben.\\
+    Mit Hilfe der Methode isDeviationWithinThreshold wird die Differenz berechnet und überprüft ob die Differenz den Schwellenwert unterschreitet.
+    Dies erfolgt durch die Berechnung des Betrags der Differenz zwischen Mittelwert und dem aktuellen Wert.
+    Je nach Ergebnis wird dann ein entsprechender Wahrheitswert zurückgegeben.\\
+    Der Ablauf der Klasse wird in der Methode calculate gesteuert. Hier wird zunächst überprüft, ob die anderen Methoden aufgerufen werden soll.
+    Der Algorithmus wird lediglich bei Vorhandensein von mindestens drei Werten in der Eingabeliste gestartet.
+    Ist dies der Fall wird die Methode calculateMean aufgerufen und dessen Rückgabewert in die Mittelwert-Variable gespeichert.
+    Im Anschluss erfolgt der Aufruf von isDeviationWithinThreshold, dessen Rückgabewert von calculate zurückgegeben wird.
+
+    %\subsection{1. Lösungsansatz}
+    %Schleife soll durch ein Schleifenkonstruktor dargestellt werden.
+    %Prüfungslogik muss eine weitere Aktivitätsaktion erweitert werden. Das Schleifenkonstrukt greift dabei auf bereits vorhandene Regeln der Prüfungslogik zu.
+    %Das Schleifenkonstrukt greift dabei wie die anderen Aktivitätsaktionen auf den Referenzstack zu. Da der nächste Schleifendurchlauf nicht wieder auf den gleichen Eingabenwerten laufen soll, da diese wieder zu einem fehlerhaften Wert führen wird, muss ein Mechanismus im Schleifenkonstrukt implementiert werden, welcher einen neuen Wert holt.
+    %Der Schleifenkörper wird dabei nicht mithilfe von Rekursion oder Iteration ausgeführt, sondern durch entfaltung. 
+    %Ye et al. beschreiben Schleifenentfaltung als eine gängige Methode um Compiler zu optimieren, weil mit dieser Methode die mehreren Schleifendurchläufe zu einer zusammengefasst werden. \cite{9}
+    %Huang et al. beschreiben den ALgortithmus wie folgt TODO.
+    %Der beschrieben Ansatz kann für unseren Ansatz nicht 1:1 übernohmen werden, sondern muss etwas modifiziert werden. Unser Ziel ist es nicht nur einzelene Schleifendurchläufe zusammen zu fassen, sondern die ganzen Schleifendurchläufe in einer einzigen zusammenzufassen.
+    %Da bei unseren Lösungsansatz die maximale Anzahl an Schleifendurchläufen begrenzt ist und diese bereits vor der Ausführung der Prüfungs bekannt ist, kann diese Information beim modifizierten Ansatz berücksichtigt werden. Ein Beispiel in in Abbildung TODO.
+    %Bei dem Beispiel ist die Anzahl der Schleifen Durchläufe auf 3 begrenzt. In beiden Schleifen soll die Zeichenkette "Foo" 3-mal auf der Konsole ausgegeben werden. 
+    %Der Schleifenkopf initalisiert am Anfang eine Variable. Anschließend wird eine Abbruchbedigung definiert und im Anschluss die veränderung der Variable pro Schleifendurchlauf festgelegt.
+    %Im Beispiel 1 wird die Funtkion console.log("Foo") pro Schleifendurchlauf einmal ausgeführt.
+    %Hingegen im Beispiel 2 wurde die Schleife entfaltet und die Funktion console.log("Foo") pro Schleifendurchlauf 3-mal ausgeführt. Da die Schleife aber nur noch einmal ausführt und dann abbricht, kann diese auch weggelassen werden.
+    %Zwischen den einzelnen Funktionen muss dafür gesorgt werden, dass die neue Wert zur verfgügung steht. Deswegen ist die Idee alle bisherigen Aktivitätaktion zu wiederholen, damit der aktuellste Wert vom Hauptuntersuchungs-Adapter ausgelesen wird und die Prüfung aufgrundlage dieses Wertes nochmals ausgefürt wird. Ein Beispiel ist in Abbildung TODO.
+    %\VerbatimInput[numbers=left]{schleifen.js}
+    %\textbf{Abbildung TODO}\\
     %Der Benutzer gibt von vorneherein eine Zahl a an, welche die maximale Anzahl von Schleifendurchläufe beschränkt. Für die Zahl muss dafür folgendes gelten TODO.
     %Die Idee des Ansatzes ist es, den Schleifenköper nicht Iterativ oder Rekursiv ausführen, sondern a-mal auszurollen.
     %Dafür wird der Schleifenköper und die nachfolgenden Anweisungen a-mal kopiert. Die Schleife wird dadurch nicht dynmasisch ausgeführt, sondern statisch in den Code implementiert. Dadurch entstehen $a+1$ Graphen. Jeder dieser Graphen repräsentiert einen ursprüngliche Iteration. Dabei werden die einzelnen Graphen mit ihren direkten Nachbaran verbunden. 
     %Da die aktuell zugrunde liegende Implementierung determenistisch ist und aktuell nur auf die gleiche Eingabe zugegriffen werden kann, muss ein Mechanismus implementiert werden, welcher den aktuellen Sensorwert ausliest und diesen an die nachfolgenden Anweisungen weitergibt. Dieser Vorgang muss für jede neu eingefügte Verbindung wiederolt werden.
-    \resizebox*{!}{10cm}{
-    \begin{tikzpicture}[]
-        \node[state, initial text=""](q5){};
-        \node[state, rectangle, below = 1cm of q5](q6){Aktion1};
-        \node[state, rectangle, below = 1cm of q6](q7){Aktion2};
-        \node[state, below = 1cm of q7](q8){Entscheidung};
-        \node[state, rectangle, accepting, below = 1cm of q8](q9){Ausgabe};
+    %\resizebox*{!}{10cm}{
+    %\begin{tikzpicture}[]
+        %\node[state, initial text=""](q5){};
+        %\node[state, rectangle, below = 1cm of q5](q6){Aktion1};
+        %\node[state, rectangle, below = 1cm of q6](q7){Aktion2};
+        %\node[state, below = 1cm of q7](q8){Entscheidung};
+        %\node[state, rectangle, accepting, below = 1cm of q8](q9){Ausgabe};
 
-        \node[state, rectangle, right = 2cm of q6](q10){Aktion1};
-        \node[state, rectangle, right = 2cm of q7](q11){Aktion2};
-        \node[state, below = 1cm of q11](q12){Entscheidung};
-        \node[state, rectangle, accepting, below = 1cm of q12](q13){Ausgabe};
+        %\node[state, rectangle, right = 2cm of q6](q10){Aktion1};
+        %\node[state, rectangle, right = 2cm of q7](q11){Aktion2};
+        %\node[state, below = 1cm of q11](q12){Entscheidung};
+        %\node[state, rectangle, accepting, below = 1cm of q12](q13){Ausgabe};
 
-        \node[state, rectangle, right = 2cm of q10](q14){Aktion1};
-        \node[state, rectangle, right = 2cm of q11](q15){Aktion2};
-        \node[state, below = 1cm of q15](q16){Entscheidung};
-        \node[state, rectangle, accepting, below = 1cm of q16](q17){Ausgabe};
+        %\node[state, rectangle, right = 2cm of q10](q14){Aktion1};
+        %\node[state, rectangle, right = 2cm of q11](q15){Aktion2};
+        %\node[state, below = 1cm of q15](q16){Entscheidung};
+        %\node[state, rectangle, accepting, below = 1cm of q16](q17){Ausgabe};
 
-        \draw(q5) edge[->] (q6);
-        \draw(q6) edge[->] (q7);
-        \draw(q7) edge[->] (q8);
-        \draw(q8) edge[->] (q9);
-        \draw(q8) edge[->] (q10);
+        %\draw(q5) edge[->] (q6);
+        %\draw(q6) edge[->] (q7);
+        %\draw(q7) edge[->] (q8);
+        %\draw(q8) edge[->] (q9);
+        %\draw(q8) edge[->] (q10);
         
-        \draw(q10) edge[->] (q11);
-        \draw(q11) edge[->] (q12);
-        \draw(q12) edge[->] (q13);
-        \draw(q12) edge[->] (q14);
+        %\draw(q10) edge[->] (q11);
+        %\draw(q11) edge[->] (q12);
+        %\draw(q12) edge[->] (q13);
+        %\draw(q12) edge[->] (q14);
 
-        \draw(q14) edge[->] (q15);
-        \draw(q15) edge[->] (q16);
-        \draw(q16) edge[->] (q17);
+        %\draw(q14) edge[->] (q15);
+        %\draw(q15) edge[->] (q16);
+        %\draw(q16) edge[->] (q17);
 
 
-    \end{tikzpicture}
-    }\\
-    \textbf{Abbildung TODO}\\
-    \subsection{2. Lösungsansatz}
-    Schleife soll durch ein Konstrukt realisiert werden.
-    Prüfungslogik muss um eine weitere Aktivitätsaktion erweitert werden. Das Schleifenkonstrukt greift dabei auf bereits vorhandene Regeln der Prüfungslogik zu.
-    Das Schleifenkonstrukt greift dabei wie die anderen Aktivitätsaktionen auf den Referenzstack zu. Da der nächste Schleifendurchlauf nicht wieder auf den gleichen Eingabenwerten laufen soll, da diese wieder zu einem fehlerhaften Wert führen wird, muss ein Mechanismus im Schleifenkonstrukt implementiert werden, welcher einen neuen Wert holt.
-    Durch die einführung der Schleife entstehen neue Herausforderungen. Es können nun Endlosschleifen entstehen, welche dazuführen dass die ausgeführte Prüfung niemals terminieren wird. Außerdem liefert der Hauptuntersuchungs-Adapter keine linearen Werte (?), sondern nicht determenistische Werte.
+    %\end{tikzpicture}
+    %}\\
+    %\textbf{Abbildung TODO}\\
+    %\subsection{2. Lösungsansatz}
+    %Schleife soll durch ein Konstrukt realisiert werden.
+    %Prüfungslogik muss um eine weitere Aktivitätsaktion erweitert werden. Das Schleifenkonstrukt greift dabei auf bereits vorhandene Regeln der Prüfungslogik zu.
+    %Das Schleifenkonstrukt greift dabei wie die anderen Aktivitätsaktionen auf den Referenzstack zu. Da der nächste Schleifendurchlauf nicht wieder auf den gleichen Eingabenwerten laufen soll, da diese wieder zu einem fehlerhaften Wert führen wird, muss ein Mechanismus im Schleifenkonstrukt implementiert werden, welcher einen neuen Wert holt.
+    %Durch die einführung der Schleife entstehen neue Herausforderungen. Es können nun Endlosschleifen entstehen, welche dazuführen dass die ausgeführte Prüfung niemals terminieren wird. Außerdem liefert der Hauptuntersuchungs-Adapter keine linearen Werte (?), sondern nicht determenistische Werte.
 
-    Eine Endlosschleife kann von vorneherein ausgeschlossen werden, indem die maximalen Schleifendurchläufe begrenzt werden. 
-    Da die Werte des Hauptuntersuchungs-Adapter nicht vorhersehbar sind und die Prüfung nicht jedes mal die maximale Anzahl der Schleifendurchläufe ausführen soll, muss ein Algorithmus entwickelt werden, welcher sagt wann man davon ausgehen kann, wann die ausgelesenen Sensorwerte sicht großartig nicht mehr ändern und stabil sind.
+    %Eine Endlosschleife kann von vorneherein ausgeschlossen werden, indem die maximalen Schleifendurchläufe begrenzt werden. 
+    %Da die Werte des Hauptuntersuchungs-Adapter nicht vorhersehbar sind und die Prüfung nicht jedes mal die maximale Anzahl der Schleifendurchläufe ausführen soll, muss ein Algorithmus entwickelt werden, welcher sagt wann man davon ausgehen kann, wann die ausgelesenen Sensorwerte sicht großartig nicht mehr ändern und stabil sind.
     
-    Ein möglicher Lösungsvorschlag könnte nun folgendermaßen aussehen. 
-    Je nachdem welcher Typ der Eingabewert hat verläuft der Algorithmus anders. Es wird dabei nur zwischen Zahlen und Zeichenketten unterschieden. 
-    Bei Zeichenketten wird der aktuelle Wert mit dem Wert aus dem vorherigen Schleifendurchlauf verglichen. Dafür wird die Levenshtein-Distanz verwendet. Für die ersten beiden Schelifendurchläufe wird der Algorithmus übersprungen, weil die Levenshtein-Distanz noch kein Aussagekräftiges Ergebnis für den Anwendungsfall geben kann.
-    Die Levenshtein-Distanz gibt die ähnlichkeit zwischen zwei Zeichenketten als Zahl an, indem sie die minimale Anzahl an Operation angibt, welche benötigt werden, damit die erste Zeichenkette der zweiten Zeichenkette gleicht. Je größer die Zahl ist destso "unterschiedlicher" sind die beiden Zeichenketten von einander. 
+    %Ein möglicher Lösungsvorschlag könnte nun folgendermaßen aussehen. 
+    %Je nachdem welcher Typ der Eingabewert hat verläuft der Algorithmus anders. Es wird dabei nur zwischen Zahlen und Zeichenketten unterschieden. 
+    %Bei Zeichenketten wird der aktuelle Wert mit dem Wert aus dem vorherigen Schleifendurchlauf verglichen. Dafür wird die Levenshtein-Distanz verwendet. Für die ersten beiden Schelifendurchläufe wird der Algorithmus übersprungen, weil die Levenshtein-Distanz noch kein Aussagekräftiges Ergebnis für den Anwendungsfall geben kann.
+    %Die Levenshtein-Distanz gibt die ähnlichkeit zwischen zwei Zeichenketten als Zahl an, indem sie die minimale Anzahl an Operation angibt, welche benötigt werden, damit die erste Zeichenkette der zweiten Zeichenkette gleicht. Je größer die Zahl ist destso "unterschiedlicher" sind die beiden Zeichenketten von einander. 
 
-    Um zu schauen wie sich die Eingabe zu verschiedenen Zeiträumen verhält, berechnen wir Mittelwerte über TODO. Es sollten mindestens zwei Mittelwerte gebildet werden. Mehr als zwei Mittelwerte sind möglich, aber würden den Algorithmus entwindlicher machen. Der erste Mittelwert sollte über alle bisherigen Eingaben gebildet werden, um zu sehen wie sich die Eingabe auf langer Sicht verhält. Der zweite Mittelwert sollte über die letzten n Eingaben gebildert, um zu sehen wie sich die Eingabe auf kurzer Sicht verhält.
-    Da die Werte der Levenshtein-Distanz sich für den Mittelwert nicht besonders anbieten, müssen die Zeichenketten in einen Zahlenwert umgewandelt werden.hließend Addieren. Für die Umwandlung eignet sich UTF-8 besonders gut. Da UTF-8 fast akke Schriftzeichen weltweit beinhaltet.
-    Das kann geschaffen werden indem alle Zeichen der Zeichenkette in eine eindeutige Zahl umwandeln und die einzelnen Zahlen ansc
-    Zusätzlich muss eine Gewichtung bei der Addition berücksichtigt werden, weil sonst Zeichenketten, die aus den gleichen Zeichen bestehen, den gleichen Wert bei der Addition rausbekommen. Das liegt daran, dass bei der Addition ohne Gewichtung nur die Wertigkeit der einzelnen Zeichen betrachtet wird, aber nicht deren Position. Dieses Problem wird mit der Gewichtung aufgelöst. Ein Beispiel dafür für die Addition mit Gewichtung ist in Abbildung TODO.
-    Dies muss aber nicht für jedes Eingabepaar gemacht werden, sondern nur für Eingabepaare welche sich sehr ähneln, also eine niedrige Levenshtein-Distanz haben. Für Eingabepaare mit einer hohen Levenshtein-Distanz ist das nicht notwendig, weil wir da bereits wissen, dass sich die Zeichketten stark von einerander unterscheiden.
-    Ist die Differenz aus der umgewandelten umgewandelten Zeichenkette und einem Mittel kleiner als ein vordefinierter Schwellenwert, wissen wir dass die Zeichenkette sich nur ganz leicht von den durchschnittlichen Eingaben unterscheidet.
-    Wenn dies nun mehrmals nacheinander vorkommt, kann davon ausgegangen werden, dass der Wert in diesen Wertebereich stagniert.
-    Um dies im ALgortithmus auch zu berücksichtigen, wird ein n-Chance Mechanismus eingebaut der folgendermaßen Funktioniert:
-    \begin{itemize}
-        \item Wird der Schwellenwert unterschritten, wird unser n dekrementiert.
-        \item Wird der Schwellwert übertroffen oder ist unsere Differenz gleich wird n zurückgesetzt.
-        \item Erreicht n irgendwann die 0 wird die Schleife abgebrochen. 
-    \end{itemize}
+    %Um zu schauen wie sich die Eingabe zu verschiedenen Zeiträumen verhält, berechnen wir Mittelwerte über TODO. Es sollten mindestens zwei Mittelwerte gebildet werden. Mehr als zwei Mittelwerte sind möglich, aber würden den Algorithmus entwindlicher machen. Der erste Mittelwert sollte über alle bisherigen Eingaben gebildet werden, um zu sehen wie sich die Eingabe auf langer Sicht verhält. Der zweite Mittelwert sollte über die letzten n Eingaben gebildert, um zu sehen wie sich die Eingabe auf kurzer Sicht verhält.
+    %Da die Werte der Levenshtein-Distanz sich für den Mittelwert nicht besonders anbieten, müssen die Zeichenketten in einen Zahlenwert umgewandelt werden.hließend Addieren. Für die Umwandlung eignet sich UTF-8 besonders gut. Da UTF-8 fast akke Schriftzeichen weltweit beinhaltet.
+    %Das kann geschaffen werden indem alle Zeichen der Zeichenkette in eine eindeutige Zahl umwandeln und die einzelnen Zahlen ansc
+    %Zusätzlich muss eine Gewichtung bei der Addition berücksichtigt werden, weil sonst Zeichenketten, die aus den gleichen Zeichen bestehen, den gleichen Wert bei der Addition rausbekommen. Das liegt daran, dass bei der Addition ohne Gewichtung nur die Wertigkeit der einzelnen Zeichen betrachtet wird, aber nicht deren Position. Dieses Problem wird mit der Gewichtung aufgelöst. Ein Beispiel dafür für die Addition mit Gewichtung ist in Abbildung TODO.
+    %Dies muss aber nicht für jedes Eingabepaar gemacht werden, sondern nur für Eingabepaare welche sich sehr ähneln, also eine niedrige Levenshtein-Distanz haben. Für Eingabepaare mit einer hohen Levenshtein-Distanz ist das nicht notwendig, weil wir da bereits wissen, dass sich die Zeichketten stark von einerander unterscheiden.
+    %Ist die Differenz aus der umgewandelten umgewandelten Zeichenkette und einem Mittel kleiner als ein vordefinierter Schwellenwert, wissen wir dass die Zeichenkette sich nur ganz leicht von den durchschnittlichen Eingaben unterscheidet.
+    %Wenn dies nun mehrmals nacheinander vorkommt, kann davon ausgegangen werden, dass der Wert in diesen Wertebereich stagniert.
+    %Um dies im ALgortithmus auch zu berücksichtigen, wird ein n-Chance Mechanismus eingebaut der folgendermaßen Funktioniert:
+    %\begin{itemize}
+        %\item Wird der Schwellenwert unterschritten, wird unser n dekrementiert.
+        %\item Wird der Schwellwert übertroffen oder ist unsere Differenz gleich wird n zurückgesetzt.
+        %\item Erreicht n irgendwann die 0 wird die Schleife abgebrochen. 
+    %\end{itemize}
     %Beispiel
-    $
-        "foo" = 102 + 111 + 111 = 324
-        "oof" = 111 + 111 + 102 = 324
-        mit Gewichtung
-        "foo" = 1 * 102 + 2 * 111 + 3 * 111 = 657
-        "oof" = 1 * 111 + 2 * 111 + 3 * 102 = 639
-    $
-    \\\textbf{Abbildung TODO} Beispiel Addition mit und ohne Gewichtung
-    \\\\Ist unser Eingabewert nun keine Zeichenkette, sondern eine Zahl entfällt der Umwandlungsschritt mit der Gewichtung. Es kann sofort mit den beschriebenen Mittelwertansatz angefangen werden.
+    %$
+        %"foo" = 102 + 111 + 111 = 324
+        %"oof" = 111 + 111 + 102 = 324
+        %mit Gewichtung
+        %"foo" = 1 * 102 + 2 * 111 + 3 * 111 = 657
+        %"oof" = 1 * 111 + 2 * 111 + 3 * 102 = 639
+    %$
+    %\\\textbf{Abbildung TODO} Beispiel Addition mit und ohne Gewichtung
+    %\\\\Ist unser Eingabewert nun keine Zeichenkette, sondern eine Zahl entfällt der Umwandlungsschritt mit der Gewichtung. Es kann sofort mit den beschriebenen Mittelwertansatz angefangen werden.
     %Schleifenkonstrukt -> Benutzer gibt Abbruchbedigung ein (Benutzer verwendet Schleifenkonstrukt statt Entscheidungs Aktivität) -> 
     %typ (generisch?, damit das System dies für uns übernimmt) der eingabe muss bestimmt werden, damit richtiger algorithmus zur stabilität überprüfung ausgewählt werden kann (es wird nur zwischen zeichenketten und zahlen unterschieden => bei zahlen wird mittelwertansatz gewählt bei zeichenketten Levenshtein-Distanz)
     %Was muss geändert werden: Prüfungslogik muss durch die aktivität schleife erweitert werden
