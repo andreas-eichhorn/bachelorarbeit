@@ -498,8 +498,20 @@
     Der Ablauf der Klasse wird in der Methode calculate gesteuert. Hier wird zunächst überprüft, ob die anderen Methoden aufgerufen werden soll.
     Der Algorithmus wird lediglich bei Vorhandensein von mindestens drei Werten in der Eingabeliste gestartet.
     Ist dies der Fall wird die Methode calculateMean aufgerufen und dessen Rückgabewert in die Mittelwert-Variable gespeichert.
-    Im Anschluss erfolgt der Aufruf von isDeviationWithinThreshold, dessen Rückgabewert von calculate zurückgegeben wird.
-
+    Im Anschluss erfolgt der Aufruf von isDeviationWithinThreshold, dessen Rückgabewert von calculate zurückgegeben wird.\\
+    \\
+    \\
+    Ein andere Klasse ist Counter.
+    Diese dient der Verwaltung zweier Zählerwerte: chance und counter.
+    Der Zugriff auf diese Variablen erfolgt nach dem Prinzip der Datenkapslung.
+    Zur Funktionalität stehen Methoden zum Verrigern (decreaseChance und decreaseCounter), Zurücksetzen (resetChance) sowie Setzen und Auslesen (setCounter, getCounter, getChance) der Zählerwerte zur Verfügung.\\
+    \\
+    \\
+    Mit der Klasse StringToDoubleConverter wird ein String in einen Double-Wert umgewandelt.
+    Um dies zu ermöglichen stellt die Klasse verschiedene Variable zur verfügung, darunter eine Variable für den Zähler der Schleife, einen für die Bytes und einen für den umgewandelten Wert.
+    Die Methode StringToDouble konviert die Zeichenkette, indem sie zunächst die Zeichenkette in UTF-8 kodierte Bytes umgewandelt.
+    Anschließend werden die Bytes mit einem fortlaufenden Index multipliziert und auf einen Akkumulator addiert.
+    Der akkumulierte Wert wird im Anschluss als Rückgabewert zurückgegeben.
     %\subsection{1. Lösungsansatz}
     %Schleife soll durch ein Schleifenkonstruktor dargestellt werden.
     %Prüfungslogik muss eine weitere Aktivitätsaktion erweitert werden. Das Schleifenkonstrukt greift dabei auf bereits vorhandene Regeln der Prüfungslogik zu.
