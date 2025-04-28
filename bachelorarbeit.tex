@@ -16,12 +16,18 @@
     Im Anschluss daran werden sich andere Systeme angeschaut und erklärt, wie diese das Problem lösen.
     Anschließend wird ein kurzen Überblick über die kommenden Kapitel gegeben.
     \subsection{Aufgabe und Motivation}
-    In vielen Bereich der Informatik TODO.
-    Schleifen sind ein wichtiger Bestandteil jeder Programmiersprache.\\
+    Prüfungen, die mithilfe grafischer Editoren modelliert werden, müssen in vielen Fällen eine Vielzahl von wiederkehrenden Aufgaben abbilden. 
+    Diese Wiederholungen können bei der aktuellen Implementierung nur schwer abgebildet werden, da Schleifen als Konstrukte nicht zur Verfügung stehen. 
+    Stattdessen müssen zu wiederholende Abläufe mehrfach und explizit modelliert werden. 
+    Dies führt zu Redundanz, erhöht die Komplexität der Modelle und erschwert deren Wartbarkeit.\\
     \\
-    Möchte der Benutzer unter bestimmten Umständen Messungen wiederholen, ist dies aktuell nur umständlich möglich. Der Benutzer muss die Wiederholungen explizit angeben oder die Prüfung mehrmals ausführen.
-    Dies führt zu redundanz und schwerer Wartbarkeit bei Prüfungen. 
-    Eine Möglichkeit Schleifen direkt zu modellieren würde es ermöglichen, solche Wiederholungen strukuriert und kompakt abzubilden.\\
+    In klassischen Programmiersprachen wird das Problem der Wiederholung durch die Verwendung von Schleifenkonstrukten gelöst, welche eine kompakte und dynamische Modellierung ermöglichen. 
+    In grafischen Editoren ohne native Unterstützung von Schleifen ist es hingegen notwendig, Prüfungen statisch und mehrfach abzubilden. 
+    Eine pragmatische Lösung besteht darin, Prüfungen mehrfach auszuführen oder die zu wiederholenden Abläufe manuell zu duplizieren und diese mit bedingten Verzweigungen zu Verbinden. 
+    Dies ist jedoch oft nicht praktikabel, da Prüfungen häufig an variable oder unvorhersehbare Bedingungen angepasst werden müssen.
+    Die einzige Möglichkeit, um dynamische Daten während einer Prüfung effizient und wartbar zu bearbeiten, besteht darin, ein Schleifenkonstrukt in das bestehende System zu integrieren. 
+    Daraus ergibt sich ein klares Interesse, entsprechende Erweiterungen zu konzipieren und zu implementieren.
+    \\
     \\
     Im laufe der Bachelorarbeit sollen mehrere Möglichkeiten konzepiert und implementiert werden, welche es ermöglichen sollen dynamsichen Daten innerhalb einer Prüfung zu verarbeiten. 
     Dafür muss im Vorfeld das zugrunde liegende System analysiert und bearbeitet werden, sodass Zyklen vom System verarbeitet werden können.
@@ -51,8 +57,8 @@
     \textbf{Domain Specific Language}\\
     \\
     Bei einer domänenspezifische Sprache (DSL) handelt es sich um eine Programmiersprache, die mit dem Ziel entwickelt wurden ist, spezifische Aufgabenstellungen innerhalb eines begrenzten Anwendungskontexts (Domaine) besonders effektiv zu lösen. \cite{18}
-    DSLs bilden das Gegenstück zu General-Purpose Languages wie Java, C++ oder Python. \cite{14}
-    Dabei verfügen DSLs oftmals über eine reduzierte Syntax, die ausschließlich für den jeweilige Domaine relevant ist. Teilweise wird diese durch eine GPL ergänzt. \cite{18}
+    DSLs bilden das Gegenstück zu General-Purpose Languages (GPL) wie Java, C++ oder Python. \cite{14}
+    Anders als bei GPLs verfügen DSLs oftmals über eine reduzierte Syntax, die ausschließlich für den jeweilige Domaine relevant ist. Teilweise wird diese durch eine GPL ergänzt. \cite{18}
     Es wird zwischen externen und internen DSLs unterschieden. Externe DSLs haben ihre eigene Syntax. Dadurch kann eine größere flexibilität geschaffen werden, aber zeitglich ist der Aufwand für den Entwickler sehr hoch, weil alle relevanten Tools selbst implementieren muss. Außerdem braucht der Benutzer länger Zeit um die Syntax zu lernen. \cite{7}
     Zur Laufzeit wird die externe DSLs dann in eine GPL übersetzt. \cite{14}
     Interne DSLs verwenden die Syntax einer GPL und kann über eine Programmierschnittstelle oder Bibliothek aufgerufen werden. \cite{14}
@@ -60,29 +66,28 @@
     \\
     \textbf{Visual Programming Language}\\
     \\
-    Das Hauptziel visueller Programmiersprachen (VPLs) besteht in der Verbesserung der Darstellung der Programmierlogik sowie in der Erleichterung des Verständnisses von Programmabläufen. \cite{13}
-    Dadurch soll der Fokus des Programmierens stärker auf konzeptuelle statt symtaktische Aspekte verlagern. Die syntaktischen Aspekte werden dabei von der Entwicklungsumgebung übernommen. \cite{10}
-    Die Umsetzung von Programmen erfolgt dabei durch die Möglichkeit, Programme in Form von Flussdiagrammen zu erstellen, die unmittelbar vom System interpretiert und ausgeführt werden können. \cite{12}
+    Visuelle Sprachen (VL) sind Sprachen, bei denen die Informationsdarstellung primär über grafische Elemente und nicht über textuelle Komponenten erfolgt. \cite{5}
+    Dabei werden hauptsächlich grafische Tools und visuelle Metaphoren verwendet. Bilder eignen sich besonders gut zum Programmieren, weil Bilder ausdruckstärker als Worte sind und haben einen höheren Wiedererkennungswert. Durch die eingeschränkte Syntax sind VLs nicht so flexibel und ausdruckstar wie Text-basierte Sprachen. \cite{16}\\
+    \\
+    Eine spezielle Form visueller Sprachen stellen die visuellen Programmiersprachen (VPL) dar, bei denen grafische Darstellungen gezielt für die Erstellung von Programmen genutzt werden.    
+    Das Hauptziel VPL besteht in der Verbesserung der Darstellung der Programmierlogik sowie in der Erleichterung des Verständnisses von Programmabläufen. \cite{13}
+    Dadurch soll der Fokus des Programmierens stärker auf konzeptuelle statt symtaktische Aspekte verlagert werden. Die syntaktischen Aspekte werden von der Entwicklungsumgebung übernommen. \cite{10}
+    Die Umsetzung von Programmen erfolgt durch die Möglichkeit, Programme in Form von Flussdiagrammen zu erstellen, die unmittelbar vom System interpretiert und ausgeführt werden können. \cite{12}
     Nach Charntaweekhun bieten Flussdiagramme einen didaktischen Vorteil, da sie es insbesondere Programmieranfängern ermöglichen, komplexe Abläufe visuell zu erfassen und zu strukturieren. \cite{12}
-    --------------------------------VPLs setzen dabei das Konzept der Visual Programming (VP). \cite{x} %TODO zitat finden welches das bestätigt.
-    Im Gegensatz zu GPLs, die eine freie textuelle Eingabe haben, verwenden VPLs nur eine begrenzte Menge an vordefinierten grafischen Elemente. Dadurch wird die Lesbarkeit erhöht und syntaktische Fehler reduziert.\cite{10}
+    Im Gegensatz zu GPLs, die eine freie textuelle Eingabe haben, verwenden VPLs nur eine begrenzte Menge an vordefinierten grafischen Elemente. Infolgedessen wird die Lesbarkeit erhöht und syntaktische Fehler reduziert.\cite{10}
     Die Klassifikation visueller Programmiersprachen unterscheidet zwischen imperativen und deklarativen Modellen. Ersteres gibt die exakte Reihenfolge der Operationen vor, während letzteres lediglich Datenabhänigkgieten spezifiziert und die Ausführungsreihenfolge dem System überlasst.\cite{21}
     Die stärken von VPLs liegen in ihrer Einfachheit, visuelle Darstellbarkeit, Transparenz und Interaktivität.\cite{13}
-    Die Mehrheit der VPLs basiert auf einem datenflussgesteuerten Ansatz, bei dem Programme durch den Fluss von Informationen zwischen Operatoren strukturiert werden. \cite{6}
+    Visuelle Programmiersprachen (VPLs) basieren überwiegend auf einem datenflussgesteuerten Modell, bei dem die Strukturierung von Programmen durch den Austausch von Informationen zwischen Operatoren erfolgt. \cite{6}
     Zusammengefasst kann man sagen, dass VPLs die Vorteile von Flussdiagrammen und nicht die Nachteile der klassischen Programmierung kombiniert. \cite{13}\\
-    \\
-    \textbf{Visual Languae}\\
-    \\
-    Visuelle Sprachen (VL) sind Programmiersprachen, bei denen die Informationsdarstellung primär über grafische Elemente und nicht über textuelle Komponenten erfolgt. \cite{5}
-    Dabei werden hauptsächlich grafische Tools und visuelle Metaphoren verwendet. Bilder eignen sich besonders gut zum Programmieren, weil Bilder ausdruckstärker als Worte sind und haben einen höheren Wiedererkennungswert. Durch die eingeschränkte Syntax sind VLs nicht so flexibel und ausdruckstar wie Text-basierte Sprachen. \cite{16}\\
     \\
     \textbf{Datenfluss-basierte Sprachen}\\
     \\
-    %Punkte von Jonston et. al erklären
-    Als Datenfluss-basierte Sprache (DL) wird eine Programmiersprache verstanden, bei der die Daten von zwischen Funktionnen weitergeleitet werden. Dabei werden Programme als Graphen dargestellt. \cite{11}
+    %Punkte von Jonston et. al erklären  und zyklisch/azyklisch
+    Als Datenfluss-basierte Sprache (DL) wird eine Programmiersprache verstanden, bei der die Daten zwischen Funktionnen weitergeleitet werden. Die Programme werden dabei als Graphen dargestellt. \cite{11}
     Der zugrunde liegende Programmgraph ist als gerichteter Graph (DG) definiert, wobei Funktionen als Knoten dargestellt werden, die durch gerichtete Kanten miteinander verbunden sind. Die Richtung der Kanten spiegelt die Datenabhängigkeiten wieder.\cite{2}
     Datenflussgraphen lassen sich hinsichtlich ihrer Granularität in feinkörnig und grobkörnig unterteilen. In einem feinkörnigen Graphen führt jeder Knoten extakt eine Instruktions aus, während grobkörnige Graphen mehrere Instruktionen pro Knoten ausführen können.\cite{1}
-    Zusätzlich lässt sich ein DG basierend auf der Zyklenstruktur in zyklisch und azyklisch unterteilen. \cite{8}
+    Neben der Granularität lässt sich ein Datenflussgraph auch in Zyklenstrukturen unterteilen. 
+    Dabei wird zwischen zyklisch und azyklisch unterschieden. \cite{8} %TODO begriffe kurz erklären
     DLs sind überwiegend funktional geprägt, aber können auch text-basiert sein. \cite{2}
     Der Vorteil einer DLs ist, dass diese durch einen Graphen dargestellt werden können \cite{11} und dadurch die Programme einfach zur verstehen sind. \cite{6}
     Für komplexe Programmen kann eine reine Graphendarstellung schnell unübersichtlich werden. Zur Struktuierung komplexer Programme werden Mikrofunktionen eingesetzt, bei denen einzelne Knoten auf untergeordnete Teilgraphen verweisen. Dadurch lassen dann auch rekursive Abläufe modellieren. \cite{11}    
@@ -91,20 +96,19 @@
 
     Johnston et. al beschreiben in ihrer Wissenschaftlichenarbeit eine Menge von Eigenschaften. So sollen DLs frei von Seiteneffekten sein, den Lokalitätsprinzip folgen und keine Variablen überschreiben.\cite{2}\\
     \\
-    \textbf{Datenfluss-basierte Systeme}\\
-    \\
+    Eine Computerarchitketur, die auf DLs basiert, wird Datenfluss-basiertea System (DFA) genannt.
+    DFS wurde eingeführt um den Flaschenhals der von-Neumann-Architektur zu vermeiden. \cite{8} %TODO überprüfen ob zittat wirklich von 8 kommt
+
+    Je nach Implementierung kann nur lokaler Speicher verwendet werden. \cite{8}
+    Bei den Ergebnissen erfolgt eine direkte Datenweitergabe zwischen Funktionen, wobei Transformation und Filterung integraler Bestandteil der Verarbeitung sind. \cite{15}
+
+    DFA-Systeme zeichnen sich durch eine hohe Effizienz, flexible Strukturen und leistungsstarke Ausführungsmechanismen aus. \cite{1}
+    Ein weiterer Vorteil besteht im möglichen Paralellismus. Da bei fehlender Datenabhängigkeit mehrere Insturktionen gleichzeitig ausgeführt werden können. \cite{1}
+    Innerhalb von DFA-System wird zwischen daten- und bedarfgetriebener Ausführung unterschieden. Ersteres führt die Funktionen aus, sobald alle benötigten Operanden vorhanden sind und ein Signal vorliegt. Hingegen bei der bedarfgetriebenen Ausführung die Funktion bereits ausgeführt wird, sobald die Operanden vorhanden sind. \cite{2}
+    Aus dem Grund kann die datengesteuerte Ausführung als Spezialfall einer bedarfsgesteuerten Ausführung angesehen werden, bei der ein Bedarf an allen Ergebnissen von vorneherein besteht. \cite{11}
     %TODO kurzer vergleich zu von neumann
     %BBS imperativen Programmierablauf, Datenfluss/Kontrollfluss
-    %übergang zwischen BBS und DFA flüssiger machen
     %lazy evaluation im zusammenhang mit bedarfgesteuert erklären
-    Datenfluss-basierte Systeme (DFA) ist eine Computerarchitektur, welche auf DLs basiert. 
-    Die DFA wurde eingeführt um den Flaschenhals der von-Neumann-Architektur zu vermeiden. Je nach Implementierung kann nur lokaler Speicher verwendet werden und die Funktionen können sofort aufgefürt werdne, sobald die Operanden zur verfügung stehen. \cite{8}
-    Bei den Ergebnissen erfolgt eine direkte Datenweitergabe zwischen Funktionen, wobei Transformation und Filterung integraler Bestandteil der Verarbeitung sind. \cite{15}
-    DFA-Systeme zeichnen sich durch hohe Effizienz, flexible Strukturen und leistungsstarke Ausführungsmechanismen aus. \cite{1}
-    Innerhalb von DFA-System wird zwischen daten- und bedarfgetriebener Ausführung unterschieden. Beim ersteren werden die Funktionen ausgeführt, sobald die Funktion alle benötigten Operanden hat und ein Signal bekommen hat. Hingegen beim zweiteren die Funktion schon ausgeführt wird, sobald alle Operanden vorhanden sind. \cite{2}
-    Die datengesteuerte Ausführung ist dabei ein Spezialfall der bedarfgesteuerten Ausführung, da hier bereits vorneherein ein Bedarf an allen Ergebnissen besteht. \cite{11}
-    Ein wesentlicher Vorteil datenflussbasierter Systeme besteht im möglichen Parallelismus, da mehrere Instruktionen gleichzeitig ausgeführt werden können, sofern keine Datenabhängigkeiten bestehen. \cite{1}\\
-    \\
     \newpage
     \section{Systemanalyse}
     In diesem Kapitel wird das System hinsichtlich seiner strukturellen und funktionalen Eigenschaften analysiert. 
