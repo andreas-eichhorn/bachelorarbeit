@@ -128,14 +128,19 @@
     %\end{grammar}
     %\textbf{Grammatik TODO} Backus-Naur-Form\\\\\\
     \label{BNF}
-    Grammatik lässt sich in 3 Ebenenunterteilen Prüfungslogik, Datenverarbeitung und Typsystem
-    Prüfungslogik führt Entscheidung im Prüfungsablauf aus und bestimmt die Reihenfolge der Aktionen. außerdem datenerfassung
-    Datenverarbeitung ist für die Datentranformation auswertung zustädnig. Also Funktionen, welche keine Nebeneffekte besitzen, weil sie unabhängig von der restoichen Softwareprüfung stattfinden.
-    Typsystem ermöglicht die statische analyse der ausführbarkeit
-    Softwareprüfung lääst sich visuall von zwei seiten betrachen. 
-    Einmal als Datenflussgraphen, indem Teil-Funktionen als Blöcke dargestellt werden und Funktionsparamter/Ergebnisse als Ports.
-    Einmal als Aktivitätsdiagramm, in dem nur Startzustand, Endzustände, Aktions- und Entscheidungsblöcke dargestellt.
-    Die folgende Zusammenfassung basiert auf der unveröffentlichen Arbeit von Westermann et al.
+    Die Grammatik der domainspezifischen Sprache lässt sich Formal in drei Ebenen unterteilen. 
+    Die oberste Ebene ist die Prüfungslogik, die mittlerste Ebene ist die Datenverarbeitung und die letzte Ebene ist das Typsystem. \cite{99}
+    Ersteres beschreibt die benötigten Aktionen und Entscheidungen für eine Prüfung. \cite{99}
+    Hingegen die Datenverarbeitung für die Definition von Datentranformationen zuständig ist und eine von mehreren Aktionstypen darstellt. \cite{99}
+    Im gegensatz dazu kümmert sich das Typsystem um die statische Analyse der Ausführbarkeit der vorangegangen Ebenen. \cite{99}
+    %Grammatik lässt sich in 3 Ebenenunterteilen Prüfungslogik, Datenverarbeitung und Typsystem
+    %Prüfungslogik führt Entscheidung im Prüfungsablauf aus und bestimmt die Reihenfolge der Aktionen. außerdem datenerfassung
+    %Datenverarbeitung ist für die Datentranformation auswertung zustädnig. Also Funktionen, welche keine Nebeneffekte besitzen, weil sie unabhängig von der restoichen Softwareprüfung stattfinden.
+    %Typsystem ermöglicht die statische analyse der ausführbarkeit
+    %Softwareprüfung lääst sich visuall von zwei seiten betrachen. 
+    %Einmal als Datenflussgraphen, indem Teil-Funktionen als Blöcke dargestellt werden und Funktionsparamter/Ergebnisse als Ports.
+    %Einmal als Aktivitätsdiagramm, in dem nur Startzustand, Endzustände, Aktions- und Entscheidungsblöcke dargestellt.
+    %Die folgende Zusammenfassung basiert auf der unveröffentlichen Arbeit von Westermann et al.
     
     \subsubsection{Prüfungslogik}
     Die in Abbildung TODO abgebildeten Regeln beschreib das Aktivitätsmodell, die der Prüfungslogik entspricht. \cite{99}
@@ -153,7 +158,7 @@
     Die letzte Aktionform, die Ausführung einer Datenverarbeitung, besteht aus einem Verweis auf einem FlowTemplate, gefolgt von einer Beschreibung der Eingaben, die für die Datenverarbeitung erforderlich sind, sowie einer Transformation, die beschreibt wie das Ergebnis weiterverwendet werden soll.    
     Die Beschreibung der Eingaben setzt sich aus den Symbolen ActivityPortValue und TemplateParameterValue zusammen.
 
-    Die Struktur eines Label wird durch eine Kombination aus einer Beschriftung, einer Farbe und einem Verweis auf eine Aktion beschrieben.
+    Die Struktur eines Label wird durch eine Kombination aus einer Beschriftung, einer Farbe und einem Verweis auf eine Aktion beschrieben.\\
     %Die Regel $<ActivityModel>$ beschreibt die Grundstruktur des Aktivitätsmodell und setzt sich aus $<Acitvity>$ und $<ActivityConnection>$ zusammen. 
     %$<Acitvity>$ sind dabei Aktivitäten und kann entweder eine Startmakierung ($<ActivityStart>$), ein Vergleich ($<ActivityCondition>$), eine Aktion ($<ActivityAction>$) oder ein Label ($<ActivityDisplay>$) sein.
     %$<ActivityConnection>$ hingegen definiert, welche Aktivtäten miteinander verbunden sind und setzt sich aus zwei Aktivitäten (ref(Acitvity source) und ref(Acitvity target)) und einer Beschriftung für die Kante ($<string label>$)
@@ -263,7 +268,7 @@
     Die in Abbildung TODO dargestellten Regeln definieren die Struktur einer Flow-Instanz. Dabei kann eine Flow-Instanz als konkreten Aufruf einer Funktion interpretiert werden. 
     Dabei legt Regel \textit{FlowInstance} fest, dass eine Flow-Instanz aus mehreren Eingabe- und Ausgabeports sowie einer Menge von Funktionen höherer Ordnung besteht.
     Der Aufbau einer Funktion höherer Ordnung umfasst wiederum zusätzliche Eingabe- und Ausgabeports.
-    Ein Port besteht aus einem Namen, gefolgt vom Datentyp des Ports und einem Wahrheitswert der Angibt ob an diesem Port Fehler erlaubt sind.
+    Ein Port besteht aus einem Namen, gefolgt vom Datentyp des Ports und einem Wahrheitswert der Angibt ob an diesem Port Fehler erlaubt sind.\\
     \begin{grammar}
         <FlowInstance> ::= <FlowOutputPort lambdaArguments>* <FlowInputPort lambdaArguments>* <FlowLambda>*
         
@@ -278,9 +283,10 @@
     %Ein Flow-Template ($〈FlowTemplate〉$) kann als abstrakte Oberklasse angesehen werden und besteht dabei aus einer Funktion ($〈Flow〉$) gefolgt von keiner oder mehreren Template-Parametern ($〈TemplateParameter〉$), welche Port- und Lambda-Definitionen generien können.
     %Eine Funktion kann dabei eine vom System bereitgestellte ($〈LibraryFlow〉$) oder eine vom Benutzer selbst definierte ($〈FlowModel〉$) sein.\\
     Ein Flowtemplate wird durch die in Abbildung TODO spezifierten Regeln beschrieben.
-    Das FlowTemplate wird dabei durch eine Funktion \textit{Flow} und eine Menge von TemplateParametern definiert. TODO 42
-    Bei den TemplateParameter wird zwischen einer Zeichenkette, Zahlen oder einem Wahrheitswert unterschieden.
-    Die Funktionen lassen sich in vordefinierte \textit{LibraryFlow} und eigene erstellten Funktionen \textit{FlowModel} unterteilen. 
+    Das FlowTemplate wird dabei durch eine Funktion \textit{Flow} und eine Menge von TemplateParametern definiert. 
+    Bei den TemplateParameter wird zwischen einer Zeichenkette, Zahlen oder einem Wahrheitswert unterschieden. 
+    Diese Parameter beeinflussen die automatische Generierung der Port-Struktur sowie der internen Verarbeitungslogik eines Flows. \cite{99}
+    Die Funktionen lassen sich in vordefinierte \textit{LibraryFlow} und eigene erstellten Funktionen \textit{FlowModel} unterteilen.\\
     \begin{grammar}
         <FlowTemplate> ::= <Flow> <TemplateParameter>*
 
@@ -292,7 +298,8 @@
         
         <TemplateParameterList> ::= <TemplateParameter>
     \end{grammar}
-    \textbf{Grammatik TODO} Flow-Template\\\\
+    \textbf{Grammatik TODO} Flow-Template\\
+    \\
     %Die vom System bereitgestellte Funktionen lassen sich dabei in eine von sieben Kategorien unterteilen: Hauptuntersuchungs-Adapter-Antworten, Zeichenkettenverarbeitung, Datum, Vergleichoperatoren, Konverter, Operatoren und Listenverarbeitung.\\\\
     %Das Flow-Model ($〈FlowModel〉$) ist, wie bereits erwähnt, die vom Benutzer selbst definierten Funktionen und besteht aus einer Flow-Instanz, gefolgt von mehreren möglichen Funktionen ($〈FlowNode〉$) und Verbindungen ($〈FlowConnection〉$).
     %Flow-Instanz bestimmt die Ein- und Ausgaben des Flow-Models.
@@ -303,7 +310,7 @@
     Die Regeln des FlowModel sind in Abbildung TODO formal dargestellt. Das FlowModel entspricht dabei der Datenverarbeitung. \cite{99}
     Durch die Regel \textit{FlowModel} wird bestimmt, dass ein FlowModel aus einer FlowInstance, einer Auflistung alle genutzen Flow-Node und definition der Verbindungen zwischen den Eingabe- und Ausgabeports.
     Bei den Flow-Node wird zwischen verweis auf Eingabeports, verweis auf Lambda-Funktionen, verweis auf Funktion mit Auflistung von Parametern oder verweis auf Ausgabeports unterschieden.
-    Bis auf das letztere haben alle Flow-Node die Möglichkeit ihre Eingabeports durch konstante Werte zu spezifizieren.
+    Bis auf das letztere haben alle Flow-Node die Möglichkeit ihre Eingabeports durch konstante Werte zu spezifizieren.\\
     \begin{grammar}
         <FlowModel> ::= <FlowInstance> <FlowNode>* <FlowConnection>*
 
@@ -325,10 +332,10 @@
     \end{grammar}
     \textbf{Grammatik TODO} Flow-Modell
     \subsubsection{Typsystem}
-    unterstüzt die gleichen Primitiv-Typen wie JSON-Format String, Number und Bool zusätzlich Date und PtiaResponse. Außerdem werden auch gernerische Typen unterstüztz, weil nicht immer von vorneherein der Typ bekannt ist.
-    Date ist eine Datumsangabe
-    PtiaResponse ist eine Antwort einer Hauptuntersuchungs-Anfrage
-    Diese Typen lassen sich an optionalen, Listen oder Objekt-Typen kapseln\\
+    In Abbildung TODO werden die Regeln des Typsystem dargestellt.
+    Das Typsystem unterstützt Primitive- und Generische-Datentypen, welche an einen Optional-Typen, Listen-Typen oder Objekt-Typen gekapselt werden können.
+    Als Primtiven-DatenTypen stehen String, Number und Bool zur Auswahl. Zusätzlich noch Data und PtiaResponse. 
+    Ersteres ist eine Datumsanagbe. Hingegen PtiaResponse die Antwort von einem Hauptunsersuchungs-Anfrage ist.\\
     \begin{grammar}
         <Type> ::= <TypePrimtive> | <TypeOptional> | <TypeList> | <TypeObject>
 
