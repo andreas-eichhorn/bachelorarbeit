@@ -138,13 +138,14 @@
     Die folgende Zusammenfassung basiert auf der unveröffentlichen Arbeit von Westermann et al.
     
     \subsubsection{Prüfungslogik}
-    Die in Abbildung TODO abgebildeten Regeln beschreiben das Aktivitätsmodell.
-    Zentral ist dabei die Regel TODO, welche festlegt, dass ein Aktivitätsmodell aus mehreren Aktivitäten und einer TODO besteht.
-    Die Regel TODO beschreibt die möglichen Aktivitäten innerhalb des Aktivitätsmodells. Dabei kann eine Aktivität entweder eine Startmarkierung, ein Vergleich, eine Aktion oder ein Label sein.
+    Die in Abbildung TODO abgebildeten Regeln beschreib das Aktivitätsmodell, die der Prüfungslogik entspricht. \cite{99}
+    Zentral ist dabei die Regel \textit{ActivityModel}, welche festlegt, dass ein Aktivitätsmodell aus mehreren Aktivitäten und Verbindungen besteht.
+    Die Verbindung referenziert dabei zwei Aktivitäten und hat auch eine Bezeichnung, die als TODO.
+    Die Regel \textit{Activity} beschreibt die möglichen Aktivitäten innerhalb des Aktivitätsmodells. Dabei kann eine Aktivität entweder eine Startmarkierung, ein Vergleich, eine Aktion oder ein Label sein.
     
     Ein Vergleich kann entweder ein Binärvergleich oder ein Validierungsvergleich sein.
-    Ersteres besteht dabei aus einem verweis auf einen Flowtemplate gefolgt von einem Operator und zwei Argumenten. Als Operatoren stehen $=$ und $\neq$ sowie Relationale Operatoren zur verfügung.
-    Der Validierungsvergleich hingegen besteht nur aus einer Sequenz von TODO.
+    Ersteres besteht dabei aus einer Referenz auf ein Flowtemplate, das eine Datenverarbetung ist, gefolgt von einem Operator und zwei Argumenten. Als Operatoren stehen $=$ und $\neq$ sowie Relationale Operatoren zur Verfügung.
+    Der Validierungsvergleich hingegen besteht nur aus einer Menge von TODO.
 
     Bei den Aktionen wird zwischen Hauptunsersuchungs-Adpater Anfragen, lesen von JSON-Dateien und Ausführung einer Datenverarbeitung unterschieden.
     Der Aufbau einer Hauptuntersuchungs-Adapter Anfrage umfasst dabei den Namen der auszuführenden Anfrage, eine Beschreibung, eine Liste mit anzusprechenden Systemen im Fahrzeug und eine maximale Ausführungsdauer.
@@ -259,8 +260,8 @@
     %Die Flow-Instanz ($〈FlowInstance〉$) kann als Funktion interpretiert werden und bildet eine oder mehrere Eingaben ($〈FlowOutputPort lambdaArguments〉$) auf eine oder mehrere Ausgaben ($〈FlowOutputPort  lambdaArguments〉$) ab.
     %Zusätzlich kann die Flow-Instanz aus einer oder mehreren Lamda-Definitionen ($〈FlowLamda〉$) beinhalten. Eine Lamda-Definition hat zusätzliche Eingaben und Ausgaben.
     %Die Ein- und Ausgaben bestehen dabei einem Namen  ($〈string name〉$) , gefolgt vom Typ  ($〈Typ〉$)  und einem boolean  ($〈bool acceptsError〉$) , welcher angibt ob Fehler akzeptiert werden oder nicht.\\
-    Die in Abbildung TODO dargestellten Regeln definieren die Struktur einer Flow-Instanz.
-    Dabei legt Regel TODO fest, dass eine Flow-Instanz aus mehreren Eingabe- und Ausgabeports sowie aus Funktionen höherer Ordnung besteht.
+    Die in Abbildung TODO dargestellten Regeln definieren die Struktur einer Flow-Instanz. Dabei kann eine Flow-Instanz als konkreten Aufruf einer Funktion interpretiert werden. 
+    Dabei legt Regel \textit{FlowInstance} fest, dass eine Flow-Instanz aus mehreren Eingabe- und Ausgabeports sowie einer Menge von Funktionen höherer Ordnung besteht.
     Der Aufbau einer Funktion höherer Ordnung umfasst wiederum zusätzliche Eingabe- und Ausgabeports.
     Ein Port besteht aus einem Namen, gefolgt vom Datentyp des Ports und einem Wahrheitswert der Angibt ob an diesem Port Fehler erlaubt sind.
     \begin{grammar}
@@ -272,12 +273,14 @@
 
         <FlowOutputPort> ::= <string name> <Type> <bool producesError>
     \end{grammar}
-    \textbf{Grammatik TODO} Flow-Instanz\\\\
+    \textbf{Grammatik TODO} Flow-Instanz\\
+    \\
     %Ein Flow-Template ($〈FlowTemplate〉$) kann als abstrakte Oberklasse angesehen werden und besteht dabei aus einer Funktion ($〈Flow〉$) gefolgt von keiner oder mehreren Template-Parametern ($〈TemplateParameter〉$), welche Port- und Lambda-Definitionen generien können.
     %Eine Funktion kann dabei eine vom System bereitgestellte ($〈LibraryFlow〉$) oder eine vom Benutzer selbst definierte ($〈FlowModel〉$) sein.\\
     Ein Flowtemplate wird durch die in Abbildung TODO spezifierten Regeln beschrieben.
+    Das FlowTemplate wird dabei durch eine Funktion \textit{Flow} und eine Menge von TemplateParametern definiert. TODO 42
     Bei den TemplateParameter wird zwischen einer Zeichenkette, Zahlen oder einem Wahrheitswert unterschieden.
-    Ein Flow kann dabei eine eigene erstelle Funktion sein oder eine vordefinierte Funktion.
+    Die Funktionen lassen sich in vordefinierte \textit{LibraryFlow} und eigene erstellten Funktionen \textit{FlowModel} unterteilen. 
     \begin{grammar}
         <FlowTemplate> ::= <Flow> <TemplateParameter>*
 
@@ -297,8 +300,8 @@
     %$〈FlowNodeInput〉$ besteht aus einem Verweis an einem Verweis an einer Portdefinition, gefolgt von $〈FlowPortValue〉$. Hingegen $〈FlowNodeOutput〉$ nur aus einer Portdefinition besteht.
     %Die $〈FlowConnection〉$ wird durch zwei Verweise definiert.
     %$〈FlowPortValue〉$ bietet dabei die Möglichekit konstante Werte an die Eingabeports anzulegen.
-    Die Regeln des FlowModel sind in Abbildung TODO formal dargestellt.
-    Durch die Regel TODO wird bestimmt, dass ein FlowModel aus einer FlowInstance, einer Auflistung alle genutzen Flow-Node und definition der Verbindungen zwischen den Eingabe- und Ausgabeports.
+    Die Regeln des FlowModel sind in Abbildung TODO formal dargestellt. Das FlowModel entspricht dabei der Datenverarbeitung. \cite{99}
+    Durch die Regel \textit{FlowModel} wird bestimmt, dass ein FlowModel aus einer FlowInstance, einer Auflistung alle genutzen Flow-Node und definition der Verbindungen zwischen den Eingabe- und Ausgabeports.
     Bei den Flow-Node wird zwischen verweis auf Eingabeports, verweis auf Lambda-Funktionen, verweis auf Funktion mit Auflistung von Parametern oder verweis auf Ausgabeports unterschieden.
     Bis auf das letztere haben alle Flow-Node die Möglichkeit ihre Eingabeports durch konstante Werte zu spezifizieren.
     \begin{grammar}
