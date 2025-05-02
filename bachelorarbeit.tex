@@ -662,22 +662,28 @@
     \newpage
     \section{Evaluation}
     \label{Evaluation}
-    \subsection{1. Lösungsansatz}
-    +einfach zu implementieren, da wir kein schleifenkonstrukt mehr benötigen.
-    +keine Endlosschleife, weil es keine Schleifen gibt
-    +keine Zyklen, weil der Ablauf linear ist
-    +weniger Sprünge, weil keine for oder while Bedingungen vorhanden sind
-    +möglicher Performance gewinn, weil Schleifen-Overhead entfällt
-    -größerer Codeumfang, da der eigentliche schleifenkörper a-mal im code implemtniert werden muss 
-    -höherer verbraucht an ressourcen zB Speicher mehr code = mehr speicher
-    -möglicherweise ineffizient, wenn der faktor zu groß gewählt wird
-    -schlechtere Lesbarkeit
-    -wenn bereits nach 3 durchlaufen feststeht, dass das gewünschte ergbeniss nicht mehr erreicht werden kann werden trotzdem die restlichen schritte ausgeführt
-    \subsection{2. Lösungsansatz}
-    +keine Endlosschleife, weil maximale Schleifendurchläufe begrenzt sind.
-    +
-    -azyklisches verhalten wird verletzt, weil schleifenkonstrukt benötigt wird
-    -
+    Das Programm wurde auf einem System mit einem AMD Ryzen 5 2600 mit 6 Kernen und einer Taktrate 3400MHz ausgeführt. Als Arbeitsspeicher waren 2-Mal 8GB eine TODO eingebaut. 
+    Als Betriebssystem war Windows 10 in der Version 10.0.19045 BUild 19045 installiert. Als Laufzeitumgebung wurde dotnet 8 einesetzt.\\
+    \\
+    Zur messen der Ausführungszeit wurde die Klasse Stopwatch verwendet, die eine Menge an Methoden und Eigenschaften bereitstellt um verstrichene Zeit zu messen.
+    Hingegen zum messen des Speicherverbrauchs die Klasse GC verwendet wird, die eine Menge von Methoden und Eigenschaften bereitstellt um Speicher zu verwalten.
+    GC hat nicht die Möglichkeit sofort den Speicherverbrauch zu messen, aber mithilfe der Methode get
+    %\subsection{1. Lösungsansatz}
+    %+einfach zu implementieren, da wir kein schleifenkonstrukt mehr benötigen.
+    %+keine Endlosschleife, weil es keine Schleifen gibt
+    %+keine Zyklen, weil der Ablauf linear ist
+    %+weniger Sprünge, weil keine for oder while Bedingungen vorhanden sind
+    %+möglicher Performance gewinn, weil Schleifen-Overhead entfällt
+    %-größerer Codeumfang, da der eigentliche schleifenkörper a-mal im code implemtniert werden muss 
+    %-höherer verbraucht an ressourcen zB Speicher mehr code = mehr speicher
+    %-möglicherweise ineffizient, wenn der faktor zu groß gewählt wird
+    %-schlechtere Lesbarkeit
+    %-wenn bereits nach 3 durchlaufen feststeht, dass das gewünschte ergbeniss nicht mehr erreicht werden kann werden trotzdem die restlichen schritte ausgeführt
+    %\subsection{2. Lösungsansatz}
+    %+keine Endlosschleife, weil maximale Schleifendurchläufe begrenzt sind.
+    %+
+    %-azyklisches verhalten wird verletzt, weil schleifenkonstrukt benötigt wird
+    %-
     \newpage
     \renewcommand{\refname}{}
     \section{Literaturverzeichnis}
