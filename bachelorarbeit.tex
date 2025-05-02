@@ -662,12 +662,15 @@
     \newpage
     \section{Evaluation}
     \label{Evaluation}
-    Das Programm wurde auf einem System mit einem AMD Ryzen 5 2600 mit 6 Kernen und einer Taktrate 3400MHz ausgeführt. Als Arbeitsspeicher waren 2-Mal 8GB eine TODO eingebaut. 
+    Das Programm wurde auf einem System mit einem AMD Ryzen 5 2600 mit 6 Kernen und einer Taktrate 3400MHz ausgeführt. Als Arbeitsspeicher waren 2-Mal 8GB DDR4 mit einer DRAM Frequenz von 1065 MHz eingebaut. 
     Als Betriebssystem war Windows 10 in der Version 10.0.19045 BUild 19045 installiert. Als Laufzeitumgebung wurde dotnet 8 einesetzt.\\
     \\
     Zur messen der Ausführungszeit wurde die Klasse Stopwatch verwendet, die eine Menge an Methoden und Eigenschaften bereitstellt um verstrichene Zeit zu messen.
+    Mithilfe der Methoden \textit{Start()} und \textit{Stop()} lässt sich die Stopuhr starten beziehungsweise beenden. Mit der Eigenschaft \textit{ElapsedMilliseconds} lässt sich dann die gemessene Zeit der aktuellen Instanz als long ausgeben.\par
     Hingegen zum messen des Speicherverbrauchs die Klasse GC verwendet wird, die eine Menge von Methoden und Eigenschaften bereitstellt um Speicher zu verwalten.
-    GC hat nicht die Möglichkeit sofort den Speicherverbrauch zu messen, aber mithilfe der Methode get
+    GC hat nicht die Möglichkeit sofort den Speicherverbrauch zu messen, aber mithilfe der Methode \textit{GetTotalMemory()} kann der Speicherverbraucht indirekt berechnet werden.
+    \textit{GetTotalMemory()} gibt nämlich die Heapgrößen ohne Fragmentierung zurück. 
+    Wird die Methode vor und nach einer Funktion aufgerufen und die Differenz aus den beiden Zahlen gebildet, dann hat man Speicherverbrauch der Funktion.
     %\subsection{1. Lösungsansatz}
     %+einfach zu implementieren, da wir kein schleifenkonstrukt mehr benötigen.
     %+keine Endlosschleife, weil es keine Schleifen gibt
