@@ -368,24 +368,20 @@
     \textbf{Datenverarbeitung}\\
     \\
     %einfügen,dass nach pull-ansatz gearbeitet wird
-
-    Die Ausführung der Datenverarbeitung erfolgt auf Grundlage einer Execute-Funktion, die für die Berechnung der Ausgabeport zuständig ist.
-    Diese Funktion nimmt als Parameter eine Evaluate-Funktion und Template-Parameter.
-    Bei Funktionen, die vom System bereitgestellt werden, wird die Execute-Funktion von der Hilfeklasse IExectuibCibtext bereitgestellt und die Execute-Funktion wird direkt in die FUnktion implentiert.
-
-    Die Hilfsklasse stellt die Evaluate-Funktion bereit und speichert die Werte der Ausgabeports.
-    Das Ziel der Implentierung ist es die Abhängigkeiten zwischen Eingabe- und Ausgabeports herzustellen. Untersützt wird sie dabei von der Klasse RunetimeContext.
+    %funktion zuständig für die berechnung der ausgabeports
+    Die Ausführung der Datenverarbeitung basiert auf einer Execute-Funktion, die zur ausführung die Template-Parameter und eine Evaluate-Funktion benötigt.
+    Für die vom System bereitgestellten Funktionen wird die Execute-Funktion direkt in Code implentiert. 
+    Die Implementierung nutzt eine Hilfsklasse, die die Evaluate-Funktion bereitstellt und gleichzeitig die Werte der Ausgabeports speichert.
+    Zudem muss die Implementierung sicherstellen, dass der Datenfluss zwischen Eingabe- und Ausgabeports korrekt hergestellt wird. Um dies zu gewährleisten, stellt die Klasse RuntimeContext gewisse Hilfsmethoden zur Verfügung.
     
-    Ein wichtiger Bestandteil der Datenverarbeitung ist der Ergebniscache. Der Ergebniscache speichert die Werte der Ausgabeports.
-    Wird ein Wert für einen Eingabeport gesucht, erfolgt zunächst die Suche nach dem zugehörigem InputNode sowie der entsprechenden eingehen Kante. 
-    Anschließend wird geprüft, ob für den mit der Kante verbundene Ports ein Wert im Ergebniscache vorleigt.
-    Ist dies nicht der Fall sein, wird die Funktion ausgeführt und der Wert für den Ausgabeport im Ergebniscache gespeichert.
+    Eine wichtige Komponente der Datenverarbeitung ist der Ergebniscache. Im Ergebniscache werden die Werte der Ausgabeports gespeichert.
+    Wird ein Wert für einen Eingabeport benötigt, so wird zunächst die Suche nach dem zugehörigem InputNode sowie der entsprechenden eingehen Kante. 
+    Anschließend wird geprüft, ob für den Ausgabeport, der mit der Kante verbunden ist, ein Wert im Ergebniscache vorliegt.
+    Ist dies nicht der Fall, wird die Funktion des Knotens ausgeführt und der Wert für den Ausgabeport im Ergebniscache gespeichert.\\
     Nicht nur für die normalen Funktion spielt der Ergebniscache eine große Rolle, sondern auch für die Lambda-Funktionen.
-    
-    
-    Auch bei der Ausführung von Lambdas spielt der Ergebniscache eine große Rolle. Sobald ein Wertes für ein Eingabeport benötigt werden, werden die Ergebnisse der dazugehörigen Ausgabeports in den Ergebiscache geschrieben 
-    und alle Funktionen die im Kind-verhältnis stehen invalidiert, indem die Ergebnisse im Ergebniscache gelöscht werden.
-    Anschließend kann die Berechnung des gesuchten Wertes beginnen, indem der grade beschriebene Algorithmus angewendet wird.\\
+    Wenn ein Wert für einen Eingabeport einer Lambda-Funktion benötigt wird, wird zunächst der Wert der Ausgabeports, falls vorhanden, in dem Ergebniscache gespeichert.
+    Im Anschluss daran wird für alle Funktionen, die im Kind-verhältnis zur Lambda-Funktion stehen, das Ergebnis im Ergebniscache invalidiert, indem das Ergenis aus dem Ergebniscache gelöscht wird.
+    Anschließend wird der oben beschriebene Algortihmus verwendet, um die Werte für die Eingabeport der Lambda-Funktion zu berechnen.
 
     Als erstes werden alle Referenzen auf Flow-Templates aufgelöst, damit wir die Flow-Instanz erhalten. Sobald die Flow-Instanz erstellt ist, ist bekannt, welche Ports und Lambdas bei dem Funktions-Aufruf existieren und es werden Objektreferenzen zwischen den Ports erstellt.
     Die Objektreferenzen sollen die Modell Analyse erleichtern und beeinhalten Informationen über die Verbindung.
@@ -395,13 +391,16 @@
     Im Anschluss werden die Ports des Flow-Modells überprüft und versucht die generischen Typen aufzulösen. Gernerische Typen, welche nicht aufgelöst werden konnten, werden dann beim Flow-Aufruf aufgelöst. Vorausgesetzt die nicht zu auflösenden Typen sind Teil der Argumente und Ergbenisports des Flow-Models.
     Abschließend werden die Verbindungen von Flow-Ports validiert, indem diese auf Zuweisungskompatiblität überprüft werden, bei den übrig gebliebenen generischen Typen kommt es zu keinen Problemen, weil generische Typen in beide Richtungen zuweisungskopatibel sind.
 
-    Sobald die Prüfungs abgeschlossen ist, kann mit der Port-Fehler Überprüfung begonnen werden.
-    Dafür muss erneut eine Sortierung vorgenommen werden. Es werden zuerst die Abhängigkeiten einer Flow-Node vor der Flow-Node überprüft.
-    Bei der Port-Fehler Überprüfung werden die Eingabeports und deren Verbidnung validiert.
-    Bei der Validierung wird geschaut, ob am dem dazugehörigen Ausgabeport ein Fehler vorliegt. Sollte das der Fall sein und der Eingabeport akzeptiert keine Fehler, dann muss der Fehler propagiert werden.
-    In dem Fall würde beim Eingabeport ein Fehler auftreten und der Flow-Node würde nicht ausgeführt werden. Außerdem würde der Fehler an die dazugehörigen Ausgabeports weitergegebn.
-    Um dies zu verhindern TODO.
+    Als erstes muss eine Sortierung der Funktionen stattfinden, dabei werden zuerst die Abhängigkeiten der Funktion überprüft.
+    Nachdem die Sortierung abgeschlossen ist, werden die Verbindungen auf Port-Fehler überprüft. Falls der Ausgabeport ein Fehler projeziert verursucht und der Verbundene Eingabeport keinen Fehler verarbeiten, dann gibt die Funktion des Eingabeports nicht ausgeführt und die Funktion gibt den Fehler als Ergebniss aus.
 
+    Um zu überprüfen ob das Aktivitätsmodell valide ist, wird ein Typen-Referenzstack verwendet.
+    Dabei wird das ganze Modell durchlaufen und für jede Aktivität der Stack berechnet.
+    Bei der Berechnung wird die Schnittmenge über den Referenzstack der direkten Vorgänger Aktivitäten gebildet.
+    Im Anschluss wird der Stack durch die auszuführende Aktivität erweitert.
+    Zum Beispiel erweitert eine Aktionsaktivtät den Stack um einen Typen. 
+    Hingegen Entscheidungsaktivität Einträge bearbeiten oder präzisieren können. Beispielweise werden bei einer erfolgreichen Validierungsentscheidung die betroffenden Typen im Stack konkretisiert. Dadurch sollen die Optionalen-Typ entfernt werden.
+   
     Im Anschluss können dann die Nodes validiert werden. 
     Bei der Validierung wird geprüft ob das Argument $〈bool acceptsError〉$ der $〈FlowNodeInput〉$ den gleichen Wert wie der Refenzierte $〈FlowInputPort〉$ hat. Ist das nicht der Fall wird eine Fehlermeldung für das Flow-Modell ausgegeben.
     \subsection{Codeanalyse}
