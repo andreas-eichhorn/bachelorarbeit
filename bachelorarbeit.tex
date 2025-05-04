@@ -500,12 +500,45 @@
     Als Grundlage für dieses Kapitel werden die vorangegangen Kapitel dienen insbesondere Kapitel TODO.
     Das Ziel ist es die Implementierung verständlich und nachvollziehbar zu machen.\\
     \\
+    %Block A
+    Zur umsetzung der Wiederholungslogik im Block wurde eine Klasse definiert.
+    Dabei handelt es sich um die Klasse ActivityLoopUnrollingResolver.
+    Ziel der Klasse ist es Schleifen zu identifizieren und diese durch den in Kapitel TODO beschriebenen Algorithmus aufzulösen. 7
+    Zur Umsetzung dieser Funktionalität hat die Klasse sieben Methoden UnrollLoop, getLoopActivities, visited, getLoopElements, cloneAndModify, DeepClone und clone.\\
+    \\
+    Die Methode visited ist für die Tiefensuche im Graphen zuständig.
+    Dazu wird vom jeden Knoten aus geschaut, ob es eine Verbindung gibt.
+    Gibt es eine Verbindung wird überprüft, ob diese Verbindung die Rückverbindung der Schleife ist. 
+    Ist das der Fall wird die Verbindung übersprungen und ansonsten dem Set mit allen Verbindungen hinzugefügt.
+    Im Anschluss wird die Funktion rekursiv für die Nachfolgenden Knoten aufgerufen.\\
+    \\
+    Die Methode getLoopElements übernimmt die TODO. 
+    Dafür wird über das Set, welches in der Methode visitied erstellt wurden ist, iteratiert und für jedes Element aus dem Tupel das dazugehörige Object aus der Liste aller Elementen selektiert.
+    Die zwei selektieren Elemente werden dann wieder als Tupel in ein Set gespeichert, welches am Ende auch als Rückgabewert der Methode dient.\\
+    \\
+    Die Methode clone TODO ist für das Klonen der Elemente zustädnig. Dazu wird das übermittelte Object in JSON serialisiert und anschließend deserialisiert.
+    Dadruch entsteht eine exakte Kopie vom übermittelten Objekt.
+    Als Rückgabewert der Hilfsmethode wird das kopierte Objekt zurückgegeben.\\
+    \\
+    Die Methode cloneAndModify ist für das Klonen der erkannten Schleifenelemente zuständig.
+    Um dies zu realisieren steht der Methode ein Set für die geklonten Elemente zur verfügung.
+    Zunächst wird über das Set der Objekte iteratiert und dort für Item aus dem Tupel eine Kopie mithilfe der Methode clone erstellt.
+    Anschließend werden die Kopien wieder als Tupel in das Set für die geklonten Elemente hinzugefügt.\\
+    \\
+    Die letzte Methode ist clone die die Kopie erstellt und notwendigen Änderungen am geklonten Objekt vornimmt.
+    Dafür wird als erstes überprüft, um welche Aktivität es sich bei dem übergebenen Element genau handelt.
+    Sobald dies feststeht, wird eine Kopie mithilfe der Methode DeepClone erstellt.
+    Anschließend wird die Id des kopierten Objekts um einen Suffix erweitert.
+    Als nächstes werden die Verbindungen überprüft. 
+    Existiert eine Verbindung wird diese auch um den gleichen Suffix erweitert.\\
+    \\ 
     %TODO parameter erwähnen ja oder oder nein?
     %Die Funktionalität der Klasse wird durch die drei Methoden calcute, calculateMean und isDeviationWithinThreshold realisiert.
+    %Block B
     Zur umsetzung der Wiederholungslogik im Block B wurden vier Klassen definiert.
     Dabei handelt es sich unter anderem um die Klasse DeviationChecker, die in Abbildung TODO dargestellt ist.\\
     Ziel der Klasse ist es den Mittelwert zu berechnen und die Differenz zum aktuellen Wert auf ihren Schwellenwertüberschreitung hin zu überprüft.
-    Zur Umsetzung dieser FUnktionalität hat DeviationChecker eine Mittelwert-Variable vom Datentyp Double sowie die drei Methoden calcute, calculateMean und isDeviationWithinThreshold.\\
+    Zur Umsetzung dieser Funktionalität hat DeviationChecker eine Mittelwert-Variable vom Datentyp Double sowie die drei Methoden calcute, calculateMean und isDeviationWithinThreshold.\\
     \\
     Die Methode calculateMean übernimmt die Berechnung des aktuellen Mittelwerts, indem über die Liste der Eingaben iteriert wird und diese aufsummiert werden.
     Der berechnete Summenwert wird durch TODO geteilt und anschließend als Rückgabewert zurückgegeben.\\
