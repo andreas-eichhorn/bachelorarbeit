@@ -524,8 +524,17 @@
     Zunächst wurde Klasse DataModelActivityElement um das Attribute \textit{CanCreateLoop} vom Datentyp bool erweitert. Bei dieser Klasse handelt es sich um die Basisklasse aller Aktivitäten.
     Das Attribut soll als Kennzeichnung dienen, um anzuzeigen ob der User die Möglichkeit hat von dem Block ausgehend eine Rückverbindung einzuzeichnen. Aus dem Grund war das Attribut für alle Aktivitäten bis auf die Schleife false.
     Da das System keine Schleifen am Anfang unterstützt hat, musste für die Schleife eine Klasse erstellt werden.
-    Bei der Klasse handelt es sich um DataModelActivityElementLoop, die als Grundlage für die Datenspeicherung genutzt wird  und für die Ausführung. TODO
-    Die Klasse ActivityPortLabels, die die Label für die Ports beinhaltet, wurde durch die strings OnLoop und OnFinish erweitert. 
+    Bei der Klasse handelt es sich um DataModelActivityElementLoop, die als Grundlage für die Datenspeicherung und für die Ausführung genutzt wird.
+    %TODO klasse nochmals anschauen; änderungen sind geplant
+    Der Klasse stehen zwei Variablen für die Ausgänge und eine Variable für die Anzahl der Iterationen. 
+    Für die Variablen stehen jeweils noch getter und setter als Methoden zur verfügung, damit die Werte gesetzt und ausgelesen werden können.
+    Zusätzlich stehen der Klasse durch die Veerbung die Methoden und Variablen der Basisklasse DataModelActivityElement zur verfgügung.
+    Die Klasse ActivityPortLabels, die die Label für die Ports beinhaltet, wurde durch die strings OnLoop und OnFinish erweitert.
+    
+    Klasse VirtualMachineCompilerActivity zuständig für die Kompilierung der Aktivitäten. Es müsste ein Statement für die Schleife erstellt werden.
+    Dieses Statement wird in der Klasse VirtualMachineActivity ausgeführt.
+    Damit dies Funktioniert
+    
     Die in diesem Absatz beschriebenen Änderungen wurden durch Westermann implementiert.\\
     \\
     %Block A
@@ -573,6 +582,11 @@
     Anschließend wird die Id des kopierten Objekts um einen Suffix erweitert.
     Als nächstes werden die Verbindungen überprüft. 
     Existiert eine Verbindung wird diese auch um den gleichen Suffix erweitert.
+    Die Ausnahme dafür bilden die Verbindungen des Schleifenblocks.
+    Hier wird an der Verbindung, die aus der Schleife führt, keine Änderung vorgenommen, weil an den Verbindungen nachdem Schleifenrumpf keine Veränderungen vorgenommen werden.
+    Und die eigentliche Rückverbindung muss auf das erste Elemente der Kopie verweisen. 
+    Dafür muss die Verbindung des Urbilds geändert werden.
+    Anders gesagt, das Suffix muss an die Verbindung des Urbilds drangehangen werden statt an der Kopie.
     Durch das anhängen des Suffix wird eine eindeutige TODO geschaffen, außerdem bleibt die ursprüngliche Struktur des Schleifenrumpf erhalten.\\
     \\ 
     %TODO parameter erwähnen ja oder oder nein?
@@ -625,18 +639,23 @@
     Dafür wird zunächst der Index des letzten Elements aus der Liste bestimmt und anschließend die Abweichungsberechnung über die Methode calcute der Klasse DeviationChecker durchgeführt.
     Liegt eine signifikante Abweichung vor wird der Zähler resetet. Ist hingegen keine Abweichung vorhanden wird der Zähler dekremntiert.\\
     \\
-    Damit Zyklen übern den Schleifenblock erlaubt sind und es zu keinen Fehler kommt, muss die Zylkenüberprüfung angepasst werden.
-    Wie die Zylkenüberprüfung funktioniert wurde bereits in Kapitel TODO beschrieben.
-    Die Änderung am diesem Algorithmus muss an der Stelle stattfinden an der die TODO.
-    Hier muss bevor TODO geschaut werden ob der Root der Schleifenblock ist.
-    Ist dies der Fall Fall wird der Funktionsaufruf übersprungen.
-    Dadurch wird für die Rückverbindung kein ComponentEntry erstellt bei dem root und element ungleich snd. 
-    So eine Kombinantion führt nämlich im weiteren Verlauf dazu, dass ein Eintrag im Fehler Dicentario erstellt wird und dadurch Rückführung ungültig ist.    
-    Da der Algorithmus die einzelnen Knoten über IDs identifiziert, muss eine Liste erstellt werden, welche alle IDs der Schleifenblöcke beeinhaltet. 
-    Bei der überprüfung wird nun geschaut ob die ID des roots in der Liste ist. 
-    Ist der Root in der Liste handelt es sich um einen Schleifenblock. 
-    Um eine Liste mit den IDs zu erstellen, kann eine Kombination aus den Methoden where und select und kommen aus der statischen Klasse Enumerable im Namensraum System.Linq. 
-    Durch where wird TODO gefildert und mit select wird die gefilderte TODO projektiert.
+    Um Zyklen in der Prüfung zu erlauben, ist eine Anpassung der Zyklenprüfung erforderlich.
+    Die Funktionsweise der Zyklenprüfung wurde bereits im Kapitel TODO beschrieben.
+    Eine Änderung muss am Anfang der Methode \textit{ComponentAnalysis()} vorgenommen werden.
+    Hier muss bei der Iteration über alle Elemente jede Id in ein Set gespeichert werden, das ein Schleifenblock ist.
+    Die andere Änderung muss in der Methode \textit{AssignToComponent()} erfolgen.
+    Konkret an der Stelle an der über die Vorgängerelemente iteriert wird.
+    Dort müssen vor dem reksuriven Methoden Aufruf zwei Bedingungen überprüft werden.
+    Erstens ob das Vorgängerelement ein Schleifenblock ist.
+    Dies geschieht, indem geschaut wird, ob die Id des Vorgängerelements in dem Set vorkommt. 
+    Wenn dies der Fall ist, handelt es sich bei dem Vorgängerelement um einen Schleifenblock.
+    Zweitens ob das Element und das Vorgängerelement die gleichen Elemente sind.
+    Dies kann überprüft werden indem die beiden Elemente auf gleichheit überprüft werden.
+    Wenn beide Bedingungen erfüllt sind, handelt es sich um die Rückverbindung der Schleife. 
+    In diesem Fall darf die Methode \textit{AssignToComponent()} nicht aufgerufen werden, sondern muss übersprungen werden.
+    Wenn die Methode nicht übersprungen wird, wird die Verbindung in das Dictionary aufgenommen, was im späteren Verlauf des Algorithmus zu einem Fehler führen würde.
+    Durch diese beiden Änderungen ist es nun möglich, ausgehende Schleifen vom Schleifenblock aus zu erzeugen, ohne dass ein Fehler entsteht.
+    Ausgehende Schleifen von anderen Aktivitäten aus sind weiterhin nicht erlaubt.
     %\subsection{1. Lösungsansatz}
     %Schleife soll durch ein Schleifenkonstruktor dargestellt werden.
     %Prüfungslogik muss eine weitere Aktivitätsaktion erweitert werden. Das Schleifenkonstrukt greift dabei auf bereits vorhandene Regeln der Prüfungslogik zu.
