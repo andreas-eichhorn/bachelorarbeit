@@ -6,12 +6,11 @@
 \usetikzlibrary{automata, positioning}
 
 \begin{document}
-    %Fachlexikon für definition verwenden
     \newpage
     \tableofcontents
-    %Einleitung
     \newpage
     \section{Einleitung}
+    %TODO erwähnen wie viele quellen gesichtet wurden sind
     In diesem Kapitel wird in kürze erläutert was die Motivation und Aufgabe der Bachelorarbeit ist.
     Im Anschluss daran werden sich andere Systeme angeschaut und erklärt, wie diese das Problem lösen.
     Anschließend wird ein kurzen Überblick über die kommenden Kapitel gegeben.
@@ -105,16 +104,31 @@
     DFA-Systeme zeichnen sich durch eine hohe Effizienz, flexible Strukturen und leistungsstarke Ausführungsmechanismen aus. \cite{1}
     Ein weiterer Vorteil besteht im möglichen Paralellismus. Da bei fehlender Datenabhängigkeit mehrere Insturktionen gleichzeitig ausgeführt werden können. \cite{1}
     Innerhalb von DFA-System wird zwischen daten- und bedarfgetriebener Ausführung unterschieden. Ersteres führt die Funktionen aus, sobald alle benötigten Operanden vorhanden sind und ein Signal vorliegt. Hingegen bei der bedarfgetriebenen Ausführung die Funktion bereits ausgeführt wird, sobald die Operanden vorhanden sind. \cite{2}
-    Aus dem Grund kann die datengesteuerte Ausführung als Spezialfall einer bedarfsgesteuerten Ausführung angesehen werden, bei der ein Bedarf an allen Ergebnissen von vorneherein besteht. \cite{11}
+    Aus dem Grund kann die datengesteuerte Ausführung als Spezialfall einer bedarfsgesteuerten Ausführung angesehen werden, bei der ein Bedarf an allen Ergebnissen von vorneherein besteht. \cite{11}\\
+    \\
     %TODO kurzer vergleich zu von neumann
     %BBS imperativen Programmierablauf, Datenfluss/Kontrollfluss
     %lazy evaluation im zusammenhang mit bedarfgesteuert erklären
+    \textbf{Wasserfall Modell}\\
+    \\
+    %TODO phasen auflisten und erklären, phasen können je nach variation unterscheiden
+    Das Wasserfallmodell ist ein Modell für Softwareentwicklung \cite{24} und wurde 1970 eingeführt. \cite{25} Die Softwareentwicklung wird dabei in verschiedene voneinander getrennte Phasen unterteilt. \cite{22} 
+    Es handelt sich beim Wasserfallmodell um ein statisches Modell, da die einzelnen Phasen linear und sequentiell durchlaufen werden. \cite{22} 
+    Sobald eine Phase abgeschlossen ist, kann diese nicht wieder besucht werden. \cite{22} 
+    Aus dem Grund ist das Modell besonders für Systeme geeignet, welche nach der Implementierung keine Änderungen mehr zulassen \cite{22}. 
+    Die Vorteile eines Wasserfallmodells sind, dass es einfach verständlich ist \cite{22}, die Anforderungen an das System bereits vor der Entwicklung bekannt sind und es einfach zu implementieren ist. \cite{23} 
+    Andersseits können sich ändernde Anforderungen oder auftretende Probleme während der Entwicklung nicht berücksichtigt werden. \cite{23} 
+    Da das Wasserfallmodell bereits einige Jahre sich bewährt hat, gibt es einige Änderungen am klassichen Wasserfallmodell. 
+    So beschreibt TODO (24) in seinem Artikel eine Änderung am Modell so, dass die einzelnen Phasen einer sorgfältigen Validierung und Bestätigung seitens des Clients benötigen um die Phase abzuschließen. 
+    Sollte der Client mit dem Ergebnissen nicht zufrieden sein, so kann das Modell wieder von vorne beginnen. \cite{24} 
+    In anderen Varianten des Modells wird die Test-Phase komplett weggelassen, da das Testen in Form von Reviews in den frühen Phasen oder durch die Ausführung des Codes in späteren Phasen – während des gesamten Lebenszyklusmodells stattfinden sollte. \cite{25}
     \newpage
     \section{Systemanalyse}
     In diesem Kapitel wird das System hinsichtlich seiner strukturellen und funktionalen Eigenschaften analysiert. 
     Zunächst wird die zugrundeliegende Grammatik betrachtet, woraufhin die Ausführungslogik beschrieben wird. Abschließend werden die problematischen Stellen im Hinblick auf die geplante Erweiterung analysiert.
     Ziel dieses Kapitels ist es, diese problematischen Stellen zu erfassen und aufzubereiten, um eine Grundlage für die folgenden Kapitel zu schaffen.\\
     \subsection{Grammatik}
+    %TODO Die in diesem Kapitel definierte Grammatik beinhaltet allerdings nur die für die Ausführungssemantik benötigten Elemente.\cite{99}
     %Die zugrundeliegende Grammatik basiert auf der Backus-Naur-Form (BNF) Notation. Der Aufbau einer BNF wird anhand der Grammatik~\ref{BNF} erklärt
     %<symbol> sind nichtterminale
     %::= bedeutet dass symbol durch _expression_ ersetzt wird
@@ -388,18 +402,24 @@
     Nicht nur für die normalen Funktion spielt der Ergebniscache eine große Rolle, sondern auch für die Lambda-Funktionen.
     Wenn ein Wert für einen Eingabeport einer Lambda-Funktion benötigt wird, wird zunächst der Wert der Ausgabeports, falls vorhanden, in dem Ergebniscache gespeichert.
     Im Anschluss daran wird für alle Funktionen, die im Kind-verhältnis zur Lambda-Funktion stehen, das Ergebnis im Ergebniscache invalidiert, indem das Ergenis aus dem Ergebniscache gelöscht wird.
-    Anschließend wird der oben beschriebene Algortihmus verwendet, um die Werte für die Eingabeport der Lambda-Funktion zu berechnen.
-
-    Als erstes werden alle Referenzen auf Flow-Templates aufgelöst, damit wir die Flow-Instanz erhalten. Sobald die Flow-Instanz erstellt ist, ist bekannt, welche Ports und Lambdas bei dem Funktions-Aufruf existieren und es werden Objektreferenzen zwischen den Ports erstellt.
-    Die Objektreferenzen sollen die Modell Analyse erleichtern und beeinhalten Informationen über die Verbindung.
-    Daraufhin werden die Refernz-Typen aufgelöst, indem diese durch konkrete Typen ersetzt werden.
-    Nun kann mit der eigentlichen Validierung angefangen werden. Die Validierung wird pro Flow-Modell ausgeführt und es wird mit dem Flow-Modell angefangen, welches am wenigsten Abhänigkeiten auf andere Flow-Modelle hat.
-    Bei der Prüfung wird über alle Verbindungen von Ports iteriert und falls ein gernerischer Typ vorkommt, wird diese Typ-Zuweisung gespeichert.
-    Im Anschluss werden die Ports des Flow-Modells überprüft und versucht die generischen Typen aufzulösen. Gernerische Typen, welche nicht aufgelöst werden konnten, werden dann beim Flow-Aufruf aufgelöst. Vorausgesetzt die nicht zu auflösenden Typen sind Teil der Argumente und Ergbenisports des Flow-Models.
-    Abschließend werden die Verbindungen von Flow-Ports validiert, indem diese auf Zuweisungskompatiblität überprüft werden, bei den übrig gebliebenen generischen Typen kommt es zu keinen Problemen, weil generische Typen in beide Richtungen zuweisungskopatibel sind.
-
-    Als erstes muss eine Sortierung der Funktionen stattfinden, dabei werden zuerst die Abhängigkeiten der Funktion überprüft.
-    Nachdem die Sortierung abgeschlossen ist, werden die Verbindungen auf Port-Fehler überprüft. Falls der Ausgabeport ein Fehler projeziert verursucht und der Verbundene Eingabeport keinen Fehler verarbeiten, dann gibt die Funktion des Eingabeports nicht ausgeführt und die Funktion gibt den Fehler als Ergebniss aus.
+    Anschließend wird der oben beschriebene Algortihmus verwendet, um die Werte für die Eingabeport der Lambda-Funktion zu berechnen.\\
+    \\
+    \textbf{TypSystem}\\
+    \\
+    Bevor die Typvalidierung bei Flow-Modells vorgenommen werden kann, muss bei dem Modell zunächst die Flow-Templates in die konkrete Flow-Instanz überführt werden. 
+    Anschließend werden die Verbindungen als Objektreferenzen geändert. 
+    Das daraus entstandene Modell wird Graph-Form genannt und wird für die Analyse verwendet.
+    Bei der Graph-Form werden als erstes die Referenztypen durch konrekte Typen ersetzt. 
+    Nach dem die ersetzung Abgeschlossen ist, wird sich um die generischen Typen gekümmert. 
+    Dafür werden zunächst die Flow-Modelle topoloisch sortiert und pro Flow-Modelle über alle Verbindungen iteriert. 
+    Kommt bei einem Port ein Generisch Typ vor wird die Typ-Zuweisung gespeichert. 
+    Es wird probiert über die anderen Typ-Zuweisungen die generischen Typen aufzulösen. 
+    Sobald dies erledigt ist, wird die Zuweisungskompatibilität der einzelnen Verbindungen überprüft. 
+    Als letztes kann das Modell dann auf Port-Fehler überprüft werden. Hierfür werden zunächst die Flow-Node topologisch sortiert, sodass Abhängigkeiten einer Flow-Node vor der Flow-Node validiert werden. 
+    Bei der Validierung für für jede Flow-Node jedes Argument und dessen Verbindung untersucht. 
+    Bei der untersuchung wird geschaut, ob das Attribut acceptsError des dazugehörigen Eingabeports den gleichen Wert hat wie der Ausgabeport. 
+    Ist dies nicht der Fall wird eine Fehlermeldung für diesen Flow-Modell ausgegeben. 
+    Dabei wird die Fehlermeldung durch alle Flow-Nodes weitergeleitet bis sie am Ausgabeport des Flow-Modells anliegt.
 
     Um zu überprüfen ob das Aktivitätsmodell valide ist, wird ein Typen-Referenzstack verwendet.
     Dabei wird das ganze Modell durchlaufen und für jede Aktivität der Stack berechnet.
@@ -440,8 +460,8 @@
     \newpage
     \section{TODO}
     \subsection{Anforderungsphase}
-    Die geplante Erweiterung sieht die Einführung von zwei Schleifenblock vor, die die Wiederholung von Aktivitäten ermöglichen sollen. Dadurch soll es möglich sein Prüfungen mit dynamsichen Daten zu erstellen.
-    Die Interaktion erfolgt über die bereits vorhandene grafische Benutzeroberfläche, in dieser kann der Benutzer die Anzahl der maximalen Iterationen und die Abbruchbedingung festlegen.
+    Die geplante Erweiterung sieht die Einführung von zwei Schleifenblöckdn vor, die die Wiederholung von Aktivitäten ermöglichen sollen. Dadurch soll es möglich sein Prüfungen mit dynamsichen Daten zu erstellen.
+    Die Interaktion erfolgt über die bereits vorhandene grafische Benutzeroberfläche, in dieser kann der Benutzer die Anzahl der Iterationen und die Abbruchbedingung festlegen.
     Beide Blöcke sind von der Benutzeroberfläche gleiche und unterscheiden sich nur in der Logik.
     Dabei soll der Schleifenblock dem TODO ähneln. 
     Der Schleifenblock hat einen onFalse und einen onTrue Pfad, welcher Pfad genommen wird wird durch die Abburchbedingung bestimmt.
@@ -461,7 +481,7 @@
     Block A soll die Wiederholung von Aktivitäten durch explizite Ausführung ermöglichen.
     Zur umsetzung dieses Ziels wird die Schleifenentfaltung als Grundlage verwendet.
     Unter Schleifenentfaltung versteht man, dass die Instruktione im Schleifenkörper mehrmals pro Iteration auszuausgeführt wird, um dadurch die häufigkeit der Iterationen zu verringern. \cite{9}
-    Anstatt rekursive oder iterative Wiederholungen zu verwenden, wird jede potenzielle Iteration als eigenständigen und bedingten Codeblock realisiert.
+    Anstatt rekursive oder iterative Wiederholungen zu verwenden, wird jede potenzielle Iteration als eigenständiger und bedingter Codeblock realisiert.
     Dazu muss eine Anpassung an der klasisschen Schleifenentfaltungsverfahren vorgenommen werden. 
     Das Ziel der modifizierung ist es, die Schleifen solange zusammenzufassen bis kein erneuter Schleifendurchlauf notwendig ist und dadurch den Kontrollfluss durch Verzweigungen und verschtelungen ohne Iterationen abzubilden.
     Da die maximale Anzahl an Schleifendurchläufen von vorneherein bekannt ist, kann für jede potenzielle Ausführen des Schleifenkörpers eine Kopie erstellt werden. 
@@ -496,41 +516,64 @@
 
     \newpage
     \section{Implementierung}
+    %TODO eigenschaft durch attribute ersetzen
     In diesem Kapitel wird die vorgenommene Implementierung beschrieben. Dabei wird zunächst TODO in Teilbereiche unterteilt und anschließend die funktionsweise der einzelnen Änderungen erklärt.
     Als Grundlage für dieses Kapitel werden die vorangegangen Kapitel dienen insbesondere Kapitel TODO.
     Das Ziel ist es die Implementierung verständlich und nachvollziehbar zu machen.\\
     \\
+    Zunächst wurde Klasse DataModelActivityElement um das Attribute \textit{CanCreateLoop} vom Datentyp bool erweitert. Bei dieser Klasse handelt es sich um die Basisklasse aller Aktivitäten.
+    Das Attribut soll als Kennzeichnung dienen, um anzuzeigen ob der User die Möglichkeit hat von dem Block ausgehend eine Rückverbindung einzuzeichnen. Aus dem Grund war das Attribut für alle Aktivitäten bis auf die Schleife false.
+    Da das System keine Schleifen am Anfang unterstützt hat, musste für die Schleife eine Klasse erstellt werden.
+    Bei der Klasse handelt es sich um DataModelActivityElementLoop, die als Grundlage für die Datenspeicherung genutzt wird  und für die Ausführung. TODO
+    Die Klasse ActivityPortLabels, die die Label für die Ports beinhaltet, wurde durch die strings OnLoop und OnFinish erweitert. 
+    Die in diesem Absatz beschriebenen Änderungen wurden durch Westermann implementiert.\\
+    \\
     %Block A
-    Zur umsetzung der Wiederholungslogik im Block wurde eine Klasse definiert.
+    Zur umsetzung der Wiederholungslogik im Block B wurde eine Klasse definiert.
     Dabei handelt es sich um die Klasse ActivityLoopUnrollingResolver.
-    Ziel der Klasse ist es Schleifen zu identifizieren und diese durch den in Kapitel TODO beschriebenen Algorithmus aufzulösen. 7
+    Ziel der Klasse ist es Schleifen zu identifizieren und diese durch den in Kapitel TODO beschriebenen Algorithmus aufzulösen.
     Zur Umsetzung dieser Funktionalität hat die Klasse sieben Methoden UnrollLoop, getLoopActivities, visited, getLoopElements, cloneAndModify, DeepClone und clone.\\
     \\
-    Die Methode visited ist für die Tiefensuche im Graphen zuständig.
-    Dazu wird vom jeden Knoten aus geschaut, ob es eine Verbindung gibt.
-    Gibt es eine Verbindung wird überprüft, ob diese Verbindung die Rückverbindung der Schleife ist. 
-    Ist das der Fall wird die Verbindung übersprungen und ansonsten dem Set mit allen Verbindungen hinzugefügt.
-    Im Anschluss wird die Funktion rekursiv für die Nachfolgenden Knoten aufgerufen.\\
+    Der Startpunkt für den Algorithmus ist die Methode UnrollLoop.
+    Diese Methode hat das Ziel, den Schleifenanfang und das Schleifenende zu erkennen. Außerdem leitet die Methode UnrollLoop die Schleifenentfaltung ein.
+    Dafür stehen der Methode die Liste aller Elemente, ein Set für die Verbindungen und zwei Variablen für den Schleifenanfang und das Schleifenende zur verfügung.
+    Um die beiden Variablen zu konkretisieren, wird als erstes über die Liste iteratiert und überprüft ob das Element die Eigenschaft CanCreateLoop auf wahr hat. Ist das der Fall, ist dieses Element das Schleifenende und wir in die zugehörige Variable gespeichert.
+    Um den Schleifenanfang zu finden, wird bei jeden Element überprüft, wie viele Vorgänger das Element hat. 
+    Hat das Element mehr als zwei Vorgänger, handelt es sich um den Schleifenanfang.
+    Sobald die beiden Variablen bestimmt sind, kann die Methode getLoopActivities aufgerufen werden.\\
     \\
-    Die Methode getLoopElements übernimmt die TODO. 
-    Dafür wird über das Set, welches in der Methode visitied erstellt wurden ist, iteratiert und für jedes Element aus dem Tupel das dazugehörige Object aus der Liste aller Elementen selektiert.
+    Das Ziel der Methode getLoopActivities ist es die Rahmenbedingung für die Tiefensuche zu schaffen.
+    Die Methode stellt dafür ein Set für die gefunden Verbindungen, einem Tupel, welches die Rückverbindung darstellt und einer Variable, die die Id des Schleifenanfangs beinhaltet bereit.
+    \\
+    \\
+    Die Methode visited führt eine rekursive Tiefensuche ab dem Schleifenanfang im Graphen durch.
+    Dabei wird vom jeden Knoten aus geprüft, ob es eine ausgehende Verbindung gibt.
+    Wurde eine Verbindung gefunden, wird geschaut ob diese der Rückverbindung der Schleife ist.
+    Ist das der Fall wird die Verbindung übersprungen. Anderfalls wird die Verbindung dem Set mit allen Verbindungen hinzugefügt.
+    Im Anschluss wird die Funktion rekursiv für den Nachfolgenden Knoten aufgerufen.\\
+    \\
+    In der Methode getLoopElements werden die Ids in konkrete TODO übersetzt.
+    Dafür wird zunächst über das Set, welches in der Methode visitied erstellt wurden ist, iteratiert und für jedes Element aus dem Tupel das dazugehörige Object aus der Liste aller Elementen selektiert.
     Die zwei selektieren Elemente werden dann wieder als Tupel in ein Set gespeichert, welches am Ende auch als Rückgabewert der Methode dient.\\
     \\
-    Die Methode clone TODO ist für das Klonen der Elemente zustädnig. Dazu wird das übermittelte Object in JSON serialisiert und anschließend deserialisiert.
-    Dadruch entsteht eine exakte Kopie vom übermittelten Objekt.
+    Die Hilfemethode clone TODO ist für das Klonen der Elemente zustädnig. Dazu wird das übermittelte TODO in serialisiert und anschließend deserialisiert.
+    Die beiden Methoden werden von der Klasse JsonSerializer bereitgestellt
+    Durch die Deserialiserung entsteht eine exakte Kopie vom übermittelten TODO.
     Als Rückgabewert der Hilfsmethode wird das kopierte Objekt zurückgegeben.\\
     \\
-    Die Methode cloneAndModify ist für das Klonen der erkannten Schleifenelemente zuständig.
+    Die Methode cloneAndModify ist für die organsierung des Klonvorgangs und bereitet die Rekursion vor.
     Um dies zu realisieren steht der Methode ein Set für die geklonten Elemente zur verfügung.
-    Zunächst wird über das Set der Objekte iteratiert und dort für Item aus dem Tupel eine Kopie mithilfe der Methode clone erstellt.
+    Zunächst wird über das Set der TODO iteratiert und dort für Item aus dem Tupel eine Kopie mithilfe der Methode clone erstellt.
     Anschließend werden die Kopien wieder als Tupel in das Set für die geklonten Elemente hinzugefügt.\\
     \\
-    Die letzte Methode ist clone die die Kopie erstellt und notwendigen Änderungen am geklonten Objekt vornimmt.
+    Die letzte Methode ist clone.
+    Das Ziel dieser Methode ist die Erstellung der Kopie und änderungen an dieser vorzunehmen.
     Dafür wird als erstes überprüft, um welche Aktivität es sich bei dem übergebenen Element genau handelt.
     Sobald dies feststeht, wird eine Kopie mithilfe der Methode DeepClone erstellt.
     Anschließend wird die Id des kopierten Objekts um einen Suffix erweitert.
     Als nächstes werden die Verbindungen überprüft. 
-    Existiert eine Verbindung wird diese auch um den gleichen Suffix erweitert.\\
+    Existiert eine Verbindung wird diese auch um den gleichen Suffix erweitert.
+    Durch das anhängen des Suffix wird eine eindeutige TODO geschaffen, außerdem bleibt die ursprüngliche Struktur des Schleifenrumpf erhalten.\\
     \\ 
     %TODO parameter erwähnen ja oder oder nein?
     %Die Funktionalität der Klasse wird durch die drei Methoden calcute, calculateMean und isDeviationWithinThreshold realisiert.
