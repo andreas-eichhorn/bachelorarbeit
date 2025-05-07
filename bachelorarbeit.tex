@@ -432,17 +432,23 @@
     Bei der Validierung für für jede Flow-Node jedes Argument und dessen Verbindung untersucht. 
     Bei der untersuchung wird geschaut, ob das Attribut acceptsError des dazugehörigen Eingabeports den gleichen Wert hat wie der Ausgabeport. 
     Ist dies nicht der Fall wird eine Fehlermeldung für diesen Flow-Modell ausgegeben. 
-    Dabei wird die Fehlermeldung durch alle Flow-Nodes weitergeleitet bis sie am Ausgabeport des Flow-Modells anliegt.
+    Dabei wird die Fehlermeldung durch alle Flow-Nodes weitergeleitet bis sie am Ausgabeport des Flow-Modells anliegt.\\
+    \\
+    Zur Validierung des Aktivitätsmodell wird ein Typen-Referenzstack verwendet.
+    Bei der Validierung wird durch alle Aktivitäten iteriert und für jede Aktivität der Typen-Referenzstack berechnet.
+    Berechnet wird der Referenzstack durch den Schnitt aller Typen-Referenzstack vorhergehenden Aktivitäten.
+    Je nachdem welche Aktivität gerade ausgeführt wird, wird der Referenzstack bearbeitet.
+    Bei einer Aktionsaktivität wird der Referenzstack durch einen Eintrag erweitert.
+    Hingegen bei einer Entscheidungsaktivität Typen im Referenzstack bearbeitet werden können.
 
-    Um zu überprüfen ob das Aktivitätsmodell valide ist, wird ein Typen-Referenzstack verwendet.
-    Dabei wird das ganze Modell durchlaufen und für jede Aktivität der Stack berechnet.
-    Bei der Berechnung wird die Schnittmenge über den Referenzstack der direkten Vorgänger Aktivitäten gebildet.
-    Im Anschluss wird der Stack durch die auszuführende Aktivität erweitert.
-    Zum Beispiel erweitert eine Aktionsaktivtät den Stack um einen Typen. 
-    Hingegen Entscheidungsaktivität Einträge bearbeiten oder präzisieren können. Beispielweise werden bei einer erfolgreichen Validierungsentscheidung die betroffenden Typen im Stack konkretisiert. Dadurch sollen die Optionalen-Typ entfernt werden.
-   
-    Im Anschluss können dann die Nodes validiert werden. 
-    Bei der Validierung wird geprüft ob das Argument $〈bool acceptsError〉$ der $〈FlowNodeInput〉$ den gleichen Wert wie der Refenzierte $〈FlowInputPort〉$ hat. Ist das nicht der Fall wird eine Fehlermeldung für das Flow-Modell ausgegeben.
+    %Um zu überprüfen ob das Aktivitätsmodell valide ist, wird ein Typen-Referenzstack verwendet.
+    %Dabei wird das ganze Modell durchlaufen und für jede Aktivität der Stack berechnet.
+    %Bei der Berechnung wird die Schnittmenge über den Referenzstack der direkten Vorgänger Aktivitäten gebildet.
+    %Im Anschluss wird der Stack durch die auszuführende Aktivität erweitert.
+    %Zum Beispiel erweitert eine Aktionsaktivtät den Stack um einen Typen. 
+    %Hingegen Entscheidungsaktivität Einträge bearbeiten oder präzisieren können. Beispielweise werden bei einer erfolgreichen Validierungsentscheidung die betroffenden Typen im Stack konkretisiert. Dadurch sollen die Optionalen-Typ entfernt werden.
+    %Im Anschluss können dann die Nodes validiert werden. 
+    %Bei der Validierung wird geprüft ob das Argument $〈bool acceptsError〉$ der $〈FlowNodeInput〉$ den gleichen Wert wie der Refenzierte $〈FlowInputPort〉$ hat. Ist das nicht der Fall wird eine Fehlermeldung für das Flow-Modell ausgegeben.
     \subsection{Codeanalyse}
         Die aktuelle Umsetzung des Codes ermöglicht es aktuell nicht die geplante. Konkret lassen sich zwei Probleme aus der aktuellen Umsetzung ableiten:
         \begin{itemize}
@@ -465,10 +471,8 @@
         \textbf{P2 -}\\
         \\
         %if(_visitedActivityElements.Add(elementIdNotNull) is false) 
-        Beim betrachen der Klasse TODO ist aufgefallen, dass dort ein Fehler vorliegt.
-        Die Klasse ist für die Kompilierung zuständig.
-        Der Fehler liegt bei der Überprüfung ob 
-        Durch den Fehler kann es dazu führen, dass bestimmte Funktionen nicht erstellt werden können.
+        Beim betrachen der Klasse VirtualMachineCompilerActivity, die für das kompilieren der Aktivitäten zuständig ist, ist aufgefallen, dass dort ein Fehler vorliegt.
+        
     \newpage
     \section{TODO}
     \subsection{Anforderungsphase}
