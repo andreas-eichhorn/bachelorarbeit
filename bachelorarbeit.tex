@@ -436,7 +436,7 @@
             %\item Beim Validieren des Graphens wird überprüft, ob Zyklen vorliegen. Sollten Zyklen vorliegen werden error erzeugt.
             %\item Bei der umwandlung in einen ausführbaren Code werden alle Knoten des Graphens zu einer Funktion zusammengefasst. Bei Verzweigungen werden neue Funktionen erstellt. Bei einer Zusammenführung werden die einzelnen Funktionen gemergt.
             \item P1 Die Modellanalyse erlaubt keine Zyklen im Graphen
-            \item P2 Die Ausführungsumgebung geht davon aus, dass Zyklen nicht erlaubt sind
+            \item P2 
         \end{itemize}\\
         \textbf{P1 - Die Modellanalyse erlaubt keine Zylken}\\
         \\
@@ -449,14 +449,13 @@
         \\
         Hier liegt auch das Problem. Wenn ein Zyklus erlaubt ist, darf das Dictonairy Element nicht im das Dictonairy für die Fehlermeldung gespeichert werden, sondern dieser Schritt muss übersprunen werden.\\
         \\
-        \textbf{P2 - Die Ausführungsumgebung geht davon aus, dass Zyklen nicht erlaubt sind}\\
+        \textbf{P2 -}\\
         \\
-        In der Klasse VirtualMachineCompilerActivity wird das Modell in eine kompilierte Darstellung überführt. 
-        Die Überführung funktioniert in der aktuellen Umsetzung so, dass eine Funktion erstellt wird und alle Knoten des Graphens nacheinander hinzugefügt wird.
-        Bei einer Verzweigung wird eine extra Funktion erstellt, die ab der dem Punkt automatisch TODO. Bei einer Vereinigung werden die Funktionen wieder zu einer gemergt.
-        Es wird aktuell nicht erkannt, ob der Knoten bereits hinzugefügt wurden ist.
-        \\\\Hier liegt auch das Problem. Wenn Zyklen nun erlaubt sind, würde eine Endlosschleife entstehen, weil der Algorithmus den bereits hinzugefügten Teilgraphen erneut hinzufügen.
-        Es muss also eine Möglichkeit geschaffen werden, dass mehrere TODO
+        %if(_visitedActivityElements.Add(elementIdNotNull) is false) 
+        Beim betrachen der Klasse TODO ist aufgefallen, dass dort ein Fehler vorliegt.
+        Die Klasse ist für die Kompilierung zuständig.
+        Der Fehler liegt bei der Überprüfung ob 
+        Durch den Fehler kann es dazu führen, dass bestimmte Funktionen nicht erstellt werden können.
     \newpage
     \section{TODO}
     \subsection{Anforderungsphase}
