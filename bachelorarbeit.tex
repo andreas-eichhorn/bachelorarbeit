@@ -25,8 +25,7 @@
     Eine pragmatische Lösung besteht darin, Prüfungen mehrfach auszuführen oder die zu wiederholenden Abläufe manuell zu duplizieren und diese mit bedingten Verzweigungen zu Verbinden. 
     Dies ist jedoch oft nicht praktikabel, da Prüfungen häufig an variable oder unvorhersehbare Bedingungen angepasst werden müssen.
     Die einzige Möglichkeit, um dynamische Daten während einer Prüfung effizient und wartbar zu bearbeiten, besteht darin, ein Schleifenkonstrukt in das bestehende System zu integrieren. 
-    Daraus ergibt sich ein klares Interesse, entsprechende Erweiterungen zu konzipieren und zu implementieren.
-    \\
+    Daraus ergibt sich ein klares Interesse, entsprechende Erweiterungen zu konzipieren und zu implementieren.\\
     \\
     Im laufe der Bachelorarbeit sollen mehrere Möglichkeiten konzepiert und implementiert werden, welche es ermöglichen sollen dynamsichen Daten innerhalb einer Prüfung zu verarbeiten. 
     Dafür muss im Vorfeld das zugrunde liegende System analysiert und bearbeitet werden, sodass Zyklen vom System verarbeitet werden können.
@@ -51,39 +50,47 @@
     Im gegensatz zur Iteration verwendet die Rekursion keinen Akkumulativenansatz, sondern zerlegt das Problam in mehrere (Teil-)Probleme. Für die Teilprobleme werden dann einzelne Lösungen erarbeitet, welche im Anschluss wieder kombiniert werden um das eigentliche Problem zu lösen. \cite{3}
     Laut Chen L. spiegelt die Iteration das menschliche Denken wieder, weshalb sie sich besonders für lineare Probleme eignet. 
     Die Rekursion hingegen ist für Probleme geeignet, welche Zwischenergebnisse oder Teillösungen benötigen. \cite{3}
-    Eine Schleife kann dabei in zeitabhängig oder horizontal unterteilt werden. Bei einer zeitabhängigen Schleife hängt das Ergebnis des aktuellen Schleifendurchlaufs vom Ergebnis des vorherigen Schleifendurchlaufs ab. Andererseits sind die Ergebnisse der Schleifendurchläufe bei der horizontalen Schleife unabhängig voneinander. \cite{5}\\
+    Eine Schleife kann dabei in zeitabhängig oder horizontal unterteilt werden. Bei einer zeitabhängigen Schleife hängt das Ergebnis des aktuellen Schleifendurchlaufs vom Ergebnis des vorherigen Schleifendurchlaufs ab. Hingegen sind die Ergebnisse der Schleifendurchläufe bei der horizontalen Schleife unabhängig voneinander. \cite{5}\\
     \\
     \textbf{Domain Specific Language}\\
     \\
     Bei einer domänenspezifische Sprache (DSL) handelt es sich um eine Programmiersprache, die mit dem Ziel entwickelt wurden ist, spezifische Aufgabenstellungen innerhalb eines begrenzten Anwendungskontexts (Domaine) besonders effektiv zu lösen. \cite{18}
     DSLs bilden das Gegenstück zu General-Purpose Languages (GPL) wie Java, C++ oder Python. \cite{14}
-    Anders als bei GPLs verfügen DSLs oftmals über eine reduzierte Syntax, die ausschließlich für den jeweilige Domaine relevant ist. Teilweise wird diese durch eine GPL ergänzt. \cite{18}
-    Es wird zwischen externen und internen DSLs unterschieden. Externe DSLs haben ihre eigene Syntax. Dadurch kann eine größere flexibilität geschaffen werden, aber zeitglich ist der Aufwand für den Entwickler sehr hoch, weil alle relevanten Tools selbst implementieren muss. Außerdem braucht der Benutzer länger Zeit um die Syntax zu lernen. \cite{7}
+    Anders als bei GPLs verfügen DSLs oftmals über eine reduzierte Syntax, die ausschließlich für die jeweilige Domaine relevant ist. Teilweise wird DSLs durch GPL ergänzt. \cite{18}
+    Bei DSLs wird zwischen externen und internen DSLs unterschieden. Externe DSLs haben ihre eigene Syntax. Dadurch kann eine größere flexibilität geschaffen werden, aber zeitglich ist der Aufwand für den Entwickler sehr hoch, weil alle relevanten Tools selbst implementieren werden müssen. 
+    Außerdem braucht der Benutzer länger Zeit um die Syntax zu lernen. \cite{7}
     Zur Laufzeit wird die externe DSLs dann in eine GPL übersetzt. \cite{14}
-    Interne DSLs verwenden die Syntax einer GPL und kann über eine Programmierschnittstelle oder Bibliothek aufgerufen werden. \cite{14}
+    Interne DSLs hingegen verwenden die Syntax einer GPL und können über eine Programmierschnittstelle oder Bibliothek aufgerufen werden. \cite{14}
     Die Vorteile von DLSs liegen in ihrer strukturellen Klarheit und Spezialisierung. Dem gegenüber stehen die Nachteile eines hohen Initialaufwands sowie einer begrenzten Flexibilität und Verfügbarkeit. \cite{18}\\ 
     \\
     \textbf{Visual Programming Language}\\
     \\
     Visuelle Sprachen (VL) sind Sprachen, bei denen die Informationsdarstellung primär über grafische Elemente und nicht über textuelle Komponenten erfolgt. \cite{5}
-    Dabei werden hauptsächlich grafische Tools und visuelle Metaphoren verwendet. Bilder eignen sich besonders gut zum Programmieren, weil Bilder ausdruckstärker als Worte sind und haben einen höheren Wiedererkennungswert. Durch die eingeschränkte Syntax sind VLs nicht so flexibel und ausdruckstar wie Text-basierte Sprachen. \cite{16}\\
+    Dabei werden hauptsächlich grafische Tools und visuelle Metaphoren verwendet. 
+    Bilder eignen sich besonders gut zum Programmieren, weil diese ausdruckstärker als Worte sind und einen höheren Wiedererkennungswert haben.
+    Nachteile gegenüber Text-basierten Sprachen sind, dass VLs durch die eigeschränkte Syntax nicht so ausdruckstark und flexibel sind. \cite{16}\\
     \\
     Eine spezielle Form visueller Sprachen stellen die visuellen Programmiersprachen (VPL) dar, bei denen grafische Darstellungen gezielt für die Erstellung von Programmen genutzt werden.    
-    Das Hauptziel VPL besteht in der Verbesserung der Darstellung der Programmierlogik sowie in der Erleichterung des Verständnisses von Programmabläufen. \cite{13}
-    Dadurch soll der Fokus des Programmierens stärker auf konzeptuelle statt symtaktische Aspekte verlagert werden. Die syntaktischen Aspekte werden von der Entwicklungsumgebung übernommen. \cite{10}
-    Die Umsetzung von Programmen erfolgt durch die Möglichkeit, Programme in Form von Flussdiagrammen zu erstellen, die unmittelbar vom System interpretiert und ausgeführt werden können. \cite{12}
-    Nach Charntaweekhun bieten Flussdiagramme einen didaktischen Vorteil, da sie es insbesondere Programmieranfängern ermöglichen, komplexe Abläufe visuell zu erfassen und zu strukturieren. \cite{12}
-    Im Gegensatz zu GPLs, die eine freie textuelle Eingabe haben, verwenden VPLs nur eine begrenzte Menge an vordefinierten grafischen Elemente. Infolgedessen wird die Lesbarkeit erhöht und syntaktische Fehler reduziert.\cite{10}
+    Das Hauptziel von VPLs besteht in der Verbesserung der Darstellung der Programmierlogik sowie in der Erleichterung des Verständnisses von Programmabläufen. \cite{13}
+    Dadurch soll der Fokus bei Programmieren stärker auf die konzeptuellen statt symtaktischen Aspekte verlagert werden. Die syntaktischen Aspekte werden von der Entwicklungsumgebung übernommen. \cite{10}
+    Die Umsetzung von Programmen erfolgt durch Flussdiagrammen, die vom Benutzer erstellt werden können. 
+    Die erstellten Flussdiagramme werden dann vom System interpretiert und ausgeführt. \cite{12}
+    Nach Charntaweekhun bieten Flussdiagramme einen didaktischen Vorteil, da diese Programmieranfängern ermöglichen, komplexe Abläufe visuell zu erfassen und zu strukturieren. \cite{12}
+    Ein weiterer Vorteil von VPLs besteht in der erhöhten Lesbarkeit und der geringeren Anfälligkeit für syntaktische Fehler, was auf die Verwendung einer begrenzten Menge vordefinierter grafischer Elemente zurückzuführen ist.\cite{10}
+    Die stärken von VPLs zeigen sich darüber hinaus in ihrer Einfachheit, visuelle Darstellbarkeit, Transparenz und Interaktivität. \cite{13}
+    %TODO folgende sätze umformilieren
     Die Klassifikation visueller Programmiersprachen unterscheidet zwischen imperativen und deklarativen Modellen. Ersteres gibt die exakte Reihenfolge der Operationen vor, während letzteres lediglich Datenabhänigkgieten spezifiziert und die Ausführungsreihenfolge dem System überlasst.\cite{21}
-    Die stärken von VPLs liegen in ihrer Einfachheit, visuelle Darstellbarkeit, Transparenz und Interaktivität.\cite{13}
     Visuelle Programmiersprachen (VPLs) basieren überwiegend auf einem datenflussgesteuerten Modell, bei dem die Strukturierung von Programmen durch den Austausch von Informationen zwischen Operatoren erfolgt. \cite{6}
     Zusammengefasst kann man sagen, dass VPLs die Vorteile von Flussdiagrammen und nicht die Nachteile der klassischen Programmierung kombiniert. \cite{13}\\
     \\
     \textbf{Datenfluss-basierte Sprachen}\\
     \\
     %Punkte von Jonston et. al erklären  und zyklisch/azyklisch
-    Als Datenfluss-basierte Sprache (DL) wird eine Programmiersprache verstanden, bei der die Daten zwischen Funktionnen weitergeleitet werden. Die Programme werden dabei als Graphen dargestellt. \cite{11}
-    Der zugrunde liegende Programmgraph ist als gerichteter Graph (DG) definiert, wobei Funktionen als Knoten dargestellt werden, die durch gerichtete Kanten miteinander verbunden sind. Die Richtung der Kanten spiegelt die Datenabhängigkeiten wieder.\cite{2}
+    Als Datenfluss-basierte Sprache (DL) wird eine Programmiersprache verstanden, bei der die Daten zwischen Funktionnen weitergeleitet werden. 
+    Die Programme werden dabei als Graphen dargestellt. \cite{11}
+    Dieser wird als gerichteter Graph (DG) definiert, in dem Funktionen als Knoten dargestellt werden.
+    Die Knoten können dabei durch gerichtete Kanten verbunden werden, welche die Datenabhängigkeiten zwischen zwei Knoten beschreiben. \cite{2}
+    %TODO ab hier weitermachen
     Datenflussgraphen lassen sich hinsichtlich ihrer Granularität in feinkörnig und grobkörnig unterteilen. In einem feinkörnigen Graphen führt jeder Knoten extakt eine Instruktions aus, während grobkörnige Graphen mehrere Instruktionen pro Knoten ausführen können.\cite{1}
     Neben der Granularität lässt sich ein Datenflussgraph auch in Zyklenstrukturen unterteilen. 
     Dabei wird zwischen zyklisch und azyklisch unterschieden. \cite{8} %TODO begriffe kurz erklären
@@ -94,16 +101,16 @@
     Diese Form der Ausführung ermöglicht eine Effizienzsteigerung, da der Ablauf nicht mehr durch einen zentralen Programmzähler gesteuert wird. \cite{2}
 
     Johnston et. al beschreiben in ihrer Wissenschaftlichenarbeit eine Menge von Eigenschaften. So sollen DLs frei von Seiteneffekten sein, den Lokalitätsprinzip folgen und keine Variablen überschreiben.\cite{2}\\
-    \\
-    Eine Computerarchitketur, die auf DLs basiert, wird Datenfluss-basiertea System (DFA) genannt.
-    DFS wurde eingeführt um den Flaschenhals der von-Neumann-Architektur zu vermeiden. \cite{8} %TODO überprüfen ob zittat wirklich von 8 kommt
-
-    Je nach Implementierung kann nur lokaler Speicher verwendet werden. \cite{8}
-    Bei den Ergebnissen erfolgt eine direkte Datenweitergabe zwischen Funktionen, wobei Transformation und Filterung integraler Bestandteil der Verarbeitung sind. \cite{15}
-
-    DFA-Systeme zeichnen sich durch eine hohe Effizienz, flexible Strukturen und leistungsstarke Ausführungsmechanismen aus. \cite{1}
-    Ein weiterer Vorteil besteht im möglichen Paralellismus. Da bei fehlender Datenabhängigkeit mehrere Insturktionen gleichzeitig ausgeführt werden können. \cite{1}
-    Innerhalb von DFA-System wird zwischen daten- und bedarfgetriebener Ausführung unterschieden. Ersteres führt die Funktionen aus, sobald alle benötigten Operanden vorhanden sind und ein Signal vorliegt. Hingegen bei der bedarfgetriebenen Ausführung die Funktion bereits ausgeführt wird, sobald die Operanden vorhanden sind. \cite{2}
+    \\    
+    %Je nach Implementierung kann nur lokaler Speicher verwendet werden. \cite{8}
+    Eine Computerarchitketur, die auf DLs basiert, wird Datenfluss-basiertes System (DBS) genannt.
+    DBSs wurde eingeführt um den Flaschenhals der von-Neumann-Architektur zu vermeiden. \cite{8} %TODO überprüfen ob zittat wirklich von 8 kommt
+    Vorteile von DBSs sind eine hohe Effizienz, flexible Strukturen und leistungsstarke Ausführungsmechanismen. \cite{1}
+    Darüber hinaus besteht ein weiterer Vorteil im möglichen Paralellismus, da bei fehlender Datenabhängigkeit mehrere Insturktionen gleichzeitig ausgeführt werden können. \cite{1}
+    Dies wird durch die direkte Weitergabe von Daten zwischen Funktionen unterstützt, wobei die Verarbeitung Der Daten, wie Transformation und Filterung, innerhalb der Funktionen erfolgt. \cite{15}
+    Innerhalb von DBSs wird zwischen daten- und bedarfgetriebener Ausführung unterschieden. 
+    Ersteres führt die Funktionen aus, sobald alle Operanden vorhanden sind und ein Signal vorliegt. 
+    Hingegen bei der bedarfgetriebenen Ausführung die Funktion ausgeführt wird, sobald alle Operanden vorhanden sind. \cite{2}
     Aus dem Grund kann die datengesteuerte Ausführung als Spezialfall einer bedarfsgesteuerten Ausführung angesehen werden, bei der ein Bedarf an allen Ergebnissen von vorneherein besteht. \cite{11}\\
     \\
     %TODO kurzer vergleich zu von neumann
@@ -112,16 +119,18 @@
     \textbf{Wasserfall Modell}\\
     \\
     %TODO phasen auflisten und erklären, phasen können je nach variation unterscheiden
-    Das Wasserfallmodell ist ein Modell für Softwareentwicklung \cite{24} und wurde 1970 eingeführt. \cite{25} Die Softwareentwicklung wird dabei in verschiedene voneinander getrennte Phasen unterteilt. \cite{22} 
+    Das Wasserfallmodell ist ein Modell für Softwareentwicklung \cite{24} und wurde 1970 eingeführt. \cite{25} 
+    Die Softwareentwicklung wird dabei in verschiedene voneinander getrennte Phasen unterteilt. \cite{22} 
     Es handelt sich beim Wasserfallmodell um ein statisches Modell, da die einzelnen Phasen linear und sequentiell durchlaufen werden. \cite{22} 
     Sobald eine Phase abgeschlossen ist, kann diese nicht wieder besucht werden. \cite{22} 
-    Aus dem Grund ist das Modell besonders für Systeme geeignet, welche nach der Implementierung keine Änderungen mehr zulassen \cite{22}. 
-    Die Vorteile eines Wasserfallmodells sind, dass es einfach verständlich ist \cite{22}, die Anforderungen an das System bereits vor der Entwicklung bekannt sind und es einfach zu implementieren ist. \cite{23} 
-    Andersseits können sich ändernde Anforderungen oder auftretende Probleme während der Entwicklung nicht berücksichtigt werden. \cite{23} 
-    Da das Wasserfallmodell bereits einige Jahre sich bewährt hat, gibt es einige Änderungen am klassichen Wasserfallmodell. 
-    So beschreibt TODO (24) in seinem Artikel eine Änderung am Modell so, dass die einzelnen Phasen einer sorgfältigen Validierung und Bestätigung seitens des Clients benötigen um die Phase abzuschließen. 
+    Aus dem Grund ist das Modell besonders gut für Systeme geeignet, welche nach der Implementierung keine Änderungen mehr zulassen \cite{22}. 
+    Die Vorteile eines Wasserfallmodells sind, dass es einfach verständlich ist \cite{22}, die Anforderungen an das System bereits vor der Entwicklung bekannt sind und es einfach umzusetzen ist. \cite{23} 
+    Außerdem trägt die Dokumentation am Ende jeder Phase zur Verbesserung der Projektqualität bei. \cite{23}
+    Hingegen ein großer Nachteil von Wasserfallmodellen ist, dass sich ändernde Anforderungen oder auftretende Probleme während der Entwicklung nicht berücksichtigt werden können. \cite{23} 
+    Um den Nachteilen des klassischen Wasserfallmodells etwas entgegenzuwirken haben sich die letzten Jahre einige Varianten entwickelt.
+    So beschreibt TODO (24) in seinem Artikel eine Variante, bei der die einzelnen Phasen einer sorgfältigen Validierung und Bestätigung seitens des Clients benötigen um die Phase abzuschließen. 
     Sollte der Client mit dem Ergebnissen nicht zufrieden sein, so kann das Modell wieder von vorne beginnen. \cite{24} 
-    In anderen Varianten des Modells wird die Test-Phase komplett weggelassen, da das Testen in Form von Reviews in den frühen Phasen oder durch die Ausführung des Codes in späteren Phasen – während des gesamten Lebenszyklusmodells stattfinden sollte. \cite{25}
+    In einer anderen Variante wird die Test-Phase komplett weggelassen, da das Testen während der gesamten Entwicklung stattfinden soll. \cite{25}
     \newpage
     \section{Systemanalyse}
     In diesem Kapitel wird das System hinsichtlich seiner strukturellen und funktionalen Eigenschaften analysiert. 
@@ -157,20 +166,22 @@
     %Die folgende Zusammenfassung basiert auf der unveröffentlichen Arbeit von Westermann et al.
     
     \subsubsection{Prüfungslogik}
-    Die in Abbildung TODO abgebildeten Regeln beschreib das Aktivitätsmodell, die der Prüfungslogik entspricht. \cite{99}
+    Die in Abbildung TODO abgebildeten Regeln beschreibt das Aktivitätsmodell, die der Prüfungslogik entspricht. \cite{99}
     Zentral ist dabei die Regel \textit{ActivityModel}, welche festlegt, dass ein Aktivitätsmodell aus mehreren Aktivitäten und Verbindungen besteht.
     Die Verbindung referenziert dabei zwei Aktivitäten und hat auch eine Bezeichnung, die als TODO.
-    Die Regel \textit{Activity} beschreibt die möglichen Aktivitäten innerhalb des Aktivitätsmodells. Dabei kann eine Aktivität entweder eine Startmarkierung, ein Vergleich, eine Aktion oder ein Label sein.
+    Die Regel \textit{Activity} beschreibt die möglichen Aktivitäten innerhalb des Aktivitätsmodells. 
+    Dabei kann eine Aktivität entweder eine Startmarkierung, eine Entscheidung, eine Aktion oder ein Label sein.
     
-    Ein Vergleich kann entweder ein Binärvergleich oder ein Validierungsvergleich sein.
-    Ersteres besteht dabei aus einer Referenz auf ein Flowtemplate, das eine Datenverarbetung ist, gefolgt von einem Operator und zwei Argumenten. Als Operatoren stehen $=$ und $\neq$ sowie Relationale Operatoren zur Verfügung.
-    Der Validierungsvergleich hingegen besteht nur aus einer Menge von TODO.
+    Eine Entscheidung kann dabei ein Binärentscheidung oder ein Validierungsentscheidung sein.
+    Ersteres besteht dabei aus einer Referenz auf ein Flowtemplate, das eine Datenverarbetung ist, gefolgt von einem Operator und zwei Argumenten. 
+    Als Operatoren stehen $=$ und $\neq$ sowie Relationale Operatoren zur Verfügung.
+    Die Validierungsentscheidung hingegen besteht nur aus einer Menge von werten, die entweder.
 
     Bei den Aktionen wird zwischen Hauptunsersuchungs-Adpater Anfragen, lesen von JSON-Dateien und Ausführung einer Datenverarbeitung unterschieden.
     Der Aufbau einer Hauptuntersuchungs-Adapter Anfrage umfasst dabei den Namen der auszuführenden Anfrage, eine Beschreibung, eine Liste mit anzusprechenden Systemen im Fahrzeug und eine maximale Ausführungsdauer.
     Im Gegensatz dazu setzt sich das lesen von JSON-Dateien aus dem Datentyp der zu lesenden Datei und einer URI zu der Datenquelle zusammen.
     Die letzte Aktionform, die Ausführung einer Datenverarbeitung, besteht aus einem Verweis auf einem FlowTemplate, gefolgt von einer Beschreibung der Eingaben, die für die Datenverarbeitung erforderlich sind, sowie einer Transformation, die beschreibt wie das Ergebnis weiterverwendet werden soll.    
-    Die Beschreibung der Eingaben setzt sich aus den Symbolen ActivityPortValue und TemplateParameterValue zusammen.
+    Die Beschreibung der Eingaben setzt sich dabei aus den Symbolen ActivityPortValue und TemplateParameterValue zusammen.
 
     Die Struktur eines Label wird durch eine Kombination aus einer Beschriftung, einer Farbe und einem Verweis auf eine Aktion beschrieben.\\
     %Die Regel $<ActivityModel>$ beschreibt die Grundstruktur des Aktivitätsmodell und setzt sich aus $<Acitvity>$ und $<ActivityConnection>$ zusammen. 
@@ -280,7 +291,7 @@
     %Zusätzlich kann die Flow-Instanz aus einer oder mehreren Lamda-Definitionen ($〈FlowLamda〉$) beinhalten. Eine Lamda-Definition hat zusätzliche Eingaben und Ausgaben.
     %Die Ein- und Ausgaben bestehen dabei einem Namen  ($〈string name〉$) , gefolgt vom Typ  ($〈Typ〉$)  und einem boolean  ($〈bool acceptsError〉$) , welcher angibt ob Fehler akzeptiert werden oder nicht.\\
     Die in Abbildung TODO dargestellten Regeln definieren die Struktur einer Flow-Instanz. Dabei kann eine Flow-Instanz als konkreten Aufruf einer Funktion interpretiert werden. 
-    Dabei legt Regel \textit{FlowInstance} fest, dass eine Flow-Instanz aus mehreren Eingabe- und Ausgabeports sowie einer Menge von Funktionen höherer Ordnung besteht.
+    Die Regel \textit{FlowInstance} legt dabei fest, dass eine Flow-Instanz aus mehreren Eingabe- und Ausgabeports sowie einer Menge von Funktionen höherer Ordnung besteht.
     Der Aufbau einer Funktion höherer Ordnung umfasst wiederum zusätzliche Eingabe- und Ausgabeports.
     Ein Port besteht aus einem Namen, gefolgt vom Datentyp des Ports und einem Wahrheitswert der Angibt ob an diesem Port Fehler erlaubt sind.\\
     \begin{grammar}
@@ -324,7 +335,8 @@
     Die Regeln des FlowModel sind in Abbildung TODO formal dargestellt. Das FlowModel entspricht dabei der Datenverarbeitung. \cite{99}
     Durch die Regel \textit{FlowModel} wird bestimmt, dass ein FlowModel aus einer FlowInstance, einer Auflistung alle genutzen Flow-Node und definition der Verbindungen zwischen den Eingabe- und Ausgabeports.
     Bei den Flow-Node wird zwischen verweis auf Eingabeports, verweis auf Lambda-Funktionen, verweis auf Funktion mit Auflistung von Parametern oder verweis auf Ausgabeports unterschieden.
-    Bis auf das letztere haben alle Flow-Node die Möglichkeit ihre Eingabeports durch konstante Werte zu spezifizieren.\\
+    Bis auf das letztere haben alle Flow-Node die Möglichkeit ihre Eingabeports durch konstante Werte zu spezifizieren.
+    Flow-Nodes sind Funktionen die innerhalb eines Flow-Modells genutzt werden.\\
     \begin{grammar}
         <FlowModel> ::= <FlowInstance> <FlowNode>* <FlowConnection>*
 
@@ -368,18 +380,17 @@
     \textbf{Grammatik TODO} Typ-Defintion mit generischen und Referenz-Typen
     \subsection{Ausführung}
     Im folgenden Abschnitt schauen wir uns an, wie die einzelnen Ebenen ausgeführt werden.
-    Die folgende Zusammenfassung basiert auf der unveröffentlichen Arbeit von Westermann et al.\\\\
-    Die Prüfungslogik.\\
+    Die folgende Zusammenfassung basiert auf der unveröffentlichen Arbeit von Westermann et al.\\
     \\
     \textbf{Prüfungslogik}\\
     \\
     Die Prüfungslogik stellt die oberste Ebene einer Prüfung dar und wird als Kontrollfluss modelliert.
-    Als Startpunkt jeder Prüfung fungiert die Startaktivität, die pro Prüfung nur einmal vorkommt.
-    Die Reihenfolge der auszuführenden Aktivitäten wird durch die grade ausgeführte Aktivitäte vorgegeben, da jede Aktivität das Label der zu folgende Kante zurückgibt.
+    Als Startpunkt jeder Prüfung fungiert die Startaktivität, die pro Prüfung nur einmal vorkommen darf.
+    Die Reihenfolge der auszuführenden Aktivitäten wird durch die grade ausgeführte Aktivitäte vorgegeben, da jede Aktivität das Label der zu folgende Kante als Rückgabewert zurückgibt.
     Eine Prüfung ist beendet, sobald die auszuführende Aktivität kein Label mehr zurückgibt.\\
     \\
     Ein wichtiger Bestandteil der Prüfungslogik ist der Referenzstack. Der Referenzspeicher dient als Speicher für die Ergebnisse der Aktivitäten.
-    Alle Aktivitäten können auf den Referenzstack zugreifen und auf die gespeicherten Ergebnisse referenzieren, um diese als Parameter für ihre Funktionen zu verwenden.\\
+    Alle Aktivitäten können auf den Referenzstack zugreifen und die gespeicherten Ergebnisse referenzieren, um diese als Parameter für ihre Funktionen zu verwenden.\\
     %Ein wichtiger Bestandteil der Prüfungslogik ist der Referenzstack. Der Referenzstack beeinhaltet alle Erge.
     %Die Aktivitäten können auf den Referenzstack zugreifen und abgespeicherte Ergebnisse referenzieren und diese als Parameter für ihre Aktionen verwenden.
     %Der Startpunkt jeder Prüfung ist die Startaktivität. Die Startaktivität darf pro Prüfung nur einmal vorkommen und ist dafür zuständig, dass der Referenzstack leer ist.
@@ -391,16 +402,18 @@
     %einfügen,dass nach pull-ansatz gearbeitet wird
     %funktion zuständig für die berechnung der ausgabeports
     Die Ausführung der Datenverarbeitung basiert auf einer Execute-Funktion, die zur ausführung die Template-Parameter und eine Evaluate-Funktion benötigt.
-    Für die vom System bereitgestellten Funktionen wird die Execute-Funktion direkt in Code implentiert. 
-    Die Implementierung nutzt eine Hilfsklasse, die die Evaluate-Funktion bereitstellt und gleichzeitig die Werte der Ausgabeports speichert.
-    Zudem muss die Implementierung sicherstellen, dass der Datenfluss zwischen Eingabe- und Ausgabeports korrekt hergestellt wird. Um dies zu gewährleisten, stellt die Klasse RuntimeContext gewisse Hilfsmethoden zur Verfügung.
+    Für die vom System bereitgestellten Funktionen wird die Execute-Funktion direkt in den Code implentiert. 
+    Die Implementierung nutzt dabei eine Hilfsklasse, die die Evaluate-Funktion bereitstellt und gleichzeitig die Werte der Ausgabeports speichert.
+    Zudem muss die Implementierung sicherstellen, dass der Datenfluss zwischen Eingabe- und Ausgabeports korrekt hergestellt wird. 
+    Um dies zu gewährleisten, stellt die Klasse RuntimeContext gewisse Hilfsmethoden zur Verfügung.
     
-    Eine wichtige Komponente der Datenverarbeitung ist der Ergebniscache. Im Ergebniscache werden die Werte der Ausgabeports gespeichert.
-    Wird ein Wert für einen Eingabeport benötigt, so wird zunächst die Suche nach dem zugehörigem InputNode sowie der entsprechenden eingehen Kante. 
+    Eine wichtige Komponente der Datenverarbeitung ist der Ergebniscache. 
+    Im Ergebniscache werden die Werte der Ausgabeports gespeichert.
+    Wird ein Wert für einen Eingabeport benötigt, so wird zunächst nach dem zugehörigem InputNode sowie der entsprechenden eingehen Kante gesucht. 
     Anschließend wird geprüft, ob für den Ausgabeport, der mit der Kante verbunden ist, ein Wert im Ergebniscache vorliegt.
     Ist dies nicht der Fall, wird die Funktion des Knotens ausgeführt und der Wert für den Ausgabeport im Ergebniscache gespeichert.\\
     Nicht nur für die normalen Funktion spielt der Ergebniscache eine große Rolle, sondern auch für die Lambda-Funktionen.
-    Wenn ein Wert für einen Eingabeport einer Lambda-Funktion benötigt wird, wird zunächst der Wert der Ausgabeports, falls vorhanden, in dem Ergebniscache gespeichert.
+    Wenn ein Wert für einen Eingabeport einer Lambda-Funktion benötigt wird, wird zunächst der Wert des Ausgabeports, falls vorhanden, in dem Ergebniscache gespeichert.
     Im Anschluss daran wird für alle Funktionen, die im Kind-verhältnis zur Lambda-Funktion stehen, das Ergebnis im Ergebniscache invalidiert, indem das Ergenis aus dem Ergebniscache gelöscht wird.
     Anschließend wird der oben beschriebene Algortihmus verwendet, um die Werte für die Eingabeport der Lambda-Funktion zu berechnen.\\
     \\
