@@ -476,38 +476,52 @@
     \newpage
     \section{TODO}
     \subsection{Anforderungsphase}
-    Die geplante Erweiterung sieht die Einführung von zwei Schleifenblöckdn vor, die die Wiederholung von Aktivitäten ermöglichen sollen. Dadurch soll es möglich sein Prüfungen mit dynamsichen Daten zu erstellen.
-    Die Interaktion erfolgt über die bereits vorhandene grafische Benutzeroberfläche, in dieser kann der Benutzer die Anzahl der Iterationen und die Abbruchbedingung festlegen.
-    Beide Blöcke sind von der Benutzeroberfläche gleiche und unterscheiden sich nur in der Logik.
-    Dabei soll der Schleifenblock dem TODO ähneln. 
-    Der Schleifenblock hat einen onFalse und einen onTrue Pfad, welcher Pfad genommen wird wird durch die Abburchbedingung bestimmt.
-    Bei der Ausführung entscheidet der onFalse Zweig über eine mögliche Wiederholung. Die Entscheidung vom Block A basiert dabei auf die Anzahl der bereits ausgeführten Iteration. Hingegen Block B zusätzlich die Eingaben als Kriterium miteinbezieht.
-    Der onTrue-Zweig führt zur beendigung des Schleifenblocks.
+    Die geplante Erweiterung sieht die Einführung von zwei Schleifenblöcken vor, die die Wiederholung von Aktivitäten ermöglichen sollen. 
+    Dadurch soll es möglich sein Prüfungen mit dynamsichen Daten verarbeiten zu können.
+    %TODO kommenden zwei zeilen besser formulieren
+    Beide Blöcke (Block A und Block B) sollen vom Aufbau gleich sein.
+    Der einzige Unterschied ist, wie der Algorithmus die Schleife ausführen will.
+    Der Benutzer soll die Möglichkeit haben per Drag&Drop den Schleifenblock aus einer Liste auszuwählen und diesen frei im Canvas platzieren zu können.
+    Sobald der Block platziert wurden ist, kann der Benutzer mit dem Schleifenblock interargieren.
+    Beim Klicken auf den Block hat der Benutzer die Möglichkeit die Anazahl der Iterationen und die Abbruchbedingung für die Schleife festzulegen.
+    Zusätzlich kann TODO festgelegt werden.
+    Die Abbruchbedingung setzt sich dabei aus zwei Feldern für die Argumente und einer Auswahlsliste für den Operator zusammen.
+    Dafür wird auf die bereits vorhandene grafische Benutzeroberfläche des Systems zurück gegriffen.
+    Am Block selbst kann der Benutzer die Verbindungen erstellen, indem er per Drag&Drop die einzelnen Interaktionspunkte verschiedener Aktvitäten verbindet.
+    Rückverbindungen über den Schleifenblock sollen dabei erlaubt sein.
+    Ingesammt stehen dem Schleifenblock 3 Interaktionspunkte zur Verfügung.
+    Der Interaktionspunkt oben ist der Eingang.
+    Hingegen die Interationspunkte rechts und unten die Ausgänge sind.
+    Ersteres hat die Bezeichnung OnFalse TODO
+    Letzteres hat die Bezeichnung OnTrue TODO
+    Welcher Pfad genommen wird, wird durch den Wahrheitswert der Abbruchbedingung bestimmt.
     \subsection{Entwursphase}
-    Im vorherigen Unterkapitel wurde der Aufbau der Schleifenblöcke beschrieben. Nun wird die technische Umsetzung beschrieben. 
-    Der Fokus wird dabei auf die Logik für die Entscheidung ob eine Wiederholung stattfindet oder nicht.
-    Die beiden Schleifenblöcke, Block A und Block B, werden im folgenden einzeln betrachtet, da sie unterschiedliche Logiken haben. \\
-    \\
-    Durch die einführung des Schleifenblocks können Probleme entstehen, welches zu einem nicht gewollten Veralten führen können.
-    Es ist möglich, dass Endlosschleifen entstehen können.\\
-    \\
     \textbf{Block A}\\
     \\
-    %TODO es muss unbedingt erwähnt werden dass die abbruchbedingung nun mehrmals teil des codes werden muss
+    %TODO funktionsweise des schleifenblocks allgemein erklären
     Block A soll die Wiederholung von Aktivitäten durch explizite Ausführung ermöglichen.
+    Das soll geschehen indem die Schleife durch eine verschachtelte if-Anweisung ersetzt wird.
     Zur umsetzung dieses Ziels wird die Schleifenentfaltung als Grundlage verwendet.
-    Unter Schleifenentfaltung versteht man, dass die Instruktione im Schleifenkörper mehrmals pro Iteration auszuausgeführt wird, um dadurch die häufigkeit der Iterationen zu verringern. \cite{9}
-    Anstatt rekursive oder iterative Wiederholungen zu verwenden, wird jede potenzielle Iteration als eigenständiger und bedingter Codeblock realisiert.
-    Dazu muss eine Anpassung an der klasisschen Schleifenentfaltungsverfahren vorgenommen werden. 
-    Das Ziel der modifizierung ist es, die Schleifen solange zusammenzufassen bis kein erneuter Schleifendurchlauf notwendig ist und dadurch den Kontrollfluss durch Verzweigungen und verschtelungen ohne Iterationen abzubilden.
-    Da die maximale Anzahl an Schleifendurchläufen von vorneherein bekannt ist, kann für jede potenzielle Ausführen des Schleifenkörpers eine Kopie erstellt werden. 
-    In jeder Kopie wird der Schleifenkörper ausgeführt und anschließend um die Abbruchbedingung der Schleife ergänzt. Im Falle einer erfüllten Abbruchbedingung wird hingegen keine weitere Kopie ausgeführt. 
-    Stattdessen wird die Ausführung gemäß dem vorgesehenen Kontrollfluss fortgesetzt.
-    Auf Abbildung TODO wurde der Ansatz Graphisch dargestellt.
-    In Abbildung TODO wird dieser Ansatz an einem konkreten Beispiel veranschaulicht.
-    Im Beispiel soll "foo" drei mal einzeln auf der Console ausgegeben werden. 
-    In der oberen Schleife
-    Hingegen in der unteren Schleife der modifizierte Ansatz verwendet wurden ist. Da die untere Schleife nur noch genau einmal ausgefürt wird, kann diese einfach weggelassen werden.\\
+    Unter Schleifenentfaltung versteht man, dass die Instruktione in der Schleife mehrmals pro Iteration auszuausgeführt werden, um dadurch die häufigkeit der Iterationen zu verringern. \cite{9}
+    Um das Ziel zu erreichen, muss die Schleifenentfaltung abgeändert werden.
+    Die Schleifenentfaltung soll nicht nur häufigkeit der Iterationen reduzieren, sondern diese vollständig eliminieren.
+    Da die maximale Anzahl an Iterationen von vorneherein bekannt ist, kann für jede potenzielle Iteration eine Kopie des Schleifenkörper erstellt werden. 
+    Am Ende jeder Kopie muss dann noch die Abbruchbedingung drangehangen werden, da diese TODO.
+    Als nächstes müssen die einzelnen Kopien miteinander verbunden werden.
+    Dies wird erreicht indem von der ersten Aktvität einer Kopie eine Verbindung zur vorangegangenen Schleifenblock hergestellt wird.
+    Graphisch wird dieser Ansatz in Abbildung TODO dargestellt.\\
+    \\
+    %Anstatt rekursive oder iterative Wiederholungen zu verwenden, wird jede potenzielle Iteration als eigenständiger und bedingter Codeblock realisiert.
+    %Dazu muss eine Anpassung an der klasisschen Schleifenentfaltungsverfahren vorgenommen werden. 
+    %Das Ziel der modifizierung ist es, die Schleifen solange zusammenzufassen bis kein erneuter Schleifendurchlauf notwendig ist und dadurch den Kontrollfluss durch Verzweigungen und verschtelungen ohne Iterationen abzubilden.
+    %Da die maximale Anzahl an Schleifendurchläufen von vorneherein bekannt ist, kann für jede potenzielle Ausführen des Schleifenkörpers eine Kopie erstellt werden. 
+    %In jeder Kopie wird der Schleifenkörper ausgeführt und anschließend um die Abbruchbedingung der Schleife ergänzt. Im Falle einer erfüllten Abbruchbedingung wird hingegen keine weitere Kopie ausgeführt. 
+    %Stattdessen wird die Ausführung gemäß dem vorgesehenen Kontrollfluss fortgesetzt.
+    %Auf Abbildung TODO wurde der Ansatz Graphisch dargestellt.
+    %In Abbildung TODO wird dieser Ansatz an einem konkreten Beispiel veranschaulicht.
+    %Im Beispiel soll "foo" drei mal einzeln auf der Console ausgegeben werden. 
+    %In der oberen Schleife
+    %Hingegen in der unteren Schleife der modifizierte Ansatz verwendet wurden ist. Da die untere Schleife nur noch genau einmal ausgefürt wird, kann diese einfach weggelassen werden.\\
     \\
     \textbf{Block B}\\
     \\
@@ -533,10 +547,6 @@
     \newpage
     \section{Implementierung}
     %TODO eigenschaft durch attribute ersetzen
-    In diesem Kapitel wird die vorgenommene Implementierung beschrieben. Dabei wird zunächst TODO in Teilbereiche unterteilt und anschließend die funktionsweise der einzelnen Änderungen erklärt.
-    Als Grundlage für dieses Kapitel werden die vorangegangen Kapitel dienen insbesondere Kapitel TODO.
-    Das Ziel ist es die Implementierung verständlich und nachvollziehbar zu machen.\\
-    \\
     Zunächst wurde Klasse DataModelActivityElement um das Attribute \textit{CanCreateLoop} vom Datentyp bool erweitert. Bei dieser Klasse handelt es sich um die Basisklasse aller Aktivitäten.
     Das Attribut soll als Kennzeichnung dienen, um anzuzeigen ob der User die Möglichkeit hat von dem Block ausgehend eine Rückverbindung einzuzeichnen. Aus dem Grund war das Attribut für alle Aktivitäten bis auf die Schleife false.
     Da das System keine Schleifen am Anfang unterstützt hat, musste für die Schleife eine Klasse erstellt werden.
