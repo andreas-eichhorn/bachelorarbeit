@@ -479,23 +479,33 @@
     Die geplante Erweiterung sieht die Einführung von zwei Schleifenblöcken vor, die die Wiederholung von Aktivitäten ermöglichen sollen. 
     Dadurch soll es möglich sein Prüfungen mit dynamsichen Daten verarbeiten zu können.
     %TODO kommenden zwei zeilen besser formulieren
-    Beide Blöcke (Block A und Block B) sollen vom Aufbau gleich sein.
+    %Beide Blöcke (Block A und Block B) sollen vom Aufbau gleich sein.
     Der einzige Unterschied ist, wie der Algorithmus die Schleife ausführen will.
     Der Benutzer soll die Möglichkeit haben per Drag&Drop den Schleifenblock aus einer Liste auszuwählen und diesen frei im Canvas platzieren zu können.
     Sobald der Block platziert wurden ist, kann der Benutzer mit dem Schleifenblock interargieren.
-    Beim Klicken auf den Block hat der Benutzer die Möglichkeit die Anazahl der Iterationen und die Abbruchbedingung für die Schleife festzulegen.
-    Zusätzlich kann TODO festgelegt werden.
-    Die Abbruchbedingung setzt sich dabei aus zwei Feldern für die Argumente und einer Auswahlsliste für den Operator zusammen.
+    Die Schleifenlogik soll durch den Benutzer konfigurierbar sein. 
+    %die Anazahl der Iterationen und die Abbruchbedingung für die Schleife festzulegen.
+    %Zusätzlich stehen Anzeigeooptionen zur verfügung.
+    %Die Abbruchbedingung setzt sich dabei aus zwei Feldern für die Argumente und einer Auswahlsliste für den Operator zusammen.
     Dafür wird auf die bereits vorhandene grafische Benutzeroberfläche des Systems zurück gegriffen.
+    %Am Block selbst kann der Benutzer die Verbindungen erstellen, indem er per Drag&Drop die einzelnen Interaktionspunkte verschiedener Aktvitäten verbindet.
+    %Rückverbindungen über den Schleifenblock sollen dabei erlaubt sein.
+    %Ingesammt stehen dem Schleifenblock vier Interaktionspunkte zur Verfügung.
+    %Welcher Pfad genommen wird, wird durch den Wahrheitswert der Abbruchbedingung bestimmt.
+    \subsection{Entwursphase}
+    \textbf{Schleifenblock}\\
+    \\
+    Der Schleifenblock soll dabei als Oval im Canvas dargestellt werden.
+    Beim Klicken auf den Schleifenblock soll der Benutzer die Möglichkeit haben die Anazahl der Iterationen und die Abbruchbedingung für die Schleife festzulegen.
+    Zusätzlich TODO.
+    Die Abbruchbedingung setzt sich dabei aus zwei Feldern für die Argumente und einer Auswahlsliste für den Operator zusammen.
     Am Block selbst kann der Benutzer die Verbindungen erstellen, indem er per Drag&Drop die einzelnen Interaktionspunkte verschiedener Aktvitäten verbindet.
     Rückverbindungen über den Schleifenblock sollen dabei erlaubt sein.
-    Ingesammt stehen dem Schleifenblock 3 Interaktionspunkte zur Verfügung.
-    Der Interaktionspunkt oben ist der Eingang.
-    Hingegen die Interationspunkte rechts und unten die Ausgänge sind.
-    Ersteres hat die Bezeichnung OnFalse TODO
-    Letzteres hat die Bezeichnung OnTrue TODO
+    Ingesammt stehen dem Schleifenblock vier Interaktionspunkte zur Verfügung.
     Welcher Pfad genommen wird, wird durch den Wahrheitswert der Abbruchbedingung bestimmt.
-    \subsection{Entwursphase}
+    Ist die Abbruchbedingung Wahr, wird die Verbindung vom Interaktionspunkt unten genommen.
+    Wenn hingegen die Abbruchbedingung Falsch ist, wird die Verbindung vom Interaktionspunkt rechts genommen.\\
+    \\
     \textbf{Block A}\\
     \\
     %TODO funktionsweise des schleifenblocks allgemein erklären
@@ -526,21 +536,43 @@
     \textbf{Block B}\\
     \\
     Block B soll die Wiederholung von Aktivitäten durch iterative Schleifen ermöglichen.
-    Ist die Abbruchbedingung nicht erfüllt, wird Entschieden ob eine Wiederholung stattfindet oder nicht. Dabei wird geschaut wie sich das dynamische Datum über die Iteration hinweg verhält.
-    Es wird überprüft, ob die Anzahl der Iterationen bereits die maximale Anzahl an Iteration überschritten hat oder der Chancen-Zähler den Wert 0 erreicht hat.
-    Da der Vergleich auf Mittelwerten basiert, müssen die Eingaben in einen Gleitkommawert umgewandelt werden.
-    Zunächst wird dafür die Eingabe in eine Zeichenkette umgewandelt und anschließend versucht als Gleitkommazahlen zu interpretieren. 
-    Schlägt die Interpretation fehl, handelt es sich nicht um eine Zahl. In dem Fall muss die Zeichenkette zeichenweise mithilfe von UTF-8 in eine Dezimalzhal überführt werden.     
-    UTF-8 bietet sich zur Umwandlung an, da es bereits eine eindeutige und standardisierte Codierung für über 1,1 Millionen Unicode-Zeichen bereitstellt und somit keine zusätzliche Festlegung eines eigenen Codierungsschemas erforderlich ist.    
-    Die einzelnen Zahlen werden dann mit ihren Index multipliziert und im anschluss addiert.
-    Der Schritt mit der multiplizierung ist notwendig, weil die addtion kommutativ ist und somit keine berücksichtigung der Zeichenfolge erfolgt, wird durch Multiplikation mit der Zeichenposition eine positionsabhängige Gewichtung sichergestellt.
-    Die Werte vom Typ double werden anschließend in einer Liste gespeichert, die alle bisherigen Eingaben beinhaltet.
-    Basierend auf dieser Liste wird dann ein Mittelwert über alle bisherigen Werte gebildet und ein gleitender Mittelwert über die letzen 3 Werte.
-    Anschließend wird die differenz zwischen den aktuellen Wert und den Mittelwerten gebildet. ist die differenz kleiner als ein threshold wird der counter dekremntiert. ist die differenz gleich oder größer als der Threshold wird der Chancen-Zähler zurückgesetzt.
-    Erreicht der Chancen-Zähler 0 werden keine weiteren Wiederholungen ausgeführt, da der wert sehr wahrscheinlich stagniert.
-    Der Chancen-Zähler erweist sich als erforderlich, da dieser als Steuermechanismus für die Wiederholungslogik dient und eine Begrenzung der Iterationen bei ausbleibender signifikanter Veränderung sicherstellt.
-    Dadurch soll verhindert werden, dass eine ineffiziente Fortsetzung der Schleife stattfindet.
-    Sollten weniger als 3 Werte in der Ergbenissliste drin sein, wird die Berechnung übersprungen. Dadurch kann gewährleistret werden, dass das System einlaufen kann und die Mittelwerte erst gebildet werden, wenn eine aussagekräftige Datenbasis vorhanden ist.\\
+    Zur umsetzung dieses Ziels wird ein Mittelwertansatz als Grundlage verwendet.
+    Wird die OnFalse Verbindung des Schleifenblocks ausgewählt wird als erstes überprüft, ob eine Wiederholung stattfinden darf oder nicht.
+    Dafür wird geschaut, ob die Anzahl an Interationen bereits das maximum erreicht haben oder der Chancen-Zähler den Wert 0 erreicht hat.
+    Sind beide Bedingungen nicht erfüllt, ist eine Wiederholung erlaubt wird TODO.
+    Dabei wird das erste Argument aus der Abbruchbedingung genommen und versucht in einen Gleitkommawert umgewandelt. %TODO
+    Dafür wird das Argument als erstes in eine Zeichenkette umgewandelt und anschließend versucht als Gleitkommazahl zu interpretieren.
+    Ist dies Möglich, wird die die Gleitkommazahl in eine Liste mit allen bisherigen umgewandelten Argumenten gespeichert.
+    Schlägt die Interpretation fehl, ist das Argument keine Zahl gewesen und die Zeichenkette muss mithilfe von UTF-8 in eine Dezimalzahl umgewandelt werden.
+    Bei der Umwandlung wird die Zeichenkette zeichenweise in die entsprechende Dezimalzahl umgewandelt und anschließend mit ihren Index multipliziert.
+    Im Anschluss werden die einzelnen Zahlen addiert, sodass am Ende nur noch eine Summe übrig bleibt.
+    Die Summe wird anschließend in eine Gleitkommazahl umgewandelt und der Liste hinzugefügt.
+    In Abbildung TODO wird die Rechnung für ein Beispiel durchgegangen.
+    Basierend auf der Liste mit allen bisherigen umgewandelten Argumenten wird dann ein Mittelwert über alle Werte gebildet und ein gleitender Mittelwert über die letzen 3 Werte.
+    Anschließend wird die Differenz zwischen dem aktuellsten Wert und den Mittelwerten berechnet. 
+    Ist die Differenz kleiner als ein Threshold wird der Chancen-Zähler dekremntiert. 
+    Anderfalls wird der Chancen-Zähler zurückgesetzt.
+    Der Chancen-Zähler ist erforderlich, da dieser als Steuermechanismus für die Wiederholungslogik dient und eine Begrenzung der Iterationen bei ausbleibender signifikanter Veränderung sicherstellt.
+    Sollten weniger als 3 Werte in der Liste drin sein, wird die Berechnung der Differenz übersprungen und direkt mit der Wiederholung der Aktivitäten begonnen.
+    Dadurch kann gewährleistret werden, dass das System einlaufen kann und die Mittelwerte erst gebildet werden, wenn eine aussagekräftige Datenbasis vorhanden ist.\\
+    \\
+    %Erreicht der Chancen-Zähler 0 werden keine weiteren Wiederholungen ausgeführt, da der wert sehr wahrscheinlich stagniert.
+    %Dadurch soll verhindert werden, dass eine ineffiziente Fortsetzung der Schleife stattfindet.
+    %Ist die Abbruchbedingung nicht erfüllt, wird Entschieden ob eine Wiederholung stattfindet oder nicht. Dabei wird geschaut wie sich das dynamische Datum über die Iteration hinweg verhält.
+    %Es wird überprüft, ob die Anzahl der Iterationen bereits die maximale Anzahl an Iteration überschritten hat oder der Chancen-Zähler den Wert 0 erreicht hat.
+    %Da der Vergleich auf Mittelwerten basiert, müssen die Eingaben in einen Gleitkommawert umgewandelt werden.
+    %Zunächst wird dafür die Eingabe in eine Zeichenkette umgewandelt und anschließend versucht als Gleitkommazahlen zu interpretieren. 
+    %Schlägt die Interpretation fehl, handelt es sich nicht um eine Zahl. In dem Fall muss die Zeichenkette zeichenweise mithilfe von UTF-8 in eine Dezimalzhal überführt werden.     
+    %UTF-8 bietet sich zur Umwandlung an, da es bereits eine eindeutige und standardisierte Codierung für über 1,1 Millionen Unicode-Zeichen bereitstellt und somit keine zusätzliche Festlegung eines eigenen Codierungsschemas erforderlich ist.    
+    %Die einzelnen Zahlen werden dann mit ihren Index multipliziert und im anschluss addiert.
+    %Der Schritt mit der multiplizierung ist notwendig, weil die addtion kommutativ ist und somit keine berücksichtigung der Zeichenfolge erfolgt, wird durch Multiplikation mit der Zeichenposition eine positionsabhängige Gewichtung sichergestellt.
+    %Die Werte vom Typ double werden anschließend in einer Liste gespeichert, die alle bisherigen Eingaben beinhaltet.
+    %Basierend auf dieser Liste wird dann ein Mittelwert über alle bisherigen Werte gebildet und ein gleitender Mittelwert über die letzen 3 Werte.
+    %Anschließend wird die differenz zwischen den aktuellen Wert und den Mittelwerten gebildet. ist die differenz kleiner als ein threshold wird der counter dekremntiert. ist die differenz gleich oder größer als der Threshold wird der Chancen-Zähler zurückgesetzt.
+    %Erreicht der Chancen-Zähler 0 werden keine weiteren Wiederholungen ausgeführt, da der wert sehr wahrscheinlich stagniert.
+    %Der Chancen-Zähler erweist sich als erforderlich, da dieser als Steuermechanismus für die Wiederholungslogik dient und eine Begrenzung der Iterationen bei ausbleibender signifikanter Veränderung sicherstellt.
+    %Dadurch soll verhindert werden, dass eine ineffiziente Fortsetzung der Schleife stattfindet.
+    %Sollten weniger als 3 Werte in der Ergbenissliste drin sein, wird die Berechnung übersprungen. Dadurch kann gewährleistret werden, dass das System einlaufen kann und die Mittelwerte erst gebildet werden, wenn eine aussagekräftige Datenbasis vorhanden ist.\\
     \\
     Auf die Vor- und Nachteile der einzelnen Blöcke wird im späteren Verlauf eingegangen.
 
