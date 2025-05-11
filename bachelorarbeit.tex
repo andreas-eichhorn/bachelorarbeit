@@ -151,6 +151,7 @@
     %\end{grammar}
     %\textbf{Grammatik TODO} Backus-Naur-Form\\\\\\
     \label{BNF}
+    %TODO Grammatik beinhaltet allerdings nur die für die Ausführungssemantik benötigten Elemente. den satz einbauen
     Die Grammatik der domainspezifischen Sprache lässt sich Formal in drei Ebenen unterteilen. 
     Die oberste Ebene ist die Prüfungslogik, die mittlerste Ebene ist die Datenverarbeitung und die letzte Ebene ist das Typsystem. \cite{99}
     Ersteres beschreibt die benötigten Aktionen und Entscheidungen für eine Prüfung. \cite{99}
@@ -259,7 +260,7 @@
 
         <ActivityValidityCondition> ::= <ActivityPortValue>*
 
-        <ActivityBinaryCondition> ::= '='
+        <ActivityBinaryConditionOperator> ::= '='
         | '$\neq$' 
         | '\textless' 
         | '$\leq$' 
@@ -481,7 +482,7 @@
     %TODO kommenden zwei zeilen besser formulieren
     %Beide Blöcke (Block A und Block B) sollen vom Aufbau gleich sein.
     Der einzige Unterschied ist, wie der Algorithmus die Schleife ausführen will.
-    Der Benutzer soll die Möglichkeit haben per Drag&Drop den Schleifenblock aus einer Liste auszuwählen und diesen frei im Canvas platzieren zu können.
+    Der Benutzer soll die Möglichkeit haben per drag-and-drop den Schleifenblock aus einer Liste auszuwählen und diesen frei im Canvas platzieren zu können.
     Sobald der Block platziert wurden ist, kann der Benutzer mit dem Schleifenblock interargieren.
     Die Schleifenlogik soll durch den Benutzer konfigurierbar sein. 
     %die Anazahl der Iterationen und die Abbruchbedingung für die Schleife festzulegen.
@@ -495,11 +496,40 @@
     \subsection{Entwursphase}
     \textbf{Schleifenblock}\\
     \\
+    Für die Integration der neuen Schleifenblöcke ist eine Anpassung der Grammatik der Prüfungslogik erforderlich, konkret an der Regel \textit{Activity}.    
+    Hier muss die Regel eine Alternative erweitert werden, die ein neues Nichterminale einführt.
+    Das Nichtterminal \textit{ActivityLoop} kann dabei SchleifeA oder SchleifeB sein.
+    Beide Varianten setzen sich dabei aus einem ganzzahligen Wert für die Anzahl der Iterationen und einer Abbruchbedingung zusammen.
+    Die Abbruchbedingung wird durch das Nichtterminalsymbol \textit{ActivityBinaryCondition} abgebildet.
+    Die entsprechende Regel für das nichterminal wurde bereits definiert.
+    Dargestellt wird die Erweiterung in Abbildung TODO.
+    Auch hier beinhaltet die Erweiterung nur die für die Ausführungssemantik benötigten Elemente.\\
+    \\  
+    \begin{grammar}
+        <Activity> ::= <ActivityStart>
+        | <ActivityAction>
+        | <ActivityCondition>
+        | <ActivityDisplay>
+        | <ActivityLoop>
+
+        <ActivityLoop> ::= <integer iteration> <ActivityBinaryCondition>
+
+        <ActivityBinaryCondition> ::= ref(FlowTemplate) <ActivityBinaryConditionOperator> <ActivityPortValue left> <ActivityPortValue right>
+
+        <ActivityBinaryConditionOperator> ::= '='
+        | '$\neq$' 
+        | '\textless' 
+        | '$\leq$' 
+        | '\textgreater' 
+        | '$\geq$'
+    \end{grammar}
+    \textbf{Grammatik TODO} Erweiterung Prüfungslogik\\
+    \\
     Der Schleifenblock soll dabei als Oval im Canvas dargestellt werden.
     Beim Klicken auf den Schleifenblock soll der Benutzer die Möglichkeit haben die Anazahl der Iterationen und die Abbruchbedingung für die Schleife festzulegen.
     Zusätzlich TODO.
     Die Abbruchbedingung setzt sich dabei aus zwei Feldern für die Argumente und einer Auswahlsliste für den Operator zusammen.
-    Am Block selbst kann der Benutzer die Verbindungen erstellen, indem er per Drag&Drop die einzelnen Interaktionspunkte verschiedener Aktvitäten verbindet.
+    Am Block selbst kann der Benutzer die Verbindungen erstellen, indem er per drag-and-drop die einzelnen Interaktionspunkte verschiedener Aktvitäten verbindet.
     Rückverbindungen über den Schleifenblock sollen dabei erlaubt sein.
     Ingesammt stehen dem Schleifenblock vier Interaktionspunkte zur Verfügung.
     Welcher Pfad genommen wird, wird durch den Wahrheitswert der Abbruchbedingung bestimmt.
