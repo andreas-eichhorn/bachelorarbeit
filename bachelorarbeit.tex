@@ -4,6 +4,8 @@
 \usepackage{fancyvrb}
 \usepackage[ngerman]{babel}
 \usepackage[protrusion=true, expansion=true]{microtype}
+\usepackage{float}
+\usepackage[labelfont=bf,justification=raggedright,singlelinecheck=false]{caption}
 
 \begin{document}
     \newpage
@@ -16,7 +18,7 @@
     Anschließend wird ein kurzen Überblick über die kommenden Kapitel gegeben.
     \subsection{Aufgabe und Motivation}
     Prüfungen, die mithilfe grafischer Editoren modelliert werden, müssen in vielen Fällen eine Vielzahl von wiederkehrenden Aufgaben abbilden. 
-    Diese Wiederholungen können bei der aktuellen Implementierung nur schwer abgebildet werden, da Schleifen als Konstrukte nicht zur Verfügung stehen. 
+    Diese Wiederholungen können bei der aktuellen Implementierung nur schwer abgebildet werden, weil Schleifen als Konstrukte nicht zur Verfügung stehen. 
     Stattdessen müssen zu wiederholende Abläufe mehrfach und explizit modelliert werden. 
     Dies führt zu Redundanz, erhöht die Komplexität der Modelle und erschwert deren Wartbarkeit.\\
     \\
@@ -27,9 +29,10 @@
     Die einzige Möglichkeit, um dynamische Daten während einer Prüfung effizient und wartbar zu bearbeiten, besteht darin, ein Schleifenkonstrukt in das bestehende System zu integrieren. 
     Daraus ergibt sich ein klares Interesse, entsprechende Erweiterungen zu konzipieren und zu implementieren.\\
     \\
-    Im laufe der Bachelorarbeit sollen mehrere Möglichkeiten konzepiert und implementiert werden, welche es ermöglichen sollen dynamsichen Daten innerhalb einer Prüfung zu verarbeiten. 
+    In dieser Bachelorarbeit sollen mehrere Möglichkeiten konzepiert und implementiert werden, welche es ermöglichen sollen dynamsichen Daten innerhalb einer Prüfung zu verarbeiten.
+    Bei dynmaischen Daten handelt es sich um Daten, die während der Prüfung ihren Wert ändern.
     Dafür muss im Vorfeld das zugrunde liegende System analysiert und bearbeitet werden, sodass Zyklen vom System verarbeitet werden können.
-    Nach der Implementierung sollen diese Bewertet werden.
+    Die Implementierung wird in einer Evaluation auf TODO untersucht.
     \subsection{Aufbau der Arbeit}
     Die vorliegenede Arbeit setzt sich aus TODO nachfolgenden Kapiteln zusammen. 
     Im zweiten Kapitel TODO
@@ -37,81 +40,88 @@
     Darauf aufbauen wird im vierten und fünften Kapitel TODO
     Der Fokus im letzten Kapitel liegt auf TODO 
     \newpage
-    \section{Terminologie}
-    Der Fokus dieses Kapitels liegt auf der Definition zentraler Fachbegriffe um dadurch einen einheitlichen terminologischen Rahmen zu schaffen. 
-    Das Ziel dieses Kapitels ist es die Verständlichkeit der nachfolgenden Kapitel zu erhöhen und die theoretischen Grundlagen der Arbeit zu festigen.\\
-    \\
+    \section{Hintergrund}
+    Der Fokus dieses Kapitels liegt auf der Definition zentraler Fachbegriffe und TODO um dadurch einen einheitlichen terminologischen Rahmen zu schaffen. 
+    Das Ziel dieses Kapitels ist es die Verständlichkeit der nachfolgenden Kapitel zu erhöhen und die theoretischen Grundlagen der Arbeit zu festigen.
+    \subsection{Terminologie}
+    \label{Terminologie}
     \textbf{Schleifen}\\
     \\
-    Eine Schleife ist eine Kontrollstruktur, die einen Programm-Abschnitt mehrmals ausführt. \cite{22}
-    Häufig ist diese dabei die zeitintensivste Komponente eines Programms, da ihre die Ausführung sehr viel Zeit in anspruch nehmen kann. \cite{1}
-    Der Algrorithmus dieser Kontrollstruktur kann dabei iterativ oder rekursiv implementiert werden. Ersteres wiederholt die Schleife mehrmals. Hingegen die Rekursion sich mehrmals selbst aufruft. \cite{3}
-    Zur umsetzung verwendet die Iteration einen Akkumulativenansatz. Dabei wird das Problem schrittweise gelöst. Der Prozess wird solange wiederholt bis eine vordefinierte (Abbruch-)Bedingung erfüllt ist. \cite{3}
-    Im gegensatz zur Iteration verwendet die Rekursion keinen Akkumulativenansatz, sondern zerlegt das Problam in mehrere (Teil-)Probleme. Für die Teilprobleme werden dann einzelne Lösungen erarbeitet, welche im Anschluss wieder kombiniert werden um das eigentliche Problem zu lösen. \cite{3}
+    Eine Schleife ist eine Kontrollstruktur, die einen Programm-Abschnitt mehrmals ausführt \cite{22}.
+    Häufig ist diese dabei die zeitintensivste Komponente eines Programms, da ihre die Ausführung sehr viel Zeit in anspruch nehmen kann \cite{1}.
+    Der Algrorithmus dieser Kontrollstruktur kann dabei iterativ oder rekursiv implementiert werden. Ersteres wiederholt die Schleife mehrmals. Hingegen die Rekursion sich mehrmals selbst aufruft \cite{3}.
+    Zur umsetzung verwendet die Iteration einen Akkumulativenansatz. Dabei wird das Problem schrittweise gelöst. Der Prozess wird solange wiederholt bis eine vordefinierte (Abbruch-)Bedingung erfüllt ist \cite{3}.
+    Im gegensatz zur Iteration verwendet die Rekursion keinen Akkumulativenansatz, sondern zerlegt das Problam in mehrere (Teil-)Probleme. Für die Teilprobleme werden dann einzelne Lösungen erarbeitet, welche im Anschluss wieder kombiniert werden um das eigentliche Problem zu lösen \cite{3}.
     Laut Chen L. spiegelt die Iteration das menschliche Denken wieder, weshalb sie sich besonders für lineare Probleme eignet. 
-    Die Rekursion hingegen ist für Probleme geeignet, welche Zwischenergebnisse oder Teillösungen benötigen. \cite{3}
-    Eine Schleife kann dabei in zeitabhängig oder horizontal unterteilt werden. Bei einer zeitabhängigen Schleife hängt das Ergebnis des aktuellen Schleifendurchlaufs vom Ergebnis des vorherigen Schleifendurchlaufs ab. Hingegen sind die Ergebnisse der Schleifendurchläufe bei der horizontalen Schleife unabhängig voneinander. \cite{5}\\
+    Die Rekursion hingegen ist für Probleme geeignet, welche Zwischenergebnisse oder Teillösungen benötigen \cite{3}.
+    Eine Schleife kann dabei in zeitabhängig oder horizontal unterteilt werden. Bei einer zeitabhängigen Schleife hängt das Ergebnis des aktuellen Schleifendurchlaufs vom Ergebnis des vorherigen Schleifendurchlaufs ab. Hingegen sind die Ergebnisse der Schleifendurchläufe bei der horizontalen Schleife unabhängig voneinander \cite{5}.\\
     \\
     \textbf{Domain Specific Language}\\
     \\
-    Bei einer domänenspezifische Sprache (DSL) handelt es sich um eine Programmiersprache, die mit dem Ziel entwickelt wurden ist, spezifische Aufgabenstellungen innerhalb eines begrenzten Anwendungskontexts (Domaine) besonders effektiv zu lösen. \cite{18}
-    DSLs bilden das Gegenstück zu General-Purpose Languages (GPL) wie Java, C++ oder Python. \cite{14}
-    Anders als bei GPLs verfügen DSLs oftmals über eine reduzierte Syntax, die ausschließlich für die jeweilige Domaine relevant ist. Teilweise wird DSLs durch GPL ergänzt. \cite{18}
-    Bei DSLs wird zwischen externen und internen DSLs unterschieden. Externe DSLs haben ihre eigene Syntax. Dadurch kann eine größere flexibilität geschaffen werden, aber zeitglich ist der Aufwand für den Entwickler sehr hoch, weil alle relevanten Tools selbst implementieren werden müssen. 
-    Außerdem braucht der Benutzer länger Zeit um die Syntax zu lernen. \cite{7}
-    Zur Laufzeit wird die externe DSLs dann in eine GPL übersetzt. \cite{14}
-    Interne DSLs hingegen verwenden die Syntax einer GPL und können über eine Programmierschnittstelle oder Bibliothek aufgerufen werden. \cite{14}
-    Die Vorteile von DLSs liegen in ihrer strukturellen Klarheit und Spezialisierung. Dem gegenüber stehen die Nachteile eines hohen Initialaufwands sowie einer begrenzten Flexibilität und Verfügbarkeit. \cite{18}\\ 
+    Bei einer domänenspezifische Sprache (DSL) handelt es sich um eine Programmiersprache, die mit dem Ziel entwickelt wurden ist, spezifische Aufgabenstellungen innerhalb eines begrenzten Anwendungskontexts (Domaine) besonders effektiv zu lösen \cite{18}.
+    DSLs bilden das Gegenstück zu General-Purpose Languages (GPL) wie Java, C++ oder Python \cite{14}.
+    Anders als bei GPLs verfügen DSLs oftmals über eine reduzierte Syntax, die ausschließlich für die jeweilige Domaine relevant ist. Teilweise wird DSLs durch GPL ergänzt \cite{18}.
+    Bei DSLs wird zwischen externen und internen DSLs unterschieden. Externe DSLs haben ihre eigene Syntax. 
+    Dadurch kann eine größere flexibilität geschaffen werden, aber zeitglich ist der Aufwand für den Entwickler sehr hoch, weil alle relevanten Tools selbst implementieren werden müssen. 
+    Außerdem braucht der Benutzer länger Zeit um die Syntax zu lernen \cite{7}.
+    Zur Laufzeit wird dann die externe DSLs in eine GPL übersetzt.
+    Bei internen DSLs hingegen wird die Syntax einer GPL verwendet. 
+    Die interne DSL kann dann oft über eine Programmierschnittstelle oder Bibliothek aufgerufen werden \cite{14}.
+    Ein Beispiel für eine externe DSL ist SQL.
+    Ein Beispiel für eine interne DSL ist Rake.
+    Die Vorteile von DLSs liegen in ihrer strukturellen Klarheit und Spezialisierung. Dem gegenüber stehen die Nachteile eines hohen Initialaufwands sowie einer begrenzten Flexibilität und Verfügbarkeit \cite{18}.\\ 
     \\
     \textbf{Visual Programming Language}\\
     \\
-    Visuelle Sprachen (VL) sind Sprachen, bei denen die Informationsdarstellung primär über grafische Elemente und nicht über textuelle Komponenten erfolgt. \cite{5}
-    Dabei werden hauptsächlich grafische Tools und visuelle Metaphoren verwendet. 
+    Visuelle Sprachen (VL) sind Sprachen, bei denen die Informationsdarstellung primär über grafische Elemente und nicht über textuelle Komponenten erfolgt \cite{5}.
+    Dabei werden hauptsächlich grafische Tools und visuelle Metaphan verwendet. 
     Bilder eignen sich besonders gut zum Programmieren, weil diese ausdruckstärker als Worte sind und einen höheren Wiedererkennungswert haben.
-    Nachteile gegenüber Text-basierten Sprachen sind, dass VLs durch die eigeschränkte Syntax nicht so ausdruckstark und flexibel sind. \cite{16}\\
+    Nachteile gegenüber Text-basierten Sprachen sind, dass VLs durch die eigeschränkte Syntax nicht so ausdruckstark und flexibel sind \cite{16}.\\
     \\
     Eine spezielle Form visueller Sprachen stellen die visuellen Programmiersprachen (VPL) dar, bei denen grafische Darstellungen gezielt für die Erstellung von Programmen genutzt werden.    
-    Das Hauptziel von VPLs besteht in der Verbesserung der Darstellung der Programmierlogik sowie in der Erleichterung des Verständnisses von Programmabläufen. \cite{13}
-    Dadurch soll der Fokus bei Programmieren stärker auf die konzeptuellen statt symtaktischen Aspekte verlagert werden. Die syntaktischen Aspekte werden von der Entwicklungsumgebung übernommen. \cite{10}
+    Das Hauptziel von VPLs besteht in der Verbesserung der Darstellung der Programmierlogik sowie in der Erleichterung des Verständnisses von Programmabläufen \cite{13}.
+    Dadurch soll der Fokus bei Programmieren stärker auf die konzeptuellen statt symtaktischen Aspekte verlagert werden. 
+    Die syntaktischen Aspekte werden von der Entwicklungsumgebung übernommen \cite{10}.
     Die Umsetzung von Programmen erfolgt durch Flussdiagrammen, die vom Benutzer erstellt werden können. 
-    Die erstellten Flussdiagramme werden dann vom System interpretiert und ausgeführt. \cite{12}
-    Nach Charntaweekhun bieten Flussdiagramme einen didaktischen Vorteil, da diese Programmieranfängern ermöglichen, komplexe Abläufe visuell zu erfassen und zu strukturieren. \cite{12}
-    Ein weiterer Vorteil von VPLs besteht in der erhöhten Lesbarkeit und der geringeren Anfälligkeit für syntaktische Fehler, was auf die Verwendung einer begrenzten Menge vordefinierter grafischer Elemente zurückzuführen ist.\cite{10}
-    Die stärken von VPLs zeigen sich darüber hinaus in ihrer Einfachheit, visuelle Darstellbarkeit, Transparenz und Interaktivität. \cite{13}
+    Die erstellten Flussdiagramme werden dann vom System interpretiert und ausgeführt \cite{12}.
+    Nach Charntaweekhun bieten Flussdiagramme einen didaktischen Vorteil, weil diese Programmieranfängern ermöglichen, komplexe Abläufe visuell zu erfassen und zu strukturieren \cite{12}.
+    Ein weiterer Vorteil von VPLs besteht in der erhöhten Lesbarkeit und der geringeren Anfälligkeit für syntaktische Fehler, was auf die Verwendung einer begrenzten Menge vordefinierter grafischer Elemente zurückzuführen ist \cite{10}.
+    Die stärken von VPLs zeigen sich darüber hinaus in ihrer Einfachheit, visuelle Darstellbarkeit, Transparenz und Interaktivität \cite{13}.
     %TODO folgende sätze umformilieren
-    Die Klassifikation visueller Programmiersprachen unterscheidet zwischen imperativen und deklarativen Modellen. Ersteres gibt die exakte Reihenfolge der Operationen vor, während letzteres lediglich Datenabhänigkgieten spezifiziert und die Ausführungsreihenfolge dem System überlasst.\cite{21}
+    Die Klassifikation visueller Programmiersprachen unterscheidet zwischen imperativen und deklarativen Modellen. Ersteres gibt die exakte Reihenfolge der Operationen vor, während letzteres lediglich Datenabhänigkgieten spezifiziert und die Ausführungsreihenfolge dem System überlasst \cite{21}.
     Visuelle Programmiersprachen (VPLs) basieren überwiegend auf einem datenflussgesteuerten Modell, bei dem die Strukturierung von Programmen durch den Austausch von Informationen zwischen Operatoren erfolgt. \cite{6}
-    Zusammengefasst kann man sagen, dass VPLs die Vorteile von Flussdiagrammen und nicht die Nachteile der klassischen Programmierung kombiniert. \cite{13}\\
+    Zusammengefasst kann man sagen, dass VPLs die Vorteile von Flussdiagrammen und nicht die Nachteile der klassischen Programmierung kombiniert \cite{13}.\\
     \\
     \textbf{Datenfluss-basierte Sprachen}\\
     \\
     %Punkte von Jonston et. al erklären  und zyklisch/azyklisch
     Als Datenfluss-basierte Sprache (DL) wird eine Programmiersprache verstanden, bei der die Daten zwischen Funktionnen weitergeleitet werden. 
-    Die Programme werden dabei als Graphen dargestellt. \cite{11}
+    Die Programme werden dabei als Graphen dargestellt \cite{11}.
     Dieser wird als gerichteter Graph (DG) definiert, in dem Funktionen als Knoten dargestellt werden.
-    Die Knoten können dabei durch gerichtete Kanten verbunden werden, welche die Datenabhängigkeiten zwischen zwei Knoten beschreiben. \cite{2}
-    %TODO ab hier weitermachen
-    Datenflussgraphen lassen sich hinsichtlich ihrer Granularität in feinkörnig und grobkörnig unterteilen. In einem feinkörnigen Graphen führt jeder Knoten extakt eine Instruktions aus, während grobkörnige Graphen mehrere Instruktionen pro Knoten ausführen können.\cite{1}
+    Die Knoten können dabei durch gerichtete Kanten verbunden werden, welche die Datenabhängigkeiten zwischen zwei Knoten beschreiben \cite{2}.
+    Datenflussgraphen lassen sich hinsichtlich ihrer Granularität in feinkörnig und grobkörnig unterteilen. In einem feinkörnigen Graphen führt jeder Knoten extakt eine Instruktions aus, während grobkörnige Graphen mehrere Instruktionen pro Knoten ausführen können \cite{1}.
     Neben der Granularität lässt sich ein Datenflussgraph auch in Zyklenstrukturen unterteilen. 
-    Dabei wird zwischen zyklisch und azyklisch unterschieden. \cite{8} %TODO begriffe kurz erklären
-    DLs sind überwiegend funktional geprägt, aber können auch text-basiert sein. \cite{2}
-    Der Vorteil einer DLs ist, dass diese durch einen Graphen dargestellt werden können \cite{11} und dadurch die Programme einfach zur verstehen sind. \cite{6}
+    Dabei wird zwischen zyklisch und azyklisch unterschieden \cite{8}. %TODO begriffe kurz erklären
+    DLs sind überwiegend funktional geprägt, aber können auch text-basiert sein \cite{2}.
+    Der Vorteil einer DLs ist, dass diese durch einen Graphen dargestellt werden können \cite{11} und dadurch die Programme einfach zur verstehen sind \cite{6}.
     Für komplexe Programmen kann eine reine Graphendarstellung schnell unübersichtlich werden. Zur Struktuierung komplexer Programme werden Mikrofunktionen eingesetzt, bei denen einzelne Knoten auf untergeordnete Teilgraphen verweisen. Dadurch lassen dann auch rekursive Abläufe modellieren. \cite{11}    
-    DLs führen Instruktionen nicht in einer festen Sequenz aus. Dadurch können unabhängig voneinander ausführbare Instruktion parallel verarbeitet werden. \cite{1}
-    Diese Form der Ausführung ermöglicht eine Effizienzsteigerung, da der Ablauf nicht mehr durch einen zentralen Programmzähler gesteuert wird. \cite{2}
-
-    Johnston et. al beschreiben in ihrer Wissenschaftlichenarbeit eine Menge von Eigenschaften. So sollen DLs frei von Seiteneffekten sein, den Lokalitätsprinzip folgen und keine Variablen überschreiben.\cite{2}\\
-    \\    
-    %Je nach Implementierung kann nur lokaler Speicher verwendet werden. \cite{8}
+    DLs führen Instruktionen nicht in einer festen Sequenz aus. Dadurch können unabhängig voneinander ausführbare Instruktion parallel verarbeitet werden \cite{1}.
+    Diese Form der Ausführung ermöglicht eine Effizienzsteigerung, da der Ablauf nicht mehr durch einen zentralen Programmzähler gesteuert wird \cite{2}.\\
+    \\
+    Johnston et. al beschreiben in ihrer wissenschaftlichen Arbeiten eine Menge von Grundlegenden Eigenschaften. 
+    So sollen DLs frei von Seiteneffekten sein, den Lokalitätsprinzip folgen und keine Variablenüberschreiben zulassen \cite{2}.
+    Frei von Seiteneffekten beudetet dabei dass Ausführungen nur von den Eingaben abhängen.
+    Das Lokalitätsprinzip besagt, dass bevorzugt auf Speicherbereiche zugegriffen wird, die entweder räumlich nahe beieinanderliegen (räumliche Lokalität) oder innerhalb kurzer Zeit mehrfach verwendet werden (zeitliche Lokalität).\\
+    \\
     Eine Computerarchitketur, die auf DLs basiert, wird Datenfluss-basiertes System (DBS) genannt.
-    DBSs wurde eingeführt um den Flaschenhals der von-Neumann-Architektur zu vermeiden. \cite{8} %TODO überprüfen ob zittat wirklich von 8 kommt
-    Vorteile von DBSs sind eine hohe Effizienz, flexible Strukturen und leistungsstarke Ausführungsmechanismen. \cite{1}
-    Darüber hinaus besteht ein weiterer Vorteil im möglichen Paralellismus, da bei fehlender Datenabhängigkeit mehrere Insturktionen gleichzeitig ausgeführt werden können. \cite{1}
-    Dies wird durch die direkte Weitergabe von Daten zwischen Funktionen unterstützt, wobei die Verarbeitung Der Daten, wie Transformation und Filterung, innerhalb der Funktionen erfolgt. \cite{15}
+    DBSs wurde eingeführt um den Flaschenhals der von-Neumann-Architektur zu vermeiden \cite{8}. %TODO überprüfen ob zittat wirklich von 8 kommt
+    Vorteile von DBSs sind eine hohe Effizienz, flexible Strukturen und leistungsstarke Ausführungsmechanismen \cite{1}.
+    Darüber hinaus besteht ein weiterer Vorteil im möglichen Paralellismus, da bei fehlender Datenabhängigkeit mehrere Insturktionen gleichzeitig ausgeführt werden können \cite{1}.
+    Dies wird durch die direkte Weitergabe von Daten zwischen Funktionen unterstützt, wobei die Verarbeitung Der Daten, wie Transformation und Filterung, innerhalb der Funktionen erfolgt \cite{15}.
     Innerhalb von DBSs wird zwischen daten- und bedarfgetriebener Ausführung unterschieden. 
     Ersteres führt die Funktionen aus, sobald alle Operanden vorhanden sind und ein Signal vorliegt. 
-    Hingegen bei der bedarfgetriebenen Ausführung die Funktion ausgeführt wird, sobald alle Operanden vorhanden sind. \cite{2}
-    Aus dem Grund kann die datengesteuerte Ausführung als Spezialfall einer bedarfsgesteuerten Ausführung angesehen werden, bei der ein Bedarf an allen Ergebnissen von vorneherein besteht. \cite{11}\\
+    Hingegen bei der bedarfgetriebenen Ausführung die Funktion ausgeführt wird, sobald alle Operanden vorhanden sind \cite{2}.
+    Aus dem Grund kann die datengesteuerte Ausführung als Spezialfall einer bedarfsgesteuerten Ausführung angesehen werden, bei der ein Bedarf an allen Ergebnissen von vorneherein besteht \cite{11}.\\
     \\
     %TODO kurzer vergleich zu von neumann
     %BBS imperativen Programmierablauf, Datenfluss/Kontrollfluss
@@ -119,18 +129,24 @@
     \textbf{Wasserfall Modell}\\
     \\
     %TODO phasen auflisten und erklären, phasen können je nach variation unterscheiden
-    Das Wasserfallmodell ist ein Modell für Softwareentwicklung \cite{24} und wurde 1970 eingeführt. \cite{25} 
-    Die Softwareentwicklung wird dabei in verschiedene voneinander getrennte Phasen unterteilt. \cite{22} 
-    Es handelt sich beim Wasserfallmodell um ein statisches Modell, da die einzelnen Phasen linear und sequentiell durchlaufen werden. \cite{22} 
-    Sobald eine Phase abgeschlossen ist, kann diese nicht wieder besucht werden. \cite{22} 
+    Das Wasserfallmodell ist ein Modell für Softwareentwicklung \cite{24} und wurde 1970 eingeführt \cite{25}. 
+    Die Softwareentwicklung wird dabei in verschiedene voneinander getrennte Phasen unterteilt \cite{22}.
+    Es handelt sich beim Wasserfallmodell um ein statisches Modell, da die einzelnen Phasen linear und sequentiell durchlaufen werden \cite{22}.
+    Sobald eine Phase abgeschlossen ist, kann diese nicht wieder besucht werden \cite{22}. 
     Aus dem Grund ist das Modell besonders gut für Systeme geeignet, welche nach der Implementierung keine Änderungen mehr zulassen \cite{22}. 
-    Die Vorteile eines Wasserfallmodells sind, dass es einfach verständlich ist \cite{22}, die Anforderungen an das System bereits vor der Entwicklung bekannt sind und es einfach umzusetzen ist. \cite{23} 
-    Außerdem trägt die Dokumentation am Ende jeder Phase zur Verbesserung der Projektqualität bei. \cite{23}
-    Hingegen ein großer Nachteil von Wasserfallmodellen ist, dass sich ändernde Anforderungen oder auftretende Probleme während der Entwicklung nicht berücksichtigt werden können. \cite{23} 
+    Die Vorteile eines Wasserfallmodells sind, dass es einfach verständlich ist \cite{22}, die Anforderungen an das System bereits vor der Entwicklung bekannt sind und es einfach umzusetzen ist \cite{23}.
+    Außerdem trägt die Dokumentation am Ende jeder Phase zur Verbesserung der Projektqualität bei \cite{23}.
+    Hingegen ein großer Nachteil von Wasserfallmodellen ist, dass sich ändernde Anforderungen oder auftretende Probleme während der Entwicklung nicht berücksichtigt werden können \cite{23}.
     Um den Nachteilen des klassischen Wasserfallmodells etwas entgegenzuwirken haben sich die letzten Jahre einige Varianten entwickelt.
     So beschreibt TODO (24) in seinem Artikel eine Variante, bei der die einzelnen Phasen einer sorgfältigen Validierung und Bestätigung seitens des Clients benötigen um die Phase abzuschließen. 
-    Sollte der Client mit dem Ergebnissen nicht zufrieden sein, so kann das Modell wieder von vorne beginnen. \cite{24} 
-    In einer anderen Variante wird die Test-Phase komplett weggelassen, da das Testen während der gesamten Entwicklung stattfinden soll. \cite{25}
+    Sollte der Client mit dem Ergebnissen nicht zufrieden sein, so kann das Modell wieder von vorne beginnen \cite{24}. 
+    In einer anderen Variante wird die Test-Phase komplett weggelassen, da das Testen während der gesamten Entwicklung stattfinden soll \cite{25}.
+    \subsection{TODO}
+    %TODO ggf manche blöcke erklären vorallem die später verwendet werden
+    Bei dem Programm handelt es sich um einen graphischen Editor der Fahrzeugsystemdaten GmbH (FSD).
+    Die FSD erstellt Prüfvorgaben für die Hauptuntersuchung.
+    Der Benutzer hat die Möglichkeit per drag-and-drop seine Prüfung zusammen zu bauen.
+    Dabei stehen dem Benutzer eine vielzahl von vordefinierten Blöcken zur Verfügung.
     \newpage
     \section{Systemanalyse}
     In diesem Kapitel wird das System hinsichtlich seiner strukturellen und funktionalen Eigenschaften analysiert. 
@@ -463,6 +479,7 @@
     %Im Anschluss können dann die Nodes validiert werden. 
     %Bei der Validierung wird geprüft ob das Argument $〈bool acceptsError〉$ der $〈FlowNodeInput〉$ den gleichen Wert wie der Refenzierte $〈FlowInputPort〉$ hat. Ist das nicht der Fall wird eine Fehlermeldung für das Flow-Modell ausgegeben.
     \subsection{Codeanalyse}
+    \label{Codeanalyse}
         Die aktuelle Umsetzung des Codes ermöglicht es aktuell nicht die geplante. Konkret lassen sich zwei Probleme aus der aktuellen Umsetzung ableiten:
         \begin{itemize}
             %\item Beim Validieren des Graphens wird überprüft, ob Zyklen vorliegen. Sollten Zyklen vorliegen werden error erzeugt.
@@ -487,8 +504,13 @@
         Beim betrachen der Klasse VirtualMachineCompilerActivity, die für das kompilieren der Aktivitäten zuständig ist, ist aufgefallen, dass dort ein Fehler vorliegt.
         
     \newpage
-    \section{TODO}
+    \section{Anforderungs- und Entwurfsphase}
+    In dem Kapitel werden die ersten zwei Phasen des Wasserfallmodells für die geplante Erweiterung beschrieben. 
+    Als Wasserfallmodell wird der in Kapitel \ref{Terminologie} beschriebene modifizierte Ansatz von Patela et al. verwendet.
     \subsection{Anforderungsphase}
+    In diesem Unterkapitel wird die Anforderungphase beschrieben.
+    In der Anfordeurngsphase werden die benötigten Anforderungen an die Blöcke identifiziert und erläutert. \cite{24}\\
+    \\
     Die geplante Erweiterung sieht die Einführung von zwei Schleifenblöcken vor, die die Wiederholung von Aktivitäten ermöglichen sollen. 
     Dadurch soll es möglich sein Prüfungen mit dynamsichen Daten verarbeiten zu können.
     %TODO kommenden zwei zeilen besser formulieren
@@ -506,6 +528,8 @@
     %Ingesammt stehen dem Schleifenblock vier Interaktionspunkte zur Verfügung.
     %Welcher Pfad genommen wird, wird durch den Wahrheitswert der Abbruchbedingung bestimmt.
     \subsection{Entwursphase}
+    Im folgenden Unterkapitel wird die Entwursphase beschrieben.
+    In der Entwurfsphase werden die Anfoderungen aus der Anfoderungsphase konkretisiert, unter anderem durch das entwerfen von Algorithmen. \cite{24}
     \textbf{Schleifenblock}\\
     \\
     Für die Integration der neuen Schleifenblöcke ist eine Anpassung der Grammatik der Prüfungslogik erforderlich, konkret an der Regel \textit{Activity}.    
@@ -516,8 +540,7 @@
     Die entsprechende Regel für das nichterminal wurde bereits definiert.
     Dargestellt wird die Erweiterung in Abbildung \ref{Erweiterung Prüfungslogik}.
     Auch hier beinhaltet die Erweiterung nur die für die Ausführungssemantik benötigten Elemente.\\
-    \\
-    \begin{figure}
+    \begin{figure}[H]
         \begin{grammar}
             <Activity> ::= <ActivityStart>
             | <ActivityAction>
@@ -539,6 +562,7 @@
         \caption{Erweiterung Prüfungslogik}
         \label{Erweiterung Prüfungslogik}
     \end{figure}
+    \noindent
     Der Schleifenblock soll dabei als Oval im Canvas dargestellt werden.
     Beim Klicken auf den Schleifenblock soll der Benutzer die Möglichkeit haben die Anazahl der Iterationen und die Abbruchbedingung für die Schleife festzulegen.
     Zusätzlich TODO.
@@ -621,7 +645,11 @@
     Auf die Vor- und Nachteile der einzelnen Blöcke wird im späteren Verlauf eingegangen.
 
     \newpage
-    \section{Implementierung}
+    \section{Implementierungsphase}
+    In diesem Kapitel wird die Implementierungsphase beschrieben. 
+    Dabei werden die in der Entwurfsphase erarbeiteten Konzepte in das System implementiert. \cite{24}
+    Im Folgenden werden die vorgenommenen Änderungen am Quellcode beschrieben und erläutert.\\
+    \\
     %TODO eigenschaft durch attribute ersetzen
     Zunächst wurde Klasse DataModelActivityElement um das Attribute \textit{CanCreateLoop} vom Datentyp bool erweitert. Bei dieser Klasse handelt es sich um die Basisklasse aller Aktivitäten.
     Das Attribut soll als Kennzeichnung dienen, um anzuzeigen ob der User die Möglichkeit hat von dem Block ausgehend eine Rückverbindung einzuzeichnen. Aus dem Grund war das Attribut für alle Aktivitäten bis auf die Schleife false.
@@ -707,7 +735,6 @@
     Ist dies der Fall wird die Methode calculateMean aufgerufen und dessen Rückgabewert in die Mittelwert-Variable gespeichert.
     Im Anschluss erfolgt der Aufruf von isDeviationWithinThreshold, dessen Rückgabewert von calculate zurückgegeben wird.\\
     \\
-    \\
     Ein andere Klasse ist Counter.
     Diese dient der Verwaltung zweier Zählerwerte: chance und counter.
     Der Zugriff auf diese Variablen erfolgt nach dem Prinzip der Datenkapslung.
@@ -740,7 +767,7 @@
     Liegt eine signifikante Abweichung vor wird der Zähler resetet. Ist hingegen keine Abweichung vorhanden wird der Zähler dekremntiert.\\
     \\
     Um Zyklen in der Prüfung zu erlauben, ist eine Anpassung der Zyklenprüfung erforderlich.
-    Die Funktionsweise der Zyklenprüfung wurde bereits im Kapitel TODO beschrieben.
+    Die Funktionsweise der Zyklenprüfung wurde bereits im Unterkapitel \ref{Codeanalyse} beschrieben.
     Eine Änderung muss am Anfang der Methode \textit{ComponentAnalysis()} vorgenommen werden.
     Hier muss bei der Iteration über alle Elemente jede Id in ein Set gespeichert werden, das ein Schleifenblock ist.
     Die andere Änderung muss in der Methode \textit{AssignToComponent()} erfolgen.
@@ -857,6 +884,10 @@
     \newpage
     \section{Evaluation}
     \label{Evaluation}
+    in diesen Kapitel werden die Ergebnisse der durchgeführten Tests beschrieben.
+    Dafür wird am Anfang das zu auszuführende System definiert und im anschluss die verschiedenen Szenarionen mit welchen das System getestet wurden ist.
+    Am Ende werden die Ergebnisse interpretiert und ein Fazit gezogen.\\
+    \\
     Das Programm wurde auf einem System mit einem AMD Ryzen 5 2600 mit 6 Kernen und einer Taktrate 3400MHz ausgeführt. Als Arbeitsspeicher waren 2-Mal 8GB DDR4 mit einer DRAM Frequenz von 1065 MHz eingebaut. 
     Als Betriebssystem war Windows 10 in der Version 10.0.19045 BUild 19045 installiert. Als Laufzeitumgebung wurde dotnet 8 einesetzt.\\
     \\
@@ -865,7 +896,30 @@
     Hingegen zum messen des Speicherverbrauchs die Klasse GC verwendet wird, die eine Menge von Methoden und Eigenschaften bereitstellt um Speicher zu verwalten.
     GC hat nicht die Möglichkeit sofort den Speicherverbrauch zu messen, aber mithilfe der Methode \textit{GetTotalMemory()} kann der Speicherverbraucht indirekt berechnet werden.
     \textit{GetTotalMemory()} gibt nämlich die Heapgrößen ohne Fragmentierung zurück. 
-    Wird die Methode vor und nach einer Funktion aufgerufen und die Differenz aus den beiden Zahlen gebildet, dann hat man Speicherverbrauch der Funktion.
+    Wird die Methode vor und nach einer Funktion aufgerufen und die Differenz aus den beiden Zahlen gebildet, dann hat man Speicherverbrauch der Funktion.\\
+    \\
+    Da die Testumgebung nicht notwendig für die Funktionalität der Schleifenblöcke ist, wird nur kurz erklärt, wie überprüft wurden ist, ob die Schleifenblöcke funktionieren oder nicht.
+    Zum Wiederholen der Messungen für den Speicherverbrauch und die Ausführungszeit wurde eine Batch-Datei erstellt, die die Software regelmäßig Neustartet und die Prüfung aufruft.
+    Insgesammt wurden TODO Tests erstellt, die jeweils TODO Messungen pro Schleifenblock beinhaltet.
+    Folgende Tests wurden erstellt:
+    \begin{itemize}
+        \item (T1)
+    \end{itemize}
+    \textbf{(t1)}\\
+    \\
+    %TODO: herausfinden für was display existiert
+    Im Rahmen dieses Tests wurde die Schleife mit fünf Iterationen und  $Argument1 \geq Argument2$ initialisiert.
+    Das Argument1 wird dabei während des Prüfungsvorgang dabei um den Wert zwei erhöht.
+    Zu Beginn wird dabei das Argument1 auf Null gesetzt.
+    Nach zwei Iteration wird das Argument1 den Wert vier erreichen und dadurch die Abbruchbedingung erfüllen.
+    Infolgedessen wird im Display-Block für den Sensor der Wert 4 angezeigt.\\
+    \\
+    Dieses Szenario wurde ingesammt TODO für den Block A durchgespielt und TODO für den Block B.
+    Die Ergebnisse der Messungen wurden in Abbildung TODO grafisch aufbereitet.\\
+    \\
+    Hingegen bei Block A eine Ausführung in dieser Größenordnung nicht möglich war. 
+    Beim ausführen gab es nach einer Zeit einen Overflow der auf den Rekusriven Funktionsaufruf von \textit{CloneAndModify()} zurückzuführen ist.
+    Aus dem Grund stehen für dieses Szenario für Block keine Messwerte zur verfügung.
     %\subsection{1. Lösungsansatz}
     %+einfach zu implementieren, da wir kein schleifenkonstrukt mehr benötigen.
     %+keine Endlosschleife, weil es keine Schleifen gibt
@@ -882,6 +936,22 @@
     %+
     %-azyklisches verhalten wird verletzt, weil schleifenkonstrukt benötigt wird
     %-
+    \newpage
+    \section{Ausblick}
+    %TODO treshold, robustheit dass block a mit 1,6k iterationen arbeiten kann, visualisierung dass ergebnisse nicht eingetroffen ist
+    In diesem Kapitel werden mögliche Weiterentwicklung und zukünftige Forschungsarbeiten beschrieben. 
+    Die erst im späten Verlauf aufgetreten sind oder aus Zeitgründen nicht bearbeitet werden konnten.\\
+    \\
+    Der Threhsold für den Algorithmus Block B wird aktuell fest in den Code implementiert werden. 
+    Das sollte in der Praxis so nicht sein. 
+    Hier würde es sich anbieten einen Algorithmu zu entwerfen der den Threshold dynmaisch anpasst jenachdem welche Eingabe er bekommt.\\
+    \\
+    Ein anderer Punkt, ist dass derBneutzer aktuell kein Feedback bekommt, ob ein Ergebniss gefunden wurden ist oder nicht.
+    Um das zu verbessern könnte eine Meldung ins System implementiert werden, wenn der Algorithmus nicht durchgeht, dass der Benutzer eine Meldung bekommt, dass keine Lösung gefunden werden konnte.\\
+    \\
+    Ein anderer Punkt der verbessert werden kann, ist die Robustheit des Block A. 
+    Dieser führt aktuell bei einer großen Anzahl an Iterationen zu einen Overflow. 
+    aus
     \newpage
     \renewcommand{\refname}{}
     \section{Literaturverzeichnis}
