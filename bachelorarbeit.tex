@@ -12,9 +12,7 @@
 \begin{document}
     \tableofcontents
     \newpage
-    %\includegraphics[width=\linewidth]{./image/a.pdf}
     \section{Einleitung}
-    %TODO erwähnen wie viele quellen gesichtet wurden sind
     \subsection{Aufgabe und Motivation}
     Prüfungen, die mithilfe grafischer Editoren modelliert werden, müssen in vielen Fällen eine Vielzahl von wiederkehrenden Aufgaben abbilden. 
     Diese Wiederholungen können bei der aktuellen Implementierung nur schwer abgebildet werden, weil Schleifen als Konstrukte nicht zur Verfügung stehen. 
@@ -32,6 +30,10 @@
     Bei dynmaischen Daten handelt es sich um Daten, die während der Prüfung ihren Wert ändern.
     Dafür muss im Vorfeld das zugrunde liegende System analysiert und bearbeitet werden, sodass Zyklen vom System verarbeitet werden können.
     Die Implementierung wird in einer Evaluation auf Perfomance untersucht.
+    Insgesamt wurden TODO Quellen gesichtet. 
+    Ein Teil davon konnte nicht berücksichtigt werden, da sie thematisch in eine andere Richtung gingen oder keinen relevanten Erkenntnisgewinn boten. 
+    Von den gesichteten Quellen wurden schließlich TODO verwendet. 
+    Diese wurden vorwiegend zur Definition zentraler Fachbegriffe herangezogen.
     \subsection{Aufbau der Arbeit}
     Die vorliegenede Arbeit setzt sich aus TODO nachfolgenden Kapiteln zusammen. 
     Im zweiten Kapitel TODO
@@ -44,11 +46,10 @@
     Das Ziel dieses Kapitels ist es die Verständlichkeit der nachfolgenden Kapitel zu erhöhen und die theoretischen Grundlagen der Arbeit zu festigen.
     \subsection{Terminologie}
     \label{Terminologie}
-    TODO zitat zur rekursion nochmal genau anschauen
     \paragraph{Schleife}
     Eine Schleife ist eine Kontrollstruktur, die einen Programm-Abschnitt mehrmals ausführt \cite{22}.
     Häufig ist diese dabei die zeitintensivste Komponente eines Programms, da ihre die Ausführung sehr viel Zeit in anspruch nehmen kann \cite{1}.
-    Der Algrorithmus dieser Kontrollstruktur kann dabei iterativ oder rekursiv implementiert werden. Ersteres wiederholt die Schleife mehrmals. Hingegen die Rekursion sich mehrmals selbst aufruft \cite{3}.
+    Der Algrorithmus dieser Kontrollstruktur kann dabei \textbf{iterativ} oder \textbf{rekursiv} implementiert werden. Ersteres wiederholt die Schleife mehrmals. Hingegen die Rekursion sich mehrmals selbst aufruft \cite{3}.
     Zur umsetzung verwendet die Iteration einen Akkumulativenansatz. Dabei wird das Problem schrittweise gelöst. Der Prozess wird solange wiederholt bis eine vordefinierte (Abbruch-)Bedingung erfüllt ist \cite{3}.
     Im gegensatz zur Iteration verwendet die Rekursion keinen Akkumulativenansatz, sondern zerlegt das Problam in mehrere (Teil-)Probleme. Für die Teilprobleme werden dann einzelne Lösungen erarbeitet, welche im Anschluss wieder kombiniert werden um das eigentliche Problem zu lösen \cite{3}.
     Laut Chen L. spiegelt die Iteration das menschliche Denken wieder, weshalb sie sich besonders für lineare Probleme eignet. 
@@ -82,31 +83,30 @@
     Nach Charntaweekhun bieten Flussdiagramme einen didaktischen Vorteil, weil diese Programmieranfängern ermöglichen, komplexe Abläufe visuell zu erfassen und zu strukturieren \cite{12}.
     Ein weiterer Vorteil von VPLs besteht in der erhöhten Lesbarkeit und der geringeren Anfälligkeit für syntaktische Fehler, was auf die Verwendung einer begrenzten Menge vordefinierter grafischer Elemente zurückzuführen ist \cite{10}.
     Die stärken von VPLs zeigen sich darüber hinaus in ihrer Einfachheit, visuelle Darstellbarkeit, Transparenz und Interaktivität \cite{13}.
-    %TODO folgende sätze umformilieren
-    Die Klassifikation visueller Programmiersprachen unterscheidet zwischen \textbf{imperativen} und \textbf{deklarativen} Modellen. Ersteres gibt die exakte Reihenfolge der Operationen vor, während letzteres lediglich Datenabhänigkgieten spezifiziert und die Ausführungsreihenfolge dem System überlasst \cite{21}.
-    Visuelle Programmiersprachen basieren überwiegend auf einem datenflussgesteuerten Modell, bei dem die Strukturierung von Programmen durch den Austausch von Informationen zwischen Operatoren erfolgt. \cite{6}
+    VPLs lassen sich in \textbf{imperative} und \textbf{deklarative} Modelle klassifizieren. Ersteres gibt die exakte Reihenfolge der Operationen vor, während letzteres lediglich Datenabhänigkgieten spezifiziert und die Ausführungsreihenfolge dem System überlasst \cite{21}.
+    VPLs basieren überwiegend auf einem datenflussgesteuerten Modell, bei dem die Strukturierung von Programmen durch den Austausch von Informationen zwischen Operatoren erfolgt. \cite{6}
     \paragraph{Datenfluss-basierte Sprachen}
-    %Punkte von Jonston et. al erklären  und zyklisch/azyklisch
+    %zyklisch/azyklisch erklären
     Als \textbf{Datenfluss-basierte Sprache (DL)} wird eine Programmiersprache verstanden, bei der die Daten zwischen Funktionnen weitergeleitet werden. 
     Die Programme werden dabei als Graphen dargestellt \cite{11}.
-    Dieser wird als gerichteter Graph (DG) definiert, in dem Funktionen als Knoten dargestellt werden.
+    Dieser wird als \textbf{gerichteter Graph (DG)} definiert, in dem Funktionen als Knoten dargestellt werden.
     Die Knoten können dabei durch gerichtete Kanten verbunden werden, welche die Datenabhängigkeiten zwischen zwei Knoten beschreiben \cite{2}.
     \textbf{Datenflussgraphen} lassen sich hinsichtlich ihrer Granularität in \textbf{feinkörnig} und \textbf{grobkörnig} unterteilen. In einem feinkörnigen Graphen führt jeder Knoten extakt eine Instruktions aus, während grobkörnige Graphen mehrere Instruktionen pro Knoten ausführen können \cite{1}.
     Neben der Granularität lässt sich ein Datenflussgraph auch in Zyklenstrukturen unterteilen. 
-    Dabei wird zwischen zyklisch und azyklisch unterschieden \cite{8}. %TODO begriffe kurz erklären
+    Dabei wird zwischen zyklisch und azyklisch unterschieden \cite{8}.
     DLs sind überwiegend funktional geprägt, aber können auch text-basiert sein \cite{2}.
     Der Vorteil einer DLs ist, dass diese durch einen Graphen dargestellt werden können \cite{11} und dadurch die Programme einfach zur verstehen sind \cite{6}.
     Für komplexe Programmen kann eine reine Graphendarstellung schnell unübersichtlich werden. Zur Struktuierung komplexer Programme werden Mikrofunktionen eingesetzt, bei denen einzelne Knoten auf untergeordnete Teilgraphen verweisen. Dadurch lassen dann auch rekursive Abläufe modellieren. \cite{11}    
     DLs führen Instruktionen nicht in einer festen Sequenz aus. Dadurch können unabhängig voneinander ausführbare Instruktion parallel verarbeitet werden \cite{1}.
     Diese Form der Ausführung ermöglicht eine Effizienzsteigerung, da der Ablauf nicht mehr durch einen zentralen Programmzähler gesteuert wird \cite{2}.\\
     \\
-    Johnston et. al beschreiben in ihrer Arbeiten eine Menge von Grundlegenden Eigenschaften. 
+    Johnston et al. beschreiben in ihrer Arbeit eine Vielzahl von grundlegenden Eigenschaften von DLs. 
     So sollen DLs frei von Seiteneffekten sein, den Lokalitätsprinzip folgen und keine Variablenüberschreiben zulassen \cite{2}.
     Frei von Seiteneffekten beudetet dabei dass Ausführungen nur von den Eingaben abhängen.
     Das Lokalitätsprinzip besagt, dass bevorzugt auf Speicherbereiche zugegriffen wird, die entweder räumlich nahe beieinanderliegen (räumliche Lokalität) oder innerhalb kurzer Zeit mehrfach verwendet werden (zeitliche Lokalität).\\
     \\
     Eine Computerarchitketur, die auf DLs basiert, wird \textbf{Datenfluss-basiertes System (DBS)} genannt.
-    DBSs wurde eingeführt um den Flaschenhals der von-Neumann-Architektur zu vermeiden \cite{8}. %TODO überprüfen ob zittat wirklich von 8 kommt
+    DBSs wurde eingeführt um den Flaschenhals der von-Neumann-Architektur zu vermeiden \cite{1}.
     Vorteile von DBSs sind eine hohe Effizienz, flexible Strukturen und leistungsstarke Ausführungsmechanismen \cite{1}.
     Darüber hinaus besteht ein weiterer Vorteil im möglichen Paralellismus, da bei fehlender Datenabhängigkeit mehrere Insturktionen gleichzeitig ausgeführt werden können \cite{1}.
     Dies wird durch die direkte Weitergabe von Daten zwischen Funktionen unterstützt, wobei die Verarbeitung der Daten, wie Transformation und Filterung, innerhalb der Funktionen erfolgt \cite{15}.
