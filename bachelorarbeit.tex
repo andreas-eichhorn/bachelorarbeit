@@ -7,6 +7,7 @@
 \usepackage{float}
 \usepackage[labelfont=bf,justification=raggedright,singlelinecheck=false]{caption}
 \usepackage{pgfplots}
+\usepackage{amsmath}
 
 \begin{document}
     \tableofcontents
@@ -600,8 +601,13 @@
     Am Ende jeder Kopie muss dann noch die Abbruchbedingung drangehangen werden, da diese TODO.
     Als nächstes müssen die einzelnen Kopien miteinander verbunden werden.
     Dies wird erreicht indem von der ersten Aktvität einer Kopie eine Verbindung zur vorangegangenen Schleifenblock hergestellt wird.
-    Graphisch wird dieser Ansatz in Abbildung TODO dargestellt.\\
-    \\
+    Graphisch wird dieser Ansatz in Abbildung \ref{Schleifenentfaltung} dargestellt.
+    \begin{figure}[H]
+        \includegraphics[width=\linewidth]{./image/loop-unrolling.pdf}
+        \caption{Schleifenentfaltung}
+        \label{Schleifenentfaltung}
+    \end{figure}
+    \noindent
     %Anstatt rekursive oder iterative Wiederholungen zu verwenden, wird jede potenzielle Iteration als eigenständiger und bedingter Codeblock realisiert.
     %Dazu muss eine Anpassung an der klasisschen Schleifenentfaltungsverfahren vorgenommen werden. 
     %Das Ziel der modifizierung ist es, die Schleifen solange zusammenzufassen bis kein erneuter Schleifendurchlauf notwendig ist und dadurch den Kontrollfluss durch Verzweigungen und verschtelungen ohne Iterationen abzubilden.
@@ -613,7 +619,6 @@
     %Im Beispiel soll "foo" drei mal einzeln auf der Console ausgegeben werden. 
     %In der oberen Schleife
     %Hingegen in der unteren Schleife der modifizierte Ansatz verwendet wurden ist. Da die untere Schleife nur noch genau einmal ausgefürt wird, kann diese einfach weggelassen werden.\\
-    \\
     \textbf{Block B}\\
     \\
     Block B soll die Wiederholung von Aktivitäten durch iterative Schleifen ermöglichen und wird durch SchleifeA abgebildet.
@@ -635,8 +640,13 @@
     Anderfalls wird der Chancen-Zähler zurückgesetzt.
     Der Chancen-Zähler ist erforderlich, weil dieser als Steuermechanismus für die Wiederholungslogik dient und eine Begrenzung der Iterationen bei ausbleibender signifikanter Veränderung sicherstellt.
     Sollten weniger als 3 Werte in der Liste enthalten sein, wird die Berechnung der Differenz übersprungen und direkt mit der Wiederholung der Aktivitäten begonnen.
-    Dadurch kann gewährleistret werden, dass das System einlaufen kann und die Mittelwerte erst gebildet werden, wenn eine aussagekräftige Datenbasis vorhanden ist.\\
-    \\
+    Dadurch kann gewährleistret werden, dass das System einlaufen kann und die Mittelwerte erst gebildet werden, wenn eine aussagekräftige Datenbasis vorhanden ist.   
+    \begin{figure}[H] 
+        \includegraphics[width=\linewidth]{./image/klassendiagramm-blockb.pdf}
+        \caption{Klassendiagramm Block B}
+        \label{Klassendiagramm Block B}
+    \end{figure}
+    \noindent
     %Erreicht der Chancen-Zähler 0 werden keine weiteren Wiederholungen ausgeführt, da der wert sehr wahrscheinlich stagniert.
     %Dadurch soll verhindert werden, dass eine ineffiziente Fortsetzung der Schleife stattfindet.
     %Ist die Abbruchbedingung nicht erfüllt, wird Entschieden ob eine Wiederholung stattfindet oder nicht. Dabei wird geschaut wie sich das dynamische Datum über die Iteration hinweg verhält.
@@ -654,7 +664,6 @@
     %Der Chancen-Zähler erweist sich als erforderlich, da dieser als Steuermechanismus für die Wiederholungslogik dient und eine Begrenzung der Iterationen bei ausbleibender signifikanter Veränderung sicherstellt.
     %Dadurch soll verhindert werden, dass eine ineffiziente Fortsetzung der Schleife stattfindet.
     %Sollten weniger als 3 Werte in der Ergbenissliste drin sein, wird die Berechnung übersprungen. Dadurch kann gewährleistret werden, dass das System einlaufen kann und die Mittelwerte erst gebildet werden, wenn eine aussagekräftige Datenbasis vorhanden ist.\\
-    \\
     Auf die Vor- und Nachteile der einzelnen Blöcke wird im Kapitel \ref{Evaluation} eingegangen.
 
     \newpage
@@ -770,8 +779,12 @@
     Um dies zu ermöglichen stellt die Klasse verschiedene Variable zur verfügung, darunter eine Variable für den Zähler der Schleife, einen für die Bytes und einen für den umgewandelten Wert.
     Die Methode StringToDouble konviert die Zeichenkette, indem sie zunächst die Zeichenkette in UTF-8 kodierte Bytes umgewandelt.
     Anschließend werden die Bytes mit einem fortlaufenden Index multipliziert und auf einen Akkumulator addiert.
-    Der akkumulierte Wert wird im Anschluss als Rückgabewert zurückgegeben.\\
-    \\
+    Der akkumulierte Wert wird im Anschluss als Rückgabewert zurückgegeben.
+    \begin{figure}[H]
+        \caption{Beispielrechnung der Methode \texttt{StringToDouble} mit und ohne Index-Gewichtung}
+        \label{Beispielrechnung}
+    \end{figure}
+    \noindent
     Die letzte der vier Klassen ist \textit{InputProcessor}.
     Diese ist für die Verarbeitung der Eingabewerte zuständig.
     Zur Verarbeitung stehen mehrere interne Datenstrukturen und konstanten zur verfügung, darunter zwei Listen zur Speicherung der Roh- und Konvertierungswerte sowie Parameter zur Konfiguration (HistoryLength und deviationThreshold) und eine Instanz der Klasse Counter.
@@ -916,16 +929,22 @@
     Als Betriebssystem ist Windows 10 in der Version 10.0.19045 Build 19045 installiert. Als Laufzeitumgebung wurde .Net 8 einesetzt.\\
     \\
     Zum messen der Ausführungszeit wurde die Klasse Stopwatch verwendet, die eine Menge an Methoden und Eigenschaften bereitstellt um verstrichene Zeit zu messen.
-    Die Klasse kommt aus der standard Bibliothek von .Net. %TODO nochmal nachschauen ob wirklich von standard bib
+    Die Klasse kommt aus der standard Bibliothek von .Net.
     Mithilfe der Methoden \textit{Start()} und \textit{Stop()} lässt sich die Stopuhr starten beziehungsweise beenden. Mit der Eigenschaft \textit{ElapsedMilliseconds} lässt sich dann die gemessene Zeit der aktuellen Instanz als long ausgeben.\par
     Hingegen zum messen des Speicherverbrauchs die Klasse GC verwendet wird, die eine Menge von Methoden und Eigenschaften bereitstellt um Speicher zu verwalten.
-    Auch diese Klasse stammt aus der standard Bibliothek von .Net. %TODO gleiches wie drüber
+    Auch diese Klasse stammt aus der standard Bibliothek von .Net.
     GC hat nicht die Möglichkeit sofort den Speicherverbrauch zu messen, aber mithilfe der Methode \textit{GetTotalMemory()} kann der Speicherverbraucht indirekt berechnet werden.
     \textit{GetTotalMemory()} gibt die Heapgröße ohne Fragmentierung zurück. 
     Wird die Methode vor und nach einer Funktion aufgerufen und die Differenz aus den beiden Zahlen gebildet, dann ergibt sich der Speicherverbrauch der Funktion.\\
-    \\
-    Da die Testumgebung nicht notwendig für die Funktionalität der Schleifenblöcke ist, wird nur kurz erklärt, wie überprüft wurden ist, ob die Schleifenblöcke funktionieren oder nicht.
-    Zum Wiederholen der Messungen für den Speicherverbrauch und die Ausführungszeit wurde eine Batch-Datei erstellt, die die Software regelmäßig Neustartet und die Prüfung aufruft.
+    \subsection{Testumgebung}
+    Als Testumgebung wurde eine Prüfung erstellt, TODO
+    Für den Test wurden ingesammt 1024 Werte definiert.
+    Im jeden Schleifendurchlauf wird TODO
+    Damit eine Aussage über das verhalten der Algorithmen getroffen werden kann, wurden die Anzahl an Iterationen am Schleifenblock stückweise erhöht.
+    Zunächst wurden die Anzahl um vierer Schritten erhöht. Hingegen ab 64 die Schritte auf 16 erhöht wurden sind.
+    Ingesammt wurde der Speicherverbrauch und die Ausführungszeit an TODO Stellen gemessen.
+    Argument1 wird dabei als dynamisches Datum festgelegt und Argument2 als konstanten Wert.
+
     %\includegraphics[width=\linewidth]{./image/ausfuehrungszeit-einfach.pdf}
     %\subsection{1. Lösungsansatz}
     %+einfach zu implementieren, da wir kein schleifenkonstrukt mehr benötigen.
