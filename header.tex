@@ -1,0 +1,70 @@
+\usepackage[T1]{fontenc}
+\usepackage{hyphsubst}
+\usepackage{gentium}
+\usepackage{inconsolata}
+\usepackage{babel}
+\usepackage{isodate}
+
+\setkomafont{disposition}{\normalcolor\bfseries\sffamily}
+
+\usepackage[
+    style=numeric-comp,
+    backend=biber,
+    url=false,
+    doi=false,
+    isbn=false,
+    hyperref,
+]{biblatex}
+\addbibresource{bibliography.bib}
+\AtEveryBibitem{%
+    \clearfield{note}%
+}
+
+\usepackage{hyperref} % makes all links clickable
+
+\usepackage[obeyFinal,textwidth=30mm,colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+
+\usepackage{graphicx}
+\usepackage{blindtext}  % add blindtext
+\usepackage[babel]{microtype}  % Improve font layout (spacing, hyphenation etc.)
+\usepackage{doi}  % Add links for DOIs, handle "_" in dois
+\usepackage{csquotes}  % provide \enquote
+\usepackage{fnpct}  % punctuation, especially together with footnotes
+\usepackage{ifdraft}  % for detecting draft/final mode
+\usepackage{version}  % conditionally to exclude parts of document
+\usepackage{tcolorbox}  % make colored boxes
+
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{booktabs}  % must-have for tables
+\usepackage{tabularx}  % tabularx environment
+\usepackage{multirow}  % for combining multiple rows
+\usepackage{makecell}  % enables line breaks in cells
+
+\usepackage{quoting}
+
+\usepackage{xfrac}
+
+\input{lst.tex}
+
+\usepackage[capitalise,nameinlink,noabbrev]{cleveref} % automatically inserts Fig. X in the text with \cref{..}
+
+% if you need mathy stuff
+\newtheorem{lem}{Lemma}
+\crefname{lem}{Lemma}{Lemmas}
+\newtheorem{thm}{Theorem}
+\crefname{thm}{Theorem}{Theorems}
+\newtheorem{defs}{Definition}
+\crefname{defs}{Def.}{Defs.}
+
+\newenvironment{draftcontent}[1][,]{%
+\begin{tcolorbox}[title=Idee vom Inhalt,#1]\begin{itemize}}{%
+\end{itemize}\end{tcolorbox}}
+
+% Exclude draftcontent environment, if "final" is selected
+\ifoptionfinal{
+  \excludeversion{draftcontent}
+}{
+  \includeversion{draftcontent}
+}
