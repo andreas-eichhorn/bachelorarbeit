@@ -3,12 +3,3 @@
 *.fls
 *.log
 *.synctex.gz
-*.lof
-*.lot
-*.out
-*.run.xml
-*_old.tex
-*.bbl
-*.bcf
-*.blg
-*.sln
