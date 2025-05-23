@@ -1,13 +1,36 @@
 \RequirePackage[ngerman=ngerman-x-latest]{hyphsubst}
 \PassOptionsToPackage{dvipsnames}{xcolor}
 \PassOptionsToPackage{hidelinks}{hyperref}
+
 % to print the document, use the following additional options (after "BCOR=6mm"):
 % ,twoside
 \documentclass[a4paper,ngerman,cdgeometry=no,DIV=10,cdfont=no,cleardoublespecialpage=true,open=right,BCOR=6mm]{tudscrreprt}
 \usepackage{float}
+\usepackage{syntax}
+\usepackage[labelfont=bf,justification=raggedright,singlelinecheck=false]{caption}
 \input{header.tex}
 
 \begin{document}
+
+\lstdefinelanguage{CSharp}{
+  language=[Sharp]C,
+  morekeywords={var, async, await, get, set}
+}
+
+
+\lstset{
+  language=[Sharp]C,
+  basicstyle=\ttfamily\scriptsize,
+  frame=single,
+  numbers=left,
+  numberstyle=\tiny,
+  numbersep=5pt,
+  xleftmargin=1.5em,
+  framexleftmargin=1.5em,
+  breaklines=true
+}
+
+
 
 \faculty{Fakultät Informatik}
 %\department{}

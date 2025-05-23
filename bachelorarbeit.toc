@@ -1,30 +1,30 @@
 \babel@toc {ngerman}{}\relax 
 \babel@toc {ngerman}{}\relax 
-\contentsline {chapter}{\numberline {1}Einleitung}{5}{chapter.1}%
-\contentsline {subsection}{\numberline {1.0.1}Aufgabe und Motivation}{5}{subsection.1.0.1}%
-\contentsline {subsection}{\numberline {1.0.2}Aufbau der Arbeit}{6}{subsection.1.0.2}%
-\contentsline {chapter}{\numberline {2}Hintergrund}{7}{chapter.2}%
-\contentsline {subsection}{\numberline {2.0.1}Terminologie}{7}{subsection.2.0.1}%
-\contentsline {paragraph}{\nonumberline Schleife}{7}{paragraph*.6}%
-\contentsline {paragraph}{\nonumberline Domain Specific Language}{7}{paragraph*.8}%
-\contentsline {paragraph}{\nonumberline Visual Programming Language}{8}{paragraph*.10}%
-\contentsline {paragraph}{\nonumberline Datenfluss-basierte Sprachen}{9}{paragraph*.12}%
-\contentsline {paragraph}{\nonumberline Wasserfallmodell}{10}{paragraph*.14}%
-\contentsline {subsection}{\numberline {2.0.2}Domaine}{10}{subsection.2.0.2}%
-\contentsline {chapter}{\numberline {3}Systemanalyse}{11}{chapter.3}%
-\contentsline {subsection}{\numberline {3.0.1}Grammatik}{11}{subsection.3.0.1}%
-\contentsline {subsubsection}{\nonumberline Prüfungslogik}{11}{subsubsection*.16}%
-\contentsline {subsubsection}{\nonumberline Datenverarbeitung}{12}{subsubsection*.18}%
-\contentsline {subsubsection}{\nonumberline Typsystem}{13}{subsubsection*.20}%
-\contentsline {subsection}{\numberline {3.0.2}Ausführung}{13}{subsection.3.0.2}%
-\contentsline {subsection}{\numberline {3.0.3}Codeanalyse}{14}{subsection.3.0.3}%
-\contentsline {chapter}{\numberline {4}Planung}{16}{chapter.4}%
-\contentsline {subsection}{\numberline {4.0.1}Anforderungen}{16}{subsection.4.0.1}%
-\contentsline {subsection}{\numberline {4.0.2}Entwurf}{16}{subsection.4.0.2}%
-\contentsline {chapter}{\numberline {5}Implementierungsphase}{19}{chapter.5}%
-\contentsline {chapter}{\numberline {6}Evaluation}{24}{chapter.6}%
-\contentsline {subsection}{\numberline {6.0.1}Testumgebung}{24}{subsection.6.0.1}%
-\contentsline {subsection}{\numberline {6.0.2}Auswertung}{25}{subsection.6.0.2}%
-\contentsline {chapter}{\numberline {7}Ausblick}{27}{chapter.7}%
-\contentsline {chapter}{\numberline {8}Literaturverzeichnis}{28}{chapter.8}%
+\contentsline {chapter}{\numberline {1}Einleitung}{6}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Aufgabe und Motivation}{6}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Aufbau der Arbeit}{7}{section.1.2}%
+\contentsline {chapter}{\numberline {2}Hintergrund}{8}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Terminologie}{8}{section.2.1}%
+\contentsline {paragraph}{\nonumberline Schleife}{8}{paragraph*.6}%
+\contentsline {paragraph}{\nonumberline Domain Specific Language}{8}{paragraph*.8}%
+\contentsline {paragraph}{\nonumberline Visual Programming Language}{9}{paragraph*.10}%
+\contentsline {paragraph}{\nonumberline Datenfluss-basierte Sprachen}{10}{paragraph*.12}%
+\contentsline {paragraph}{\nonumberline Wasserfallmodell}{11}{paragraph*.14}%
+\contentsline {section}{\numberline {2.2}Domaine}{11}{section.2.2}%
+\contentsline {chapter}{\numberline {3}Systemanalyse}{12}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Grammatik}{12}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Prüfungslogik}{12}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Datenverarbeitung}{15}{subsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.1.3}Typsystem}{16}{subsection.3.1.3}%
+\contentsline {section}{\numberline {3.2}Ausführung}{17}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Codeanalyse}{19}{section.3.3}%
+\contentsline {chapter}{\numberline {4}Planung}{20}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Anforderungen}{20}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Entwurf}{20}{section.4.2}%
+\contentsline {chapter}{\numberline {5}Implementierungsphase}{25}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Evaluation}{33}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Testumgebung}{33}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Auswertung}{34}{section.6.2}%
+\contentsline {chapter}{\numberline {7}Ausblick}{36}{chapter.7}%
+\contentsline {chapter}{\numberline {8}Literaturverzeichnis}{37}{chapter.8}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

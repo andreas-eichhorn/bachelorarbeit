@@ -1,7 +1,9 @@
-
     \newpage
+    \begin{lstlisting}
+        \lstinputlisting{./code/InputProcessor.cs}
+    \end{lstlisting}   
     \chapter{Einleitung}
-    \subsection{Aufgabe und Motivation}
+    \section{Aufgabe und Motivation}
     Prüfungen, die mithilfe grafischer Editoren modelliert werden, müssen in vielen Fällen eine Vielzahl von wiederkehrenden Aufgaben abbilden. 
     Diese Wiederholungen können bei der aktuellen Implementierung nur schwer abgebildet werden, weil Schleifen als Konstrukte nicht zur Verfügung stehen. 
     Stattdessen müssen zu wiederholende Abläufe mehrfach und explizit modelliert werden. 
@@ -22,7 +24,7 @@
     Ein Teil davon konnte nicht berücksichtigt werden, da sie thematisch in eine andere Richtung gingen oder keinen relevanten Erkenntnisgewinn boten. 
     Von den gesichteten Quellen wurden schließlich TODO verwendet. 
     Diese wurden vorwiegend zur Definition zentraler Fachbegriffe herangezogen.
-    \subsection{Aufbau der Arbeit}
+    \section{Aufbau der Arbeit}
     Die vorliegenede Arbeit setzt sich aus TODO nachfolgenden Kapiteln zusammen. 
     Im zweiten Kapitel TODO
     Anschließend daran wird im dritten Kapitel TODO
@@ -32,7 +34,7 @@
     \chapter{Hintergrund}
     Der Fokus dieses Kapitels liegt auf der Definition zentraler Fachbegriffe und der Beschreibung der Domaine um dadurch einen einheitlichen terminologischen Rahmen zu schaffen. 
     Das Ziel dieses Kapitels ist es die Verständlichkeit der nachfolgenden Kapitel zu erhöhen und die theoretischen Grundlagen der Arbeit zu festigen.
-    \subsection{Terminologie}
+    \section{Terminologie}
     \label{Terminologie}
     \paragraph{Schleife}
     Eine Schleife ist eine Kontrollstruktur, die einen Programm-Abschnitt mehrmals ausführt \cite{22}.
@@ -119,7 +121,7 @@
     So beschreibt TODO (24) in seinem Artikel eine Variante, bei der die einzelnen Phasen einer sorgfältigen Validierung und Bestätigung seitens des Clients benötigen um die Phase abzuschließen. 
     Sollte der Client mit dem Ergebnissen nicht zufrieden sein, so kann das Modell wieder von vorne beginnen \cite{24}. 
     In einer anderen Variante wird die Test-Phase komplett weggelassen, da das Testen während der gesamten Entwicklung stattfinden soll \cite{25}.
-    \subsection{Domaine}
+    \section{Domaine}
     %TODO ggf manche blöcke erklären vorallem die später verwendet werden
     Bei dem Programm handelt es sich um einen graphischen Editor der Fahrzeugsystemdaten GmbH (FSD).
     Die FSD erstellt Prüfvorgaben für die Hauptuntersuchung.
@@ -128,13 +130,14 @@
     In Abbildung TODO ist ein Auszug der fertigen Software abgebildet.
     Zur besseren Verständlichkeit wurde die Abbildung in Teilbereiche unterteilt, welche im folgenden kurz erläutert werden.
     Bereich B umfasst das Canvas, das als interaktive Arbeitsfläche fungiert.
+    
     TODO
     \newpage
     \chapter{Systemanalyse}
     In diesem Kapitel wird das System hinsichtlich seiner strukturellen und funktionalen Eigenschaften analysiert. 
     Zunächst wird die zugrundeliegende Grammatik betrachtet, woraufhin die Ausführungslogik beschrieben wird. Abschließend werden die problematischen Stellen im Hinblick auf die geplante Erweiterung analysiert.
     Ziel dieses Kapitels ist es, diese problematischen Stellen zu erfassen und aufzubereiten, um eine Grundlage für die folgenden Kapitel zu schaffen.\\
-    \subsection{Grammatik}
+    \section{Grammatik}
     \label{Grammatik}
     %TODO Die in diesem Kapitel definierte Grammatik beinhaltet allerdings nur die für die Ausführungssemantik benötigten Elemente.\cite{99}
     %Die zugrundeliegende Grammatik basiert auf der Backus-Naur-Form (BNF) Notation. Der Aufbau einer BNF wird anhand der Grammatik~\ref{BNF} erklärt
@@ -164,7 +167,7 @@
     %Einmal als Datenflussgraphen, indem Teil-Funktionen als Blöcke dargestellt werden und Funktionsparamter/Ergebnisse als Ports.
     %Einmal als Aktivitätsdiagramm, in dem nur Startzustand, Endzustände, Aktions- und Entscheidungsblöcke dargestellt.
     %Die folgende Zusammenfassung basiert auf der unveröffentlichen Arbeit von Westermann et al.
-    \subsubsection{Prüfungslogik}
+    \subsection{Prüfungslogik}
     \label{Prüfungslogik}
     Die in Abbildung \ref{Aktivitätsmodell} abgebildeten Regeln beschreiben das Aktivitätsmodell, die der Prüfungslogik entspricht. \cite{99}
     Zentral ist dabei die Regel \textit{ActivityModel}, welche festlegt, dass ein Aktivitätsmodell aus mehreren Aktivitäten und Verbindungen besteht.
@@ -183,7 +186,66 @@
     Die letzte Aktionform, die Ausführung einer Datenverarbeitung, besteht aus einem Verweis auf einem FlowTemplate, gefolgt von einer Beschreibung der Eingaben, die für die Datenverarbeitung erforderlich sind, sowie einer Transformation, die beschreibt wie das Ergebnis weiterverwendet werden soll.    
     Die Beschreibung der Eingaben setzt sich dabei aus den Symbolen \textit{ActivityPortValue} und \textbf{TemplateParameterValue} zusammen.
 
-    Die Struktur eines Label wird durch eine Kombination aus einer Beschriftung, einer Farbe und einem Verweis auf eine Aktion beschrieben.\\
+    Die Struktur eines Label wird durch eine Kombination aus einer Beschriftung, einer Farbe und einem Verweis auf eine Aktion beschrieben.
+    \begin{figure}[H]
+        \centering
+        \begin{grammar}
+            <ActivityModel> ::= <Activity>* <ActivityConnection>
+
+            <Activity> ::= <ActivityStart>
+            | <ActivityAction>
+            | <ActivityCondition>
+            | <ActivityDisplay>
+
+            <ActivityConnection> ::= ref(Activity source) <string label> ref(Activity target)
+
+            <ActivityStart> ::= $\epsilon$
+
+            <ActivityAction> ::= <ActivityFlowCall>
+            | <ActivityPitaBuildInforRequest>
+            | <ActivityLoadExternalData>
+
+            <ActivityFlowCall> ::= ref(FlowTemplate) <ActivityPortValue>* <TemplateParameterValue>* <ValueTransformation>*
+
+            <ActivityPitaBuildInforRequest> ::= <string abdFilename> <string requestAlias> <string expectedSystems>* <number timeout>
+
+            <ActivityLoadExternalData> ::= <Type dataType> <string dataSource>
+
+            <ActivityPortValue> ::= <FlowPortValue>
+            | <ActivityPortRefernce>
+
+            <FlowPortValue> ::= <string>
+            | <number>
+            | <bool>
+            | <date>
+            | <FlowPortValue>*
+
+            <ActivityPortRefernce> ::= ref(ActivityAction) (ValueTransformation)*
+
+            <ValueTransformation> ::= <string objectReference>
+            | <number listIndex>
+
+            <ActivityCondition> ::= <ActivityBinaryCondition>
+            | <ActivityValidityCondition>
+
+            <ActivityBinaryCondition> ::= ref(FlowTemplate) <ActivityBinaryConditionOperator> <ActivityPortValue left> <ActivityPortValue right>
+
+            <ActivityValidityCondition> ::= <ActivityPortValue>*
+
+            <ActivityBinaryConditionOperator> ::= '='
+            | '$\neq$' 
+            | '\textless' 
+            | '$\leq$' 
+            | '\textgreater' 
+            | '$\geq$'
+
+            <ActivityDisplay> ::= <ActivityDisplayField>*
+
+            <ActivityDisplayField> ::= <string label> <string color> ref(ActivityAction)
+        \end{grammar}       
+        \caption{C\#-Code: DeviationChecker}
+    \end{figure}
+    
     %Die Regel $<ActivityModel>$ beschreibt die Grundstruktur des Aktivitätsmodell und setzt sich aus $<Acitvity>$ und $<ActivityConnection>$ zusammen. 
     %$<Acitvity>$ sind dabei Aktivitäten und kann entweder eine Startmakierung ($<ActivityStart>$), ein Vergleich ($<ActivityCondition>$), eine Aktion ($<ActivityAction>$) oder ein Label ($<ActivityDisplay>$) sein.
     %$<ActivityConnection>$ hingegen definiert, welche Aktivtäten miteinander verbunden sind und setzt sich aus zwei Aktivitäten (ref(Acitvity source) und ref(Acitvity target)) und einer Beschriftung für die Kante ($<string label>$)
@@ -216,7 +278,7 @@
     %A1 nimmt als Parameter den Namen der auszuführenden Anfrage, eine Beschreibung für den debugger, eine Liste von anzusprechnenden System im Fahrzeig und die maximale Zeitdrauer einer Anfrage.
     %A2 nimmt als Eingabe den Typ der zu ladenenden Datei und die dazugehörige URI.
     %A3
-    \subsubsection{Datenverarbeitung}
+    \subsection{Datenverarbeitung}
     %Eingabe <FlowInputPort> und Ausgabe $<FlowOutputPort>$
     %Funktionen höherer Ordnung $<FlowLamda>$
     %Eine Funktion höher Ordnung besteht aus zustzälciehn Eingabe- und Ausgabeports
@@ -237,14 +299,44 @@
     Die in Abbildung \ref{Flow-Instanz} dargestellten Regeln definieren die Struktur einer Flow-Instanz. Dabei kann eine Flow-Instanz als konkreten Aufruf einer Funktion interpretiert werden. 
     Die Regel \textit{FlowInstance} legt dabei fest, dass eine Flow-Instanz aus mehreren Eingabe- und Ausgabeports sowie einer Menge von Funktionen höherer Ordnung besteht.
     Der Aufbau einer Funktion höherer Ordnung umfasst wiederum zusätzliche Eingabe- und Ausgabeports.
-    Ein Port besteht aus einem Namen, gefolgt vom Datentyp des Ports und einem Wahrheitswert der Angibt ob an diesem Port Fehler erlaubt sind.\\
+    Ein Port besteht aus einem Namen, gefolgt vom Datentyp des Ports und einem Wahrheitswert der Angibt ob an diesem Port Fehler erlaubt sind.
+    \begin{figure}[H]
+        \centering
+        \begin{grammar}
+            <FlowInstance> ::= <FlowOutputPort lambdaArguments>* <FlowInputPort lambdaArguments>* <FlowLambda>*
+                
+            <FlowLambda> ::= <FlowOutputPort lambdaArguments>* <FlowInputPort lambdaArguments>*
+
+            <FlowInputPort> ::= <string name> <Type> <bool acceptsError>
+
+            <FlowOutputPort> ::= <string name> <Type> <bool producesError>
+        \end{grammar}      
+        \caption{C\#-Code: DeviationChecker}
+    \end{figure}
+
     %Ein Flow-Template ($〈FlowTemplate〉$) kann als abstrakte Oberklasse angesehen werden und besteht dabei aus einer Funktion ($〈Flow〉$) gefolgt von keiner oder mehreren Template-Parametern ($〈TemplateParameter〉$), welche Port- und Lambda-Definitionen generien können.
     %Eine Funktion kann dabei eine vom System bereitgestellte ($〈LibraryFlow〉$) oder eine vom Benutzer selbst definierte ($〈FlowModel〉$) sein.\\
     Ein Flow-Template wird durch die in Abbildung \ref{Flow-Template} spezifierten Regeln beschrieben.
     Das Flow-Template wird dabei durch eine Funktion \textit{Flow} und eine Menge von TemplateParametern definiert. 
     Bei den TemplateParameter wird zwischen einer Zeichenkette, Zahlen oder einem Wahrheitswert unterschieden. 
     Diese Parameter beeinflussen die automatische Generierung der Port-Struktur sowie der internen Verarbeitungslogik eines Flows. \cite{99}
-    Die Funktionen lassen sich in vordefinierte \textit{LibraryFlow} und eigene erstellten Funktionen \textit{FlowModel} unterteilen.\\
+    Die Funktionen lassen sich in vordefinierte \textit{LibraryFlow} und eigene erstellten Funktionen \textit{FlowModel} unterteilen.
+    \begin{figure}[H]
+        \centering
+        \begin{grammar}
+            <FlowTemplate> ::= <Flow> <TemplateParameter>*
+
+            <Flow> ::= <LibraryFlow> | <FlowModel>
+            
+            <LibraryFlow> ::= $\epsilon$
+
+            <TemplateParameter> ::= 'String' | 'Number' | 'Bool' | <TemplateParameterList>
+            
+            <TemplateParameterList> ::= <TemplateParameter>
+        \end{grammar}       
+        \caption{C\#-Code: DeviationChecker}
+    \end{figure}
+
     %Die vom System bereitgestellte Funktionen lassen sich dabei in eine von sieben Kategorien unterteilen: Hauptuntersuchungs-Adapter-Antworten, Zeichenkettenverarbeitung, Datum, Vergleichoperatoren, Konverter, Operatoren und Listenverarbeitung.\\\\
     %Das Flow-Model ($〈FlowModel〉$) ist, wie bereits erwähnt, die vom Benutzer selbst definierten Funktionen und besteht aus einer Flow-Instanz, gefolgt von mehreren möglichen Funktionen ($〈FlowNode〉$) und Verbindungen ($〈FlowConnection〉$).
     %Flow-Instanz bestimmt die Ein- und Ausgaben des Flow-Models.
@@ -256,13 +348,57 @@
     Durch die Regel \textit{FlowModel} wird bestimmt, dass ein FlowModel aus einer FlowInstance, einer Auflistung alle genutzen Flow-Node und definition der Verbindungen zwischen den Eingabe- und Ausgabeports.
     Bei den Flow-Node wird zwischen Verweis auf Eingabeports, Verweis auf Lambda-Funktionen, Verweis auf Funktion mit Auflistung von Parametern oder verweis auf Ausgabeports unterschieden.
     Bis auf das letztere haben alle Flow-Node die Möglichkeit ihre Eingabeports durch konstante Werte zu spezifizieren.
-    Flow-Nodes sind Funktionen die innerhalb eines Flow-Modells genutzt werden.\\
-    \subsubsection{Typsystem}
+    Flow-Nodes sind Funktionen die innerhalb eines Flow-Modells genutzt werden.
+    \begin{figure}[H]
+        \centering    
+        \begin{grammar}
+            <FlowModel> ::= <FlowInstance> <FlowNode>* <FlowConnection>*
+
+            <FlowNode> ::= <FlowNodeOutput> | <FlowNodeInput> | <FlowNodeLambda> | <FlowNodeFlowCall>
+        
+            <FlowNodeOutput> ::= ref(FlowOutputPort)
+
+            <FlowNodeInput> ::= ref(FlowInputPort) <FlowPortValue>
+
+            <FlowNodeLambda> ::= ref(FlowLambda) <FlowPortValue>*
+
+            <FlowNodeFlowCall> ::= ref(FlowTemplate) <FlowPortValue>* <TemplateParameterValue>*
+        
+            <FlowConnection> ::= ref(FlowOutputPort source) ref(FlowOutputPort target)
+        
+            <TemplateParameterValue> ::= <string> | <number> | <bool> | <TemplateParameterValueList>
+        
+            <TemplateParameterValueList> ::= <TemplateParameterValue>*
+        \end{grammar}
+        \caption{C\#-Code: DeviationChecker}
+    \end{figure}
+
+    \subsection{Typsystem}
     In Abbildung \ref{Typsystem} werden die Regeln des Typsystem dargestellt.
     Das Typsystem unterstützt Primitive- und Generische-Datentypen, welche an einen Optional-, Listen- oder Objekt-Typen gekapselt werden können.
     Als Primtiven-Datentypen stehen \textbf{String}, \textbf{Number}, \textbf{Bool}, \textbf{Data} und \textbf{PtiaResponse} zur Auswahl.
-    Ersteres ist eine Datumsanagbe. Hingegen PtiaResponse die Antwort von einem Hauptunsersuchungs-Anfrage ist.\\
-    \subsection{Ausführung}
+    Ersteres ist eine Datumsanagbe. Hingegen PtiaResponse die Antwort von einem Hauptunsersuchungs-Anfrage ist.
+    \begin{figure}[H]
+        \centering
+        \begin{grammar}
+            <Type> ::= <TypePrimtive> | <TypeOptional> | <TypeList> | <TypeObject>
+
+            <TypePrimtive> ::= 'String' | 'Number' | 'Bool' | 'Data' | 'PtiaResponse'
+            
+            <TypeOptional> ::= <Type> '?'
+            
+            <TypeList> ::= <Type> '[]'
+            
+            <TypeObject> ::= '\{' (<string key> ':' <Type>)* '\}'
+
+            <TypeGeneric> ::= '\$' <string genericName>
+
+            <TypeReference> ::= ref(Type)
+        \end{grammar}       
+        \caption{C\#-Code: DeviationChecker}
+    \end{figure}
+
+    \section{Ausführung}
     Im folgenden Unterkapitel wird gezeigt, wie die einzelnen Ebenen ausgeführt werden.
     Die folgende Zusammenfassung basiert auf der Arbeit von Westermann et al.\\
     \\
@@ -280,7 +416,6 @@
     %Der Startpunkt jeder Prüfung ist die Startaktivität. Die Startaktivität darf pro Prüfung nur einmal vorkommen und ist dafür zuständig, dass der Referenzstack leer ist.
     %Die Reihenfolge der auszuführenden Aktivitäten wird durch die Aktivitäten vorgegeben. Die Aktiväten geben nämlich das Label der nächst zu folgenden Kante zurück. 
     %Die Prüfungs ist beendet, sobald die Aktivität kein Label mehr zurückgibt.\\
-    \\
     \textbf{Datenverarbeitung}\\
     \\
     %einfügen,dass nach pull-ansatz gearbeitet wird
@@ -333,7 +468,7 @@
     %Hingegen Entscheidungsaktivität Einträge bearbeiten oder präzisieren können. Beispielweise werden bei einer erfolgreichen Validierungsentscheidung die betroffenden Typen im Stack konkretisiert. Dadurch sollen die Optionalen-Typ entfernt werden.
     %Im Anschluss können dann die Nodes validiert werden. 
     %Bei der Validierung wird geprüft ob das Argument $〈bool acceptsError〉$ der $〈FlowNodeInput〉$ den gleichen Wert wie der Refenzierte $〈FlowInputPort〉$ hat. Ist das nicht der Fall wird eine Fehlermeldung für das Flow-Modell ausgegeben.
-    \subsection{Codeanalyse}
+    \section{Codeanalyse}
     \label{Codeanalyse}
         Die aktuelle Umsetzung des Codes ermöglicht es nicht das Schleifen im Graphen vorkommen und augseführt werden können. 
         Konkret lassen sich zwei Probleme aus der aktuellen Umsetzung ableiten:
@@ -377,7 +512,7 @@
     In dem Kapitel wird das Design der geplanten Erweiterung beschrieben. 
     Dafür werden zunächst die Anforderungen erklärt und diese im Anschluss spezifiziert.
     Die beiden Punkte ähneln dabei der Anfoderungs- und Entwurfsphase des Wasserfallmodells.
-    \subsection{Anforderungen}
+    \section{Anforderungen}
     \label{Anforderungen}
     In diesem Unterkapitel werden die Anforderungen an die geplante Erweiterung konkretisiert.
     %In der Anfordeurngsphase werden die benötigten Anforderungen an die Blöcke identifiziert und erläutert \cite{24}.\\
@@ -398,7 +533,7 @@
     %Rückverbindungen über den Schleifenblock sollen dabei erlaubt sein.
     %Ingesammt stehen dem Schleifenblock vier Interaktionspunkte zur Verfügung.
     %Welcher Pfad genommen wird, wird durch den Wahrheitswert der Abbruchbedingung bestimmt.
-    \subsection{Entwurf}
+    \section{Entwurf}
     Im folgenden Unterkapitel wird der Entwurf beschrieben.
     Dabei werden auf die Punkte aus dem Kapitel \ref{Anforderungen} eingegangen und im Anschluss die Algorithmen entworfen.\\
     \\
@@ -412,6 +547,28 @@
     Die Abbruchbedingung wird durch das Nichtterminalsymbol \textit{ActivityBinaryCondition} abgebildet.
     Die entsprechende Regel für das Nichterminal wurde bereits in Kapitel \ref{Prüfungslogik} definiert.
     Dargestellt wird die Erweiterung in Abbildung \ref{Erweiterung Prüfungslogik}.
+    \begin{figure}[H]
+        \centering
+        \begin{grammar}
+            <Activity> ::= <ActivityStart>
+            | <ActivityAction>
+            | <ActivityCondition>
+            | <ActivityDisplay>
+            | <ActivityLoop>
+    
+            <ActivityLoop> ::= <integer iteration> <ActivityBinaryCondition>
+    
+            <ActivityBinaryCondition> ::= ref(FlowTemplate) <ActivityBinaryConditionOperator> <ActivityPortValue left> <ActivityPortValue right>
+    
+            <ActivityBinaryConditionOperator> ::= '='
+            | '$\neq$' 
+            | '\textless' 
+            | '$\leq$' 
+            | '\textgreater' 
+            | '$\geq$'
+        \end{grammar}        
+        \caption{C\#-Code: DeviationChecker}
+    \end{figure}
     Auch in diesem Fall beinhaltet die Erweiterung nur die für die Ausführungssemantik benötigten Elemente.\\
     Der Schleifenblock soll dabei als Oval im Canvas dargestellt werden.
     Beim Klicken auf den Schleifenblock soll der Benutzer die Möglichkeit haben die Anazahl der Iterationen und die Abbruchbedingung für die Schleife festzulegen.
@@ -429,7 +586,13 @@
     %TODO funktionsweise des schleifenblocks allgemein erklären
     Block A soll die Wiederholung von Aktivitäten durch explizite Ausführung ermöglichen und wird durch SchleifeB abgebildet.
     Das soll geschehen indem die Schleife durch eine verschachtelte if-Anweisung ersetzt wird.
-    Zur Umsetzung dieses Ziels wird die \textbf{Schleifenentfaltung} als Grundlage verwendet.
+    Zur Umsetzung dieses Ziels wird die \textbf{Schleifenentfaltung} als Grundlage verwendet.\\
+    \\
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{./images/loop-unrolling.pdf}       
+        \caption{C\#-Code: DeviationChecker}
+    \end{figure}
     Unter Schleifenentfaltung versteht man, dass die Instruktione in der Schleife mehrmals pro Iteration auszuausgeführt werden, um dadurch die Häufigkeit der Iterationen zu verringern \cite{9}.
     Um das Ziel zu erreichen, muss die Schleifenentfaltung abgeändert werden.
     Die Schleifenentfaltung soll nicht nur die Häufigkeit der Iterationen reduzieren, sondern diese vollständig eliminieren.
@@ -437,7 +600,13 @@
     Am Ende jeder Kopie muss dann noch die Abbruchbedingung drangehangen werden, da diese TODO.
     Als nächstes müssen die einzelnen Kopien miteinander verbunden werden.
     Dies wird erreicht indem von der ersten Aktvität einer Kopie eine Verbindung zur vorangegangenen Schleifenblock hergestellt wird.
-    Graphisch wird dieser Ansatz in Abbildung \ref{Schleifenentfaltung} dargestellt.
+    Graphisch wird dieser Ansatz in Abbildung \ref{Schleifenentfaltung} dargestellt.\\
+    \\
+    \begin{figure}[H]
+        \centering    
+        \includegraphics[width=\textwidth]{./images/UnbenanntesDiagramm.pdf}
+        \caption{C\#-Code: DeviationChecker}
+    \end{figure}
     %Anstatt rekursive oder iterative Wiederholungen zu verwenden, wird jede potenzielle Iteration als eigenständiger und bedingter Codeblock realisiert.
     %Dazu muss eine Anpassung an der klasisschen Schleifenentfaltungsverfahren vorgenommen werden. 
     %Das Ziel der modifizierung ist es, die Schleifen solange zusammenzufassen bis kein erneuter Schleifendurchlauf notwendig ist und dadurch den Kontrollfluss durch Verzweigungen und verschtelungen ohne Iterationen abzubilden.
@@ -449,8 +618,7 @@
     %Im Beispiel soll "foo" drei mal einzeln auf der Console ausgegeben werden. 
     %In der oberen Schleife
     %Hingegen in der unteren Schleife der modifizierte Ansatz verwendet wurden ist. Da die untere Schleife nur noch genau einmal ausgefürt wird, kann diese einfach weggelassen werden.\\
-    \textbf{Block B}\\
-    \\
+    \textbf{Block B}
     Block B soll die Wiederholung von Aktivitäten durch iterative Schleifen ermöglichen und wird durch SchleifeA abgebildet.
     Zur umsetzung dieses Ziels wird ein Mittelwertansatz als Grundlage verwendet.
     Wird die OnFalse Verbindung des Schleifenblocks ausgewählt wird als erstes überprüft, ob eine Wiederholung stattfinden darf oder nicht.
@@ -470,7 +638,13 @@
     Anderfalls wird der Chancen-Zähler zurückgesetzt.
     Der Chancen-Zähler ist erforderlich, weil dieser als Steuermechanismus für die Wiederholungslogik dient und eine Begrenzung der Iterationen bei ausbleibender signifikanter Veränderung sicherstellt.
     Sollten weniger als 3 Werte in der Liste enthalten sein, wird die Berechnung der Differenz übersprungen und direkt mit der Wiederholung der Aktivitäten begonnen.
-    Dadurch kann gewährleistret werden, dass das System einlaufen kann und die Mittelwerte erst gebildet werden, wenn eine aussagekräftige Datenbasis vorhanden ist.   
+    Dadurch kann gewährleistret werden, dass das System einlaufen kann und die Mittelwerte erst gebildet werden, wenn eine aussagekräftige Datenbasis vorhanden ist.\\
+    \\
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{./images/klassendiagramm-blockb.pdf}        
+        \caption{C\#-Code: DeviationChecker}
+    \end{figure}
     %Erreicht der Chancen-Zähler 0 werden keine weiteren Wiederholungen ausgeführt, da der wert sehr wahrscheinlich stagniert.
     %Dadurch soll verhindert werden, dass eine ineffiziente Fortsetzung der Schleife stattfindet.
     %Ist die Abbruchbedingung nicht erfüllt, wird Entschieden ob eine Wiederholung stattfindet oder nicht. Dabei wird geschaut wie sich das dynamische Datum über die Iteration hinweg verhält.
@@ -489,7 +663,6 @@
     %Dadurch soll verhindert werden, dass eine ineffiziente Fortsetzung der Schleife stattfindet.
     %Sollten weniger als 3 Werte in der Ergbenissliste drin sein, wird die Berechnung übersprungen. Dadurch kann gewährleistret werden, dass das System einlaufen kann und die Mittelwerte erst gebildet werden, wenn eine aussagekräftige Datenbasis vorhanden ist.\\
     Auf die Vor- und Nachteile der einzelnen Blöcke wird im Kapitel \ref{Evaluation} eingegangen.
-
     \newpage
     \chapter{Implementierungsphase}
     In diesem Kapitel wird die Implementierungsphase beschrieben. 
@@ -592,18 +765,23 @@
     Der Ablauf der Klasse wird in der Methode \textit{calculate()} gesteuert. Hier wird zunächst überprüft, ob die anderen Methoden aufgerufen werden soll.
     Der Algorithmus wird lediglich bei Vorhandensein von mindestens drei Werten in der Eingabeliste gestartet.
     Ist dies der Fall wird \textit{calculateMean()} aufgerufen und dessen Rückgabewert in die Mittelwert-Variable gespeichert.
-    Im Anschluss erfolgt der Aufruf von \textit{isDeviationWithinThreshold()}, dessen Rückgabewert von \textit{calculate()} zurückgegeben wird.\\
-    \\
+    Im Anschluss erfolgt der Aufruf von \textit{isDeviationWithinThreshold()}, dessen Rückgabewert von \textit{calculate()} zurückgegeben wird.
+    \begin{figure}[H]
+        \centering
+        \lstinputlisting{./code/DeviationChecker.cs}
+        \caption{C\#-Code: DeviationChecker}
+    \end{figure}    
     Ein andere Klasse ist \textit{Counter}.
     Diese dient der Verwaltung zweier Zählerwerte: chance und counter.
     Der Zugriff auf diese Variablen erfolgt nach dem Prinzip der Datenkapslung.
-    Zur Funktionalität stehen Methoden zum Verrigern (\textit{decreaseChance()} und \textit{decreaseCounter()}), Zurücksetzen (\textit{resetChance()}) sowie Setzen und Auslesen (\textit{setCounter()}, \textit{getCounter()}, \textit{getChance()}) der Zählerwerte zur Verfügung.\\
-    \\
+    Zur Funktionalität stehen Methoden zum Verrigern (\textit{decreaseChance()} und \textit{decreaseCounter()}), Zurücksetzen (\textit{resetChance()}) sowie Setzen und Auslesen (\textit{setCounter()}, \textit{getCounter()}, \textit{getChance()}) der Zählerwerte zur Verfügung.
+    \lstinputlisting{./code/Counter.cs}
     Mit der Klasse \textit{StringToDoubleConverter} wird ein String in einen Double-Wert umgewandelt.
     Um dies zu ermöglichen stellt die Klasse verschiedene Variable zur verfügung, darunter eine Variable für den Zähler der Schleife, einen für die Bytes und einen für den umgewandelten Wert.
     Die Methode StringToDouble konviert die Zeichenkette, indem sie zunächst die Zeichenkette in UTF-8 kodierte Bytes umgewandelt.
     Anschließend werden die Bytes mit einem fortlaufenden Index multipliziert und auf einen Akkumulator addiert.
     Der akkumulierte Wert wird im Anschluss als Rückgabewert zurückgegeben.
+    \lstinputlisting{./code/StringToDouble.cs}
     Die letzte der vier Klassen ist \textit{InputProcessor}.
     Diese ist für die Verarbeitung der Eingabewerte zuständig.
     Zur Verarbeitung stehen mehrere interne Datenstrukturen und konstanten zur verfügung, darunter zwei Listen zur Speicherung der Roh- und Konvertierungswerte sowie Parameter zur Konfiguration (HistoryLength und deviationThreshold) und eine Instanz der Klasse Counter.
@@ -613,8 +791,13 @@
     Anschließend wird der Eigabewert mit der Methode convertInputToDouble in einen Double-Wert konvertiert.
     Dieser Wert wird nach der Konvertierung dann in eine Liste gespeichert.
     Im Anschluss daran wird mithilfe der Methode validateDeviation der konvertierte Wert auf eine mögliche Abweichung hin überprüft.
-    Als letzter Schritt der Verarbeitung wird der Zähler dekrementiert.\\
-    \\
+    Als letzter Schritt der Verarbeitung wird der Zähler dekrementiert.
+    \newpage
+    \begin{figure}[H]
+        \centering
+        \lstinputlisting{./code/InputProcessor.cs}        
+        \caption{C\#-Code: DeviationChecker}
+    \end{figure}  
     Die Methode convertInputToDouble TODO. Ist dies nicht möglich, wird der Eingabewert mit der Methode StringToDouble aus der Klasse StringToDoubleConverter in einen Double-Wert konviert.
     Als Rückgabewert wird der Double zurückgeben.\\
     \\
@@ -755,7 +938,7 @@
     GC hat nicht die Möglichkeit sofort den Speicherverbrauch zu messen, aber mithilfe der Methode \textit{GetTotalMemory()} kann der Speicherverbraucht indirekt berechnet werden.
     \textit{GetTotalMemory()} gibt die Heapgröße ohne Fragmentierung zurück. 
     Wird die Methode vor und nach einer Funktion aufgerufen und die Differenz aus den beiden Zahlen gebildet, dann ergibt sich der Speicherverbrauch der Funktion.\\
-    \subsection{Testumgebung}
+    \section{Testumgebung}
     Als Testumgebung wurde eine Prüfung erstellt, TODO
     Für den Test wurden ingesammt 1024 Werte definiert.
     Im jeden Schleifendurchlauf wird TODO
@@ -763,7 +946,7 @@
     Zunächst wurden die Anzahl um vierer Schritten erhöht. Hingegen ab 64 die Schritte auf 16 erhöht wurden sind.
     Ingesammt wurde der Speicherverbrauch und die Ausführungszeit an TODO Stellen gemessen.
     Argument1 wird dabei als dynamisches Datum festgelegt und Argument2 als konstanten Wert.
-    \subsection{Auswertung}
+    \section{Auswertung}
     In dem Unterkapitel werden die Ergebnisse der Messungen miteinander verglichen.
     Dafür wurde der Minimal-, Maximal- und Medianwert gebildet.
     Der Minimalwert gibt dabei die Bestmögliche Performance der Messungen an.
@@ -779,7 +962,7 @@
     Dieses Verhalten lässt sich auf den ausreisenden Maximalwert von SchleifeA am Punkt 52 zurückführen und dem daraus resultierenden anstieg des Medianwertes.
     In \cref{tab:zeitdifferenz-schleifea} wird die Zeitdifferenz für den Medianwert für SchleifeA und in \cref{tab:zeitdifferenz-schleifeb} für SchleifeB angezeigt.
     
-    \begin{table}[h]
+    \begin{table}[H]
         \centering
         \begin{tabular}{|c|c|}
             \hline
@@ -795,7 +978,7 @@
         \caption{Differenzen der Ausführungszeiten bei Verdopplung der Eingabegröße (SchleifeA)}
         \label{tab:zeitdifferenz-schleifea}    
     \end{table}
-    \begin{table}[h]
+    \begin{table}[H]
         \centering
         \begin{tabular}{|c|c|}
             \hline
