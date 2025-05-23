@@ -6,7 +6,7 @@
 \contentsline {chapter}{\numberline {2}Hintergrund}{8}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Terminologie}{8}{section.2.1}%
 \contentsline {paragraph}{\nonumberline Schleife}{8}{paragraph*.6}%
-\contentsline {paragraph}{\nonumberline Domain Specific Language}{8}{paragraph*.8}%
+\contentsline {paragraph}{\nonumberline Domain Specific Language}{9}{paragraph*.8}%
 \contentsline {paragraph}{\nonumberline Visual Programming Language}{9}{paragraph*.10}%
 \contentsline {paragraph}{\nonumberline Datenfluss-basierte Sprachen}{10}{paragraph*.12}%
 \contentsline {paragraph}{\nonumberline Wasserfallmodell}{11}{paragraph*.14}%
@@ -17,7 +17,7 @@
 \contentsline {subsection}{\numberline {3.1.2}Datenverarbeitung}{15}{subsection.3.1.2}%
 \contentsline {subsection}{\numberline {3.1.3}Typsystem}{16}{subsection.3.1.3}%
 \contentsline {section}{\numberline {3.2}Ausführung}{17}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Codeanalyse}{19}{section.3.3}%
+\contentsline {section}{\numberline {3.3}Problemanalyse}{19}{section.3.3}%
 \contentsline {chapter}{\numberline {4}Planung}{20}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Anforderungen}{20}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Entwurf}{20}{section.4.2}%

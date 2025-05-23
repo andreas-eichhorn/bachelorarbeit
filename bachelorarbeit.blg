@@ -1,38 +1,38 @@
-[1] Config.pm:307> INFO - This is Biber 2.17
-[2] Config.pm:310> INFO - Logfile is 'bachelorarbeit.blg'
-[85] biber:340> INFO - === Fr Mai 23, 2025, 02:42:56
-[98] Biber.pm:418> INFO - Reading 'bachelorarbeit.bcf'
-[251] Biber.pm:972> INFO - Found 22 citekeys in bib section 0
-[271] Biber.pm:4383> INFO - Processing section 0
-[292] Biber.pm:4574> INFO - Looking for bibtex file 'bibliography.bib' for section 0
-[295] bibtex.pm:1713> INFO - LaTeX decoding ...
-[304] bibtex.pm:1518> INFO - Found BibTeX data source 'bibliography.bib'
-[320] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
-[320] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[320] Biber.pm:4203> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'de-DE'
-[320] Biber.pm:4209> INFO - No sort tailoring available for locale 'de-DE'
-[321] bbl.pm:654> INFO - Writing 'bachelorarbeit.bbl' with encoding 'UTF-8'
-[321] bbl.pm:757> INFO - Output to bachelorarbeit.bbl
-[321] Biber.pm:130> WARN - I didn't find a database entry for '22' (section 0)
-[321] Biber.pm:130> WARN - I didn't find a database entry for '1' (section 0)
-[321] Biber.pm:130> WARN - I didn't find a database entry for '3' (section 0)
-[321] Biber.pm:130> WARN - I didn't find a database entry for '5' (section 0)
-[321] Biber.pm:130> WARN - I didn't find a database entry for '18' (section 0)
-[321] Biber.pm:130> WARN - I didn't find a database entry for '14' (section 0)
-[321] Biber.pm:130> WARN - I didn't find a database entry for '7' (section 0)
-[322] Biber.pm:130> WARN - I didn't find a database entry for '16' (section 0)
-[322] Biber.pm:130> WARN - I didn't find a database entry for '13' (section 0)
-[322] Biber.pm:130> WARN - I didn't find a database entry for '10' (section 0)
-[322] Biber.pm:130> WARN - I didn't find a database entry for '12' (section 0)
-[322] Biber.pm:130> WARN - I didn't find a database entry for '21' (section 0)
-[322] Biber.pm:130> WARN - I didn't find a database entry for '6' (section 0)
-[322] Biber.pm:130> WARN - I didn't find a database entry for '11' (section 0)
-[322] Biber.pm:130> WARN - I didn't find a database entry for '2' (section 0)
-[322] Biber.pm:130> WARN - I didn't find a database entry for '8' (section 0)
-[322] Biber.pm:130> WARN - I didn't find a database entry for '15' (section 0)
-[322] Biber.pm:130> WARN - I didn't find a database entry for '24' (section 0)
-[322] Biber.pm:130> WARN - I didn't find a database entry for '25' (section 0)
-[323] Biber.pm:130> WARN - I didn't find a database entry for '23' (section 0)
-[323] Biber.pm:130> WARN - I didn't find a database entry for '99' (section 0)
-[323] Biber.pm:130> WARN - I didn't find a database entry for '9' (section 0)
-[323] Biber.pm:132> INFO - WARNINGS: 22
+[0] Config.pm:307> INFO - This is Biber 2.17
+[0] Config.pm:310> INFO - Logfile is 'bachelorarbeit.blg'
+[94] biber:340> INFO - === Fr Mai 23, 2025, 14:59:50
+[115] Biber.pm:418> INFO - Reading 'bachelorarbeit.bcf'
+[195] Biber.pm:972> INFO - Found 22 citekeys in bib section 0
+[208] Biber.pm:4383> INFO - Processing section 0
+[222] Biber.pm:4574> INFO - Looking for bibtex file 'bibliography.bib' for section 0
+[224] bibtex.pm:1713> INFO - LaTeX decoding ...
+[229] bibtex.pm:1518> INFO - Found BibTeX data source 'bibliography.bib'
+[235] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[235] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
+[235] Biber.pm:4203> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'de-DE'
+[235] Biber.pm:4209> INFO - No sort tailoring available for locale 'de-DE'
+[236] bbl.pm:654> INFO - Writing 'bachelorarbeit.bbl' with encoding 'UTF-8'
+[236] bbl.pm:757> INFO - Output to bachelorarbeit.bbl
+[236] Biber.pm:130> WARN - I didn't find a database entry for '22' (section 0)
+[236] Biber.pm:130> WARN - I didn't find a database entry for '1' (section 0)
+[237] Biber.pm:130> WARN - I didn't find a database entry for '3' (section 0)
+[237] Biber.pm:130> WARN - I didn't find a database entry for '5' (section 0)
+[237] Biber.pm:130> WARN - I didn't find a database entry for '18' (section 0)
+[237] Biber.pm:130> WARN - I didn't find a database entry for '14' (section 0)
+[237] Biber.pm:130> WARN - I didn't find a database entry for '7' (section 0)
+[237] Biber.pm:130> WARN - I didn't find a database entry for '16' (section 0)
+[237] Biber.pm:130> WARN - I didn't find a database entry for '13' (section 0)
+[237] Biber.pm:130> WARN - I didn't find a database entry for '10' (section 0)
+[237] Biber.pm:130> WARN - I didn't find a database entry for '12' (section 0)
+[237] Biber.pm:130> WARN - I didn't find a database entry for '21' (section 0)
+[238] Biber.pm:130> WARN - I didn't find a database entry for '6' (section 0)
+[238] Biber.pm:130> WARN - I didn't find a database entry for '11' (section 0)
+[238] Biber.pm:130> WARN - I didn't find a database entry for '2' (section 0)
+[238] Biber.pm:130> WARN - I didn't find a database entry for '8' (section 0)
+[238] Biber.pm:130> WARN - I didn't find a database entry for '15' (section 0)
+[238] Biber.pm:130> WARN - I didn't find a database entry for '24' (section 0)
+[238] Biber.pm:130> WARN - I didn't find a database entry for '25' (section 0)
+[238] Biber.pm:130> WARN - I didn't find a database entry for '23' (section 0)
+[238] Biber.pm:130> WARN - I didn't find a database entry for '99' (section 0)
+[238] Biber.pm:130> WARN - I didn't find a database entry for '9' (section 0)
+[238] Biber.pm:132> INFO - WARNINGS: 22

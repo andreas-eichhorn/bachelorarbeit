@@ -20,10 +20,6 @@
     Bei dynmaischen Daten handelt es sich um Daten, die während der Prüfung ihren Wert ändern.
     Dafür muss im Vorfeld das zugrunde liegende System analysiert und bearbeitet werden, sodass Zyklen vom System verarbeitet werden können.
     Die Implementierung wird in einer Evaluation auf Perfomance untersucht.
-    Insgesamt wurden TODO Quellen gesichtet. 
-    Ein Teil davon konnte nicht berücksichtigt werden, da sie thematisch in eine andere Richtung gingen oder keinen relevanten Erkenntnisgewinn boten. 
-    Von den gesichteten Quellen wurden schließlich TODO verwendet. 
-    Diese wurden vorwiegend zur Definition zentraler Fachbegriffe herangezogen.
     \section{Aufbau der Arbeit}
     Die vorliegenede Arbeit setzt sich aus TODO nachfolgenden Kapiteln zusammen. 
     Im zweiten Kapitel TODO
@@ -33,7 +29,10 @@
     \newpage
     \chapter{Hintergrund}
     Der Fokus dieses Kapitels liegt auf der Definition zentraler Fachbegriffe und der Beschreibung der Domaine um dadurch einen einheitlichen terminologischen Rahmen zu schaffen. 
-    Das Ziel dieses Kapitels ist es die Verständlichkeit der nachfolgenden Kapitel zu erhöhen und die theoretischen Grundlagen der Arbeit zu festigen.
+    Das Ziel dieses Kapitels ist es die Verständlichkeit der nachfolgenden Kapitel zu erhöhen und die theoretischen Grundlagen der Arbeit zu festigen. Insgesamt wurden TODO Quellen gesichtet. 
+    Ein Teil davon konnte nicht berücksichtigt werden, da sie thematisch in eine andere Richtung gingen oder keinen relevanten Erkenntnisgewinn boten. 
+    Von den gesichteten Quellen wurden schließlich TODO verwendet. 
+    Diese wurden vorwiegend zur Definition zentraler Fachbegriffe herangezogen.
     \section{Terminologie}
     \label{Terminologie}
     \paragraph{Schleife}
@@ -118,8 +117,8 @@
     Außerdem trägt die Dokumentation am Ende jeder Phase zur Verbesserung der Projektqualität bei \cite{23}.
     Hingegen ein großer Nachteil von Wasserfallmodellen ist, dass sich ändernde Anforderungen oder auftretende Probleme während der Entwicklung nicht berücksichtigt werden können \cite{23}.
     Um den Nachteilen des klassischen Wasserfallmodells etwas entgegenzuwirken haben sich die letzten Jahre einige Varianten entwickelt.
-    So beschreibt TODO (24) in seinem Artikel eine Variante, bei der die einzelnen Phasen einer sorgfältigen Validierung und Bestätigung seitens des Clients benötigen um die Phase abzuschließen. 
-    Sollte der Client mit dem Ergebnissen nicht zufrieden sein, so kann das Modell wieder von vorne beginnen \cite{24}. 
+    So beschreiben Patela et al. in ihrer Arbeit eine Variante, bei der die einzelnen Phasen einer sorgfältigen Validierung und Bestätigung seitens des Clients benötigen um die Phase abzuschließen. 
+    Sollte der Client mit dem Ergebnissen nicht zufrieden sein, so kann das Wasserfallmodell wieder von vorne beginnen \cite{24}. 
     In einer anderen Variante wird die Test-Phase komplett weggelassen, da das Testen während der gesamten Entwicklung stattfinden soll \cite{25}.
     \section{Domaine}
     %TODO ggf manche blöcke erklären vorallem die später verwendet werden
@@ -139,7 +138,6 @@
     Ziel dieses Kapitels ist es, diese problematischen Stellen zu erfassen und aufzubereiten, um eine Grundlage für die folgenden Kapitel zu schaffen.\\
     \section{Grammatik}
     \label{Grammatik}
-    %TODO Die in diesem Kapitel definierte Grammatik beinhaltet allerdings nur die für die Ausführungssemantik benötigten Elemente.\cite{99}
     %Die zugrundeliegende Grammatik basiert auf der Backus-Naur-Form (BNF) Notation. Der Aufbau einer BNF wird anhand der Grammatik~\ref{BNF} erklärt
     %<symbol> sind nichtterminale
     %::= bedeutet dass symbol durch _expression_ ersetzt wird
@@ -152,13 +150,15 @@
     %    <symbol> ::= _expression_
     %\end{grammar}
     %\textbf{Grammatik TODO} Backus-Naur-Form\\\\\\
-    %TODO Grammatik beinhaltet allerdings nur die für die Ausführungssemantik benötigten Elemente. den satz einbauen
-    TODO Grammatik definieren.\\
+    Grammatik definiert die Syntax einer Sprache und beschreibt dabei die hierariche Struktur.
+    Die weitverbreiteste Form zum beschreiben der Syntax ist die Backus-Naur-Form (BNF), die auch in dieser Arbeit zum beschreiben verwendet wird.\\
+    \\
     Die Grammatik der domainspezifischen Sprache lässt sich Formal in drei Ebenen unterteilen. 
-    Die oberste Ebene ist die Prüfungslogik, die mittlerste Ebene ist die Datenverarbeitung und die letzte Ebene ist das Typsystem. \cite{99}
-    Ersteres beschreibt die benötigten Aktionen und Entscheidungen für eine Prüfung. \cite{99}
-    Hingegen die Datenverarbeitung für die Definition von Datentranformationen zuständig ist und eine von mehreren Aktionstypen darstellt. \cite{99}
-    Im gegensatz dazu kümmert sich das Typsystem um die statische Analyse der Ausführbarkeit der vorangegangen Ebenen. \cite{99}
+    Die oberste Ebene ist die Prüfungslogik, die mittlerste Ebene ist die Datenverarbeitung und die letzte Ebene ist das Typsystem \cite{99}.
+    Ersteres beschreibt die benötigten Aktionen und Entscheidungen für eine Prüfung \cite{99}.
+    Hingegen die Datenverarbeitung für die Definition von Datentranformationen zuständig ist und eine von mehreren Aktionstypen darstellt \cite{99}.
+    Im gegensatz dazu kümmert sich das Typsystem um die statische Analyse der Ausführbarkeit der vorangegangen Ebenen \cite{99}.
+    Die folgenden Definitionen der Grammatik beinhaltet nur die für die Ausführungssemantik benötigten Elemente \cite{99} und stammen aus der Arbeit von Westermann et al.
     %Grammatik lässt sich in 3 Ebenenunterteilen Prüfungslogik, Datenverarbeitung und Typsystem
     %Prüfungslogik führt Entscheidung im Prüfungsablauf aus und bestimmt die Reihenfolge der Aktionen. außerdem datenerfassung
     %Datenverarbeitung ist für die Datentranformation auswertung zustädnig. Also Funktionen, welche keine Nebeneffekte besitzen, weil sie unabhängig von der restoichen Softwareprüfung stattfinden.
@@ -169,23 +169,23 @@
     %Die folgende Zusammenfassung basiert auf der unveröffentlichen Arbeit von Westermann et al.
     \subsection{Prüfungslogik}
     \label{Prüfungslogik}
-    Die in Abbildung \ref{Aktivitätsmodell} abgebildeten Regeln beschreiben das Aktivitätsmodell, die der Prüfungslogik entspricht. \cite{99}
+    Die in Abbildung \cref{gra:aktivitaetsmodell} abgebildeten Regeln beschreiben das Aktivitätsmodell, die der Prüfungslogik entspricht \cite{99}.
     Zentral ist dabei die Regel \textit{ActivityModel}, welche festlegt, dass ein Aktivitätsmodell aus mehreren Aktivitäten und Verbindungen besteht.
-    Die Verbindung referenziert dabei zwei Aktivitäten und hat auch eine Bezeichnung, die als TODO.
+    Die Verbindung referenziert dabei zwei Aktivitäten und hat auch eine Bezeichnung, die als Label bezeichnet wird.
     Die Regel \textit{Activity} beschreibt die möglichen Aktivitäten innerhalb des Aktivitätsmodells. 
-    Dabei kann eine Aktivität entweder eine \textbf{Startmarkierung}, eine \textbf{Entscheidung}, eine \textbf{Aktion} oder ein \textbf{Label} sein.
-    
-    Eine Entscheidung kann dabei ein Binärentscheidung oder ein Validierungsentscheidung sein.
+    Dabei kann eine Aktivität entweder eine \textbf{Startmarkierung}, eine \textbf{Entscheidung}, eine \textbf{Aktion} oder ein \textbf{Label} sein.\\
+    \\
+    Eine Entscheidung kann dabei ein \textbf{Binärentscheidung} oder ein \textbf{Validierungsentscheidung} sein.
     Ersteres besteht dabei aus einer Referenz auf ein Flowtemplate, das eine Datenverarbetung ist, gefolgt von einem Operator und zwei Argumenten. 
     Als Operatoren stehen $=$ und $\neq$ sowie Relationale Operatoren zur Verfügung.
-    Die Validierungsentscheidung hingegen besteht nur aus einer Menge von Werten, die entweder TODO.
-
-    Bei den Aktionen wird zwischen Hauptunsersuchungs-Adpater Anfragen, lesen von JSON-Dateien und Ausführung einer Datenverarbeitung unterschieden.
-    Der Aufbau einer Hauptuntersuchungs-Adapter Anfrage umfasst dabei den Namen der auszuführenden Anfrage, eine Beschreibung, eine Liste mit anzusprechenden Systemen im Fahrzeug und eine maximale Ausführungsdauer.
-    Im Gegensatz dazu setzt sich das lesen von JSON-Dateien aus dem Datentyp der zu lesenden Datei und einer URI zu der Datenquelle zusammen.
-    Die letzte Aktionform, die Ausführung einer Datenverarbeitung, besteht aus einem Verweis auf einem FlowTemplate, gefolgt von einer Beschreibung der Eingaben, die für die Datenverarbeitung erforderlich sind, sowie einer Transformation, die beschreibt wie das Ergebnis weiterverwendet werden soll.    
-    Die Beschreibung der Eingaben setzt sich dabei aus den Symbolen \textit{ActivityPortValue} und \textbf{TemplateParameterValue} zusammen.
-
+    Die Validierungsentscheidung hingegen besteht nur aus einer Menge von Werten \textit{ActivityPortValue}.\\
+    \\
+    Bei den Aktionen wird zwischen \textbf{Hauptunsersuchungs-Adpater Anfragen}, \textbf{lesen von JSON-Dateien} und \textbf{Ausführung einer Datenverarbeitung } unterschieden.
+    Der Aufbau einer Hauptuntersuchungs-Adapter Anfrage \textit{ActivityPitaBuildInforRequest} umfasst dabei den Namen der auszuführenden Anfrage, eine Beschreibung, eine Liste mit anzusprechenden Systemen im Fahrzeug und eine maximale Ausführungsdauer.
+    Im Gegensatz dazu setzt sich das lesen von JSON-Dateien \textit{ActivityLoadExternalData}  aus dem Datentyp der zu lesenden Datei und einer URI zu der Datenquelle zusammen.
+    Die letzte Aktionform, die Ausführung einer Datenverarbeitung \textit{ActivityFlowCall}, besteht aus einem Verweis auf einem Flowtemplate, gefolgt von einer Beschreibung der Eingaben, die für die Datenverarbeitung erforderlich sind, sowie einer Transformation, die beschreibt wie das Ergebnis weiterverwendet werden soll.    
+    Die Beschreibung der Eingaben setzt sich dabei aus den Symbolen \textit{ActivityPortValue} und \textbf{TemplateParameterValue} zusammen.\\
+    \\
     Die Struktur eines Label wird durch eine Kombination aus einer Beschriftung, einer Farbe und einem Verweis auf eine Aktion beschrieben.
     \begin{figure}[H]
         \centering
@@ -243,9 +243,10 @@
 
             <ActivityDisplayField> ::= <string label> <string color> ref(ActivityAction)
         \end{grammar}       
-        \caption{C\#-Code: DeviationChecker}
+        \caption{Aktivitätsmodell}
+        \label{gra:aktivitaetsmodell}
     \end{figure}
-    
+    \noindent
     %Die Regel $<ActivityModel>$ beschreibt die Grundstruktur des Aktivitätsmodell und setzt sich aus $<Acitvity>$ und $<ActivityConnection>$ zusammen. 
     %$<Acitvity>$ sind dabei Aktivitäten und kann entweder eine Startmakierung ($<ActivityStart>$), ein Vergleich ($<ActivityCondition>$), eine Aktion ($<ActivityAction>$) oder ein Label ($<ActivityDisplay>$) sein.
     %$<ActivityConnection>$ hingegen definiert, welche Aktivtäten miteinander verbunden sind und setzt sich aus zwei Aktivitäten (ref(Acitvity source) und ref(Acitvity target)) und einer Beschriftung für die Kante ($<string label>$)
@@ -296,7 +297,8 @@
     %Die Flow-Instanz ($〈FlowInstance〉$) kann als Funktion interpretiert werden und bildet eine oder mehrere Eingaben ($〈FlowOutputPort lambdaArguments〉$) auf eine oder mehrere Ausgaben ($〈FlowOutputPort  lambdaArguments〉$) ab.
     %Zusätzlich kann die Flow-Instanz aus einer oder mehreren Lamda-Definitionen ($〈FlowLamda〉$) beinhalten. Eine Lamda-Definition hat zusätzliche Eingaben und Ausgaben.
     %Die Ein- und Ausgaben bestehen dabei einem Namen  ($〈string name〉$) , gefolgt vom Typ  ($〈Typ〉$)  und einem boolean  ($〈bool acceptsError〉$) , welcher angibt ob Fehler akzeptiert werden oder nicht.\\
-    Die in Abbildung \ref{Flow-Instanz} dargestellten Regeln definieren die Struktur einer Flow-Instanz. Dabei kann eine Flow-Instanz als konkreten Aufruf einer Funktion interpretiert werden. 
+    %TODO erklären was funktion höher ordnung sind
+    Die in Abbildung \cref{gra:flow-instanz} dargestellten Regeln definieren die Struktur einer Flow-Instanz. Dabei kann eine Flow-Instanz als konkreten Aufruf einer Funktion interpretiert werden. 
     Die Regel \textit{FlowInstance} legt dabei fest, dass eine Flow-Instanz aus mehreren Eingabe- und Ausgabeports sowie einer Menge von Funktionen höherer Ordnung besteht.
     Der Aufbau einer Funktion höherer Ordnung umfasst wiederum zusätzliche Eingabe- und Ausgabeports.
     Ein Port besteht aus einem Namen, gefolgt vom Datentyp des Ports und einem Wahrheitswert der Angibt ob an diesem Port Fehler erlaubt sind.
@@ -311,15 +313,16 @@
 
             <FlowOutputPort> ::= <string name> <Type> <bool producesError>
         \end{grammar}      
-        \caption{C\#-Code: DeviationChecker}
+        \caption{Flow-Instanz}
+        \label{gra:flow-instanz}
     \end{figure}
-
+    \noindent
     %Ein Flow-Template ($〈FlowTemplate〉$) kann als abstrakte Oberklasse angesehen werden und besteht dabei aus einer Funktion ($〈Flow〉$) gefolgt von keiner oder mehreren Template-Parametern ($〈TemplateParameter〉$), welche Port- und Lambda-Definitionen generien können.
     %Eine Funktion kann dabei eine vom System bereitgestellte ($〈LibraryFlow〉$) oder eine vom Benutzer selbst definierte ($〈FlowModel〉$) sein.\\
-    Ein Flow-Template wird durch die in Abbildung \ref{Flow-Template} spezifierten Regeln beschrieben.
-    Das Flow-Template wird dabei durch eine Funktion \textit{Flow} und eine Menge von TemplateParametern definiert. 
+    Ein Flow-Template wird durch die in Abbildung \ref{gra:flow-template} spezifierten Regeln beschrieben.
+    Das Flow-Template wird dabei durch eine Funktion (\textit{Flow}) und eine Menge von TemplateParametern definiert. 
     Bei den TemplateParameter wird zwischen einer Zeichenkette, Zahlen oder einem Wahrheitswert unterschieden. 
-    Diese Parameter beeinflussen die automatische Generierung der Port-Struktur sowie der internen Verarbeitungslogik eines Flows. \cite{99}
+    Diese Parameter beeinflussen die automatische Generierung der Port-Struktur sowie der internen Verarbeitungslogik eines Flows \cite{99}.
     Die Funktionen lassen sich in vordefinierte \textit{LibraryFlow} und eigene erstellten Funktionen \textit{FlowModel} unterteilen.
     \begin{figure}[H]
         \centering
@@ -333,10 +336,11 @@
             <TemplateParameter> ::= 'String' | 'Number' | 'Bool' | <TemplateParameterList>
             
             <TemplateParameterList> ::= <TemplateParameter>
-        \end{grammar}       
-        \caption{C\#-Code: DeviationChecker}
+        \end{grammar}
+        \caption{Flow-Template}    
+        \label{gra:flow-template}
     \end{figure}
-
+    \noindent
     %Die vom System bereitgestellte Funktionen lassen sich dabei in eine von sieben Kategorien unterteilen: Hauptuntersuchungs-Adapter-Antworten, Zeichenkettenverarbeitung, Datum, Vergleichoperatoren, Konverter, Operatoren und Listenverarbeitung.\\\\
     %Das Flow-Model ($〈FlowModel〉$) ist, wie bereits erwähnt, die vom Benutzer selbst definierten Funktionen und besteht aus einer Flow-Instanz, gefolgt von mehreren möglichen Funktionen ($〈FlowNode〉$) und Verbindungen ($〈FlowConnection〉$).
     %Flow-Instanz bestimmt die Ein- und Ausgaben des Flow-Models.
@@ -344,9 +348,9 @@
     %$〈FlowNodeInput〉$ besteht aus einem Verweis an einem Verweis an einer Portdefinition, gefolgt von $〈FlowPortValue〉$. Hingegen $〈FlowNodeOutput〉$ nur aus einer Portdefinition besteht.
     %Die $〈FlowConnection〉$ wird durch zwei Verweise definiert.
     %$〈FlowPortValue〉$ bietet dabei die Möglichekit konstante Werte an die Eingabeports anzulegen.
-    Die Regeln des Flow-Model sind in Abbildung \ref{Flow-Modell} formal dargestellt. Das FlowModel entspricht dabei der Datenverarbeitung. \cite{99}
+    Die Regeln des Flow-Model sind in Abbildung \cref{gra:flow-modell} formal dargestellt. Das FlowModel entspricht dabei der Datenverarbeitung. \cite{99}
     Durch die Regel \textit{FlowModel} wird bestimmt, dass ein FlowModel aus einer FlowInstance, einer Auflistung alle genutzen Flow-Node und definition der Verbindungen zwischen den Eingabe- und Ausgabeports.
-    Bei den Flow-Node wird zwischen Verweis auf Eingabeports, Verweis auf Lambda-Funktionen, Verweis auf Funktion mit Auflistung von Parametern oder verweis auf Ausgabeports unterschieden.
+    Bei den Flow-Node wird zwischen Verweis auf Eingabeports, Verweis auf Funktionen höherer Ordnung, Verweis auf Funktion mit Auflistung von Parametern oder verweis auf Ausgabeports unterschieden.
     Bis auf das letztere haben alle Flow-Node die Möglichkeit ihre Eingabeports durch konstante Werte zu spezifizieren.
     Flow-Nodes sind Funktionen die innerhalb eines Flow-Modells genutzt werden.
     \begin{figure}[H]
@@ -370,11 +374,12 @@
         
             <TemplateParameterValueList> ::= <TemplateParameterValue>*
         \end{grammar}
-        \caption{C\#-Code: DeviationChecker}
+        \caption{Flow-Modell}
+        \label{gra:flow-modell}
     \end{figure}
-
+    \noindent
     \subsection{Typsystem}
-    In Abbildung \ref{Typsystem} werden die Regeln des Typsystem dargestellt.
+    In Abbildung \cref{gra:typsystem} werden die Regeln des Typsystem dargestellt.
     Das Typsystem unterstützt Primitive- und Generische-Datentypen, welche an einen Optional-, Listen- oder Objekt-Typen gekapselt werden können.
     Als Primtiven-Datentypen stehen \textbf{String}, \textbf{Number}, \textbf{Bool}, \textbf{Data} und \textbf{PtiaResponse} zur Auswahl.
     Ersteres ist eine Datumsanagbe. Hingegen PtiaResponse die Antwort von einem Hauptunsersuchungs-Anfrage ist.
@@ -395,9 +400,10 @@
 
             <TypeReference> ::= ref(Type)
         \end{grammar}       
-        \caption{C\#-Code: DeviationChecker}
+        \caption{Typsystem}
+        \label{gra:typsystem}
     \end{figure}
-
+    \noindent
     \section{Ausführung}
     Im folgenden Unterkapitel wird gezeigt, wie die einzelnen Ebenen ausgeführt werden.
     Die folgende Zusammenfassung basiert auf der Arbeit von Westermann et al.\\
@@ -406,11 +412,12 @@
     \\
     Die Prüfungslogik stellt die oberste Ebene einer Prüfung dar und wird als Kontrollfluss modelliert.
     Als Startpunkt jeder Prüfung fungiert die Startaktivität, die pro Prüfung nur einmal vorkommen darf.
-    Die Reihenfolge der auszuführenden Aktivitäten wird durch die soeben ausgeführte Aktivitäte vorgegeben, da jede Aktivität das Label der zu folgende Kante als Rückgabewert zurückgibt.
+    Die Reihenfolge der auszuführenden Aktivitäten wird durch die aktuell ausgeführte Aktivitäte vorgegeben, da jede Aktivität das Label der zu folgende Kante als Rückgabewert zurückgibt.
     Eine Prüfung ist beendet, sobald die auszuführende Aktivität kein Label mehr zurückgibt.\\
     \\
     Ein wichtiger Bestandteil der Prüfungslogik ist der \textbf{Referenzstack}. Der Referenzstack dient als Speicher für die Ergebnisse der Aktivitäten.
     Alle Aktivitäten können auf den Referenzstack zugreifen und die gespeicherten Ergebnisse referenzieren, um diese als Parameter für ihre Funktionen zu verwenden.\\
+    \\
     %Ein wichtiger Bestandteil der Prüfungslogik ist der Referenzstack. Der Referenzstack beeinhaltet alle Erge.
     %Die Aktivitäten können auf den Referenzstack zugreifen und abgespeicherte Ergebnisse referenzieren und diese als Parameter für ihre Aktionen verwenden.
     %Der Startpunkt jeder Prüfung ist die Startaktivität. Die Startaktivität darf pro Prüfung nur einmal vorkommen und ist dafür zuständig, dass der Referenzstack leer ist.
@@ -424,25 +431,29 @@
     Für die vom System bereitgestellten Funktionen wird die Execute-Funktion direkt in den Code implentiert. 
     Die Implementierung nutzt dabei eine Hilfsklasse, die die Evaluate-Funktion bereitstellt und gleichzeitig die Werte der Ausgabeports speichert.
     Zudem muss die Implementierung sicherstellen, dass der Datenfluss zwischen Eingabe- und Ausgabeports korrekt hergestellt wird. 
-    Um dies zu gewährleisten, stellt die Klasse \textit{RuntimeContext} gewisse Hilfsmethoden zur Verfügung.
+    Um dies zu gewährleisten, stellt die Klasse \textit{RuntimeContext} gewisse Hilfsmethoden zur Verfügung.\\
+    \\
     Eine wichtige Komponente der Datenverarbeitung ist der \textbf{Ergebniscache}. 
     Im Ergebniscache werden die Werte der Ausgabeports gespeichert.
-    Wird ein Wert für einen Eingabeport benötigt, so wird zunächst nach dem zugehörigem Eingabeport sowie der entsprechenden eingehen Kante gesucht. 
-    Anschließend wird geprüft, ob für den Ausgabeport, der mit der Kante verbunden ist, ein Wert im Ergebniscache vorliegt.
+    %Wird ein Wert für einen Eingabeport benötigt, so wird zunächst nach dem zugehörigem Eingabeport sowie der entsprechenden eingehen Kante gesucht. 
+    Wird ein Wert für einen Eingabeport benötigt, so wird zunächst nach der entsprechenden eingehen Kante gesucht.
+    Anschließend wird geprüft, ob für den Ausgabeport, der mit der eingehenden Kante verbunden ist, ein Wert im Ergebniscache vorliegt.
     Ist dies nicht der Fall, wird die Funktion des Knotens ausgeführt und der Wert für den Ausgabeport im Ergebniscache gespeichert.\\
-    Nicht nur für die normalen Funktion spielt der Ergebniscache eine große Rolle, sondern auch für die Lambda-Funktionen.
-    Wenn ein Wert für einen Eingabeport einer Lambda-Funktion benötigt wird, wird zunächst der Wert des Ausgabeports, falls vorhanden, in dem Ergebniscache gespeichert.
-    Im Anschluss daran wird für alle Funktionen, die im Kind-verhältnis zur Lambda-Funktion stehen, das Ergebnis im Ergebniscache invalidiert, indem das Ergenis aus dem Ergebniscache gelöscht wird.
-    Anschließend wird der oben beschriebene Algortihmus verwendet, um die Werte für die Eingabeport der Lambda-Funktion zu berechnen.\\
+    \\
+    Nicht nur für die normalen Funktion spielt der Ergebniscache eine große Rolle, sondern auch für die Funktionen höherer Ordnung.
+    Wenn ein Wert für einen Eingabeport einer Funktion höherer Ordnung benötigt wird, wird zunächst der Wert des Ausgabeports, falls vorhanden, in dem Ergebniscache gespeichert.
+    Im Anschluss daran wird für alle Funktionen, die im Kind-Verhältnis zu der Funktion stehen, das Ergebnis im Ergebniscache invalidiert, indem das Ergenis aus dem Ergebniscache gelöscht wird.
+    Anschließend wird der oben beschriebene Algortihmus verwendet, um die Werte für die Eingabeport der Funktion höher Ordnung zu berechnen.\\
     \\
     \textbf{TypSystem}\\
     \\
-    Bevor die Typvalidierung bei Flow-Modells vorgenommen werden kann, muss bei dem Modell zunächst die Flow-Templates in die konkrete Flow-Instanz überführt werden. 
-    Anschließend werden die Verbindungen als Objektreferenzen geändert. 
+    Bevor die Typvalidierung bei Flow-Modells vorgenommen werden kann, müssen bei dem Modell zunächst die Flow-Templates in die konkrete Flow-Instanz überführt werden. 
+    Nach Abschluss der Überführung können dann die Verbindungen des Modells in Objektreferenzen geändert werden. 
     Das daraus entstandene Modell wird \textbf{Graph-Form} genannt und wird für die Analyse verwendet.
     Bei der Graph-Form werden zuerst die Referenztypen durch konrekte Typen ersetzt. 
     Nachdem die ersetzung Abgeschlossen ist, wird sich um die generischen Typen gekümmert. 
-    Dafür werden zunächst die Flow-Modelle topoloisch sortiert und pro Flow-Modelle über alle Verbindungen iteriert. 
+    Dafür werden zunächst die Flow-Modelle topoloisch sortiert und über alle Verbindungen iteriert.
+    Die Iteration wird dabei pro Flo-Modell stattfinden.
     Kommt bei einem Port ein generischer Typ vor wird die Typzuweisung gespeichert. 
     Es wird probiert über die anderen Typzuweisungen die generischen Typen aufzulösen. 
     Sobald dies erledigt ist, wird die Zuweisungskompatibilität der einzelnen Verbindungen überprüft. 
@@ -459,7 +470,6 @@
     Je nachdem welche Aktivität gerade ausgeführt wird, wird der Referenzstack bearbeitet.
     Bei einer Aktionsaktivität wird der Referenzstack durch einen Eintrag erweitert.
     Hingegen bei einer Entscheidungsaktivität Typen im Referenzstack bearbeitet werden können.
-
     %Um zu überprüfen ob das Aktivitätsmodell valide ist, wird ein Typen-Referenzstack verwendet.
     %Dabei wird das ganze Modell durchlaufen und für jede Aktivität der Stack berechnet.
     %Bei der Berechnung wird die Schnittmenge über den Referenzstack der direkten Vorgänger Aktivitäten gebildet.
@@ -468,13 +478,11 @@
     %Hingegen Entscheidungsaktivität Einträge bearbeiten oder präzisieren können. Beispielweise werden bei einer erfolgreichen Validierungsentscheidung die betroffenden Typen im Stack konkretisiert. Dadurch sollen die Optionalen-Typ entfernt werden.
     %Im Anschluss können dann die Nodes validiert werden. 
     %Bei der Validierung wird geprüft ob das Argument $〈bool acceptsError〉$ der $〈FlowNodeInput〉$ den gleichen Wert wie der Refenzierte $〈FlowInputPort〉$ hat. Ist das nicht der Fall wird eine Fehlermeldung für das Flow-Modell ausgegeben.
-    \section{Codeanalyse}
-    \label{Codeanalyse}
-        Die aktuelle Umsetzung des Codes ermöglicht es nicht das Schleifen im Graphen vorkommen und augseführt werden können. 
+    \section{Problemanalyse}
+    \label{Problemanalyse}
+        Die derzeitige Umsetzung des Codes ermöglicht es nicht das Schleifen im Graphen vorkommen und augseführt werden können. 
         Konkret lassen sich zwei Probleme aus der aktuellen Umsetzung ableiten:
         \begin{itemize}
-            %\item Beim Validieren des Graphens wird überprüft, ob Zyklen vorliegen. Sollten Zyklen vorliegen werden error erzeugt.
-            %\item Bei der umwandlung in einen ausführbaren Code werden alle Knoten des Graphens zu einer Funktion zusammengefasst. Bei Verzweigungen werden neue Funktionen erstellt. Bei einer Zusammenführung werden die einzelnen Funktionen gemergt.
             \item P1 Die Modellanalyse erlaubt keine Zyklen im Graphen
             \item P2 Jeder Knoten kann nur einmal ausgeführt werden
         \end{itemize}
