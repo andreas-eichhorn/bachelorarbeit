@@ -19,7 +19,7 @@
     In dieser Arbeit sollen mehrere Möglichkeiten konzepiert und implementiert werden, welche es ermöglichen sollen dynamsiche Daten innerhalb einer Prüfung zu verarbeiten.
     Bei dynmaischen Daten handelt es sich um Daten, die während der Prüfung ihren Wert ändern.
     Dafür muss im Vorfeld das zugrunde liegende System analysiert und bearbeitet werden, sodass Zyklen vom System verarbeitet werden können.
-    Die Implementierung wird in einer Evaluation auf Perfomance untersucht.
+    Die Implementierung wird in einer Evaluation auf ihre Perfomance untersucht.
     \section{Aufbau der Arbeit}
     Die vorliegenede Arbeit setzt sich aus TODO nachfolgenden Kapiteln zusammen. 
     Im zweiten Kapitel TODO
@@ -46,7 +46,7 @@
     Eine Schleife kann dabei in zeitabhängig oder horizontal unterteilt werden. Bei einer zeitabhängigen Schleife hängt das Ergebnis des aktuellen Schleifendurchlaufs vom Ergebnis des vorherigen Schleifendurchlaufs ab. Hingegen sind die Ergebnisse der Schleifendurchläufe bei der horizontalen Schleife unabhängig voneinander \cite{5}.
     \paragraph{Domain Specific Language}
     Bei einer \textbf{domänenspezifische Sprache (DSL)} handelt es sich um eine Programmiersprache, die mit dem Ziel entwickelt wurden ist, spezifische Aufgabenstellungen innerhalb eines begrenzten Anwendungskontexts (Domaine) besonders effektiv zu lösen \cite{18}.
-    DSLs bilden das Gegenstück zu \textbf{General-Purpose Languages (GPL)} wie Java, C++ oder Python \cite{14}.
+    DSLs bilden dabei das Gegenstück zu \textbf{General-Purpose Languages (GPL)} wie Java, C++ oder Python \cite{14}.
     Anders als bei GPLs verfügen DSLs oftmals über eine reduzierte Syntax, die ausschließlich für die jeweilige Domaine relevant ist. Teilweise wird DSLs durch GPL ergänzt \cite{18}.
     Bei DSLs wird zwischen \textbf{externen} und \textbf{internen} DSLs unterschieden. Externe DSLs haben ihre eigene Syntax. 
     Dadurch kann eine größere flexibilität geschaffen werden, aber zeitglich ist der Aufwand für den Entwickler sehr hoch, weil alle relevanten Tools selbst implementieren werden müssen. 
@@ -103,7 +103,6 @@
     Ersteres führt die Funktionen aus, sobald alle Operanden vorhanden sind und ein Signal vorliegt. 
     Hingegen bei der bedarfgetriebenen Ausführung die Funktion ausgeführt wird, sobald alle Operanden vorhanden sind \cite{2}.
     Aus dem Grund kann die datengesteuerte Ausführung als Spezialfall einer bedarfsgesteuerten Ausführung angesehen werden, bei der ein Bedarf an allen Ergebnissen von vorneherein besteht \cite{11}.
-    %TODO kurzer vergleich zu von neumann
     %BBS imperativen Programmierablauf, Datenfluss/Kontrollfluss
     %lazy evaluation im zusammenhang mit bedarfgesteuert erklären
     \paragraph{Wasserfallmodell}
@@ -121,7 +120,6 @@
     Sollte der Client mit dem Ergebnissen nicht zufrieden sein, so kann das Wasserfallmodell wieder von vorne beginnen \cite{24}. 
     In einer anderen Variante wird die Test-Phase komplett weggelassen, da das Testen während der gesamten Entwicklung stattfinden soll \cite{25}.
     \section{Domaine}
-    %TODO ggf manche blöcke erklären vorallem die später verwendet werden
     Bei dem Programm handelt es sich um einen graphischen Editor der Fahrzeugsystemdaten GmbH (FSD).
     Die FSD erstellt Prüfvorgaben für die Hauptuntersuchung.
     Der Benutzer hat die Möglichkeit per Drag-and-Drop seine Prüfung zusammen zu bauen.
@@ -129,7 +127,6 @@
     In Abbildung TODO ist ein Auszug der fertigen Software abgebildet.
     Zur besseren Verständlichkeit wurde die Abbildung in Teilbereiche unterteilt, welche im folgenden kurz erläutert werden.
     Bereich B umfasst das Canvas, das als interaktive Arbeitsfläche fungiert.
-    
     TODO
     \newpage
     \chapter{Systemanalyse}
@@ -149,7 +146,7 @@
     %\begin{grammar}
     %    <symbol> ::= _expression_
     %\end{grammar}
-    %\textbf{Grammatik TODO} Backus-Naur-Form\\\\\\
+    %\textbf{Grammatik} Backus-Naur-Form\\\\\\
     Grammatik definiert die Syntax einer Sprache und beschreibt dabei die hierariche Struktur.
     Die weitverbreiteste Form zum beschreiben der Syntax ist die Backus-Naur-Form (BNF), die auch in dieser Arbeit zum beschreiben verwendet wird.\\
     \\
@@ -168,7 +165,7 @@
     %Einmal als Aktivitätsdiagramm, in dem nur Startzustand, Endzustände, Aktions- und Entscheidungsblöcke dargestellt.
     %Die folgende Zusammenfassung basiert auf der unveröffentlichen Arbeit von Westermann et al.
     \subsection{Prüfungslogik}
-    \label{Prüfungslogik}
+    \label{sub:pruefungslogik}
     Die in Abbildung \cref{gra:aktivitaetsmodell} abgebildeten Regeln beschreiben das Aktivitätsmodell, die der Prüfungslogik entspricht \cite{99}.
     Zentral ist dabei die Regel \textit{ActivityModel}, welche festlegt, dass ein Aktivitätsmodell aus mehreren Aktivitäten und Verbindungen besteht.
     Die Verbindung referenziert dabei zwei Aktivitäten und hat auch eine Bezeichnung, die als Label bezeichnet wird.
@@ -293,11 +290,9 @@
     %Das Flow-Modell wird durch eine $<FlowInstance>$, Reihe von Funktionen und Verbidnugen definiert.
     %Die Funktion kann dabei eine Eingabe <$FlowNodeInput>$, eine Ausgabe $<FlowNodeOutput>$, einer Lambda Referenz $<FlowNodeLambda>$ oder eine Funtkions Referenz $FlowNodeFlowCall$
     %Konstante Werte $FlowPortValue$
-    %TODO erklären was ist lamba?
     %Die Flow-Instanz ($〈FlowInstance〉$) kann als Funktion interpretiert werden und bildet eine oder mehrere Eingaben ($〈FlowOutputPort lambdaArguments〉$) auf eine oder mehrere Ausgaben ($〈FlowOutputPort  lambdaArguments〉$) ab.
     %Zusätzlich kann die Flow-Instanz aus einer oder mehreren Lamda-Definitionen ($〈FlowLamda〉$) beinhalten. Eine Lamda-Definition hat zusätzliche Eingaben und Ausgaben.
     %Die Ein- und Ausgaben bestehen dabei einem Namen  ($〈string name〉$) , gefolgt vom Typ  ($〈Typ〉$)  und einem boolean  ($〈bool acceptsError〉$) , welcher angibt ob Fehler akzeptiert werden oder nicht.\\
-    %TODO erklären was funktion höher ordnung sind
     Die in Abbildung \cref{gra:flow-instanz} dargestellten Regeln definieren die Struktur einer Flow-Instanz. Dabei kann eine Flow-Instanz als konkreten Aufruf einer Funktion interpretiert werden. 
     Die Regel \textit{FlowInstance} legt dabei fest, dass eine Flow-Instanz aus mehreren Eingabe- und Ausgabeports sowie einer Menge von Funktionen höherer Ordnung besteht.
     Der Aufbau einer Funktion höherer Ordnung umfasst wiederum zusätzliche Eingabe- und Ausgabeports.
@@ -479,26 +474,29 @@
     %Im Anschluss können dann die Nodes validiert werden. 
     %Bei der Validierung wird geprüft ob das Argument $〈bool acceptsError〉$ der $〈FlowNodeInput〉$ den gleichen Wert wie der Refenzierte $〈FlowInputPort〉$ hat. Ist das nicht der Fall wird eine Fehlermeldung für das Flow-Modell ausgegeben.
     \section{Problemanalyse}
-    \label{Problemanalyse}
-        Die derzeitige Umsetzung des Codes ermöglicht es nicht das Schleifen im Graphen vorkommen und augseführt werden können. 
+    \label{sec:problemanalyse}
+        Die derzeitige Implementierung
+        Diese Einschränkungen lässt sich auf zwei zentrale Problembereiche zurückführen:
+        
+        Umsetzung des Codes ermöglicht es nicht das Schleifen im Graphen vorkommen und augseführt werden können. 
         Konkret lassen sich zwei Probleme aus der aktuellen Umsetzung ableiten:
         \begin{itemize}
-            \item P1 Die Modellanalyse erlaubt keine Zyklen im Graphen
-            \item P2 Jeder Knoten kann nur einmal ausgeführt werden
+            \item P1: Die Modellanalyse erzwingt einen strikt azyklischen Aufbau des Graphens. Erstellt der Benutzer eine Verbindung die zu einem zyklischen Graphen führen wird, erhält der Benutzer einen Fehler und der Graph lässt sich nicht ausführen. 
+            \item P2: Jeder Knoten kann nur einmal ausgeführt werden
         \end{itemize}
         \textbf{P1 - Die Modellanalyse erlaubt keine Zylken}\\
         \\
         Aktuell wird in der Klasse \textit{ActivityCycleCheckResolver} überprüft, ob im Graphen Zyklen vorhanden sind. 
-        Die Überprüfung erfolgt dabei mithilfe des TODO Algorithmus.
+        Die Überprüfung erfolgt dabei mithilfe des Kosaraju-Sharir's Algorithmus.
         Der Algorithmus markiert zueerst in einem Dictonairy alle Knoten des Graphen als nicht besucht. 
         Anschließend wird eine Tiefensuche über alle Knoten gemacht und jeder Knoten wird in eine Liste hinzugefügt. 
         Dabei werden die nachfolgenden Knoten zunächst der Liste hinzugefügt. 
         Dadurch erfolgt ein topologisches Sortieren der einzelnen Knoten.
         Auf der topolischen sortierten Liste wird dann eine erneute Tiefensuche durchgeführt, die für jeden erreichbaren Knoten einen Eintrag mit der gemeinsamen Wurzel (root) erstellt. 
         Dabei werden die Einträge als erstes für alle Vorgänger Knoten erstellt.
-        Nun wurden alle zusammenhängende Elemente des Graphens gefunden und die zusammenhängende Elemente können in einem Dictonairy übertragen werden. 
-        Dabei wird der root der Schlüssel des Dictonairy Elements sein und der Value der Knoten. %TODO
-        Hat ein Dictonairy Element mehr als ein Element im Value ist ein Zyklus vorhanden und dieses Element wird dann in einem anderen Dictonairy gespeichert, welches zum erstellen von Fehlermeldungen verwendet wird.
+        Nun wurden alle zusammenhängende Elemente des Graphens gefunden und die zusammenhängende Elemente können in einem Dictionary übertragen werden. 
+        Im neuen Dictionary wird der root dann der Key sein und der Knoten der Value.
+        Hat ein Dictonairy Element mehr als ein Element im Value ist ein Zyklus vorhanden und dieses Element wird dann in einem anderen Dictonairy für die Fehlermeldung gespeichert, welches zum erstellen von Fehlermeldungen verwendet wird.
         Aber dies ist auch das Problem. 
         Es zeigt, wenn ein Zyklus erlaubt ist, darf das zugehörige Key-Value-Paar nicht im das Dictonairy für die Fehlermeldung gespeichert werden, sondern dieser Schritt muss übersprunen werden.\\
         \\
@@ -514,7 +512,7 @@
         Hingegen beim Wert false die Funktion der Klasse VirtualMachineCounter hinzugefügt wird.
         Dort liegt auch das Problem.
         TODO
-        %TODO: Beim betrachen der Klasse VirtualMachineCompilerActivity, die für das kompilieren der Aktivitäten zuständig ist, ist aufgefallen, dass dort ein Fehler vorliegt.
+        %: Beim betrachen der Klasse VirtualMachineCompilerActivity, die für das kompilieren der Aktivitäten zuständig ist, ist aufgefallen, dass dort ein Fehler vorliegt.
     \newpage
     \chapter{Planung}
     In dem Kapitel wird das Design der geplanten Erweiterung beschrieben. 
@@ -542,6 +540,7 @@
     %Ingesammt stehen dem Schleifenblock vier Interaktionspunkte zur Verfügung.
     %Welcher Pfad genommen wird, wird durch den Wahrheitswert der Abbruchbedingung bestimmt.
     \section{Entwurf}
+    \label{sec:entwurf}
     Im folgenden Unterkapitel wird der Entwurf beschrieben.
     Dabei werden auf die Punkte aus dem Kapitel \ref{Anforderungen} eingegangen und im Anschluss die Algorithmen entworfen.\\
     \\
@@ -553,8 +552,9 @@
     \textit{ActivityLoop} kann dabei \textbf{SchleifeA} oder \textbf{SchleifeB} sein.
     Beide Varianten setzen sich dabei aus einem ganzzahligen Wert für die Anzahl der Iterationen und einer Abbruchbedingung zusammen.
     Die Abbruchbedingung wird durch das Nichtterminalsymbol \textit{ActivityBinaryCondition} abgebildet.
-    Die entsprechende Regel für das Nichterminal wurde bereits in Kapitel \ref{Prüfungslogik} definiert.
-    Dargestellt wird die Erweiterung in Abbildung \ref{Erweiterung Prüfungslogik}.
+    Die entsprechende Regel für das Nichterminal wurde bereits in Kapitel \cref{sub:pruefungslogik} definiert.
+    Formal dargestellt wird die Erweiterung in Abbildung \cref{gra:erweiterung-pruefungslogik}.
+    Auch in diesem Fall beinhaltet die Erweiterung nur die für die Ausführungssemantik benötigten Elemente.
     \begin{figure}[H]
         \centering
         \begin{grammar}
@@ -575,13 +575,15 @@
             | '\textgreater' 
             | '$\geq$'
         \end{grammar}        
-        \caption{C\#-Code: DeviationChecker}
+        \caption{Erweiterung Prüfungslogik}
+        \label{gra:erweiterung-pruefungslogik}
     \end{figure}
-    Auch in diesem Fall beinhaltet die Erweiterung nur die für die Ausführungssemantik benötigten Elemente.\\
+    \noindent
     Der Schleifenblock soll dabei als Oval im Canvas dargestellt werden.
-    Beim Klicken auf den Schleifenblock soll der Benutzer die Möglichkeit haben die Anazahl der Iterationen und die Abbruchbedingung für die Schleife festzulegen.
-    Zusätzlich TODO.
-    Die Abbruchbedingung setzt sich dabei aus zwei Feldern für die Argumente und einer Auswahlsliste für den Operator zusammen.
+    Beim Klicken auf den Schleifenblock soll der Benutzer die Möglichkeit haben die Eigenschaft des Blocks anzupassen.
+    Unteranderem kann der Benutzer dann die Anazahl der Iterationen, die Abbruchbedingung für die Schleife und die Größe des Blocks festzulegen.\\
+    \\
+    Die Abbruchbedingung setzt sich dabei aus zwei Feldern für die Argumente und einer Auswahlsliste für den Operator zusammen.\\
     Am Block selbst kann der Benutzer die Verbindungen erstellen, indem er per Drag-and-Drop die einzelnen Interaktionspunkte verschiedener Aktvitäten verbindet.
     Rückverbindungen über den Schleifenblock sollen dabei erlaubt sein.
     Ingesammt stehen dem Schleifenblock vier Interaktionspunkte zur Verfügung.
@@ -591,7 +593,6 @@
     \\
     \textbf{Block A}\\
     \\
-    %TODO funktionsweise des schleifenblocks allgemein erklären
     Block A soll die Wiederholung von Aktivitäten durch explizite Ausführung ermöglichen und wird durch SchleifeB abgebildet.
     Das soll geschehen indem die Schleife durch eine verschachtelte if-Anweisung ersetzt wird.
     Zur Umsetzung dieses Ziels wird die \textbf{Schleifenentfaltung} als Grundlage verwendet.\\
@@ -599,30 +600,33 @@
     \begin{figure}[H]
         \centering
         \includegraphics[width=\textwidth]{./images/loop-unrolling.pdf}       
-        \caption{C\#-Code: DeviationChecker}
+        \caption{Schleifenentfaltung}
+        \label{fig:schleifenentfaltung}
     \end{figure}
+    \noindent
     Unter Schleifenentfaltung versteht man, dass die Instruktione in der Schleife mehrmals pro Iteration auszuausgeführt werden, um dadurch die Häufigkeit der Iterationen zu verringern \cite{9}.
     Um das Ziel zu erreichen, muss die Schleifenentfaltung abgeändert werden.
     Die Schleifenentfaltung soll nicht nur die Häufigkeit der Iterationen reduzieren, sondern diese vollständig eliminieren.
     Da die maximale Anzahl an Iterationen von vorneherein bekannt ist, kann für jede potenzielle Iteration eine Kopie des Schleifenkörper erstellt werden. 
-    Am Ende jeder Kopie muss dann noch die Abbruchbedingung drangehangen werden, da diese TODO.
     Als nächstes müssen die einzelnen Kopien miteinander verbunden werden.
     Dies wird erreicht indem von der ersten Aktvität einer Kopie eine Verbindung zur vorangegangenen Schleifenblock hergestellt wird.
-    Graphisch wird dieser Ansatz in Abbildung \ref{Schleifenentfaltung} dargestellt.\\
+    Die Verbindung entsteht dabei an OnFalse und die ursprüngliche Rückverbindung wird dadurch ersetzt.
+    Graphisch wird dieser Ansatz in Abbildung \cref{fig:schleifenentfaltung} dargestellt.
+    Ein Klassendiagramm für den beschriebenen Ansatz ist in Abbildung \cref{fig:klassendiagramm-blocka}\\
     \\
     \begin{figure}[H]
         \centering    
         \includegraphics[width=\textwidth]{./images/UnbenanntesDiagramm.pdf}
-        \caption{C\#-Code: DeviationChecker}
+        \caption{Klassendiagramm für Algorithm Block A}
+        \label{fig:klassendiagramm-blocka}
     \end{figure}
+    \noindent
     %Anstatt rekursive oder iterative Wiederholungen zu verwenden, wird jede potenzielle Iteration als eigenständiger und bedingter Codeblock realisiert.
     %Dazu muss eine Anpassung an der klasisschen Schleifenentfaltungsverfahren vorgenommen werden. 
     %Das Ziel der modifizierung ist es, die Schleifen solange zusammenzufassen bis kein erneuter Schleifendurchlauf notwendig ist und dadurch den Kontrollfluss durch Verzweigungen und verschtelungen ohne Iterationen abzubilden.
     %Da die maximale Anzahl an Schleifendurchläufen von vorneherein bekannt ist, kann für jede potenzielle Ausführen des Schleifenkörpers eine Kopie erstellt werden. 
     %In jeder Kopie wird der Schleifenkörper ausgeführt und anschließend um die Abbruchbedingung der Schleife ergänzt. Im Falle einer erfüllten Abbruchbedingung wird hingegen keine weitere Kopie ausgeführt. 
     %Stattdessen wird die Ausführung gemäß dem vorgesehenen Kontrollfluss fortgesetzt.
-    %Auf Abbildung TODO wurde der Ansatz Graphisch dargestellt.
-    %In Abbildung TODO wird dieser Ansatz an einem konkreten Beispiel veranschaulicht.
     %Im Beispiel soll "foo" drei mal einzeln auf der Console ausgegeben werden. 
     %In der oberen Schleife
     %Hingegen in der unteren Schleife der modifizierte Ansatz verwendet wurden ist. Da die untere Schleife nur noch genau einmal ausgefürt wird, kann diese einfach weggelassen werden.\\
@@ -631,27 +635,33 @@
     Zur umsetzung dieses Ziels wird ein Mittelwertansatz als Grundlage verwendet.
     Wird die OnFalse Verbindung des Schleifenblocks ausgewählt wird als erstes überprüft, ob eine Wiederholung stattfinden darf oder nicht.
     Dafür wird geschaut, ob die Anzahl an Interationen bereits das maximum erreicht haben oder der Chancen-Zähler den Wert 0 erreicht hat.
-    Sind beide Bedingungen nicht erfüllt, ist eine Wiederholung erlaubt wird TODO.
-    Dabei wird das erste Argument aus der Abbruchbedingung genommen und versucht in einen Gleitkommawert umgewandelt. %TODO
+    Sind beide Bedingungen nicht erfüllt, ist eine Wiederholung zugelassen.
+    Bevor die Wiederholung eingeleitet wird, wird das erste Argument der Abbruchbedingung (Argument1), sofern frühere Werte vorhanden sind, mit diesen verglichen und der Chancen-Zähler dementsprechend angepasst.
+    Zunächst wird dafür Argument1 genommen und der Versuch unternommen diesen in einen Gleitkommawert umzuwandeln. 
     Dafür wird das Argument als erstes in eine Zeichenkette umgewandelt und anschließend versucht als Gleitkommazahl zu interpretieren.
     Ist dies Möglich, wird die die Gleitkommazahl in eine Liste mit allen bisherigen umgewandelten Argumenten gespeichert.
     Schlägt die Interpretation fehl, ist das Argument keine Zahl gewesen und die Zeichenkette muss mithilfe von UTF-8 in eine Dezimalzahl umgewandelt werden.
     Bei der Umwandlung wird die Zeichenkette zeichenweise in die entsprechende Dezimalzahl umgewandelt und anschließend mit ihren Index multipliziert.
     Im Anschluss werden die einzelnen Zahlen addiert, sodass am Ende nur noch eine Summe übrig bleibt.
     Die Summe wird anschließend in eine Gleitkommazahl umgewandelt und der Liste hinzugefügt.
-    In Abbildung TODO wird die Rechnung für ein Beispiel durchgegangen.
+    In Abbildung TODO wird die Rechnung für ein Beispiel durchgegangen.\\
+    \\
     Basierend auf der Liste mit allen bisherigen umgewandelten Argumenten wird dann ein Mittelwert über alle Werte gebildet und ein gleitender Mittelwert über die letzen 3 Werte.
     Anschließend wird die Differenz zwischen dem aktuellsten Wert und den Mittelwerten berechnet. 
     Ist die Differenz kleiner als ein Threshold wird der Chancen-Zähler dekremntiert. 
     Anderfalls wird der Chancen-Zähler zurückgesetzt.
     Der Chancen-Zähler ist erforderlich, weil dieser als Steuermechanismus für die Wiederholungslogik dient und eine Begrenzung der Iterationen bei ausbleibender signifikanter Veränderung sicherstellt.
     Sollten weniger als 3 Werte in der Liste enthalten sein, wird die Berechnung der Differenz übersprungen und direkt mit der Wiederholung der Aktivitäten begonnen.
-    Dadurch kann gewährleistret werden, dass das System einlaufen kann und die Mittelwerte erst gebildet werden, wenn eine aussagekräftige Datenbasis vorhanden ist.\\
+    Dadurch kann gewährleistret werden, dass das System einlaufen kann und die Mittelwerte erst gebildet werden, wenn eine aussagekräftige Datenbasis vorhanden ist.
+    Ein Klassendiagramm für den beschriebenen Ansatz ist in Abbildung \cref{fig:klassendiagramm-blockb}\\
+    \\
+    Auf die Vor- und Nachteile der einzelnen Blöcke wird im Kapitel \cref{cha:evaluation} eingegangen.\\
     \\
     \begin{figure}[H]
         \centering
         \includegraphics[width=\textwidth]{./images/klassendiagramm-blockb.pdf}        
-        \caption{C\#-Code: DeviationChecker}
+        \caption{Klassendiagramm für Algorithmus Block B}
+        \label{fig:klassendiagramm-blockb}
     \end{figure}
     %Erreicht der Chancen-Zähler 0 werden keine weiteren Wiederholungen ausgeführt, da der wert sehr wahrscheinlich stagniert.
     %Dadurch soll verhindert werden, dass eine ineffiziente Fortsetzung der Schleife stattfindet.
@@ -670,95 +680,68 @@
     %Der Chancen-Zähler erweist sich als erforderlich, da dieser als Steuermechanismus für die Wiederholungslogik dient und eine Begrenzung der Iterationen bei ausbleibender signifikanter Veränderung sicherstellt.
     %Dadurch soll verhindert werden, dass eine ineffiziente Fortsetzung der Schleife stattfindet.
     %Sollten weniger als 3 Werte in der Ergbenissliste drin sein, wird die Berechnung übersprungen. Dadurch kann gewährleistret werden, dass das System einlaufen kann und die Mittelwerte erst gebildet werden, wenn eine aussagekräftige Datenbasis vorhanden ist.\\
-    Auf die Vor- und Nachteile der einzelnen Blöcke wird im Kapitel \ref{Evaluation} eingegangen.
     \newpage
     \chapter{Implementierungsphase}
     In diesem Kapitel wird die Implementierungsphase beschrieben. 
     Dabei werden die in der Entwurfsphase erarbeiteten Konzepte in das System implementiert. \cite{24}
-    Im Folgenden werden die vorgenommenen Änderungen am Quellcode beschrieben und erläutert.\\
+    Im Folgenden werden die vorgenommenen Änderungen am Quellcode beschrieben und erläutert, damit die Implementierung die beiden Schleifen unterstützt.\\
     \\
     %TODO eigenschaft durch attribute ersetzen
-    Zunächst wurde Klasse DataModelActivityElement um das Attribute \textit{CanCreateLoop} vom Datentyp bool erweitert. 
+    Zunächst wurde dafür Klasse \textit{DataModelActivityElement} um das Attribute \textit{CanCreateLoop} vom Datentyp bool erweitert. 
     Bei dieser Klasse handelt es sich um die Basisklasse aller Aktivitäten.
     Das Attribut soll als Kennzeichnung dienen, um anzuzeigen ob der Benutzer die Möglichkeit hat von dem Block ausgehend eine Rückverbindung einzuzeichnen. 
-    Aus dem Grund ist das Attribut für alle Aktivitäten bis auf die SchleifeA und SchleifeB false. \par
-    Da das System keine Schleifen am Anfang unterstützt hat, musste für die Schleife eine Klasse erstellt werden.
-    Bei der Klasse handelt es sich um \textit{DataModelActivityElementLoop}, die als Grundlage für die Datenspeicherung und für die Ausführung genutzt wird.
-    %TODO klasse nochmals anschauen; änderungen sind geplant
+    Aus dem Grund ist das Attribut für alle Aktivitäten bis auf die SchleifeA und SchleifeB false.\\
+    \\
+    Da die Implementierung am Anfang keine Schleifen unterstützt hat, mussten für die beiden Schleifen jeweils eine Klasse erstellt werden.
+    Bei den Klassen handelt es sich um \textit{DataModelActivityElementLoopA} und \textit{DataModelActivityElementLoopB}, die als Grundlage für die Datenspeicherung und für die Ausführung genutzt werden.
+    Der Quellcode für \textit{DataModelActivityElementLoopA} befindet sich in Abbildung \cref{cod:datamodelactivityelementloopa}.
     Der Klasse stehen zwei Variablen für die Ausgänge und eine Variable für die Anzahl der Iterationen. 
     Für die Variablen stehen jeweils noch getter und setter als Methoden zur verfügung, damit die Werte gesetzt und ausgelesen werden können.
     Zusätzlich stehen der Klasse durch die Vererbung die Methoden und Variablen der Basisklasse DataModelActivityElement zur verfgügung.
-    Die Klasse ActivityPortLabels, die die Label für die Ports beinhaltet, wurden durch die strings \textbf{OnLoop} und \textbf{OnFinish} erweitert.
-    OnLoop ist dabei der OnFalse Interaktionspunkt und Onfinish der OnTrue Interaktionspunkt. \par
-    Eine weitere Änderung wurde an der Klasse \textit{VirtualMachineCompilerActivity} vorgenommen.
-    %TODO ab hier
+    \begin{figure}[H]
+        \centering
+        \lstinputlisting{./code/DataModelActivityElementLoopA.cs}        
+        \caption{Quellcode der Klasse DataModelActivityElementLoopA}
+        \label{cod:datamodelactivityelementloopa}
+    \end{figure} 
+    Eine weitere Änderung wurde an der Klasse \textit{ActivityPortLabels}, die die Label für die Eingabe- und Ausgabeports beinhaltet, vorgenommen. 
+    \textit{ActivityPortLabels} wurde bei der Änderung um die zwei strings \textbf{OnLoop} und \textbf{OnFinish} erweitert.
+    OnLoop ist dabei der OnFalse Interaktionspunkt und Onfinish der OnTrue Interaktionspunkt.\\
+    \\
+    Eine andere Modifikation wurde an der Klasse \textit{VirtualMachineCompilerActivity} vorgenommen.
     \textit{VirtualMachineCompilerActivity} ist zuständig für die Kompilierung der Aktivitäten. 
-    Dafür wird von jeder Aktivität ein Objekt mit allen benötigten Informationen zur Ausführung (Statement) erstellt.
-    Da für SchleifeA und SchleifeB noch keine Möglichkeit besteht Statements zu erstellen, müssen Änderungen an den bestehende Methoden vorgenommen werden.
+    Dafür wird von jeder Aktivität ein Objekt (Statement) mit allen benötigten Informationen zur Ausführung erstellt.
+    Da für die beiden Schleifen noch keine Möglichkeit besteht Statements zu erstellen, muss eine Änderungen an den bestehende Methoden \textit{CreateActivityFunctions()} vorgenommen werden.
     Bei der Methode \textit{CreateActivityFunctions()} muss die Switch-Anweisung um zwei weitere Fälle erweitert werden.
     Da SchleifeA und SchleifeB Verzweigungsblöcke sind, muss der dritte Paramter der Methode auf true gesetzt werden, damit für beiden Schleifen ein eigener Funktionsblock erstellt wird.
+    Zusätzlich musste \textit{VirtualMachineCompilerActivity} um zwei Methoden zum erstellen der Statements erweitert werden.
+    Bei den zwei Methoden handelt es sich um \textit{CompileActivityElementLoopA()} und \textit{CompileActivityElementLoopB()}.
     Dieses Statements werden dann in der Klasse \textit{VirtualMachineActivity} ausgeführt.
-    Die in diesem Absatz beschriebenen Änderungen wurden durch Westermann implementiert.\\
+
+    Die Änderungen an den Klassen \textit{VirtualMachineCompilerActivity}, \textit{ActivityPortLabels}, \textit{DataModelActivityElement} und das erstellen der Klassen \textit{DataModelActivityElementLoopA} und \textit{DataModelActivityElementLoopB} wurden durch Westermann implementiert.
+    Zusätzlich hat Westermann einige kleinere Änderungen implementiert, die dafür zuständig sind, dass die beiden Schleifen Ordnungsgemäß \\ %TODO
+    \\
+    Eine andere Änderung die in der aktuellen Implementierung vorgenommen werden muss, wurde bereits als Problem im Unterkapitel \cref{sec:problemanalyse} beschrieben.
+    In der Klasse \textit{VirtualMachine} müssen die Attribute \textit{_functionsExecuted} und \textit{_executedElements} entfernt werden.
+    Die beiden Attribute sind in der aktuellen Implementierung dafür zuständig, dass keine Blöcke doppelt ausgeführt werden. 
+    Da SchleifeB aber die mehrmalige Ausführung von Blöcken ermöglichen will, musste \textit{_functionsExecuted} und \textit{_executedElements} ausgebaut werden.\\
     \\
     %Block A
     Zur umsetzung der Wiederholungslogik im Block A wurde eine Klasse definiert.
-    Dabei handelt es sich um die Klasse ActivityLoopUnrollingResolver.
-    Ziel der Klasse ist es Schleifen zu identifizieren und diese durch den in Kapitel TODO beschriebenen Algorithmus aufzulösen.
-    Zur Umsetzung dieser Funktionalität hat die Klasse sieben Methoden UnrollLoop, getLoopActivities, visited, getLoopElements, cloneAndModify, DeepClone und clone.\\
-    \\
-    Der Startpunkt für den Algorithmus ist die Methode \textit{UnrollLoop()}.
-    Diese Methode hat das Ziel, den Schleifenanfang und das Schleifenende zu bestimmen. 
-    Außerdem leitet \textit{UnrollLoop()} die Schleifenentfaltung ein.
-    Dafür stehen der Methode die Liste aller Elemente und zwei Variablen für den Schleifenanfang und das Schleifenende, die jeweils das konkrete Element speichern, zur verfügung.
-    Um die beiden Variablen zu konkretisieren, wird zuerst über die Liste iteratiert und nachdem Element gesucht mit dem Attribute classType = "LoopB".  %Ist das der Fall, ist dieses Element das Schleifenende und wir in die zugehörige Variable gespeichert.
-    Wurde ein Element gefunden, wird dieses in die Variable für das Schleifenende gespeichert.
-    Um den Schleifenanfang zu finden, kann das Schleifenende verwendet werden.
-    Mithilfe des Attributes OnFinishedSuccessor kann die Id des Schleifenanfangs herausgefunden werden und genutzt werden um das kronkete Element zu bekommen.
-    Dafür wird erneut über die Liste der Elemente iterariert und jede Id mit der Id des Schleifenanfang verglichen.
-    Sobald eine eine übereinstimmung gefunden wurden ist, wird dieses Element abgespeichert. 
-    Wenn die beiden Variablen bestimmt und nicht Null sind, kann die Methode \textit{getLoopElements()} aufgerufen werden.\\
-    \\
-    \textit{getLoopElements()} 
-    %Das Ziel der Methode getLoopActivities ist es die Rahmenbedingung für die Tiefensuche zu schaffen.
-    %Die Methode stellt dafür ein Set für die gefunden Verbindungen, einem Tupel, welches die Rückverbindung darstellt und einer Variable, die die Id des Schleifenanfangs beinhaltet bereit.
+    Dabei handelt es sich um die Klasse \textit{ActivityLoopUnrollingResolver}.
+    Ziel der Klasse ist es Schleifen zu identifizieren und diese durch den in Kapitel \cref{sec:entwurf} beschriebenen Algorithmus aufzulösen.
+    Zur Umsetzung dieser Funktionalität stehen der Klasse die sieben Methoden \textit{UnrollLoop()}, \textit{getLoopActivities()}, \textit{visited()}, \textit{getLoopElements()}, \textit{cloneAndModify()}, \textit{DeepClone()} und \textit{clone()} zur verfügung.\\
+    Zusätzlich hat \textit{ActivityLoopUnrollingResolver} Variablen für das 
     \\
     \\
-    TODO
-    Die Methode \textit{visit()} führt eine rekursive Tiefensuche ab dem Schleifenanfang im Graphen durch.
-    Dabei wird jeder Knoten aus einem HashSet hinzugefügt und für jeden nachfolgenden Knoten \textit{visit()} erneut aufgerufen.
-    Die Ausnahme dabei ist dabei das Schleifenende.
-    Handelt es sich bei dem nachfolgenden Knoten um das Schleifenende, wird das Schleifenende dem HashSet hinzugefügt, aber \textit{visit()} wird nicht für dieses Element aufgerufen.
-    Das hat dem Grund, da die nachfolgenden Knoten ab dem Schleifenende irrelevant für den Algorithmus sind.\\
+    Der Startpunkt für den Algorithmus die die Methode \textit{UnrollLoop()}.
+    Die Methode hat das Ziel TODO.
+    Dafür wird am Anfang der Methode eine Kopie des übergebenen Modells erstellt und einen Graphen erstellt.
+    Als nächstes wird dann über alle Elemente des Modells iterariert und nachdem SchleifeB Element gesucht.
+    Das gefundene Element wird dann in die Variable für das Schleifenende abgespeichert.
+    Mithilfe des Schleifenende kann dann der Schleifenanfang gefunden werden, indem mithilfe des Attributes 
     \\
-    Die Hilfemethode clone TODO ist für das Klonen der Elemente zustädnig. Dazu wird das übermittelte TODO in serialisiert und anschließend deserialisiert.
-    Die beiden Methoden werden von der Klasse JsonSerializer bereitgestellt
-    Durch die Deserialiserung entsteht eine exakte Kopie vom übermittelten TODO.
-    Als Rückgabewert der Hilfsmethode wird das kopierte Objekt zurückgegeben.\\
     \\
-    Die Methode \textit{cloneAndModify()} ist für die organsierung des Klonvorgangs zuständig.
-    Um dies zu realisieren steht der Methode ein HashSet für die geklonten Elemente zur verfügung.
-    Zunächst wird über das HashSet mit allen Elementen aus der Schleife iteratiert.
-    Für jedes Element wird mithilfe von \textit{clone()} eine exakte Kopie erstellt.
-    Die Kopie wird anschließend der Kopie des Datamodells angehangen und daraufhin einer neuem HashSet hinzugefügt.
-    Das neu erstellte HashSet dient als Parameter für den rekursiven Aufruf und beeinhaltet nur die Kopien.
-    Sobald die Iteration abgeschlossen ist, wird überprüft ob die Anzahl der Iteration bereits kleiner ist als zwei.
-    Ist das der Fall wird Zähler für die Anzahl der Iterationen um eins verringert und \textit{cloneAndModify()} erneut aufgerufen.\\
-    \\
-    Die letzte Methode ist clone.
-    Das Ziel dieser Methode ist die Erstellung der Kopie und änderungen an dieser vorzunehmen.
-    Dafür wird als erstes überprüft, um welche Aktivität es sich bei dem übergebenen Element genau handelt.
-    Sobald dies feststeht, wird eine Kopie mithilfe der Methode DeepClone erstellt.
-    Anschließend wird die Id des kopierten Objekts um einen Suffix erweitert.
-    Als nächstes werden die Verbindungen überprüft. 
-    Existiert eine Verbindung wird diese auch um den gleichen Suffix erweitert.
-    Die Ausnahme dafür bilden die Verbindungen des Schleifenblocks.
-    Hier wird an der Verbindung, die aus der Schleife führt, keine Änderung vorgenommen, weil an den Verbindungen nachdem Schleifenrumpf keine Veränderungen vorgenommen werden.
-    Und die eigentliche Rückverbindung muss auf das erste Elemente der Kopie verweisen. 
-    Dafür muss die Verbindung des Urbilds geändert werden.
-    Anders gesagt, das Suffix muss an die Verbindung des Urbilds drangehangen werden statt an der Kopie.
-    Durch das anhängen des Suffix wird eine eindeutige TODO geschaffen, außerdem bleibt die ursprüngliche Struktur des Schleifenrumpf erhalten.\\
-    \\ 
-    %TODO parameter erwähnen ja oder oder nein?
     %Die Funktionalität der Klasse wird durch die drei Methoden calcute, calculateMean und isDeviationWithinThreshold realisiert.
     %Block B
     Zur umsetzung der Wiederholungslogik im Block B wurden vier Klassen \textit{DeviationChecker}, \textit{Counter}, \textit{StringToDoubleConverter} und \textit{InputProcessor} definiert.
@@ -805,7 +788,8 @@
         \centering
         \lstinputlisting{./code/InputProcessor.cs}        
         \caption{C\#-Code: DeviationChecker}
-    \end{figure}  
+    \end{figure}
+    \noindent
     Die Methode convertInputToDouble TODO. Ist dies nicht möglich, wird der Eingabewert mit der Methode StringToDouble aus der Klasse StringToDoubleConverter in einen Double-Wert konviert.
     Als Rückgabewert wird der Double zurückgeben.\\
     \\
@@ -813,13 +797,14 @@
     Dafür wird zunächst der Index des letzten Elements aus der Liste bestimmt und anschließend die Abweichungsberechnung über die Methode calcute der Klasse DeviationChecker durchgeführt.
     Liegt eine signifikante Abweichung vor wird der Zähler resetet. Ist hingegen keine Abweichung vorhanden wird der Zähler dekremntiert.\\
     \\
-    Um Zyklen in der Prüfung zu erlauben, ist eine Anpassung der Zyklenprüfung erforderlich.
-    Die Funktionsweise der Zyklenprüfung wurde bereits im Unterkapitel \ref{Codeanalyse} beschrieben.
-    Eine Änderung muss am Anfang der Methode \textit{ComponentAnalysis()} vorgenommen werden.
-    Hier muss bei der Iteration über alle Elemente jede Id in ein Set gespeichert werden, das ein Schleifenblock ist.
+    Eine andere wichtige Änderung muss an der Klasse \textit{ActivityCycleCheckResolver} vorgenommen werden. 
+    Das Problem in der Klasse wurde bereits im Unterkapitel \cref{sec:problemanalyse} thematisiert.
+    Um Zyklen im Graphen zu erlauben, ist eine Anpassung der Zyklenprüfung erforderlich.
+    Die erste Änderung muss am Anfang der Methode \textit{ComponentAnalysis()} vorgenommen werden.
+    Hier muss bei der Iteration über alle Elemente jede Id in ein Set gespeichert werden, das eine Schleife ist.
     Die andere Änderung muss in der Methode \textit{AssignToComponent()} erfolgen.
     Konkret an der Stelle an der über die Vorgängerelemente iteriert wird.
-    Dort müssen vor dem reksuriven Methoden Aufruf zwei Bedingungen überprüft werden.
+    Dort müssen vor dem reksuriven Aufruf zwei Bedingungen überprüft werden.
     Erstens ob das Vorgängerelement ein Schleifenblock ist.
     Dies geschieht, indem geschaut wird, ob die Id des Vorgängerelements in dem Set vorkommt. 
     Wenn dies der Fall ist, handelt es sich bei dem Vorgängerelement um einen Schleifenblock.
@@ -836,7 +821,6 @@
     %Das Schleifenkonstrukt greift dabei wie die anderen Aktivitätsaktionen auf den Referenzstack zu. Da der nächste Schleifendurchlauf nicht wieder auf den gleichen Eingabenwerten laufen soll, da diese wieder zu einem fehlerhaften Wert führen wird, muss ein Mechanismus im Schleifenkonstrukt implementiert werden, welcher einen neuen Wert holt.
     %Der Schleifenkörper wird dabei nicht mithilfe von Rekursion oder Iteration ausgeführt, sondern durch entfaltung. 
     %Ye et al. beschreiben Schleifenentfaltung als eine gängige Methode um Compiler zu optimieren, weil mit dieser Methode die mehreren Schleifendurchläufe zu einer zusammengefasst werden. \cite{9}
-    %Huang et al. beschreiben den ALgortithmus wie folgt TODO.
     %Der beschrieben Ansatz kann für unseren Ansatz nicht 1:1 übernohmen werden, sondern muss etwas modifiziert werden. Unser Ziel ist es nicht nur einzelene Schleifendurchläufe zusammen zu fassen, sondern die ganzen Schleifendurchläufe in einer einzigen zusammenzufassen.
     %Da bei unseren Lösungsansatz die maximale Anzahl an Schleifendurchläufen begrenzt ist und diese bereits vor der Ausführung der Prüfungs bekannt ist, kann diese Information beim modifizierten Ansatz berücksichtigt werden. Ein Beispiel in in Abbildung TODO.
     %Bei dem Beispiel ist die Anzahl der Schleifen Durchläufe auf 3 begrenzt. In beiden Schleifen soll die Zeichenkette "Foo" 3-mal auf der Konsole ausgegeben werden. 
@@ -845,7 +829,6 @@
     %Hingegen im Beispiel 2 wurde die Schleife entfaltet und die Funktion console.log("Foo") pro Schleifendurchlauf 3-mal ausgeführt. Da die Schleife aber nur noch einmal ausführt und dann abbricht, kann diese auch weggelassen werden.
     %Zwischen den einzelnen Funktionen muss dafür gesorgt werden, dass die neue Wert zur verfgügung steht. Deswegen ist die Idee alle bisherigen Aktivitätaktion zu wiederholen, damit der aktuellste Wert vom Hauptuntersuchungs-Adapter ausgelesen wird und die Prüfung aufgrundlage dieses Wertes nochmals ausgefürt wird. Ein Beispiel ist in Abbildung TODO.
     %\VerbatimInput[numbers=left]{schleifen.js}
-    %\textbf{Abbildung TODO}\\
     %Der Benutzer gibt von vorneherein eine Zahl a an, welche die maximale Anzahl von Schleifendurchläufe beschränkt. Für die Zahl muss dafür folgendes gelten TODO.
     %Die Idee des Ansatzes ist es, den Schleifenköper nicht Iterativ oder Rekursiv ausführen, sondern a-mal auszurollen.
     %Dafür wird der Schleifenköper und die nachfolgenden Anweisungen a-mal kopiert. Die Schleife wird dadurch nicht dynmasisch ausgeführt, sondern statisch in den Code implementiert. Dadurch entstehen $a+1$ Graphen. Jeder dieser Graphen repräsentiert einen ursprüngliche Iteration. Dabei werden die einzelnen Graphen mit ihren direkten Nachbaran verbunden. 
@@ -886,7 +869,6 @@
 
     %\end{tikzpicture}
     %}\\
-    %\textbf{Abbildung TODO}\\
     %\subsection{2. Lösungsansatz}
     %Schleife soll durch ein Konstrukt realisiert werden.
     %Prüfungslogik muss um eine weitere Aktivitätsaktion erweitert werden. Das Schleifenkonstrukt greift dabei auf bereits vorhandene Regeln der Prüfungslogik zu.
@@ -901,7 +883,7 @@
     %Bei Zeichenketten wird der aktuelle Wert mit dem Wert aus dem vorherigen Schleifendurchlauf verglichen. Dafür wird die Levenshtein-Distanz verwendet. Für die ersten beiden Schelifendurchläufe wird der Algorithmus übersprungen, weil die Levenshtein-Distanz noch kein Aussagekräftiges Ergebnis für den Anwendungsfall geben kann.
     %Die Levenshtein-Distanz gibt die ähnlichkeit zwischen zwei Zeichenketten als Zahl an, indem sie die minimale Anzahl an Operation angibt, welche benötigt werden, damit die erste Zeichenkette der zweiten Zeichenkette gleicht. Je größer die Zahl ist destso "unterschiedlicher" sind die beiden Zeichenketten von einander. 
 
-    %Um zu schauen wie sich die Eingabe zu verschiedenen Zeiträumen verhält, berechnen wir Mittelwerte über TODO. Es sollten mindestens zwei Mittelwerte gebildet werden. Mehr als zwei Mittelwerte sind möglich, aber würden den Algorithmus entwindlicher machen. Der erste Mittelwert sollte über alle bisherigen Eingaben gebildet werden, um zu sehen wie sich die Eingabe auf langer Sicht verhält. Der zweite Mittelwert sollte über die letzten n Eingaben gebildert, um zu sehen wie sich die Eingabe auf kurzer Sicht verhält.
+    %Um zu schauen wie sich die Eingabe zu verschiedenen Zeiträumen verhält, berechnen wir Mittelwerte über. Es sollten mindestens zwei Mittelwerte gebildet werden. Mehr als zwei Mittelwerte sind möglich, aber würden den Algorithmus entwindlicher machen. Der erste Mittelwert sollte über alle bisherigen Eingaben gebildet werden, um zu sehen wie sich die Eingabe auf langer Sicht verhält. Der zweite Mittelwert sollte über die letzten n Eingaben gebildert, um zu sehen wie sich die Eingabe auf kurzer Sicht verhält.
     %Da die Werte der Levenshtein-Distanz sich für den Mittelwert nicht besonders anbieten, müssen die Zeichenketten in einen Zahlenwert umgewandelt werden.hließend Addieren. Für die Umwandlung eignet sich UTF-8 besonders gut. Da UTF-8 fast akke Schriftzeichen weltweit beinhaltet.
     %Das kann geschaffen werden indem alle Zeichen der Zeichenkette in eine eindeutige Zahl umwandeln und die einzelnen Zahlen ansc
     %Zusätzlich muss eine Gewichtung bei der Addition berücksichtigt werden, weil sonst Zeichenketten, die aus den gleichen Zeichen bestehen, den gleichen Wert bei der Addition rausbekommen. Das liegt daran, dass bei der Addition ohne Gewichtung nur die Wertigkeit der einzelnen Zeichen betrachtet wird, aber nicht deren Position. Dieses Problem wird mit der Gewichtung aufgelöst. Ein Beispiel dafür für die Addition mit Gewichtung ist in Abbildung TODO.
@@ -922,7 +904,7 @@
         %"foo" = 1 * 102 + 2 * 111 + 3 * 111 = 657
         %"oof" = 1 * 111 + 2 * 111 + 3 * 102 = 639
     %$
-    %\\\textbf{Abbildung TODO} Beispiel Addition mit und ohne Gewichtung
+    %\\\textbf{Abbildung } Beispiel Addition mit und ohne Gewichtung
     %\\\\Ist unser Eingabewert nun keine Zeichenkette, sondern eine Zahl entfällt der Umwandlungsschritt mit der Gewichtung. Es kann sofort mit den beschriebenen Mittelwertansatz angefangen werden.
     %Schleifenkonstrukt -> Benutzer gibt Abbruchbedigung ein (Benutzer verwendet Schleifenkonstrukt statt Entscheidungs Aktivität) -> 
     %typ (generisch?, damit das System dies für uns übernimmt) der eingabe muss bestimmt werden, damit richtiger algorithmus zur stabilität überprüfung ausgewählt werden kann (es wird nur zwischen zeichenketten und zahlen unterschieden => bei zahlen wird mittelwertansatz gewählt bei zeichenketten Levenshtein-Distanz)
@@ -930,7 +912,7 @@
     %Schluss
     \newpage
     \chapter{Evaluation}
-    \label{Evaluation}
+    \label{cha:evaluation}
     in diesen Kapitel werden die Ergebnisse der durchgeführten Tests beschrieben.
     Dafür wird am Anfang das zu auszuführende System definiert und im anschluss die verschiedenen Szenarionen mit welchen das System getestet wurden ist.
     Am Ende werden die Ergebnisse interpretiert und ein Fazit gezogen.\\
